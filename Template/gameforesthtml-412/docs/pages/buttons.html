@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gameforest - Documentation v4.1.2</title>
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  <link rel="stylesheet" href="../../upload/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/animate/animate.min.css">
+  <link rel="stylesheet" href="../assets/plugins/highlight/styles/github-gist.css">
+  <!-- theme stylesheet -->
+  <link href="../../upload/css/theme.min.css" rel="stylesheet">
+  <link href="../assets/css/app.min.css" rel="stylesheet">
+</head>
+<body class="fixed-header">
+  <!-- header -->
+  <header id="header">
+    <div class="container-fluid">
+      <div class="navbar-backdrop">
+        <div class="navbar">
+          <div class="navbar-left">
+            <a class="navbar-toggle"><i class="fa fa-bars"></i></a>
+            <a href="../index.html" class="logo"><img src="../assets/img/logo.png" alt="Gameforest - Game Theme HTML"></a>
+          </div>
+          <div class="nav navbar-right">
+            <ul>
+              <li><a href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/full_screen_preview/5007730" target="_blank">Preview</a></li>
+              <li><a href="../../documentation.html">Documentation</a></li>
+              <li><a href="../../changelog.html">Changelog</a></li>
+              <li><a href="https://www.facebook.com/yakuthemes" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            </ul>
+            <a class="btn btn-outline-default btn-rounded" href="https://themeforest.net/downloads#item-5007730" target="_blank">Rate Now <i class="fa fa-star"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- sidebar -->
+  <div id="sidebar">
+    <h2>Documentation</h2>
+    <ul>
+      <li class="sidebar-header"><span>Getting Started</span></li>
+      <li><a href="../../documentation.html">Introduction</a></li>
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="gulp.html">Gulp</a></li>
+      <li><a href="twig.html">Twig</a></li>
+      <li><a href="javascript.html">JavaScript</a></li>
+      <li><a href="plugins.html">Plugins</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="../../changelog.html">Changelog</a></li>
+      <li class="sidebar-header"><span>Components</span></li>
+      <li><a href="accordions.html">Accordions</a></li>
+      <li><a href="alerts.html">Alerts</a></li>
+      <li><a href="badges.html">Badges</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li class="active"><a href="buttons.html">Buttons</a></li>
+      <li><a href="cards.html">Cards</a></li>
+      <li><a href="carousel.html">Carousel</a></li>
+      <li><a href="charts.html">Charts</a></li>
+      <li><a href="columns.html">Columns</a></li>
+      <li><a href="comment.html">Comment</a></li>
+      <li><a href="datatable.html">DataTable</a></li>
+      <li><a href="dropdown.html">Dropdown</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="form-plugins.html">Form Plugins</a></li>
+      <li><a href="google-maps.html">Google Maps</a></li>
+      <li><a href="hero.html">Hero</a></li>
+      <li><a href="icons.html">Icons</a></li>
+      <li><a href="lightbox.html">Lightbox</a></li>
+      <li><a href="media-player.html">Media Player</a></li>
+      <li><a href="modal.html">Modal</a></li>
+      <li><a href="notification.html">Notification</a></li>
+      <li><a href="pagination.html">Pagination</a></li>
+      <li><a href="popovers.html">Popovers</a></li>
+      <li><a href="progress.html">Progress</a></li>
+      <li><a href="tabs.html">Tabs</a></li>
+      <li><a href="tables.html">Tables</a></li>
+      <li><a href="tooltips.html">Tooltips</a></li>
+      <li><a href="text-editor.html">Text Editor</a></li>
+      <li><a href="typography.html">Typography</a></li>
+      <li><a href="utilities.html">Utilities</a></li>
+    </ul>
+  </div>
+
+  <!-- main -->
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+
+          <h1 id="buttons">Buttons</h1>
+          <p class="lead">Use Gameforest's custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.</p>
+
+          <div class="divider"></div>
+
+          <h2 id="example">Example</h2>
+          <p>Gameforest includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control. Use any of the available button classes to quickly create a styled button.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy"><i class="fa fa-clipboard"></i></button>
+          </div>
+
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview" role="tabpanel">
+              <button type="button" class="btn btn-primary">Primary</button>
+              <button type="button" class="btn btn-success">Success</button>
+              <button type="button" class="btn btn-danger">Danger</button>
+              <button type="button" class="btn btn-warning">Warning</button>
+              <button type="button" class="btn btn-info">Info</button>
+              <button type="button" class="btn btn-dark">Dark</button>
+              <button type="button" class="btn btn-default">Default</button>
+              <button type="button" class="btn btn-secondary">Secondary</button>
+              <button type="button" class="btn btn-link">Link</button>
+            </div>
+            <div class="tab-pane" id="markup" role="tabpanel">
+              <pre><code id="copy" class="html">&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Primary&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-success&quot;&gt;Success&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-danger&quot;&gt;Danger&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-warning&quot;&gt;Warning&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-info&quot;&gt;Info&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-dark&quot;&gt;Dark&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;Default&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-secondary&quot;&gt;Secondary&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-link&quot;&gt;Link&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="button-tags">Button tags</h2>
+          <p>The .btn classes are designed to be used with the button element. However, you can also use these classes on <code>&lt;a&gt;</code> or <code>&lt;input&gt;</code> elements.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-2" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-2" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-2"><i class="fa fa-clipboard"></i></button>
+          </div>
+
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-2" role="tabpanel">
+              <a class="btn btn-primary" href="#" role="button">Link</a>
+              <button class="btn btn-primary" type="submit">Button</button>
+              <input class="btn btn-primary" type="button" value="Input">
+              <input class="btn btn-primary" type="submit" value="Submit">
+              <input class="btn btn-primary" type="reset" value="Reset">
+            </div>
+            <div class="tab-pane" id="markup-2" role="tabpanel">
+              <pre><code id="copy-2" class="html">&lt;a class=&quot;btn btn-primary&quot; href=&quot;#&quot; role=&quot;button&quot;&gt;Link&lt;/a&gt;
+&lt;button class=&quot;btn btn-primary&quot; type=&quot;submit&quot;&gt;Button&lt;/button&gt;
+&lt;input class=&quot;btn btn-primary&quot; type=&quot;button&quot; value=&quot;Input&quot;&gt;
+&lt;input class=&quot;btn btn-primary&quot; type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+&lt;input class=&quot;btn btn-primary&quot; type=&quot;reset&quot; value=&quot;Reset&quot;&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="outline-buttons">Outline buttons</h2>
+          <p>In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with <code>.btn-outline-*</code> ones to remove all background images and colors on any button.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-3" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-3" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-3"><i class="fa fa-clipboard"></i></button>
+          </div>
+
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-3" role="tabpanel">
+              <button type="button" class="btn btn-outline-primary">Primary</button>
+              <button type="button" class="btn btn-outline-success">Success</button>
+              <button type="button" class="btn btn-outline-danger">Danger</button>
+              <button type="button" class="btn btn-outline-warning">Warning</button>
+              <button type="button" class="btn btn-outline-info">Info</button>
+              <button type="button" class="btn btn-outline-dark">Dark</button>
+            </div>
+            <div class="tab-pane" id="markup-3" role="tabpanel">
+              <pre><code id="copy-3" class="html">&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-primary&quot;&gt;Primary&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-success&quot;&gt;Success&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-danger&quot;&gt;Danger&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-warning&quot;&gt;Warning&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-info&quot;&gt;Info&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-dark&quot;&gt;Dark&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="sizes">Sizes</h2>
+          <p>Buttons can be used with three kind of custom sizes as .btn-lg, .btn-sm or .btn-xs.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-4" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-4" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-4"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-4" role="tabpanel">
+              <button type="button" class="btn btn-primary btn-lg">Large button</button>
+              <button type="button" class="btn btn-primary">Default button</button>
+              <button type="button" class="btn btn-primary btn-sm">Small button</button>
+              <button type="button" class="btn btn-primary btn-xs">Extra small button</button>
+            </div>
+            <div class="tab-pane" id="markup-4" role="tabpanel">
+              <pre><code id="copy-4" class="html">&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-lg&quot;&gt;Large button&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Default button&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot;&gt;Small button&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-xs&quot;&gt;Extra small button&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="icons">Icons</h2>
+          <p>Add <code>.btn-icon-alignment</code> to set the icon position in button tags. It is not required to add the alignment class if the default statement is right.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-5" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-5" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-5"><i class="fa fa-clipboard"></i></button>
+          </div>
+
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-5" role="tabpanel">
+              <button type="button" class="btn btn-primary">Primary <i class="fa fa-heart-o"></i></button>
+              <button type="button" class="btn btn-success">Success <i class="fa fa-check"></i></button>
+              <button type="button" class="btn btn-info btn-icon-left"><i class="fa fa-bell"></i> Info</button>
+              <button type="button" class="btn btn-warning btn-icon-left"><i class="fa fa-volume-up"></i> Warning</button>
+              <button type="button" class="btn btn-danger">Danger <i class="fa fa-trash"></i></button>
+              <button type="button" class="btn btn-dark">Dark <i class="fa fa-cog"></i></button>
+              <button type="button" class="btn btn-default">Default <i class="fa fa-refresh"></i></button>
+              <button type="button" class="btn btn-secondary">Secondary <i class="fa fa-refresh"></i></button>
+            </div>
+            <div class="tab-pane" id="markup-5" role="tabpanel">
+              <pre><code id="copy5" class="html">&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Primary &lt;i class=&quot;fa fa-heart-o&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-success&quot;&gt;Success &lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-info btn-icon-left&quot;&gt;&lt;i class=&quot;fa fa-bell&quot;&gt;&lt;/i&gt; Info&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-warning btn-icon-left&quot;&gt;&lt;i class=&quot;fa fa-volume-up&quot;&gt;&lt;/i&gt; Warning&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-danger&quot;&gt;Danger &lt;i class=&quot;fa fa-trash&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-dark&quot;&gt;Dark &lt;i class=&quot;fa fa-cog&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;Default &lt;i class=&quot;fa fa-refresh&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-secondary&quot;&gt;Secondary &lt;i class=&quot;fa fa-refresh&quot;&gt;&lt;/i&gt;&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="customized">Customized</h2>
+          <p>It is also possible to customize your button with shadow, effect or rounded custom classes like below. Add to the button one of these classes and button will looks like in the example.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-6" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-6" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-6"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-6" role="tabpanel">
+              <button type="button" class="btn btn-primary btn-lg btn-rounded btn-shadow">Shadow</button>
+              <button type="button" class="btn btn-primary btn-lg btn-rounded btn-shadow btn-effect">Effect</button>
+              <button type="button" class="btn btn-primary btn-shadow btn-effect">Button</button>
+              <button type="button" class="btn btn-outline-primary btn-effect">Button</button>
+            </div>
+            <div class="tab-pane" id="markup-6" role="tabpanel">
+              <pre><code id="copy-6" class="html">&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-lg btn-rounded btn-shadow&quot;&gt;Shadow&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-lg btn-rounded btn-shadow btn-effect&quot;&gt;Effect&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-shadow btn-effect&quot;&gt;Button&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-primary btn-effect&quot;&gt;Button&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-3 sidebar-right">
+
+          <ul>
+            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#example">Example</a></li>
+            <li><a href="#button-tags">Button Tags</a></li>
+            <li><a href="#outline-buttons">Outline Buttons</a></li>
+            <li><a href="#sizes">Sizes</a></li>
+            <li><a href="#icons">Icons</a></li>
+            <li><a href="#customized">Customized</a></li>
+            <li class="divider"></li>
+            <li><a href="https://themeforest.net/user/yakuzi#contact" target="_blank"><i class="fa fa-bell-o"></i> Report issue</a></li>
+            <li><a href="pages/support.html#get-help"><i class="fa fa-life-ring"></i> Get help</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- footer -->
+  <div class="version">
+    version: 4.1.2
+  </div>
+
+  <!-- scripts -->
+  <script src="../../upload/plugins/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../../upload/plugins/popper/popper.min.js"></script>
+  <script src="../../upload/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/plugins/clipboard/clipboard.min.js"></script>
+  <script src="../assets/plugins/highlight/highlight.pack.js" charset="utf-8"></script>
+
+  <script src="../../upload/js/theme.min.js"></script>
+  <script src="../assets/js/app.min.js"></script>
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

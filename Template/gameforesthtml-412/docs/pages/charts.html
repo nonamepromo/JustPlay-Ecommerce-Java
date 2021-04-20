@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gameforest - Documentation v4.1.2</title>
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  <link rel="stylesheet" href="../../upload/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/animate/animate.min.css">
+  <link rel="stylesheet" href="../assets/plugins/highlight/styles/github-gist.css">
+  <!-- plugins -->
+  <link href="../../upload/plugins/morris/morris.css" rel="stylesheet">
+  <!-- theme stylesheet -->
+  <link href="../../upload/css/theme.min.css" rel="stylesheet">
+  <link href="../assets/css/app.min.css" rel="stylesheet">
+</head>
+<body class="fixed-header">
+  <!-- header -->
+  <header id="header">
+    <div class="container-fluid">
+      <div class="navbar-backdrop">
+        <div class="navbar">
+          <div class="navbar-left">
+            <a class="navbar-toggle"><i class="fa fa-bars"></i></a>
+            <a href="../index.html" class="logo"><img src="../assets/img/logo.png" alt="Gameforest - Game Theme HTML"></a>
+          </div>
+          <div class="nav navbar-right">
+            <ul>
+              <li><a href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/full_screen_preview/5007730" target="_blank">Preview</a></li>
+              <li><a href="../../documentation.html">Documentation</a></li>
+              <li><a href="../../changelog.html">Changelog</a></li>
+              <li><a href="https://www.facebook.com/yakuthemes" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            </ul>
+            <a class="btn btn-outline-default btn-rounded" href="https://themeforest.net/downloads#item-5007730" target="_blank">Rate Now <i class="fa fa-star"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- sidebar -->
+  <div id="sidebar">
+    <h2>Documentation</h2>
+    <ul>
+      <li class="sidebar-header"><span>Getting Started</span></li>
+      <li><a href="../../documentation.html">Introduction</a></li>
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="gulp.html">Gulp</a></li>
+      <li><a href="twig.html">Twig</a></li>
+      <li><a href="javascript.html">JavaScript</a></li>
+      <li><a href="plugins.html">Plugins</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="../../changelog.html">Changelog</a></li>
+      <li class="sidebar-header"><span>Components</span></li>
+      <li><a href="accordions.html">Accordions</a></li>
+      <li><a href="alerts.html">Alerts</a></li>
+      <li><a href="badges.html">Badges</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="buttons.html">Buttons</a></li>
+      <li><a href="cards.html">Cards</a></li>
+      <li><a href="carousel.html">Carousel</a></li>
+      <li class="active"><a href="charts.html">Charts</a></li>
+      <li><a href="columns.html">Columns</a></li>
+      <li><a href="comment.html">Comment</a></li>
+      <li><a href="datatable.html">DataTable</a></li>
+      <li><a href="dropdown.html">Dropdown</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="form-plugins.html">Form Plugins</a></li>
+      <li><a href="google-maps.html">Google Maps</a></li>
+      <li><a href="hero.html">Hero</a></li>
+      <li><a href="icons.html">Icons</a></li>
+      <li><a href="lightbox.html">Lightbox</a></li>
+      <li><a href="media-player.html">Media Player</a></li>
+      <li><a href="modal.html">Modal</a></li>
+      <li><a href="notification.html">Notification</a></li>
+      <li><a href="pagination.html">Pagination</a></li>
+      <li><a href="popovers.html">Popovers</a></li>
+      <li><a href="progress.html">Progress</a></li>
+      <li><a href="tabs.html">Tabs</a></li>
+      <li><a href="tables.html">Tables</a></li>
+      <li><a href="tooltips.html">Tooltips</a></li>
+      <li><a href="text-editor.html">Text Editor</a></li>
+      <li><a href="typography.html">Typography</a></li>
+      <li><a href="utilities.html">Utilities</a></li>
+    </ul>
+  </div>
+
+  <!-- main -->
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+
+          <h1 id="charts">Charts</h1>
+          <p class="lead">Morris.js is the library that powers the graphs on gameforest. It's a very simple API for drawing line, bar, area and donut charts.</p>
+
+          <div class="divider"></div>
+
+          <h2 id="line-chart">Line Chart</h2>
+          <p>The public API is terribly simple. It's just one function: Morris.Line(options), where options is an object containing some of the following configuration options.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy"><i class="fa fa-clipboard"></i></button>
+          </div>
+
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview" role="tabpanel">
+              <div id="morris-line-chart"></div>
+            </div>
+            <div class="tab-pane" id="markup" role="tabpanel">
+              <pre><code id="copy" class="html">&lt;div id=&quot;morris-line-chart&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+(function($) {
+  &quot;use strict&quot;;
+  var area = new Morris.Line({
+      element: 'morris-line-chart',
+      resize: true,
+      data: [
+        { y: '2011', a: 30, b: 13 },
+        { y: '2012', a: 75, b: 45 },
+        { y: '2013', a: 50, b: 40 },
+        { y: '2014', a: 75, b: 63 },
+        { y: '2015', a: 50, b: 40 },
+        { y: '2016', a: 75, b: 65 },
+        { y: '2017', a: 100, b: 30 }
+      ],
+      pointSize: 6,
+      xkey: 'y',
+      ykeys: ['a', 'b'],
+      labels: ['Item 1', 'Item 2'],
+      lineColors: ['#2575dc', '#0E9A49'],
+      hideHover: 'auto'
+  });
+})(jQuery);
+&lt;/script&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="line-chart">Bar Chart</h2>
+          <p>Create bar charts using Morris.Bar(options), where options is an object containing the following configuration options.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-2" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-2" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-2"><i class="fa fa-clipboard"></i></button>
+          </div>
+
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-2" role="tabpanel">
+              <div id="morris-bar-chart"></div>
+            </div>
+            <div class="tab-pane" id="markup-2" role="tabpanel">
+              <pre><code id="copy-2" class="html">&lt;div id=&quot;morris-bar-chart&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+(function($) {
+  &quot;use strict&quot;;
+  var bar = new Morris.Bar({
+      element: 'morris-bar-chart',
+      resize: true,
+      data: [
+          {y: '2008', a: 100, b: 90},
+          {y: '2009', a: 73, b: 45},
+          {y: '2010', a: 55, b: 42},
+          {y: '2010', a: 75, b: 65},
+          {y: '2011', a: 20, b: 40},
+          {y: '2013', a: 75, b: 65},
+          {y: '2014', a: 100, b: 90}
+      ],
+      barColors: ['#0E9A49', '#e74c3c'],
+      xkey: 'y',
+      ykeys: ['a', 'b'],
+      labels: ['CPU', 'DISK'],
+      hideHover: 'auto'
+  });
+})(jQuery);
+&lt;/script&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="area-chart">Area Chart</h2>
+          <p>The public API is terribly simple. It's just one function: Morris.Line(options), where options is an object containing some of the following configuration options.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-3" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-3" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-3"><i class="fa fa-clipboard"></i></button>
+          </div>
+
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-3" role="tabpanel">
+              <div id="morris-area-chart"></div>
+            </div>
+            <div class="tab-pane" id="markup-3" role="tabpanel">
+              <pre><code id="copy-3" class="html">&lt;div id=&quot;morris-bar-chart&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+(function($) {
+  &quot;use strict&quot;;
+  var area = new Morris.Area({
+      element: 'morris-area-chart',
+      resize: true,
+      data: [
+          {y: '2011 Q1', item1: 2666, item2: 2666},
+          {y: '2011 Q2', item1: 2778, item2: 2294},
+          {y: '2011 Q3', item1: 4912, item2: 1969},
+          {y: '2011 Q4', item1: 3767, item2: 3597},
+          {y: '2012 Q1', item1: 6810, item2: 1914},
+          {y: '2012 Q2', item1: 5670, item2: 4293},
+          {y: '2012 Q3', item1: 4820, item2: 3795},
+          {y: '2012 Q4', item1: 15073, item2: 5967},
+          {y: '2013 Q1', item1: 10687, item2: 4460},
+          {y: '2013 Q2', item1: 8432, item2: 5713}
+      ],
+      xkey: 'y',
+      ykeys: ['item1', 'item2'],
+      labels: ['Item 1', 'Item 2'],
+      lineColors: ['#2575dc', '#0E9A49'],
+      hideHover: 'auto'
+  });
+})(jQuery);
+&lt;/script&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="donut-chart">Donut Chart</h2>
+          <p>This really couldn't be easier. Create a Donut chart using Morris.Donut(options), with the following options.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-4" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-4" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-4"><i class="fa fa-clipboard"></i></button>
+          </div>
+
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-4" role="tabpanel">
+              <div id="morris-donut-chart"></div>
+            </div>
+            <div class="tab-pane" id="markup-4" role="tabpanel">
+              <pre><code id="copy-4" class="html">&lt;div id=&quot;morris-bar-chart&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+(function($) {
+  &quot;use strict&quot;;
+  var donut = new Morris.Donut({
+      element: 'morris-donut-chart',
+      resize: true,
+      colors: [&quot;#e74c3c&quot;, &quot;#2575dc&quot;, &quot;#0E9A49&quot;],
+      data: [
+          {label: &quot;Download Sales&quot;, value: 12},
+          {label: &quot;In-Store Sales&quot;, value: 30},
+          {label: &quot;Mail-Order Sales&quot;, value: 20}
+      ],
+      hideHover: 'auto'
+  });
+})(jQuery);
+&lt;/script&gt;</code></pre>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-3 sidebar-right">
+
+          <ul>
+            <li><a href="#charts">Charts</a></li>
+            <li><a href="#line-chart">Line Chart</a></li>
+            <li><a href="#area-chart">Area Chart</a></li>
+            <li><a href="#donut-chart">Donut Chart</a></li>
+            <li class="divider"></li>
+            <li><a href="https://themeforest.net/user/yakuzi#contact" target="_blank"><i class="fa fa-bell-o"></i> Report issue</a></li>
+            <li><a href="pages/support.html#get-help"><i class="fa fa-life-ring"></i> Get help</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- footer -->
+  <div class="version">
+    version: 4.1.2
+  </div>
+
+  <!-- scripts -->
+  <script src="../../upload/plugins/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../../upload/plugins/popper/popper.min.js"></script>
+  <script src="../../upload/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/plugins/clipboard/clipboard.min.js"></script>
+  <script src="../assets/plugins/highlight/highlight.pack.js" charset="utf-8"></script>
+
+  <script src="../../upload/plugins/morris/raphael-2.1.0.min.js"></script>
+  <script src="../../upload/plugins/morris/morris.min.js"></script>
+  <script>
+    (function($) {
+      "use strict";
+      var area = new Morris.Line({
+        element: 'morris-line-chart',
+        resize: true,
+        data: [{
+            y: '2011',
+            a: 30,
+            b: 13
+          },
+          {
+            y: '2012',
+            a: 75,
+            b: 45
+          },
+          {
+            y: '2013',
+            a: 50,
+            b: 40
+          },
+          {
+            y: '2014',
+            a: 75,
+            b: 63
+          },
+          {
+            y: '2015',
+            a: 50,
+            b: 40
+          },
+          {
+            y: '2016',
+            a: 75,
+            b: 65
+          },
+          {
+            y: '2017',
+            a: 100,
+            b: 30
+          }
+        ],
+        pointSize: 6,
+        xkey: 'y',
+        ykeys: ['a', 'b'],
+        labels: ['Item 1', 'Item 2'],
+        lineColors: ['#2575dc', '#0E9A49'],
+        hideHover: 'auto'
+      });
+
+      var bar = new Morris.Bar({
+        element: 'morris-bar-chart',
+        resize: true,
+        data: [{
+            y: '2008',
+            a: 100,
+            b: 90
+          },
+          {
+            y: '2009',
+            a: 73,
+            b: 45
+          },
+          {
+            y: '2010',
+            a: 55,
+            b: 42
+          },
+          {
+            y: '2010',
+            a: 75,
+            b: 65
+          },
+          {
+            y: '2011',
+            a: 20,
+            b: 40
+          },
+          {
+            y: '2013',
+            a: 75,
+            b: 65
+          },
+          {
+            y: '2014',
+            a: 100,
+            b: 90
+          }
+        ],
+        barColors: ['#0E9A49', '#e74c3c'],
+        xkey: 'y',
+        ykeys: ['a', 'b'],
+        labels: ['CPU', 'DISK'],
+        hideHover: 'auto'
+      });
+
+      var donut = new Morris.Donut({
+        element: 'morris-donut-chart',
+        resize: true,
+        colors: ["#e74c3c", "#2575dc", "#0E9A49"],
+        data: [{
+            label: "Download Sales",
+            value: 12
+          },
+          {
+            label: "In-Store Sales",
+            value: 30
+          },
+          {
+            label: "Mail-Order Sales",
+            value: 20
+          }
+        ],
+        hideHover: 'auto'
+      });
+
+      var area = new Morris.Area({
+        element: 'morris-area-chart',
+        resize: true,
+        data: [{
+            y: '2011 Q1',
+            item1: 2666,
+            item2: 2666
+          },
+          {
+            y: '2011 Q2',
+            item1: 2778,
+            item2: 2294
+          },
+          {
+            y: '2011 Q3',
+            item1: 4912,
+            item2: 1969
+          },
+          {
+            y: '2011 Q4',
+            item1: 3767,
+            item2: 3597
+          },
+          {
+            y: '2012 Q1',
+            item1: 6810,
+            item2: 1914
+          },
+          {
+            y: '2012 Q2',
+            item1: 5670,
+            item2: 4293
+          },
+          {
+            y: '2012 Q3',
+            item1: 4820,
+            item2: 3795
+          },
+          {
+            y: '2012 Q4',
+            item1: 15073,
+            item2: 5967
+          },
+          {
+            y: '2013 Q1',
+            item1: 10687,
+            item2: 4460
+          },
+          {
+            y: '2013 Q2',
+            item1: 8432,
+            item2: 5713
+          }
+        ],
+        xkey: 'y',
+        ykeys: ['item1', 'item2'],
+        labels: ['Item 1', 'Item 2'],
+        lineColors: ['#2575dc', '#0E9A49'],
+        hideHover: 'auto'
+      });
+    })(jQuery);
+  </script>
+
+  <script src="../../upload/js/theme.min.js"></script>
+  <script src="../assets/js/app.min.js"></script>
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

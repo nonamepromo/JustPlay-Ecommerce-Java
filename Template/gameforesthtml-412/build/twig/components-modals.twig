@@ -1,0 +1,438 @@
+{% extends "views/layout.twig" %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Modals Component</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Modals</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h5>Modals</h5>
+    <p>Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults. Included are the modal header, modal body required for padding, and modal footer optional.</p>
+    <div class="demo-modal m-b-40">
+      <div class="modal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row m-b-80">
+      <div class="col-lg-6">
+        <h5>Basic</h5>
+        <p>Toggle a working modal demo by clicking the button below. It will slide down and fade in from the top of the page.</p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Launch demo modal</button>
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae nisi a libero accumsan tincidunt ut et odio. Curabitur eget dolor vitae enim condimentum efficitur vel ut enim. Praesent non ex eget est pulvinar interdum. Ut commodo nisi at semper interdum. Praesent aliquam metus ac mattis viverra. Etiam tellus dolor, blandit at tempor id, rhoncus vel dui. Nullam viverra dui at tellus eleifend, vitae tristique risus consectetur. Morbi eu ultrices neque. In hac habitasse platea dictumst.</p>
+                <p>Quisque vestibulum nibh rhoncus euismod cursus. Mauris dignissim neque sit amet lorem aliquet consectetur. Sed malesuada arcu a turpis vestibulum, ac auctor augue tempus. Mauris nec sodales augue. Pellentesque nec blandit ipsum, in congue lectus. In lobortis et tortor vitae mattis. Maecenas lacinia iaculis felis efficitur consectetur. Sed malesuada scelerisque massa ut commodo. Cras id mi ac elit sollicitudin fermentum. Fusce ornare dolor vel lorem fermentum malesuada. Pellentesque consectetur, tortor quis hendrerit convallis, est ipsum tempus neque, scelerisque finibus urna sem ut velit. Pellentesque a rhoncus felis. Sed molestie, nisl in rhoncus facilisis, lectus magna facilisis sem, quis eleifend urna libero semper velit. Phasellus elit sem, venenatis eget ultricies vitae, imperdiet sed eros. Mauris eget laoreet turpis. Etiam et nisi velit.</p>
+                <p>Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam nec augue finibus augue congue vestibulum scelerisque vel tortor. Etiam elementum, ligula sit amet elementum vestibulum, elit eros eleifend dui, at cursus turpis purus nec mauris. Pellentesque accumsan tempus felis, non elementum ante commodo ac. Mauris fermentum ornare hendrerit. Duis pharetra convallis ante, a gravida lectus dictum at. Aenean pellentesque leo lacinia urna aliquam, at condimentum urna ultrices. Pellentesque et est id purus tempor tempor et sit amet augue. Integer lobortis nunc a elit pellentesque dignissim.</p>
+                <p>Duis vulputate nulla at mi maximus venenatis. Sed id tellus non lorem gravida ullamcorper. Duis aliquam tellus et rhoncus luctus. Ut pharetra porttitor aliquam. Suspendisse eu pellentesque ligula, eget lobortis odio. Quisque quis massa non nulla venenatis molestie. In nec tristique metus, id scelerisque magna.</p>
+                <p>Suspendisse nec ligula velit. Quisque ut tincidunt dui. Pellentesque rhoncus tellus in rutrum accumsan. Cras at semper risus. Nullam ut erat lacus. Etiam porttitor nibh ligula, in pretium nulla ultrices nec. Ut scelerisque velit a porta commodo. Sed eleifend magna pretium sapien efficitur, nec scelerisque leo feugiat. Nullam convallis non nisi ac dignissim. Mauris et dapibus neque. Sed rutrum neque sit amet sem vestibulum, ut efficitur elit aliquam. Nunc auctor euismod finibus.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <h5>Sizes</h5>
+        <p>Modals have three optional sizes, available via modifier classes to be placed on a <code>.modal-dialog</code>.</p>
+        <!-- Large modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+        <div class="modal fade bs-example-modal-lg">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae nisi a libero accumsan tincidunt ut et odio. Curabitur eget dolor vitae enim condimentum efficitur vel ut enim. Praesent non ex eget est pulvinar interdum. Ut commodo nisi at semper interdum. Praesent aliquam metus ac mattis viverra. Etiam tellus dolor, blandit at tempor id, rhoncus vel dui. Nullam viverra dui at tellus eleifend, vitae tristique risus consectetur. Morbi eu ultrices neque. In hac habitasse platea dictumst.</p>
+                <p>Quisque vestibulum nibh rhoncus euismod cursus. Mauris dignissim neque sit amet lorem aliquet consectetur. Sed malesuada arcu a turpis vestibulum, ac auctor augue tempus. Mauris nec sodales augue. Pellentesque nec blandit ipsum, in congue lectus. In lobortis et tortor vitae mattis. Maecenas lacinia iaculis felis efficitur consectetur. Sed malesuada scelerisque massa ut commodo. Cras id mi ac elit sollicitudin fermentum. Fusce ornare dolor vel lorem fermentum malesuada. Pellentesque consectetur, tortor quis hendrerit convallis, est ipsum tempus neque, scelerisque finibus urna sem ut velit. Pellentesque a rhoncus felis. Sed molestie, nisl in rhoncus facilisis, lectus magna facilisis sem, quis eleifend urna libero semper velit. Phasellus elit sem, venenatis eget ultricies vitae, imperdiet sed eros. Mauris eget laoreet turpis. Etiam et nisi velit.</p>
+                <p>Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam nec augue finibus augue congue vestibulum scelerisque vel tortor. Etiam elementum, ligula sit amet elementum vestibulum, elit eros eleifend dui, at cursus turpis purus nec mauris. Pellentesque accumsan tempus felis, non elementum ante commodo ac. Mauris fermentum ornare hendrerit. Duis pharetra convallis ante, a gravida lectus dictum at. Aenean pellentesque leo lacinia urna aliquam, at condimentum urna ultrices. Pellentesque et est id purus tempor tempor et sit amet augue. Integer lobortis nunc a elit pellentesque dignissim.</p>
+                <p>Duis vulputate nulla at mi maximus venenatis. Sed id tellus non lorem gravida ullamcorper. Duis aliquam tellus et rhoncus luctus. Ut pharetra porttitor aliquam. Suspendisse eu pellentesque ligula, eget lobortis odio. Quisque quis massa non nulla venenatis molestie. In nec tristique metus, id scelerisque magna.</p>
+                <p>Suspendisse nec ligula velit. Quisque ut tincidunt dui. Pellentesque rhoncus tellus in rutrum accumsan. Cras at semper risus. Nullam ut erat lacus. Etiam porttitor nibh ligula, in pretium nulla ultrices nec. Ut scelerisque velit a porta commodo. Sed eleifend magna pretium sapien efficitur, nec scelerisque leo feugiat. Nullam convallis non nisi ac dignissim. Mauris et dapibus neque. Sed rutrum neque sit amet sem vestibulum, ut efficitur elit aliquam. Nunc auctor euismod finibus.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Small modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+        <div class="modal fade bs-example-modal-sm">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae nisi a libero accumsan tincidunt ut et odio. Curabitur eget dolor vitae enim condimentum efficitur vel ut enim. Praesent non ex eget est pulvinar interdum. Ut commodo nisi at semper interdum. Praesent aliquam metus ac mattis viverra. Etiam tellus dolor, blandit at tempor id, rhoncus vel dui. Nullam viverra dui at tellus eleifend, vitae tristique risus consectetur. Morbi eu ultrices neque. In hac habitasse platea dictumst.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Small modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-xs">Extra Small modal</button>
+        <div class="modal fade bs-example-modal-xs">
+          <div class="modal-dialog modal-xs" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Modal body text goes here.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <h5>Forms</h5>
+        <p>Add forms to the modal plugin like login or registration like in the example below. It can be useful when you would like to display a login form.</p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-login">Login Modal</button>
+        <div class="modal fade" id="modal-login">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><i class="fa fa-sign-in"></i> Login to your account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body p-a-20">
+                <form action="profile.html" method="post">
+                  <a class="btn btn-social btn-facebook btn-block btn-icon-left" href="" role="button"><i class="fa fa-facebook"></i> Connect with Facebook</a>
+                  <div class="divider">
+                    <span>or</span>
+                  </div>
+                  <div class="form-group input-icon-left m-b-10">
+                    <i class="fa fa-user"></i>
+                    <input type="email" class="form-control form-control-secondary" placeholder="Username">
+                  </div>
+                  <div class="form-group input-icon-left m-b-15">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" class="form-control form-control-secondary" placeholder="Password">
+                  </div>
+                  <label class="custom-control custom-checkbox custom-checkbox-primary">
+                    <input type="checkbox" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Remember me</span>
+                  </label>
+                  <button type="submit" class="btn btn-primary btn-block m-t-10">Login <i class="fa fa-sign-in"></i></button>
+                  <div class="divider">
+                    <span>Don't have an account?</span>
+                  </div>
+                  <a class="btn btn-secondary btn-block" href="register.html" role="button">Register</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-register">
+          Register modal
+        </button>
+        <div class="modal fade" id="modal-register">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><i class="fa fa-sign-in"></i> Login to your account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body p-a-20">
+                <form action="profile.html" method="post">
+                  <a class="btn btn-social btn-google-plus btn-block btn-icon-left" href="" role="button"><i class="fa fa-google-plus"></i> Register with Google Plus</a>
+                  <div class="divider"><span>or</span></div>
+                  <div class="form-group input-icon-left m-b-10">
+                    <i class="fa fa-user"></i>
+                    <input type="text" class="form-control form-control-secondary" placeholder="Username">
+                  </div>
+                  <div class="form-group input-icon-left m-b-10">
+                    <i class="fa fa-envelope"></i>
+                    <input type="email" class="form-control form-control-secondary" placeholder="Email Address">
+                  </div>
+                  <div class="divider"><span>Security</span></div>
+                  <div class="form-group input-icon-left m-b-10">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" class="form-control form-control-secondary" placeholder="Password">
+                  </div>
+                  <div class="form-group input-icon-left m-b-10">
+                    <i class="fa fa-unlock"></i>
+                    <input type="password" class="form-control form-control-secondary" placeholder="Repeat Password">
+                  </div>
+                  <div class="divider"><span>I am not a robot</span></div>
+                  <div class="g-recaptcha-outer">
+                    <script src='https://www.google.com/recaptcha/api.js'></script>
+                    <div class="g-recaptcha" data-sitekey="6LeBwhwUAAAAAG1RDj-rS2Wu4WYNoV021q0z-LNY"></div>
+                  </div>
+                  <div class="divider"><span>Terms of Service</span></div>
+                  <label class="custom-control custom-checkbox custom-checkbox-primary custom-checked">
+                    <input type="checkbox" class="custom-control-input" checked="">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Subscribe to monthly newsletter</span>
+                  </label>
+                  <label class="custom-control custom-checkbox custom-checkbox-primary">
+                    <input type="checkbox" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Accept <a href="#">terms of service</a></span>
+                  </label>
+                  <button type="submit" class="btn btn-primary m-t-10 btn-block">Complete Registration</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h5>Positions</h5>
+        <p>Modal positions can be set with the <code>.modal-*</code> position name class. Add the position name to the modal class.</p>
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-top">Top modal</button>
+        <div class="modal fade modal-top" id="modal-top">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="ModalLabel">Modal title</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit!</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-center">Center modal</button>
+        <div class="modal fade" id="modal-center">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="ModalLabel">Modal title</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit!</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-bottom">Bottom modal</button>
+        <div class="modal fade modal-bottom" id="modal-bottom">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="ModalLabel">Modal title</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit!</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h5 class="m-t-80">Variations</h5>
+    <p>Use custom variations for modal component like primary, success or danger etc. Add <code>.modal-*</code> color to the modal class.</p>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-primary">
+      Primary modal
+    </button>
+    <div class="modal fade modal-top modal-primary" id="modal-primary">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="ModalLabel">Primary Modal</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Custom message for users!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-success">
+      Success modal
+    </button>
+    <div class="modal fade modal-top modal-success" id="modal-success">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="ModalLabel">Success Modal</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Custom message for users!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
+      Danger modal
+    </button>
+    <div class="modal fade modal-top modal-danger" id="modal-danger">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="ModalLabel">Danger Modal</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Custom message for users!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-warning">
+      Warning modal
+    </button>
+    <div class="modal fade modal-top modal-warning" id="modal-warning">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="ModalLabel">Warning Modal</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Custom message for users!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
+      Info modal
+    </button>
+    <div class="modal fade modal-top modal-info" id="modal-info">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="ModalLabel">Info Modal</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Custom message for users!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

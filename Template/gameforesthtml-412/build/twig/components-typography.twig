@@ -1,0 +1,122 @@
+{% extends "views/layout.twig" %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Typography</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Typography</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h5 class="m-b-20">General</h5>
+    <p class="lead">
+      Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+    </p>
+    <p>Phasellus eu nunc ac sem ornare commodo non iaculis dui. Quisque tincidunt tellus sed elit vestibulum, eu tincidunt odio tincidunt. Duis felis magna, efficitur ut mauris id, convallis finibus eros. Proin sodales libero at nulla auctor, nec auctor tellus mattis. Sed ultricies quam eu blandit bibendum. Ut sit amet volutpat enim. Curabitur et ullamcorper nisl. Ut sed elit eget leo tempor ultricies a vel massa.</p>
+    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+  </div>
+</section>
+
+<section class="bg-secondary">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h5 class="m-b-20">Headings</h5>
+        <p>All HTML headings, <code>h1</code> through <code>h6</code>, are available. .h1 through .h6 classes are also available, for when you want to match the font styling of a heading but still want your text to be displayed inline.</p>
+        <div class="row m-t-30">
+          <div class="col-md-6">
+            <h1>Heading One</h1>
+            <h2>Heading Two</h2>
+            <h3>Heading Three</h3>
+            <h4>Heading Four</h4>
+            <h5>Heading Five</h5>
+            <h6>Heading Six</h6>
+          </div>
+          <div class="col-md-6">
+            <h1 class="font-weight-300">Heading One</h1>
+            <h2 class="font-weight-300">Heading Two</h2>
+            <h3 class="font-weight-300">Heading Three</h3>
+            <h4 class="font-weight-300">Heading Four</h4>
+            <h5 class="font-weight-300">Heading Five</h5>
+            <h6 class="font-weight-300">Heading Six</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h5 class="m-b-20">Addresses</h5>
+        <p>Present contact information for the nearest ancestor or the entire body of work. Preserve formatting by ending all lines with <code>&lt;br&gt;</code></p>
+        <address>
+          <strong>Twitter, Inc.</strong><br>
+          1355 Market Street, Suite 900<br>
+          San Francisco, CA 94103<br>
+          <abbr title="Phone">P:</abbr> (123) 456-7890
+        </address>
+
+        <address>
+          <strong>Full Name</strong><br>
+          <a href="mailto:#">first.last@example.com</a>
+        </address>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5 class="m-b-20">Text Styles</h5>
+        <p>You can use the mark tag to <mark>highlight</mark> text.</p>
+        <p><del>This line of text is meant to be treated as deleted text.</del></p>
+        <p><u>This line of text will render as underlined</u></p>
+        <p><strong>This line rendered as bold text.</strong></p>
+        <p><em>This line rendered as italicized text.</em></p>
+        <p><small>This line of text is meant to be treated as fine print.</small></p>
+        <p>An abbreviation of the word attribute is <abbr title="attribute">attr</abbr></p>
+      </div>
+      <div class="col-md-4">
+        <h5 class="m-b-20">Ordered List</h5>
+        <ol class="p-l-15">
+          <li>Lorem ipsum dolor sit amet</li>
+          <li>Consectetur adipiscing elit</li>
+          <li>Integer molestie lorem at massa</li>
+          <li>Facilisis in pretium nisl aliquet</li>
+          <li>Nulla volutpat aliquam velit</li>
+          <li>Faucibus porta lacus fringilla vel</li>
+          <li>Aenean sit amet erat nunc</li>
+        </ol>
+      </div>
+      <div class="col-md-4">
+        <h5 class="m-b-20">Unordered List</h5>
+        <ul>
+          <li>Lorem ipsum dolor sit amet</li>
+          <li>Consectetur adipiscing elit</li>
+          <li>Integer molestie lorem at massa</li>
+          <li>Facilisis in pretium nisl aliquet
+            <ul>
+              <li>Phasellus iaculis neque</li>
+              <li>Vestibulum laoreet porttitor sem</li>
+              <li>Faucibus porta lacus fringilla vel</li>
+              <li>Eget porttitor lorem</li>
+            </ul>
+          </li>
+          <li>Nulla volutpat aliquam velit</li>
+          <li>Faucibus porta lacus fringilla vel</li>
+          <li>Aenean sit amet erat nunc</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

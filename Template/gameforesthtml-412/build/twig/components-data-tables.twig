@@ -1,0 +1,290 @@
+{% extends "views/layout.twig" %}
+
+{% block css %}
+<link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap4.min.css">
+{% endblock %}
+
+{% block js %}
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script>
+(function($) {
+  "use strict";
+  $('.table').DataTable({
+    columnDefs: [ {
+      orderable: false,
+      targets: [0, 3, 4]
+    }],
+    "order": [[2, "desc"]]
+  });
+})(jQuery);
+</script>
+{% endblock %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">DataTables</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">DataTables</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h5>Example</h5>
+    <p class="m-b-35">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table.</p>
+    <table class="table table-striped" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th width="50" scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <th>Nickname</th>
+          <th>Registered</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>YAKUZI</td>
+          <td>2017/07/25</td>
+          <td>User</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>Venom</td>
+          <td>2017/07/20</td>
+          <td>Moderator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>Elizabeth</td>
+          <td>2017/07/17</td>
+          <td>Administrator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>Clark Kent</td>
+          <td>2017/07/13</td>
+          <td>Administrator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>John Doe</td>
+          <td>2017/07/10</td>
+          <td>User</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>Trevor</td>
+          <td>2017/07/05</td>
+          <td>User</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>Guardian</td>
+          <td>2017/06/30</td>
+          <td>User</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>Nadine Ross</td>
+          <td>2017/06/28</td>
+          <td>Administrator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>Victor Sullivan</td>
+          <td>2017/06/27</td>
+          <td>User</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>Nathan Drake</td>
+          <td>2017/06/20</td>
+          <td>User</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>Vargas</td>
+          <td>2017/06/19</td>
+          <td>User</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>Shoreline</td>
+          <td>2017/06/15</td>
+          <td>Moderator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>Statham</td>
+          <td>2017/06/13</td>
+          <td>Administrator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>Caesar</td>
+          <td>2017/06/12</td>
+          <td>Moderator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label class="custom-control custom-checkbox custom-checkbox-primary">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+            </label>
+          </th>
+          <td>Ashton</td>
+          <td>2017/06/10</td>
+          <td>Newswriter</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

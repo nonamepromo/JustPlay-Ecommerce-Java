@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gameforest - Documentation v4.1.2</title>
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  <link rel="stylesheet" href="../../upload/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/animate/animate.min.css">
+  <link rel="stylesheet" href="../assets/plugins/highlight/styles/github-gist.css">
+  <!-- plugins -->
+  <link rel="stylesheet" href="../assets/plugins/jstree/themes/default/style.min.css">
+  <!-- theme stylesheet -->
+  <link href="../../upload/css/theme.min.css" rel="stylesheet">
+  <link href="../assets/css/app.min.css" rel="stylesheet">
+</head>
+<body class="fixed-header">
+  <!-- header -->
+  <header id="header">
+    <div class="container-fluid">
+      <div class="navbar-backdrop">
+        <div class="navbar">
+          <div class="navbar-left">
+            <a class="navbar-toggle"><i class="fa fa-bars"></i></a>
+            <a href="../index.html" class="logo"><img src="../assets/img/logo.png" alt="Gameforest - Game Theme HTML"></a>
+          </div>
+          <div class="nav navbar-right">
+            <ul>
+              <li><a href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/full_screen_preview/5007730" target="_blank">Preview</a></li>
+              <li><a href="../../documentation.html">Documentation</a></li>
+              <li><a href="../../changelog.html">Changelog</a></li>
+              <li><a href="https://www.facebook.com/yakuthemes" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            </ul>
+            <a class="btn btn-outline-default btn-rounded" href="https://themeforest.net/downloads#item-5007730" target="_blank">Rate Now <i class="fa fa-star"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- sidebar -->
+  <div id="sidebar">
+    <h2>Documentation</h2>
+    <ul>
+      <li class="sidebar-header"><span>Getting Started</span></li>
+      <li><a href="../../documentation.html">Introduction</a></li>
+      <li class="active"><a href="sass.html">Sass</a></li>
+      <li><a href="gulp.html">Gulp</a></li>
+      <li><a href="twig.html">Twig</a></li>
+      <li><a href="javascript.html">JavaScript</a></li>
+      <li><a href="plugins.html">Plugins</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="../../changelog.html">Changelog</a></li>
+      <li class="sidebar-header"><span>Components</span></li>
+      <li><a href="accordions.html">Accordions</a></li>
+      <li><a href="alerts.html">Alerts</a></li>
+      <li><a href="badges.html">Badges</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="buttons.html">Buttons</a></li>
+      <li><a href="cards.html">Cards</a></li>
+      <li><a href="carousel.html">Carousel</a></li>
+      <li><a href="charts.html">Charts</a></li>
+      <li><a href="columns.html">Columns</a></li>
+      <li><a href="comment.html">Comment</a></li>
+      <li><a href="datatable.html">DataTable</a></li>
+      <li><a href="dropdown.html">Dropdown</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="form-plugins.html">Form Plugins</a></li>
+      <li><a href="google-maps.html">Google Maps</a></li>
+      <li><a href="hero.html">Hero</a></li>
+      <li><a href="icons.html">Icons</a></li>
+      <li><a href="lightbox.html">Lightbox</a></li>
+      <li><a href="media-player.html">Media Player</a></li>
+      <li><a href="modal.html">Modal</a></li>
+      <li><a href="notification.html">Notification</a></li>
+      <li><a href="pagination.html">Pagination</a></li>
+      <li><a href="popovers.html">Popovers</a></li>
+      <li><a href="progress.html">Progress</a></li>
+      <li><a href="tabs.html">Tabs</a></li>
+      <li><a href="tables.html">Tables</a></li>
+      <li><a href="tooltips.html">Tooltips</a></li>
+      <li><a href="text-editor.html">Text Editor</a></li>
+      <li><a href="typography.html">Typography</a></li>
+      <li><a href="utilities.html">Utilities</a></li>
+    </ul>
+  </div>
+
+  <!-- main -->
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+
+          <h1 id="sass">Sass</h1>
+          <p class="lead">Sass is an extension of CSS, adding nested rules, variables, mixins, selector inheritance, and more. It's translated to well-formatted, standard CSS using the command line tool or a web-framework plugin.</p>
+
+          <div class="divider"></div>
+
+          <h2 id="how-to-build">How to build</h2>
+          <p>If you have never used SCSS before, check out the <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#features" target="_blank"><b>language features</b></a>. When working with the Gameforest SCSS sources, I have a few recommendations.</p>
+          <p>A lot of customization is possible by simply overwriting the values of already declared variables. You can find all variables for each component inside their SCSS files of the variables.scss file and override them in your theme. You can also
+            add your own custom variables by adding it to custom.scss</p>
+
+          <h6 class="m-t-50 m-b-20">Sass folder structure:</h6>
+          <div id="files" class="m-b-30">
+            <ul>
+              <li class="jstree-open">build
+                <ul>
+                  <li>scss
+                    <ul>
+                      <li>mixins
+                        <ul>
+                          <li data-jstree='{"icon":"fa fa-file-o"}'>_alerts.scss</li>
+                          <li data-jstree='{"icon":"fa fa-file-o"}'>_badges.scss</li>
+                          <li data-jstree='{"icon":"fa fa-file-o"}'>_breakpoints.scss</li>
+                          <li data-jstree='{"icon":"fa fa-file-o"}'>_buttons.scss</li>
+                          <li data-jstree='{"icon":"fa fa-file-o"}'>_forms.scss</li>
+                          <li data-jstree='{"icon":"fa fa-file-o"}'>_grid.scss</li>
+                          <li data-jstree='{"icon":"fa fa-file-o"}'>_grid-framework.scss</li>
+                          <li data-jstree='{"icon":"fa fa-file-o"}'>_utilities.scss</li>
+                        </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_accordion.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_alerts.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_animation.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_badge.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_buttons.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_cards.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_carousel.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_comments.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_custom.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_demo.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_dropdown.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_footer.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_forms.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_forums.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_gallery.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_grid.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_header.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_heading.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_hero.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_layouts.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_lightbox.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_mixins.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_modals.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_notification.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_pagination.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_plugins.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_popover.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_posts.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_progress.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_responsive.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_section.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_tables.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_tabs.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_type.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_utilities.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_variables.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>_widgets.scss</li>
+                      <li data-jstree='{"icon":"fa fa-file-o"}'>theme.scss</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <h6 class="m-t-50">Custom Variables:</h6>
+          <p>First, find a SCSS variable you want to change inside the Gameforest source. For example, the primary color is defined in <code>/build/scss/_variables.scss</code></p>
+          <pre><code class="scss">// Text Colors
+$theme-primary: #2575dc !default;</code></pre>
+
+          <p class="m-t-40">Then, overwrite the default by setting a custom value inside your own file, i.e. to custom.scss as described above:</p>
+          <pre class="m-t-10"><code class="scss">// Text Colors
+$theme-primary: #6db124;</code></pre>
+
+          <p>The compiled CSS will then have your custom value. But not only has the primary color changed. Many components make use of the $theme-primary variables to infer their own colors, and just adapt them slightly.</p>
+
+          <div class="divider"></div>
+
+          <h2 id="custom-components">Custom Components</h2>
+          <p>In the examples above, I have added custom rules directly to custom.scss. When you change a few variables but are happy with the rest, this is perfectly fine. However, for larger customizations, I recommend to only use this file as an entry
+            point for the Sass compiler.</p>
+
+          <pre class="m-t-10 m-b-60"><code class="scss">// Custom button
+$btn-custom-bg:      #fff;
+$btn-custom-border:  #fff;
+
+.btn-custom {
+  @include button($btn-custom-bg, $btn-custom-border);
+}
+</code></pre>
+
+          <p>The entry point for the Sass compiler is theme.scss. Here you compile all source files in the following order:</p>
+          <pre><code class="scss">/*!
+ * Gameforest 4.0 (https://yakuthemes.com)
+ * Copyright 2011-2017 yakuthemes.com
+ * Theme URL: https://themeforest.net/item/gameforest-responsive-gaming-html-theme/5007730
+ * Licensed under Themeforest Standard (https://themeforest.net/licenses/standard)
+ */
+
+// Core variables and mixins
+@import "variables";
+@import "custom";
+@import "mixins";
+
+// Core CSS
+@import "type";
+@import "header";
+@import "footer";
+@import "layouts";
+@import "section";
+
+// Components
+@import "hero";
+@import "buttons";
+@import "dropdown";
+@import "forms";
+@import "alerts";
+@import "notification";
+@import "progress";
+@import "pagination";
+@import "modals";
+@import "lightbox";
+@import "badge";
+@import "carousel";
+@import "cards";
+@import "accordion";
+@import "tabs";
+@import "popover";
+@import "heading";
+@import "tables";
+@import "forums";
+@import "comments";
+@import "posts";
+@import "gallery";
+@import "widgets";
+@import "plugins";
+@import "grid";
+@import "animation";
+@import "demo";
+
+// Utility classes
+@import "utilities";
+@import "responsive";
+</code></pre>
+          <p>Now you can compile theme.scss and the resulting CSS will include all your customizations.</p>
+
+          <div class="divider"></div>
+
+          <h2 id="autoprefixer">Autoprefixer</h2>
+          <p>Gameforest uses Autoprefixer (included in our Gulp and build process) to automatically add vendor prefixes to some CSS properties at build time. Doing so saves us time and code by allowing us to write key parts of our CSS a single time while
+            eliminating the need for vendor mixins like those found in v3.</p>
+
+        </div>
+        <div class="col-lg-3 sidebar-right">
+
+          <ul>
+            <li><a href="#sass">Sass</a></li>
+            <li><a href="#how-to-build">How to build</a></li>
+            <li><a href="#custom-components">Custom Components</a></li>
+            <li><a href="#autoprefixer">Autoprefixer</a></li>
+            <li class="divider"></li>
+            <li><a href="https://themeforest.net/user/yakuzi#contact" target="_blank"><i class="fa fa-bell-o"></i> Report issue</a></li>
+            <li><a href="support.html#get-help"><i class="fa fa-life-ring"></i> Get help</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- footer -->
+  <div class="version">
+    version: 4.1.2
+  </div>
+
+  <!-- scripts -->
+  <script src="../../upload/plugins/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../../upload/plugins/popper/popper.min.js"></script>
+  <script src="../../upload/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/plugins/clipboard/clipboard.min.js"></script>
+  <script src="../assets/plugins/highlight/highlight.pack.js" charset="utf-8"></script>
+
+  <script src="../assets/plugins/jstree/jstree.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(function() {
+      $('#files').jstree();
+    });
+    hljs.initHighlightingOnLoad();
+  </script>
+
+  <script src="../../upload/js/theme.min.js"></script>
+  <script src="../assets/js/app.min.js"></script>
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

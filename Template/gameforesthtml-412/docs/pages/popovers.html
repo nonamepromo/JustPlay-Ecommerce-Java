@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gameforest - Documentation v4.1.2</title>
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  <link rel="stylesheet" href="../../upload/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/animate/animate.min.css">
+  <link rel="stylesheet" href="../assets/plugins/highlight/styles/github-gist.css">
+  <!-- theme stylesheet -->
+  <link href="../../upload/css/theme.min.css" rel="stylesheet">
+  <link href="../assets/css/app.min.css" rel="stylesheet">
+</head>
+<body class="fixed-header">
+  <!-- header -->
+  <header id="header">
+    <div class="container-fluid">
+      <div class="navbar-backdrop">
+        <div class="navbar">
+          <div class="navbar-left">
+            <a class="navbar-toggle"><i class="fa fa-bars"></i></a>
+            <a href="../index.html" class="logo"><img src="../assets/img/logo.png" alt="Gameforest - Game Theme HTML"></a>
+          </div>
+          <div class="nav navbar-right">
+            <ul>
+              <li><a href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/full_screen_preview/5007730" target="_blank">Preview</a></li>
+              <li><a href="../../documentation.html">Documentation</a></li>
+              <li><a href="../../changelog.html">Changelog</a></li>
+              <li><a href="https://www.facebook.com/yakuthemes" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            </ul>
+            <a class="btn btn-outline-default btn-rounded" href="https://themeforest.net/downloads#item-5007730" target="_blank">Rate Now <i class="fa fa-star"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- sidebar -->
+  <div id="sidebar">
+    <h2>Documentation</h2>
+    <ul>
+      <li class="sidebar-header"><span>Getting Started</span></li>
+      <li><a href="../../documentation.html">Introduction</a></li>
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="gulp.html">Gulp</a></li>
+      <li><a href="twig.html">Twig</a></li>
+      <li><a href="javascript.html">JavaScript</a></li>
+      <li><a href="plugins.html">Plugins</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="../../changelog.html">Changelog</a></li>
+      <li class="sidebar-header"><span>Components</span></li>
+      <li><a href="accordions.html">Accordions</a></li>
+      <li><a href="alerts.html">Alerts</a></li>
+      <li><a href="badges.html">Badges</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="buttons.html">Buttons</a></li>
+      <li><a href="cards.html">Cards</a></li>
+      <li><a href="carousel.html">Carousel</a></li>
+      <li><a href="charts.html">Charts</a></li>
+      <li><a href="columns.html">Columns</a></li>
+      <li><a href="comment.html">Comment</a></li>
+      <li><a href="datatable.html">DataTable</a></li>
+      <li><a href="dropdown.html">Dropdown</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="form-plugins.html">Form Plugins</a></li>
+      <li><a href="google-maps.html">Google Maps</a></li>
+      <li><a href="hero.html">Hero</a></li>
+      <li><a href="icons.html">Icons</a></li>
+      <li><a href="lightbox.html">Lightbox</a></li>
+      <li><a href="media-player.html">Media Player</a></li>
+      <li><a href="modal.html">Modal</a></li>
+      <li><a href="notification.html">Notification</a></li>
+      <li><a href="pagination.html">Pagination</a></li>
+      <li class="active"><a href="popovers.html">Popovers</a></li>
+      <li><a href="progress.html">Progress</a></li>
+      <li><a href="tabs.html">Tabs</a></li>
+      <li><a href="tables.html">Tables</a></li>
+      <li><a href="tooltips.html">Tooltips</a></li>
+      <li><a href="text-editor.html">Text Editor</a></li>
+      <li><a href="typography.html">Typography</a></li>
+      <li><a href="utilities.html">Utilities</a></li>
+    </ul>
+  </div>
+
+  <!-- main -->
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+
+          <h1 id="popovers">Popovers</h1>
+          <p class="lead">Documentation and examples for adding Gameforest theme popovers, like those found in iOS, to any element on your site.</p>
+
+          <div class="divider"></div>
+
+          <h2 id="example">Example</h2>
+          <p>When you have some styles on a parent element that interfere with a popover, you’ll want to specify a custom container so that the popover’s HTML appears within that element instead.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview" role="tabpanel">
+              <div class="demo-popover">
+                <div class="row">
+                  <div class="col-lg-4 m-b-20">
+                    <div class="popover bs-popover-top">
+                      <div class="arrow"></div>
+                      <h3 class="popover-header">Popover top</h3>
+                      <div class="popover-body">
+                        <p>Sometimes you want to add a popover to a hyperlink that wraps multiple lines. The default behavior of the popover plugin is to center it.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="popover bs-popover-bottom">
+                      <div class="arrow"></div>
+                      <h3 class="popover-header">Popover bottom</h3>
+                      <div class="popover-body">
+                        <p>Sometimes you want to add a popover to a hyperlink that wraps multiple lines. The default behavior of the popover plugin is to center it.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="popover bs-popover-right">
+                      <div class="arrow"></div>
+                      <h3 class="popover-header">Popover right</h3>
+                      <div class="popover-body">
+                        <p>Sometimes you want to add a popover to a hyperlink that wraps multiple lines. The default behavior of the popover plugin is to center it.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="popover bs-popover-left">
+                      <div class="arrow"></div>
+                      <h3 class="popover-header">Popover left</h3>
+                      <div class="popover-body">
+                        <p>Sometimes you want to add a popover to a hyperlink that wraps multiple lines. The default behavior of the popover plugin is to center it.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="markup" role="tabpanel">
+              <pre><code id="copy" class="html">
+    </code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="basic">Basic</h2>
+          <p>Add small overlays of content, like those on the iPad, to any element for housing secondary information. Popovers whose both title and content are zero-length are never displayed.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-2" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-2" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-2"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-2" role="tabpanel">
+              <button type="button" class="btn btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+            </div>
+            <div class="tab-pane" id="markup-2" role="tabpanel">
+              <pre><code id="copy-2" class="html">&lt;button type=&quot;button&quot; class=&quot;btn btn-danger&quot; data-toggle=&quot;popover&quot; title=&quot;Popover title&quot; data-content=&quot;And here's some amazing content. It's very engaging. Right?&quot;&gt;Click to toggle popover&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="positions">Positions</h2>
+          <p>Four options are available: top, right, bottom, and left aligned.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-3" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-3" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-3"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-3" role="tabpanel">
+              <button type="button" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+      Popover on top
+    </button>
+
+              <button type="button" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+      Popover on right
+    </button>
+
+              <button type="button" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+      Popover on bottom
+    </button>
+
+              <button type="button" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+      Popover on left
+    </button>
+            </div>
+            <div class="tab-pane" id="markup-3" role="tabpanel">
+              <pre><code id="copy-3" class="html">&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-container=&quot;body&quot; data-toggle=&quot;popover&quot; data-placement=&quot;top&quot; data-content=&quot;Vivamus sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
+  Popover on top
+&lt;/button&gt;
+
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-container=&quot;body&quot; data-toggle=&quot;popover&quot; data-placement=&quot;right&quot; data-content=&quot;Vivamus sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
+  Popover on right
+&lt;/button&gt;
+
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-container=&quot;body&quot; data-toggle=&quot;popover&quot; data-placement=&quot;bottom&quot; data-content=&quot;Vivamus sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
+  Popover on bottom
+&lt;/button&gt;
+
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-container=&quot;body&quot; data-toggle=&quot;popover&quot; data-placement=&quot;left&quot; data-content=&quot;Vivamus sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
+  Popover on left
+&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="col-lg-3 sidebar-right">
+
+          <ul>
+            <li><a href="#popovers">Popovers</a></li>
+            <li><a href="#example">Example</a></li>
+            <li><a href="#basic">Basic</a></li>
+            <li><a href="#positions">Positions</a></li>
+            <li class="divider"></li>
+            <li><a href="https://themeforest.net/user/yakuzi#contact" target="_blank"><i class="fa fa-bell-o"></i> Report issue</a></li>
+            <li><a href="pages/support.html#get-help"><i class="fa fa-life-ring"></i> Get help</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- footer -->
+  <div class="version">
+    version: 4.1.2
+  </div>
+
+  <!-- scripts -->
+  <script src="../../upload/plugins/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../../upload/plugins/popper/popper.min.js"></script>
+  <script src="../../upload/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/plugins/clipboard/clipboard.min.js"></script>
+  <script src="../assets/plugins/highlight/highlight.pack.js" charset="utf-8"></script>
+
+  <script src="../../upload/js/theme.min.js"></script>
+  <script src="../assets/js/app.min.js"></script>
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

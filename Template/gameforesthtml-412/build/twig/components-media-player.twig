@@ -1,0 +1,73 @@
+{% extends "views/layout.twig" %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Media Players</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Media Players</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h6 class="subtitle">Video Players</h6>
+    <p>Allow browsers to determine video or slideshow dimensions based on the width of their containing block by creating an intrinsic ratio that will properly scale on any device. Just set the video source with <code>.data-src="*"</code> and the video thumbnail if you would like to use different from the source.</p>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="video-play" data-src="https://www.youtube.com/embed/i8qzBkHjk_0?rel=0&amp;amp;autoplay=1&amp;amp;showinfo=0">
+          <div class="embed-responsive embed-responsive-16by9">
+            <img class="embed-responsive-item" src="https://img.youtube.com/vi/K5tRSwd-Sc0/maxresdefault.jpg">
+            <div class="video-caption">
+              <h5>Uncharted: The Lost Legacy Story Trailer</h5>
+              <span class="length">4:05</span>
+            </div>
+            <div class="video-play-icon">
+              <i class="fa fa-play"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 p-r-0">
+        <div class="video-play" data-src="https://player.twitch.tv/?video=v122839988&autoplay=true">
+          <div class="embed-responsive embed-responsive-16by9">
+            <img class="embed-responsive-item" src="https://img.youtube.com/vi/BY51C2fAwiU/maxresdefault.jpg">
+            <div class="video-play-icon">
+              <i class="fa fa-play"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 p-l-0">
+          <div class="video-play" data-src="https://www.youtube.com/embed/OzRs7AMR4e8?rel=0&amp;amp;autoplay=1&amp;amp;showinfo=0">
+            <div class="embed-responsive embed-responsive-16by9">
+              <img class="embed-responsive-item" src="https://img.youtube.com/vi/OzRs7AMR4e8/maxresdefault.jpg">
+              <div class="video-play-icon">
+                <i class="fa fa-play"></i>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-secondary">
+  <div class="container">
+    <h5>Soundcloud</h5>
+    <p>It is also possible to embed music from soundcloud just press to share button to get the source code.</p>
+    <iframe width="100%" height="150" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/228800029&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;visual=true"></iframe>
+  </div>
+</section>
+{% endblock %}

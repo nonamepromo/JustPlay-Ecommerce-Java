@@ -1,0 +1,99 @@
+{% extends "views/layout.twig" %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Progress Bars</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Progress Bars</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h5>Progress Bars</h5>
+        <p class="m-b-30">Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.</p>
+        <p class="m-b-10">Uncharted: The Lost Legacy</p>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+            <span class="sr-only">80% Complete</span>
+          </div>
+        </div>
+        <p class="m-b-10">Star Wars: Battlefront 2</p>
+        <div class="progress">
+          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%;">
+            <span class="sr-only">55% Complete</span>
+          </div>
+        </div>
+        <p class="m-b-10">Call of Duty WW2</p>
+        <div class="progress">
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" style="width: 32%;">
+            <span class="sr-only">32% Complete</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h5>Loaded</h5>
+        <p class="m-b-30">Add <code>.progress-loaded</code> to set the loaded animation for progress bars. You can modify the loading time with jQuery script.</p>
+        <p class="m-b-10">Uncharted: The Lost Legacy</p>
+        <div class="progress progress-loaded">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+            <span class="sr-only">80% Complete</span>
+          </div>
+        </div>
+        <p class="m-b-10">Star Wars: Battlefront 2</p>
+        <div class="progress progress-loaded">
+          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+            <span class="sr-only">55% Complete</span>
+          </div>
+        </div>
+        <p class="m-b-10">Call of Duty WW2</p>
+        <div class="progress progress-loaded">
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+            <span class="sr-only">32% Complete</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h5 class="m-t-50">Sizes</h5>
+    <p>Set the progress bar size by adding to progress class <code>.progress-lg</code> or <code>.progress-sm</code></p>
+    <p class="m-b-10">Uncharted: The Lost Legacy</p>
+    <div class="progress progress-lg">
+      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+        <span class="sr-only">80% Complete</span>
+      </div>
+    </div>
+    <p class="m-b-10">Star Wars: Battlefront 2</p>
+    <div class="progress progress-sm">
+      <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%;">
+        <span class="sr-only">55% Complete</span>
+      </div>
+    </div>
+    <p class="m-b-10">Call of Duty WW2</p>
+    <div class="progress">
+      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" style="width: 32%;">
+        <span class="sr-only">32% Complete</span>
+      </div>
+    </div>
+
+    <h5 class="m-t-70">Animated</h5>
+    <p>The striped gradient can also be animated. Add <code>.progress-bar-animated</code> to <code>.progress-bar</code> to animate the stripes right to left via CSS3 animations.</p>
+    <div class="progress progress-lg">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+        <span class="sr-only">80% Complete</span>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

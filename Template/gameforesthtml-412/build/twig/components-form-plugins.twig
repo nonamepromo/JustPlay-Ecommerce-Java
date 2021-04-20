@@ -1,0 +1,238 @@
+{% extends "views/layout.twig" %}
+
+{% block css %}
+<link rel="stylesheet" href="plugins/switchery/switchery.min.css">
+<link rel="stylesheet" href="plugins/flatpickr/flatpickr.min.css">
+<link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+{% endblock %}
+
+{% block js %}
+<script src="plugins/switchery/switchery.min.js"></script>
+<script src="plugins/flatpickr/flatpickr.min.js"></script>
+<script src="plugins/select2/js/select2.min.js"></script>
+<script type="text/javascript">
+(function($) {
+  "use strict";
+    // select2
+    $('.select2').select2({
+      placeholder: "Select platform"
+    });
+
+    // flatpickr
+    $("#date").flatpickr();
+    $("#datetime").flatpickr({
+      enableTime: true
+    });
+    $("#dateinline").flatpickr({
+      inline: true
+    });
+    $("#dateclock").flatpickr({
+      enableTime: true,
+      noCalendar: true,
+
+      enableSeconds: false, // disabled by default
+
+      time_24hr: false, // AM/PM time picker is used by default
+
+      // default format
+      dateFormat: "H:i",
+
+      // initial values for time. don't use these to preload a date
+      defaultHour: 12,
+      defaultMinute: 0
+    });
+
+    // switcher
+    var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+
+    elems.forEach(function(html) {
+      var switchery = new Switchery(html);
+    });
+})(jQuery);
+</script>
+{% endblock %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Form Plugins</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Form Plugins</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h5>Custom Checkbox</h5>
+        <p class="m-b-30">Use our completely custom form elements to replace the browser defaults.</p>
+        <label class="custom-control custom-checkbox m-r-10">
+          <input type="checkbox" class="custom-control-input" checked>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Default</span>
+        </label>
+        <label class="custom-control custom-checkbox custom-checkbox-primary m-r-10">
+          <input type="checkbox" class="custom-control-input" checked>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Primary</span>
+        </label>
+        <label class="custom-control custom-checkbox custom-checkbox-danger m-r-10">
+          <input type="checkbox" class="custom-control-input" checked>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Danger</span>
+        </label>
+        <label class="custom-control custom-checkbox custom-checkbox-warning m-r-10">
+          <input type="checkbox" class="custom-control-input" checked>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Warning</span>
+        </label>
+        <label class="custom-control custom-checkbox custom-checkbox-success m-r-10">
+          <input type="checkbox" class="custom-control-input" checked>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Success</span>
+        </label>
+        <label class="custom-control custom-checkbox custom-checkbox-info">
+          <input type="checkbox" class="custom-control-input" checked>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Info</span>
+        </label>
+      </div>
+      <div class="col-lg-6">
+        <h5>Toggle Checkbox</h5>
+        <p class="m-b-20">Use our completely custom form elements to replace the browser defaults.</p>
+        <div class="checkbox checkbox-toggle checkbox-primary m-r-15">
+					<input type="checkbox" id="checkbox-toggle" checked>
+					<label for="checkbox-toggle">Enable</label>
+				</div>
+        <div class="checkbox checkbox-toggle checkbox-success m-r-15">
+					<input type="checkbox" id="checkbox-toggle-success" checked>
+					<label for="checkbox-toggle-success">Yes</label>
+				</div>
+        <div class="checkbox checkbox-toggle checkbox-disabled m-r-15">
+					<input type="checkbox" id="checkbox-toggle-disabled" disabled>
+					<label for="checkbox-toggle-disabled">Disabled</label>
+				</div>
+        <div class="checkbox checkbox-toggle checkbox-danger">
+					<input type="checkbox" id="checkbox-toggle-danger" checked>
+					<label for="checkbox-toggle-danger"></label>
+				</div>
+        <div class="checkbox checkbox-toggle checkbox-warning">
+					<input type="checkbox" id="checkbox-toggle-warning" checked>
+					<label for="checkbox-toggle-warning"></label>
+				</div>
+        <div class="checkbox checkbox-toggle checkbox-info">
+					<input type="checkbox" id="checkbox-toggle-info" checked>
+					<label for="checkbox-toggle-info"></label>
+				</div>
+      </div>
+    </div>
+
+    <div class="row m-t-70">
+      <div class="col-lg-6">
+        <h5>Custom Radio</h5>
+        <p class="m-b-30">Use our completely custom form elements to replace the browser defaults.</p>
+        <label class="custom-control custom-radio m-r-15">
+          <input id="radio" name="radio" type="radio" class="custom-control-input" checked>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Default</span>
+        </label>
+        <label class="custom-control custom-radio custom-radio-primary m-r-15">
+          <input id="radio" name="radio" type="radio" class="custom-control-input">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Primary</span>
+        </label>
+        <label class="custom-control custom-radio custom-radio-danger m-r-15">
+          <input id="radio" name="radio" type="radio" class="custom-control-input">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Danger</span>
+        </label>
+        <label class="custom-control custom-radio custom-radio-warning m-r-15">
+          <input id="radio" name="radio" type="radio" class="custom-control-input">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Warning</span>
+        </label>
+        <label class="custom-control custom-radio custom-radio-success m-r-15">
+          <input id="radio" name="radio" type="radio" class="custom-control-input">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Success</span>
+        </label>
+        <label class="custom-control custom-radio custom-radio-info m-r-15">
+          <input id="radio" name="radio" type="radio" class="custom-control-input">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Info</span>
+        </label>
+      </div>
+      <div class="col-lg-6">
+        <h5>Switchery</h5>
+        <p class="m-b-30">Switchery is a simple component that helps you turn your default HTML checkbox inputs into beautiful iOS 7 style switches in just few simple steps.</p>
+        <input type="checkbox" class="js-switch">
+        <input type="checkbox" class="js-switch" checked>
+        <input type="checkbox" class="js-switch">
+      </div>
+    </div>
+
+    <h5 class="m-t-70">Flatpickr</h5>
+    <p>Lean, UX-driven, and extensible, yet it doesn’t depend on any libraries. There’s minimal UI but many themes. Rich, exposed APIs and event system make it suitable for any environment. More examples at <a href="https://chmln.github.io/flatpickr/examples/" target="_blank">flatpickr website</a></p>
+    <div class="form-group row">
+      <div class="col-lg-6">
+        <label for="date">Select Date:</label>
+        <input type="text" class="form-control" id="date" placeholder="Pick a date">
+      </div>
+      <div class="col-lg-6">
+        <label for="datetime">Datetime:</label>
+        <div class="input-icon-right">
+          <i class="fa fa-clock-o"></i>
+          <input type="text" class="form-control" id="datetime" placeholder="Datetime">
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-6">
+        <label for="dateinline">Inline Calendar:</label>
+        <input type="text" class="form-control" id="dateinline" placeholder="Pick a date">
+      </div>
+      <div class="col-lg-6">
+        <label for="dateclock">Time Picker:</label>
+        <div class="input-icon-left">
+          <i class="fa fa-clock-o"></i>
+          <input type="text" class="form-control" id="dateclock" placeholder="Pick a time">
+        </div>
+      </div>
+    </div>
+
+    <h5 class="m-t-90">Select2</h5>
+    <p>Select2 gives you a customizable select box with support for searching, tagging, remote data sets, infinite scrolling, and many other highly used options.</p>
+    <div class="form-group row">
+      <div class="col-lg-6">
+        <label for="selectPlatform">Select platform:</label>
+        <select id="selectPlatform" class="select2 form-control">
+          <option value="ps4">Playstation 4</option>
+          <option value="xbox-one">Xbox One</option>
+          <option value="steam">Steam</option>
+          <option value="origin">Origin</option>
+          <option value="uplay">Uplay</option>
+        </select>
+      </div>
+      <div class="col-lg-6">
+        <label for="select">Multiple Select:</label>
+        <select id="select" class="select2 form-control" multiple="multiple">
+          <option value="ps4" selected>Playstation 4</option>
+          <option value="xbox-one">Xbox One</option>
+          <option value="steam">Steam</option>
+          <option value="origin">Origin</option>
+          <option value="uplay">Uplay</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

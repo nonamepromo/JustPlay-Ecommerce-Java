@@ -1,0 +1,235 @@
+{% extends "views/layout.twig" %}
+
+{% block css %}
+<link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+{% endblock %}
+
+{% block js %}
+<script src="plugins/summernote/summernote-bs4.js"></script>
+<script type="text/javascript">
+(function($) {
+  "use strict";
+  $('.summernote').summernote({
+    height: 160,
+    toolbar: [
+      ['style', ['bold', 'italic', 'underline', 'picture']],
+      ['para', ['ul', 'ol', 'paragraph']]
+    ]
+   });
+  })(jQuery);
+</script>
+</script>
+{% endblock %}
+
+{% block body %}
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li><a href="forums.html">Forums</a></li>
+      <li class="active">Forum Post</li>
+    </ol>
+  </div>
+</section>
+
+<section class="p-t-40">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        <div class="forum-headline forum-panel">
+          <h5 class="float-left">Forum Post <span>About the topic post subtitle</span></h5>
+          <div class="dropdown float-right">
+            <a class="btn btn-secondary" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings <i class="fa fa-cog"></i></a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="forum-create.html">Edit Post</a>
+              <a class="dropdown-item" href="#">Mute Post</a>
+              <a class="dropdown-item" href="forum-create.html">New Post</a>
+              <a class="dropdown-item" href="#">Close Thread</a>
+            </div>
+          </div>
+        </div>
+        <div class="forum-post">
+          <div class="forum-header">
+            <div><a href="profile.html"><img src="img/user/user-3.jpg"></a></div>
+            <div>
+              <h2 class="forum-title"><a href="profile.html">Clark</a></h2>
+                <div class="forum-meta">
+                  <span>346 posts</span>
+                  <span>Moderator</span>
+                </div>
+            </div>
+            <div>
+              #1
+              <span>July 28, 2017</span>
+            </div>
+          </div>
+          <div class="forum-body">
+            <h5 class="m-b-20">Hi Gamers!</h5>
+            <p>Aenean mollis est neque, sed varius mauris pharetra quis. Nullam sed nulla sapien. Morbi eget erat turpis. Integer vulputate finibus gravida. Integer nec tortor faucibus, cursus ligula et, tincidunt orci. Sed consequat mattis libero nec mollis. Donec ut nibh sed elit rutrum cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dui velit, luctus id velit in, luctus ultrices odio. Curabitur commodo dapibus nisl, at cursus erat tempus eget. Nulla non orci rutrum, pretium justo a, volutpat velit.</p>
+            <div class="forum-thumbnail">
+              <div class="video-play" data-src="https://www.youtube.com/embed/ST262ZbNcos?rel=0&amp;amp;autoplay=1&amp;amp;showinfo=0">
+                <div class="embed-responsive embed-responsive-16by9">
+                  <img class="embed-responsive-item" src="https://img.youtube.com/vi/tklQ47Hpfxw/maxresdefault.jpg">
+                  <div class="video-play-icon"><i class="fa fa-play"></i></div>
+                </div>
+              </div>
+            </div>
+            <p>Fusce purus nisi, congue vel risus eget, bibendum dignissim nibh. Curabitur suscipit lacinia dolor sed venenatis. Curabitur hendrerit posuere purus eu lobortis. Donec ac magna nec lorem efficitur mattis eu sed orci. Pellentesque vel fringilla nunc, vitae lacinia diam. Donec laoreet non arcu eu posuere. Suspendisse feugiat, sapien nec hendrerit eleifend, tortor odio ullamcorper ex, ac maximus dolor erat at ligula.</p>
+            <p>Donec ac fermentum justo, vitae volutpat ligula. Duis mollis magna quis risus imperdiet tempor. Etiam risus justo, vestibulum vitae augue a, condimentum dapibus orci. Interdum et malesuada fames ac ante ipsum primis in faucibus. </p>
+          </div>
+          <div class="forum-footer">
+            <div class="forum-panel">
+              <div class="forum-attachment">
+                <a href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/5007730" target="_blank">gameforest.zip <i class="fa fa-download float-right m-t-5"></i></a>
+                <span>(14.4 MB) Downloaded 1839x times</span>
+              </div>
+              <div class="forum-users">
+                <h5>Active users in this thread:</h5>
+                <div>
+                  <a href="profile.html" data-toggle="tooltip" title="Venom"><img src="img/user/user-1.jpg" alt="Venom"></a>
+                  <a href="profile.html" data-toggle="tooltip" title="Elizabeth"><img src="img/user/user-2.jpg" alt="Elizabeth"></a>
+                  <a href="profile.html" data-toggle="tooltip" title="Clark"><img src="img/user/user-3.jpg" alt="Clark"></a>
+                  <a href="profile.html" data-toggle="tooltip" title="Strange"><img src="img/user/user-4.jpg" alt="Strange"></a>
+                  <a href="profile.html" data-toggle="tooltip" title="Trevor"><img src="img/user/user-5.jpg" alt="Trevor"></a>
+                </div>
+              </div>
+            </div>
+            <div class="forum-actions">
+              <div>
+                <i class="fa fa-clock-o"></i> 3 days ago
+              </div>
+              <div class="hidden-xs-down">
+                <a href="#"><i class="fa fa-heart-o"></i> 156 likes</a>
+                <a href="#"><i class="fa fa-reply"></i> 24 replies</a>
+                <a href="#"><i class="fa fa-bar-chart"></i> 1921 views</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix m-t-30 m-b-20">
+          <h5 class="m-t-10 m-b-0 float-left"><i class="fa fa-comment-o m-r-5"></i> Replies (24)</h5>
+          <div class="dropdown float-right">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Sorted by latest <span class="caret"></span></button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item active" href="#">Latest</a>
+              <a class="dropdown-item" href="#">Best</a>
+              <a class="dropdown-item" href="#">Oldest</a>
+              <a class="dropdown-item" href="#">Random</a>
+            </div>
+          </div>
+        </div>
+        <ul>
+          <li class="forum-reply">
+            <div class="forum-header">
+              <div>
+                <a href="profile.html"><img src="img/user/user-2.jpg" alt=""></a>
+              </div>
+              <div>
+                <div class="forum-title">
+                  <h5><a href="profile.html">Elizabeth</a></h5>
+                </div>
+                <div class="forum-meta">
+                  <span>458 posts</span>
+                  <span>Member</span>
+                  <span><a href="#"><i class="fa fa-mail-reply-all"></i> Reply</a></span>
+                </div>
+              </div>
+              <div>#2 <span>July 28, 2017</span></div>
+            </div>
+            <div class="forum-body">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+              <p>Maecenas at tristique dolor, nec condimentum tellus. Fusce in aliquet augue. Sed non rhoncus ante, sed posuere neque. Suspendisse ac maximus arcu, at ornare nulla. Sed metus tellus, lobortis ut dignissim sed, consequat sit amet mi. Duis libero odio, tristique vel tincidunt sit amet, rutrum quis ligula.</p>
+            </div>
+          </li>
+          <li class="forum-reply">
+            <div class="forum-header">
+              <div>
+                <a href="profile.html"><img src="img/user/user-1.jpg" alt=""></a>
+              </div>
+              <div>
+                <div class="forum-title">
+                  <h5><a href="profile.html">Venom</a></h5>
+                  <span class="badge badge-outline-primary">Admin</span>
+                </div>
+                <div class="forum-meta">
+                  <span>59 posts</span>
+                  <span>Moderator</span>
+                  <span><a href="#"><i class="fa fa-mail-reply-all"></i> Reply</a></span>
+                </div>
+              </div>
+              <div>#3 <span>July 29, 2017</span></div>
+            </div>
+            <div class="forum-body">
+              <p>Morbi velit diam, convallis dapibus enim ac, condimentum pharetra nunc. Suspendisse potenti. Maecenas eget felis ipsum.</p>
+            </div>
+          </li>
+          <li class="forum-reply">
+            <div class="forum-header">
+              <div>
+                <a href="profile.html"><img src="img/user/user-3.jpg" alt=""></a>
+              </div>
+              <div>
+                <div class="forum-title">
+                  <h5><a href="profile.html">Clark</a></h5>
+                </div>
+                <div class="forum-meta">
+                  <span>127 posts</span>
+                  <span>Member</span>
+                  <span><a href="#"><i class="fa fa-mail-reply-all"></i> Reply</a></span>
+                </div>
+              </div>
+              <div>#4 <span>July 29, 2017</span></div>
+            </div>
+            <div class="forum-body">
+              <p>Curabitur mattis lorem non massa congue faucibus. Morbi cursus posuere turpis. Sed cursus lorem sed libero dignissim, id ullamcorper arcu sodales.</p>
+            </div>
+          </li>
+          <li class="forum-reply">
+            <div class="forum-header">
+              <div>
+                <a href="profile.html"><img src="img/user/user-5.jpg" alt=""></a>
+              </div>
+              <div>
+                <div class="forum-title">
+                  <h5><a href="profile.html">Trevor</a></h5>
+                </div>
+                <div class="forum-meta">
+                  <span>342 posts</span>
+                  <span>Member</span>
+                  <span><a href="#"><i class="fa fa-mail-reply-all"></i> Reply</a></span>
+                </div>
+              </div>
+              <div>#5 <span>July 30, 2017</span></div>
+            </div>
+            <div class="forum-body">
+              <p>Aliquam lorem nunc, auctor et auctor in, fringilla a leo. Maecenas vestibulum efficitur massa et imperdiet. Nunc pharetra ipsum nec mattis rutrum. Proin ac quam ut nulla mattis convallis. In ut enim sodales, ultricies eros eget, accumsan lacus. <p>Fusce venenatis mi mauris, at vehicula diam finibus rutrum. In hac habitasse platea dictumst. Etiam ut ullamcorper lorem, non commodo urna.</p>
+            </div>
+          </li>
+        </ul>
+
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true"><i class="fa fa-angle-left"></i></span></a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="separate"><span>...</span></li>
+            <li class="page-item"><a class="page-link" href="#">25</a></li>
+            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true"><i class="fa fa-angle-right"></i></span></a></li>
+          </ul>
+        </nav>
+
+        <h5 class="m-t-60 m-b-20">Reply to this topic</h5>
+        <form method="post">
+          <div class="summernote"></div>
+          <button class="btn btn-primary btn-shadow float-right" type="submit" name="save">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

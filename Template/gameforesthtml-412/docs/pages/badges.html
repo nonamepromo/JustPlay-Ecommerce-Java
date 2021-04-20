@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gameforest - Documentation v4.1.2</title>
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  <link rel="stylesheet" href="../../upload/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/animate/animate.min.css">
+  <link rel="stylesheet" href="../assets/plugins/highlight/styles/github-gist.css">
+  <!-- theme stylesheet -->
+  <link href="../../upload/css/theme.min.css" rel="stylesheet">
+  <link href="../assets/css/app.min.css" rel="stylesheet">
+</head>
+<body class="fixed-header">
+  <!-- header -->
+  <header id="header">
+    <div class="container-fluid">
+      <div class="navbar-backdrop">
+        <div class="navbar">
+          <div class="navbar-left">
+            <a class="navbar-toggle"><i class="fa fa-bars"></i></a>
+            <a href="../index.html" class="logo"><img src="../assets/img/logo.png" alt="Gameforest - Game Theme HTML"></a>
+          </div>
+          <div class="nav navbar-right">
+            <ul>
+              <li><a href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/full_screen_preview/5007730" target="_blank">Preview</a></li>
+              <li><a href="../../documentation.html">Documentation</a></li>
+              <li><a href="../../changelog.html">Changelog</a></li>
+              <li><a href="https://www.facebook.com/yakuthemes" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            </ul>
+            <a class="btn btn-outline-default btn-rounded" href="https://themeforest.net/downloads#item-5007730" target="_blank">Rate Now <i class="fa fa-star"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- sidebar -->
+  <div id="sidebar">
+    <h2>Documentation</h2>
+    <ul>
+      <li class="sidebar-header"><span>Getting Started</span></li>
+      <li><a href="../../documentation.html">Introduction</a></li>
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="gulp.html">Gulp</a></li>
+      <li><a href="twig.html">Twig</a></li>
+      <li><a href="javascript.html">JavaScript</a></li>
+      <li><a href="plugins.html">Plugins</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="../../changelog.html">Changelog</a></li>
+      <li class="sidebar-header"><span>Components</span></li>
+      <li><a href="accordions.html">Accordions</a></li>
+      <li><a href="alerts.html">Alerts</a></li>
+      <li class="active"><a href="badges.html">Badges</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="buttons.html">Buttons</a></li>
+      <li><a href="cards.html">Cards</a></li>
+      <li><a href="carousel.html">Carousel</a></li>
+      <li><a href="charts.html">Charts</a></li>
+      <li><a href="columns.html">Columns</a></li>
+      <li><a href="comment.html">Comment</a></li>
+      <li><a href="datatable.html">DataTable</a></li>
+      <li><a href="dropdown.html">Dropdown</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="form-plugins.html">Form Plugins</a></li>
+      <li><a href="google-maps.html">Google Maps</a></li>
+      <li><a href="hero.html">Hero</a></li>
+      <li><a href="icons.html">Icons</a></li>
+      <li><a href="lightbox.html">Lightbox</a></li>
+      <li><a href="media-player.html">Media Player</a></li>
+      <li><a href="modal.html">Modal</a></li>
+      <li><a href="notification.html">Notification</a></li>
+      <li><a href="pagination.html">Pagination</a></li>
+      <li><a href="popovers.html">Popovers</a></li>
+      <li><a href="progress.html">Progress</a></li>
+      <li><a href="tabs.html">Tabs</a></li>
+      <li><a href="tables.html">Tables</a></li>
+      <li><a href="tooltips.html">Tooltips</a></li>
+      <li><a href="text-editor.html">Text Editor</a></li>
+      <li><a href="typography.html">Typography</a></li>
+      <li><a href="utilities.html">Utilities</a></li>
+    </ul>
+  </div>
+
+  <!-- main -->
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+
+          <h1 id="badges">Badges</h1>
+          <p class="lead">Documentation and examples for badges, our small count and labeling component. Badges scale to match the size of the immediate parent element by using relative font sizing and em units.</p>
+
+          <div class="divider"></div>
+
+          <h2 id="example">Example</h2>
+          <p>Add any of the below mentioned modifier classes to change the appearance of a badge.Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview" role="tabpanel">
+              <span class="badge badge-primary">Primary</span>
+              <span class="badge badge-success">Success</span>
+              <span class="badge badge-info">Info</span>
+              <span class="badge badge-warning">Warning</span>
+              <span class="badge badge-danger">Danger</span>
+              <span class="badge badge-dark">Dark</span>
+            </div>
+            <div class="tab-pane" id="markup" role="tabpanel">
+              <pre><code id="copy" class="html">&lt;span class=&quot;badge badge-primary&quot;&gt;Primary&lt;/span&gt;
+&lt;span class=&quot;badge badge-success&quot;&gt;Success&lt;/span&gt;
+&lt;span class=&quot;badge badge-info&quot;&gt;Info&lt;/span&gt;
+&lt;span class=&quot;badge badge-warning&quot;&gt;Warning&lt;/span&gt;
+&lt;span class=&quot;badge badge-danger&quot;&gt;Danger&lt;/span&gt;
+&lt;span class=&quot;badge badge-dark&quot;&gt;Dark&lt;/span&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="outline">Outline</h2>
+          <p>Badges can be used with outline style just add <code>.badge-outline-*</code> to badge class. It can be good solution to show visitors a custom rank like administrator with primary color.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-2" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-2" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-2"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-2" role="tabpanel">
+              <span class="badge badge-outline-primary">Primary</span>
+              <span class="badge badge-outline-success">Success</span>
+              <span class="badge badge-outline-info">Info</span>
+              <span class="badge badge-outline-warning">Warning</span>
+              <span class="badge badge-outline-danger">Danger</span>
+              <span class="badge badge-outline-dark">Dark</span>
+            </div>
+            <div class="tab-pane" id="markup-2" role="tabpanel">
+              <pre><code id="copy-2" class="html">&lt;span class=&quot;badge badge-outline-primary&quot;&gt;Primary&lt;/span&gt;
+&lt;span class=&quot;badge badge-outline-success&quot;&gt;Success&lt;/span&gt;
+&lt;span class=&quot;badge badge-outline-info&quot;&gt;Info&lt;/span&gt;
+&lt;span class=&quot;badge badge-outline-warning&quot;&gt;Warning&lt;/span&gt;
+&lt;span class=&quot;badge badge-outline-danger&quot;&gt;Danger&lt;/span&gt;
+&lt;span class=&quot;badge badge-outline-dark&quot;&gt;Dark&lt;/span&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="category">Category</h2>
+          <p>Display categories with category badges and add <code>.badge-category</code> to badge class. Easy to modify custom category colors with scss in variables.scss file.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-3" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-3" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-3"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-3" role="tabpanel">
+              <span class="badge badge-ps4">Ps4</span>
+              <span class="badge badge-xbox">Xbox</span>
+              <span class="badge badge-pc">PC</span>
+              <span class="badge badge-uplay">Uplay</span>
+              <span class="badge badge-steam">Steam</span>
+              <span class="badge badge-twitch">Twitch</span>
+            </div>
+            <div class="tab-pane" id="markup-3" role="tabpanel">
+              <pre><code id="copy-3" class="html">&lt;span class=&quot;badge badge-ps4&quot;&gt;Ps4&lt;/span&gt;
+&lt;span class=&quot;badge badge-xbox&quot;&gt;Xbox&lt;/span&gt;
+&lt;span class=&quot;badge badge-pc&quot;&gt;PC&lt;/span&gt;
+&lt;span class=&quot;badge badge-uplay&quot;&gt;Uplay&lt;/span&gt;
+&lt;span class=&quot;badge badge-steam&quot;&gt;Steam&lt;/span&gt;
+&lt;span class=&quot;badge badge-twitch&quot;&gt;Twitch&lt;/span&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="social">Social</h2>
+          <p>Similar for category badges and use <code>.badge-social</code> class to add a custom social badge to your site like facebook or twitter.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-4" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-4" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-4"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-4" role="tabpanel">
+              <span class="badge badge-facebook">Facebook</span>
+              <span class="badge badge-twitter">Twitter</span>
+              <span class="badge badge-skype">Skype</span>
+              <span class="badge badge-vk">VK</span>
+              <span class="badge badge-vimeo">Vimeo</span>
+              <span class="badge badge-youtube">Youtube</span>
+              <span class="badge badge-google-plus">Google Plus</span>
+              <span class="badge badge-reddit">Reddit</span>
+              <span class="badge badge-pinterest">Pinterest</span>
+              <span class="badge badge-instagram">Instagram</span>
+            </div>
+            <div class="tab-pane" id="markup-4" role="tabpanel">
+              <pre><code id="copy-4" class="html">&lt;span class=&quot;badge badge-facebook&quot;&gt;Facebook&lt;/span&gt;
+&lt;span class=&quot;badge badge-twitter&quot;&gt;Twitter&lt;/span&gt;
+&lt;span class=&quot;badge badge-skype&quot;&gt;Skype&lt;/span&gt;
+&lt;span class=&quot;badge badge-vk&quot;&gt;VK&lt;/span&gt;
+&lt;span class=&quot;badge badge-vimeo&quot;&gt;Vimeo&lt;/span&gt;
+&lt;span class=&quot;badge badge-youtube&quot;&gt;Youtube&lt;/span&gt;
+&lt;span class=&quot;badge badge-google-plus&quot;&gt;Google Plus&lt;/span&gt;
+&lt;span class=&quot;badge badge-reddit&quot;&gt;Reddit&lt;/span&gt;
+&lt;span class=&quot;badge badge-pinterest&quot;&gt;Pinterest&lt;/span&gt;
+&lt;span class=&quot;badge badge-instagram&quot;&gt;Instagram&lt;/span&gt;</code></pre>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-3 sidebar-right">
+
+          <ul>
+            <li><a href="#badges">Badges</a></li>
+            <li><a href="#example">Example</a></li>
+            <li><a href="#outline">Outline</a></li>
+            <li><a href="#category">Category</a></li>
+            <li><a href="#social">Social</a></li>
+            <li class="divider"></li>
+            <li><a href="https://themeforest.net/user/yakuzi#contact" target="_blank"><i class="fa fa-bell-o"></i> Report issue</a></li>
+            <li><a href="support.html#get-help"><i class="fa fa-life-ring"></i> Get help</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- footer -->
+  <div class="version">
+    version: 4.1.2
+  </div>
+
+  <!-- scripts -->
+  <script src="../../upload/plugins/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../../upload/plugins/popper/popper.min.js"></script>
+  <script src="../../upload/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/plugins/clipboard/clipboard.min.js"></script>
+  <script src="../assets/plugins/highlight/highlight.pack.js" charset="utf-8"></script>
+
+  <script src="../../upload/js/theme.min.js"></script>
+  <script src="../assets/js/app.min.js"></script>
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

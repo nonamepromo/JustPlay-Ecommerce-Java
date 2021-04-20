@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gameforest - Documentation v4.1.2</title>
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  <link rel="stylesheet" href="../../upload/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/animate/animate.min.css">
+  <link rel="stylesheet" href="../assets/plugins/highlight/styles/github-gist.css">
+  <!-- theme stylesheet -->
+  <link href="../../upload/css/theme.min.css" rel="stylesheet">
+  <link href="../assets/css/app.min.css" rel="stylesheet">
+</head>
+<body class="fixed-header">
+  <!-- header -->
+  <header id="header">
+    <div class="container-fluid">
+      <div class="navbar-backdrop">
+        <div class="navbar">
+          <div class="navbar-left">
+            <a class="navbar-toggle"><i class="fa fa-bars"></i></a>
+            <a href="../index.html" class="logo"><img src="../assets/img/logo.png" alt="Gameforest - Game Theme HTML"></a>
+          </div>
+          <div class="nav navbar-right">
+            <ul>
+              <li><a href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/full_screen_preview/5007730" target="_blank">Preview</a></li>
+              <li><a href="../../documentation.html">Documentation</a></li>
+              <li><a href="../../changelog.html">Changelog</a></li>
+              <li><a href="https://www.facebook.com/yakuthemes" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            </ul>
+            <a class="btn btn-outline-default btn-rounded" href="https://themeforest.net/downloads#item-5007730" target="_blank">Rate Now <i class="fa fa-star"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- sidebar -->
+  <div id="sidebar">
+    <h2>Documentation</h2>
+    <ul>
+      <li class="sidebar-header"><span>Getting Started</span></li>
+      <li><a href="../../documentation.html">Introduction</a></li>
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="gulp.html">Gulp</a></li>
+      <li><a href="twig.html">Twig</a></li>
+      <li><a href="javascript.html">JavaScript</a></li>
+      <li><a href="plugins.html">Plugins</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="../../changelog.html">Changelog</a></li>
+      <li class="sidebar-header"><span>Components</span></li>
+      <li><a href="accordions.html">Accordions</a></li>
+      <li><a href="alerts.html">Alerts</a></li>
+      <li><a href="badges.html">Badges</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="buttons.html">Buttons</a></li>
+      <li><a href="cards.html">Cards</a></li>
+      <li><a href="carousel.html">Carousel</a></li>
+      <li><a href="charts.html">Charts</a></li>
+      <li><a href="columns.html">Columns</a></li>
+      <li><a href="comment.html">Comment</a></li>
+      <li><a href="datatable.html">DataTable</a></li>
+      <li><a href="dropdown.html">Dropdown</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="form-plugins.html">Form Plugins</a></li>
+      <li><a href="google-maps.html">Google Maps</a></li>
+      <li><a href="hero.html">Hero</a></li>
+      <li><a href="icons.html">Icons</a></li>
+      <li><a href="lightbox.html">Lightbox</a></li>
+      <li><a href="media-player.html">Media Player</a></li>
+      <li class="active"><a href="modal.html">Modal</a></li>
+      <li><a href="notification.html">Notification</a></li>
+      <li><a href="pagination.html">Pagination</a></li>
+      <li><a href="popovers.html">Popovers</a></li>
+      <li><a href="progress.html">Progress</a></li>
+      <li><a href="tabs.html">Tabs</a></li>
+      <li><a href="tables.html">Tables</a></li>
+      <li><a href="tooltips.html">Tooltips</a></li>
+      <li><a href="text-editor.html">Text Editor</a></li>
+      <li><a href="typography.html">Typography</a></li>
+      <li><a href="utilities.html">Utilities</a></li>
+    </ul>
+  </div>
+
+  <!-- main -->
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+
+          <h1 id="modal">Modal</h1>
+          <p class="lead">Use Gameforest's JavaScript modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content.</p>
+
+          <div class="divider"></div>
+
+          <h2 id="example">Example</h2>
+          <p>Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults. Included are the modal header, modal body required for padding, and modal footer optional.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview" role="tabpanel">
+              <div class="demo-modal">
+                <div class="modal">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Modal body text goes here.</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="markup" role="tabpanel">
+              <pre><code id="copy" class="html">&lt;div class=&quot;modal&quot;&gt;
+  &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h5 class=&quot;modal-title&quot;&gt;Modal title&lt;/h5&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-footer&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Save changes&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-secondary&quot; data-dismiss=&quot;modal&quot;&gt;Close&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-40"></div>
+
+          <h2 id="basic">Basic</h2>
+          <p>Toggle a working modal demo by clicking the button below. It will slide down and fade in from the top of the page.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-2" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-2" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-2"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-2" role="tabpanel">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Modal</button>
+              <div class="modal fade" id="myModal">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae nisi a libero accumsan tincidunt ut et odio. Curabitur eget dolor vitae enim condimentum efficitur vel ut enim. Praesent non ex eget est pulvinar interdum. Ut commodo
+                        nisi at semper interdum. Praesent aliquam metus ac mattis viverra. Etiam tellus dolor, blandit at tempor id, rhoncus vel dui. Nullam viverra dui at tellus eleifend, vitae tristique risus consectetur. Morbi eu ultrices neque. In
+                        hac habitasse platea dictumst.</p>
+                      <p>Quisque vestibulum nibh rhoncus euismod cursus. Mauris dignissim neque sit amet lorem aliquet consectetur. Sed malesuada arcu a turpis vestibulum, ac auctor augue tempus. Mauris nec sodales augue. Pellentesque nec blandit ipsum,
+                        in congue lectus. In lobortis et tortor vitae mattis. Maecenas lacinia iaculis felis efficitur consectetur. Sed malesuada scelerisque massa ut commodo. Cras id mi ac elit sollicitudin fermentum. Fusce ornare dolor vel lorem fermentum
+                        malesuada. Pellentesque consectetur, tortor quis hendrerit convallis, est ipsum tempus neque, scelerisque finibus urna sem ut velit. Pellentesque a rhoncus felis. Sed molestie, nisl in rhoncus facilisis, lectus magna facilisis
+                        sem, quis eleifend urna libero semper velit. Phasellus elit sem, venenatis eget ultricies vitae, imperdiet sed eros. Mauris eget laoreet turpis. Etiam et nisi velit.</p>
+                      <p>Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam nec augue finibus augue congue vestibulum scelerisque vel tortor. Etiam elementum, ligula sit amet elementum vestibulum, elit eros eleifend
+                        dui, at cursus turpis purus nec mauris. Pellentesque accumsan tempus felis, non elementum ante commodo ac. Mauris fermentum ornare hendrerit. Duis pharetra convallis ante, a gravida lectus dictum at. Aenean pellentesque leo lacinia
+                        urna aliquam, at condimentum urna ultrices. Pellentesque et est id purus tempor tempor et sit amet augue. Integer lobortis nunc a elit pellentesque dignissim.</p>
+                      <p>Duis vulputate nulla at mi maximus venenatis. Sed id tellus non lorem gravida ullamcorper. Duis aliquam tellus et rhoncus luctus. Ut pharetra porttitor aliquam. Suspendisse eu pellentesque ligula, eget lobortis odio. Quisque quis
+                        massa non nulla venenatis molestie. In nec tristique metus, id scelerisque magna.</p>
+                      <p>Suspendisse nec ligula velit. Quisque ut tincidunt dui. Pellentesque rhoncus tellus in rutrum accumsan. Cras at semper risus. Nullam ut erat lacus. Etiam porttitor nibh ligula, in pretium nulla ultrices nec. Ut scelerisque velit
+                        a porta commodo. Sed eleifend magna pretium sapien efficitur, nec scelerisque leo feugiat. Nullam convallis non nisi ac dignissim. Mauris et dapibus neque. Sed rutrum neque sit amet sem vestibulum, ut efficitur elit aliquam. Nunc
+                        auctor euismod finibus.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="markup-2" role="tabpanel">
+              <pre><code id="copy-2" class="html">&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;modal&quot; data-target=&quot;#myModal&quot;&gt;Launch demo modal&lt;/button&gt;
+&lt;div class=&quot;modal fade&quot; id=&quot;myModal&quot;&gt;
+  &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h5 class=&quot;modal-title&quot;&gt;Modal title&lt;/h5&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae nisi a libero accumsan tincidunt ut et odio. Curabitur eget dolor vitae enim condimentum efficitur vel ut enim. Praesent non ex eget est pulvinar interdum. Ut commodo nisi at semper interdum. Praesent aliquam metus ac mattis viverra. Etiam tellus dolor, blandit at tempor id, rhoncus vel dui. Nullam viverra dui at tellus eleifend, vitae tristique risus consectetur. Morbi eu ultrices neque. In hac habitasse platea dictumst.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-footer&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-secondary&quot; data-dismiss=&quot;modal&quot;&gt;Close&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Save changes&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="sizes">Sizes</h2>
+          <p>Modals have three optional sizes, available via modifier classes to be placed on a <code>.modal-dialog</code>. These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-3" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-3" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-3"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-3" role="tabpanel">
+              <!-- Large modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large</button>
+              <div class="modal fade bs-example-modal-lg">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae nisi a libero accumsan tincidunt ut et odio. Curabitur eget dolor vitae enim condimentum efficitur vel ut enim. Praesent non ex eget est pulvinar interdum. Ut commodo
+                        nisi at semper interdum. Praesent aliquam metus ac mattis viverra. Etiam tellus dolor, blandit at tempor id, rhoncus vel dui. Nullam viverra dui at tellus eleifend, vitae tristique risus consectetur. Morbi eu ultrices neque. In
+                        hac habitasse platea dictumst.</p>
+                      <p>Quisque vestibulum nibh rhoncus euismod cursus. Mauris dignissim neque sit amet lorem aliquet consectetur. Sed malesuada arcu a turpis vestibulum, ac auctor augue tempus. Mauris nec sodales augue. Pellentesque nec blandit ipsum,
+                        in congue lectus. In lobortis et tortor vitae mattis. Maecenas lacinia iaculis felis efficitur consectetur. Sed malesuada scelerisque massa ut commodo. Cras id mi ac elit sollicitudin fermentum. Fusce ornare dolor vel lorem fermentum
+                        malesuada. Pellentesque consectetur, tortor quis hendrerit convallis, est ipsum tempus neque, scelerisque finibus urna sem ut velit. Pellentesque a rhoncus felis. Sed molestie, nisl in rhoncus facilisis, lectus magna facilisis
+                        sem, quis eleifend urna libero semper velit. Phasellus elit sem, venenatis eget ultricies vitae, imperdiet sed eros. Mauris eget laoreet turpis. Etiam et nisi velit.</p>
+                      <p>Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam nec augue finibus augue congue vestibulum scelerisque vel tortor. Etiam elementum, ligula sit amet elementum vestibulum, elit eros eleifend
+                        dui, at cursus turpis purus nec mauris. Pellentesque accumsan tempus felis, non elementum ante commodo ac. Mauris fermentum ornare hendrerit. Duis pharetra convallis ante, a gravida lectus dictum at. Aenean pellentesque leo lacinia
+                        urna aliquam, at condimentum urna ultrices. Pellentesque et est id purus tempor tempor et sit amet augue. Integer lobortis nunc a elit pellentesque dignissim.</p>
+                      <p>Duis vulputate nulla at mi maximus venenatis. Sed id tellus non lorem gravida ullamcorper. Duis aliquam tellus et rhoncus luctus. Ut pharetra porttitor aliquam. Suspendisse eu pellentesque ligula, eget lobortis odio. Quisque quis
+                        massa non nulla venenatis molestie. In nec tristique metus, id scelerisque magna.</p>
+                      <p>Suspendisse nec ligula velit. Quisque ut tincidunt dui. Pellentesque rhoncus tellus in rutrum accumsan. Cras at semper risus. Nullam ut erat lacus. Etiam porttitor nibh ligula, in pretium nulla ultrices nec. Ut scelerisque velit
+                        a porta commodo. Sed eleifend magna pretium sapien efficitur, nec scelerisque leo feugiat. Nullam convallis non nisi ac dignissim. Mauris et dapibus neque. Sed rutrum neque sit amet sem vestibulum, ut efficitur elit aliquam. Nunc
+                        auctor euismod finibus.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Small modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small</button>
+              <div class="modal fade bs-example-modal-sm">
+                <div class="modal-dialog modal-sm" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae nisi a libero accumsan tincidunt ut et odio. Curabitur eget dolor vitae enim condimentum efficitur vel ut enim. Praesent non ex eget est pulvinar interdum. Ut commodo
+                        nisi at semper interdum. Praesent aliquam metus ac mattis viverra. Etiam tellus dolor, blandit at tempor id, rhoncus vel dui. Nullam viverra dui at tellus eleifend, vitae tristique risus consectetur. Morbi eu ultrices neque. In
+                        hac habitasse platea dictumst.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Small modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-xs">Extra Small</button>
+              <div class="modal fade bs-example-modal-xs">
+                <div class="modal-dialog modal-xs" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Modal body text goes here.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="markup-3" role="tabpanel">
+              <pre><code id="copy-3" class="html">&lt;!-- Large modal --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;modal&quot; data-target=&quot;.bs-example-modal-lg&quot;&gt;Large&lt;/button&gt;
+&lt;div class=&quot;modal fade bs-example-modal-lg&quot;&gt;
+  &lt;div class=&quot;modal-dialog modal-lg&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h5 class=&quot;modal-title&quot;&gt;Modal title&lt;/h5&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae nisi a libero accumsan tincidunt ut et odio. Curabitur eget dolor vitae enim condimentum efficitur vel ut enim. Praesent non ex eget est pulvinar interdum. Ut commodo nisi at semper interdum. Praesent aliquam metus ac mattis viverra. Etiam tellus dolor, blandit at tempor id, rhoncus vel dui. Nullam viverra dui at tellus eleifend, vitae tristique risus consectetur. Morbi eu ultrices neque. In hac habitasse platea dictumst.&lt;/p&gt;
+        &lt;p&gt;Quisque vestibulum nibh rhoncus euismod cursus. Mauris dignissim neque sit amet lorem aliquet consectetur. Sed malesuada arcu a turpis vestibulum, ac auctor augue tempus. Mauris nec sodales augue. Pellentesque nec blandit ipsum, in congue lectus. In lobortis et tortor vitae mattis. Maecenas lacinia iaculis felis efficitur consectetur. Sed malesuada scelerisque massa ut commodo. Cras id mi ac elit sollicitudin fermentum. Fusce ornare dolor vel lorem fermentum malesuada. Pellentesque consectetur, tortor quis hendrerit convallis, est ipsum tempus neque, scelerisque finibus urna sem ut velit. Pellentesque a rhoncus felis. Sed molestie, nisl in rhoncus facilisis, lectus magna facilisis sem, quis eleifend urna libero semper velit. Phasellus elit sem, venenatis eget ultricies vitae, imperdiet sed eros. Mauris eget laoreet turpis. Etiam et nisi velit.&lt;/p&gt;
+        &lt;p&gt;Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam nec augue finibus augue congue vestibulum scelerisque vel tortor. Etiam elementum, ligula sit amet elementum vestibulum, elit eros eleifend dui, at cursus turpis purus nec mauris. Pellentesque accumsan tempus felis, non elementum ante commodo ac. Mauris fermentum ornare hendrerit. Duis pharetra convallis ante, a gravida lectus dictum at. Aenean pellentesque leo lacinia urna aliquam, at condimentum urna ultrices. Pellentesque et est id purus tempor tempor et sit amet augue. Integer lobortis nunc a elit pellentesque dignissim.&lt;/p&gt;
+        &lt;p&gt;Duis vulputate nulla at mi maximus venenatis. Sed id tellus non lorem gravida ullamcorper. Duis aliquam tellus et rhoncus luctus. Ut pharetra porttitor aliquam. Suspendisse eu pellentesque ligula, eget lobortis odio. Quisque quis massa non nulla venenatis molestie. In nec tristique metus, id scelerisque magna.&lt;/p&gt;
+        &lt;p&gt;Suspendisse nec ligula velit. Quisque ut tincidunt dui. Pellentesque rhoncus tellus in rutrum accumsan. Cras at semper risus. Nullam ut erat lacus. Etiam porttitor nibh ligula, in pretium nulla ultrices nec. Ut scelerisque velit a porta commodo. Sed eleifend magna pretium sapien efficitur, nec scelerisque leo feugiat. Nullam convallis non nisi ac dignissim. Mauris et dapibus neque. Sed rutrum neque sit amet sem vestibulum, ut efficitur elit aliquam. Nunc auctor euismod finibus.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-footer&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-secondary&quot; data-dismiss=&quot;modal&quot;&gt;Close&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Save changes&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Small modal --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;modal&quot; data-target=&quot;.bs-example-modal-sm&quot;&gt;Small&lt;/button&gt;
+&lt;div class=&quot;modal fade bs-example-modal-sm&quot;&gt;
+  &lt;div class=&quot;modal-dialog modal-sm&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h5 class=&quot;modal-title&quot;&gt;Modal title&lt;/h5&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae nisi a libero accumsan tincidunt ut et odio. Curabitur eget dolor vitae enim condimentum efficitur vel ut enim. Praesent non ex eget est pulvinar interdum. Ut commodo nisi at semper interdum. Praesent aliquam metus ac mattis viverra. Etiam tellus dolor, blandit at tempor id, rhoncus vel dui. Nullam viverra dui at tellus eleifend, vitae tristique risus consectetur. Morbi eu ultrices neque. In hac habitasse platea dictumst.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-footer&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-secondary&quot; data-dismiss=&quot;modal&quot;&gt;Close&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Save changes&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Extra Small modal --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;modal&quot; data-target=&quot;.bs-example-modal-xs&quot;&gt;Extra Small&lt;/button&gt;
+&lt;div class=&quot;modal fade bs-example-modal-xs&quot;&gt;
+  &lt;div class=&quot;modal-dialog modal-xs&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h5 class=&quot;modal-title&quot;&gt;Modal title&lt;/h5&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        &lt;p&gt;Modal body text goes here.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="forms">Forms</h2>
+          <p>Add forms to the modal plugin like login or registration like in the example below. It can be useful when you would like to display a login form on same page where you are.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-4" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-4" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-4"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-4" role="tabpanel">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-login">Login</button>
+              <div class="modal fade" id="modal-login">
+                <div class="modal-dialog modal-sm" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title"><i class="fa fa-sign-in"></i> Login to your account</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body p-a-20">
+                      <form action="profile.html" method="post">
+                        <a class="btn btn-social btn-facebook btn-block btn-icon-left" href="" role="button"><i class="fa fa-facebook"></i> Connect with Facebook</a>
+                        <div class="divider">
+                          <span>or</span>
+                        </div>
+                        <div class="form-group input-icon-left m-b-10">
+                          <i class="fa fa-user"></i>
+                          <input type="email" class="form-control form-control-secondary" placeholder="Username">
+                        </div>
+                        <div class="form-group input-icon-left m-b-15">
+                          <i class="fa fa-lock"></i>
+                          <input type="password" class="form-control form-control-secondary" placeholder="Password">
+                        </div>
+                        <label class="custom-control custom-checkbox custom-checkbox-primary">
+                <input type="checkbox" class="custom-control-input">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Remember me</span>
+              </label>
+                        <button type="submit" class="btn btn-primary btn-block m-t-10">Login <i class="fa fa-sign-in"></i></button>
+                        <div class="divider">
+                          <span>Don't have an account?</span>
+                        </div>
+                        <a class="btn btn-secondary btn-block" href="register.html" role="button">Register</a>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-register">
+      Register
+    </button>
+              <div class="modal fade" id="modal-register">
+                <div class="modal-dialog modal-sm" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title"><i class="fa fa-sign-in"></i> Login to your account</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body p-a-20">
+                      <form action="profile.html" method="post">
+                        <a class="btn btn-social btn-google-plus btn-block btn-icon-left" href="" role="button"><i class="fa fa-google-plus"></i> Register with Google Plus</a>
+                        <div class="divider"><span>or</span></div>
+                        <div class="form-group input-icon-left m-b-10">
+                          <i class="fa fa-user"></i>
+                          <input type="text" class="form-control form-control-secondary" placeholder="Username">
+                        </div>
+                        <div class="form-group input-icon-left m-b-10">
+                          <i class="fa fa-envelope"></i>
+                          <input type="email" class="form-control form-control-secondary" placeholder="Email Address">
+                        </div>
+                        <div class="divider"><span>Security</span></div>
+                        <div class="form-group input-icon-left m-b-10">
+                          <i class="fa fa-lock"></i>
+                          <input type="password" class="form-control form-control-secondary" placeholder="Password">
+                        </div>
+                        <div class="form-group input-icon-left m-b-10">
+                          <i class="fa fa-unlock"></i>
+                          <input type="password" class="form-control form-control-secondary" placeholder="Repeat Password">
+                        </div>
+                        <div class="divider"><span>I am not a robot</span></div>
+                        <div class="g-recaptcha-outer">
+                          <script src='https://www.google.com/recaptcha/api.js'></script>
+                          <div class="g-recaptcha" data-sitekey="6LeBwhwUAAAAAG1RDj-rS2Wu4WYNoV021q0z-LNY"></div>
+                        </div>
+                        <div class="divider"><span>Terms of Service</span></div>
+                        <label class="custom-control custom-checkbox custom-checkbox-primary custom-checked">
+                <input type="checkbox" class="custom-control-input" checked="">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Subscribe to monthly newsletter</span>
+              </label>
+                        <label class="custom-control custom-checkbox custom-checkbox-primary">
+                <input type="checkbox" class="custom-control-input">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Accept <a href="#">terms of service</a></span>
+              </label>
+                        <button type="submit" class="btn btn-primary m-t-10 btn-block">Complete Registration</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="markup-4" role="tabpanel">
+              <pre><code id="copy-4" class="html">&lt;!-- Button trigger modal --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;modal&quot; data-target=&quot;#modal-login&quot;&gt;Login&lt;/button&gt;
+&lt;div class=&quot;modal fade&quot; id=&quot;modal-login&quot;&gt;
+  &lt;div class=&quot;modal-dialog modal-sm&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h5 class=&quot;modal-title&quot;&gt;&lt;i class=&quot;fa fa-sign-in&quot;&gt;&lt;/i&gt; Login to your account&lt;/h5&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body p-a-20&quot;&gt;
+        &lt;form action=&quot;profile.html&quot; method=&quot;post&quot;&gt;
+          &lt;a class=&quot;btn btn-social btn-facebook btn-block btn-icon-left&quot; href=&quot;&quot; role=&quot;button&quot;&gt;&lt;i class=&quot;fa fa-facebook&quot;&gt;&lt;/i&gt; Connect with Facebook&lt;/a&gt;
+          &lt;div class=&quot;divider&quot;&gt;
+            &lt;span&gt;or&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;form-group input-icon-left m-b-10&quot;&gt;
+            &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;
+            &lt;input type=&quot;email&quot; class=&quot;form-control form-control-secondary&quot; placeholder=&quot;Username&quot;&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;form-group input-icon-left m-b-15&quot;&gt;
+            &lt;i class=&quot;fa fa-lock&quot;&gt;&lt;/i&gt;
+            &lt;input type=&quot;password&quot; class=&quot;form-control form-control-secondary&quot; placeholder=&quot;Password&quot;&gt;
+          &lt;/div&gt;
+          &lt;label class=&quot;custom-control custom-checkbox custom-checkbox-primary&quot;&gt;
+            &lt;input type=&quot;checkbox&quot; class=&quot;custom-control-input&quot;&gt;
+            &lt;span class=&quot;custom-control-indicator&quot;&gt;&lt;/span&gt;
+            &lt;span class=&quot;custom-control-description&quot;&gt;Remember me&lt;/span&gt;
+          &lt;/label&gt;
+          &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary btn-block m-t-10&quot;&gt;Login &lt;i class=&quot;fa fa-sign-in&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+          &lt;div class=&quot;divider&quot;&gt;
+            &lt;span&gt;Don't have an account?&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;a class=&quot;btn btn-secondary btn-block&quot; href=&quot;register.html&quot; role=&quot;button&quot;&gt;Register&lt;/a&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Button trigger modal --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;modal&quot; data-target=&quot;#modal-register&quot;&gt;
+  Register
+&lt;/button&gt;
+&lt;div class=&quot;modal fade&quot; id=&quot;modal-register&quot;&gt;
+  &lt;div class=&quot;modal-dialog modal-sm&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h5 class=&quot;modal-title&quot;&gt;&lt;i class=&quot;fa fa-sign-in&quot;&gt;&lt;/i&gt; Login to your account&lt;/h5&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body p-a-20&quot;&gt;
+        &lt;form action=&quot;profile.html&quot; method=&quot;post&quot;&gt;
+          &lt;a class=&quot;btn btn-social btn-google-plus btn-block btn-icon-left&quot; href=&quot;&quot; role=&quot;button&quot;&gt;&lt;i class=&quot;fa fa-google-plus&quot;&gt;&lt;/i&gt; Register with Google Plus&lt;/a&gt;
+          &lt;div class=&quot;divider&quot;&gt;&lt;span&gt;or&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;form-group input-icon-left m-b-10&quot;&gt;
+            &lt;i class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;
+            &lt;input type=&quot;text&quot; class=&quot;form-control form-control-secondary&quot; placeholder=&quot;Username&quot;&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;form-group input-icon-left m-b-10&quot;&gt;
+            &lt;i class=&quot;fa fa-envelope&quot;&gt;&lt;/i&gt;
+            &lt;input type=&quot;email&quot; class=&quot;form-control form-control-secondary&quot; placeholder=&quot;Email Address&quot;&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;divider&quot;&gt;&lt;span&gt;Security&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;form-group input-icon-left m-b-10&quot;&gt;
+            &lt;i class=&quot;fa fa-lock&quot;&gt;&lt;/i&gt;
+            &lt;input type=&quot;password&quot; class=&quot;form-control form-control-secondary&quot; placeholder=&quot;Password&quot;&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;form-group input-icon-left m-b-10&quot;&gt;
+            &lt;i class=&quot;fa fa-unlock&quot;&gt;&lt;/i&gt;
+            &lt;input type=&quot;password&quot; class=&quot;form-control form-control-secondary&quot; placeholder=&quot;Repeat Password&quot;&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;divider&quot;&gt;&lt;span&gt;I am not a robot&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;g-recaptcha-outer&quot;&gt;
+            &lt;script src='https://www.google.com/recaptcha/api.js'&gt;&lt;/script&gt;
+            &lt;div class=&quot;g-recaptcha&quot; data-sitekey=&quot;6LeBwhwUAAAAAG1RDj-rS2Wu4WYNoV021q0z-LNY&quot;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;divider&quot;&gt;&lt;span&gt;Terms of Service&lt;/span&gt;&lt;/div&gt;
+          &lt;label class=&quot;custom-control custom-checkbox custom-checkbox-primary custom-checked&quot;&gt;
+            &lt;input type=&quot;checkbox&quot; class=&quot;custom-control-input&quot; checked=&quot;&quot;&gt;
+            &lt;span class=&quot;custom-control-indicator&quot;&gt;&lt;/span&gt;
+            &lt;span class=&quot;custom-control-description&quot;&gt;Subscribe to monthly newsletter&lt;/span&gt;
+          &lt;/label&gt;
+          &lt;label class=&quot;custom-control custom-checkbox custom-checkbox-primary&quot;&gt;
+            &lt;input type=&quot;checkbox&quot; class=&quot;custom-control-input&quot;&gt;
+            &lt;span class=&quot;custom-control-indicator&quot;&gt;&lt;/span&gt;
+            &lt;span class=&quot;custom-control-description&quot;&gt;Accept &lt;a href=&quot;#&quot;&gt;terms of service&lt;/a&gt;&lt;/span&gt;
+          &lt;/label&gt;
+          &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary m-t-10 btn-block&quot;&gt;Complete Registration&lt;/button&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="positions">Positions</h2>
+          <p>Modal positions can be set with the <code>.modal-*</code> position name class. Add the position name to the modal class.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-5" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-5" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-5"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-5" role="tabpanel">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-top">Top</button>
+              <div class="modal fade modal-top" id="modal-top">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="ModalLabel">Modal title</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-center">Centered</button>
+              <div class="modal fade" id="modal-center">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="ModalLabel">Modal title</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-bottom">Bottom</button>
+              <div class="modal fade modal-bottom" id="modal-bottom">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="ModalLabel">Modal title</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="markup-5" role="tabpanel">
+              <pre><code id="copy-5" class="html">&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;modal&quot; data-target=&quot;#modal-top&quot;&gt;Top&lt;/button&gt;
+&lt;div class=&quot;modal fade modal-top&quot; id=&quot;modal-top&quot;&gt;
+  &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h4 class=&quot;modal-title&quot; id=&quot;ModalLabel&quot;&gt;Modal title&lt;/h4&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-footer&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; data-dismiss=&quot;modal&quot;&gt;Close&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Save changes&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;modal&quot; data-target=&quot;#modal-center&quot;&gt;Centered&lt;/button&gt;
+&lt;div class=&quot;modal fade&quot; id=&quot;modal-center&quot;&gt;
+  &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h4 class=&quot;modal-title&quot; id=&quot;ModalLabel&quot;&gt;Modal title&lt;/h4&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-footer&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; data-dismiss=&quot;modal&quot;&gt;Close&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Save changes&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;modal&quot; data-target=&quot;#modal-bottom&quot;&gt;Bottom&lt;/button&gt;
+&lt;div class=&quot;modal fade modal-bottom&quot; id=&quot;modal-bottom&quot;&gt;
+  &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h4 class=&quot;modal-title&quot; id=&quot;ModalLabel&quot;&gt;Modal title&lt;/h4&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-footer&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; data-dismiss=&quot;modal&quot;&gt;Close&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Save changes&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="variations">Variations</h2>
+          <p>Use custom variations for modal component like primary, success or danger etc. Add <code>.modal-*</code> color to the modal class.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-6" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-6" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-6"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-6" role="tabpanel">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-primary">
+      Primary
+    </button>
+              <div class="modal fade modal-top modal-primary" id="modal-primary">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="ModalLabel">Primary Modal</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Custom message for users!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-success">
+      Success
+    </button>
+              <div class="modal fade modal-top modal-success" id="modal-success">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="ModalLabel">Success Modal</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Custom message for users!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-success" data-dismiss="modal">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
+      Danger
+    </button>
+              <div class="modal fade modal-top modal-danger" id="modal-danger">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="ModalLabel">Danger Modal</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Custom message for users!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-warning">
+      Warning
+    </button>
+              <div class="modal fade modal-top modal-warning" id="modal-warning">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="ModalLabel">Warning Modal</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Custom message for users!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-warning" data-dismiss="modal">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
+      Info
+    </button>
+              <div class="modal fade modal-top modal-info" id="modal-info">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="ModalLabel">Info Modal</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Custom message for users!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-info" data-dismiss="modal">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="markup-6" role="tabpanel">
+              <pre><code id="copy-6" class="html">&lt;!-- Button trigger modal --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;modal&quot; data-target=&quot;#modal-primary&quot;&gt;
+  Primary
+&lt;/button&gt;
+&lt;div class=&quot;modal fade modal-top modal-primary&quot; id=&quot;modal-primary&quot;&gt;
+  &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h4 class=&quot;modal-title&quot; id=&quot;ModalLabel&quot;&gt;Primary Modal&lt;/h4&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        &lt;p&gt;Custom message for users!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-footer&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-dismiss=&quot;modal&quot;&gt;Save changes&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Button trigger modal --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-success&quot; data-toggle=&quot;modal&quot; data-target=&quot;#modal-success&quot;&gt;
+  Success
+&lt;/button&gt;
+&lt;div class=&quot;modal fade modal-top modal-success&quot; id=&quot;modal-success&quot;&gt;
+  &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h4 class=&quot;modal-title&quot; id=&quot;ModalLabel&quot;&gt;Success Modal&lt;/h4&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        &lt;p&gt;Custom message for users!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-footer&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-success&quot; data-dismiss=&quot;modal&quot;&gt;Save changes&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Button trigger modal --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-danger&quot; data-toggle=&quot;modal&quot; data-target=&quot;#modal-danger&quot;&gt;
+  Danger
+&lt;/button&gt;
+&lt;div class=&quot;modal fade modal-top modal-danger&quot; id=&quot;modal-danger&quot;&gt;
+  &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h4 class=&quot;modal-title&quot; id=&quot;ModalLabel&quot;&gt;Danger Modal&lt;/h4&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        &lt;p&gt;Custom message for users!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-footer&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-danger&quot; data-dismiss=&quot;modal&quot;&gt;Save changes&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Button trigger modal --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-warning&quot; data-toggle=&quot;modal&quot; data-target=&quot;#modal-warning&quot;&gt;
+  Warning
+&lt;/button&gt;
+&lt;div class=&quot;modal fade modal-top modal-warning&quot; id=&quot;modal-warning&quot;&gt;
+  &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h4 class=&quot;modal-title&quot; id=&quot;ModalLabel&quot;&gt;Warning Modal&lt;/h4&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        &lt;p&gt;Custom message for users!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-footer&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-warning&quot; data-dismiss=&quot;modal&quot;&gt;Save changes&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Button trigger modal --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-info&quot; data-toggle=&quot;modal&quot; data-target=&quot;#modal-info&quot;&gt;
+  Info
+&lt;/button&gt;
+&lt;div class=&quot;modal fade modal-top modal-info&quot; id=&quot;modal-info&quot;&gt;
+  &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h4 class=&quot;modal-title&quot; id=&quot;ModalLabel&quot;&gt;Info Modal&lt;/h4&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        &lt;p&gt;Custom message for users!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-footer&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-info&quot; data-dismiss=&quot;modal&quot;&gt;Save changes&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-3 sidebar-right">
+
+          <ul>
+            <li><a href="#modal">Modal</a></li>
+            <li><a href="#example">Example</a></li>
+            <li><a href="#basic">Basic</a></li>
+            <li><a href="#sizes">Sizes</a></li>
+            <li><a href="#forms">Forms</a></li>
+            <li><a href="#positions">Positions</a></li>
+            <li><a href="#variations">Variations</a></li>
+            <li class="divider"></li>
+            <li><a href="https://themeforest.net/user/yakuzi#contact" target="_blank"><i class="fa fa-bell-o"></i> Report issue</a></li>
+            <li><a href="pages/support.html#get-help"><i class="fa fa-life-ring"></i> Get help</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- footer -->
+  <div class="version">
+    version: 4.1.2
+  </div>
+
+  <!-- scripts -->
+  <script src="../../upload/plugins/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../../upload/plugins/popper/popper.min.js"></script>
+  <script src="../../upload/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/plugins/clipboard/clipboard.min.js"></script>
+  <script src="../assets/plugins/highlight/highlight.pack.js" charset="utf-8"></script>
+
+  <script src="../../upload/js/theme.min.js"></script>
+  <script src="../assets/js/app.min.js"></script>
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

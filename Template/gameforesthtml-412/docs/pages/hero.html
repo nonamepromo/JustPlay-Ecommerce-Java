@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gameforest - Documentation v4.1.2</title>
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  <link rel="stylesheet" href="../../upload/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/animate/animate.min.css">
+  <link rel="stylesheet" href="../assets/plugins/highlight/styles/github-gist.css">
+  <!-- theme stylesheet -->
+  <link href="../../upload/css/theme.min.css" rel="stylesheet">
+  <link href="../assets/css/app.min.css" rel="stylesheet">
+</head>
+<body class="fixed-header">
+  <!-- header -->
+  <header id="header">
+    <div class="container-fluid">
+      <div class="navbar-backdrop">
+        <div class="navbar">
+          <div class="navbar-left">
+            <a class="navbar-toggle"><i class="fa fa-bars"></i></a>
+            <a href="../index.html" class="logo"><img src="../assets/img/logo.png" alt="Gameforest - Game Theme HTML"></a>
+          </div>
+          <div class="nav navbar-right">
+            <ul>
+              <li><a href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/full_screen_preview/5007730" target="_blank">Preview</a></li>
+              <li><a href="../../documentation.html">Documentation</a></li>
+              <li><a href="../../changelog.html">Changelog</a></li>
+              <li><a href="https://www.facebook.com/yakuthemes" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            </ul>
+            <a class="btn btn-outline-default btn-rounded" href="https://themeforest.net/downloads#item-5007730" target="_blank">Rate Now <i class="fa fa-star"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- sidebar -->
+  <div id="sidebar">
+    <h2>Documentation</h2>
+    <ul>
+      <li class="sidebar-header"><span>Getting Started</span></li>
+      <li><a href="../../documentation.html">Introduction</a></li>
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="gulp.html">Gulp</a></li>
+      <li><a href="twig.html">Twig</a></li>
+      <li><a href="javascript.html">JavaScript</a></li>
+      <li><a href="plugins.html">Plugins</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="../../changelog.html">Changelog</a></li>
+      <li class="sidebar-header"><span>Components</span></li>
+      <li><a href="accordions.html">Accordions</a></li>
+      <li><a href="alerts.html">Alerts</a></li>
+      <li><a href="badges.html">Badges</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="buttons.html">Buttons</a></li>
+      <li><a href="cards.html">Cards</a></li>
+      <li><a href="carousel.html">Carousel</a></li>
+      <li><a href="charts.html">Charts</a></li>
+      <li><a href="columns.html">Columns</a></li>
+      <li><a href="comment.html">Comment</a></li>
+      <li><a href="datatable.html">DataTable</a></li>
+      <li><a href="dropdown.html">Dropdown</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="form-plugins.html">Form Plugins</a></li>
+      <li><a href="google-maps.html">Google Maps</a></li>
+      <li class="active"><a href="hero.html">Hero</a></li>
+      <li><a href="icons.html">Icons</a></li>
+      <li><a href="lightbox.html">Lightbox</a></li>
+      <li><a href="media-player.html">Media Player</a></li>
+      <li><a href="modal.html">Modal</a></li>
+      <li><a href="notification.html">Notification</a></li>
+      <li><a href="pagination.html">Pagination</a></li>
+      <li><a href="popovers.html">Popovers</a></li>
+      <li><a href="progress.html">Progress</a></li>
+      <li><a href="tabs.html">Tabs</a></li>
+      <li><a href="tables.html">Tables</a></li>
+      <li><a href="tooltips.html">Tooltips</a></li>
+      <li><a href="text-editor.html">Text Editor</a></li>
+      <li><a href="typography.html">Typography</a></li>
+      <li><a href="utilities.html">Utilities</a></li>
+    </ul>
+  </div>
+
+  <!-- main -->
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+
+          <h1 id="hero">Hero</h1>
+          <p class="lead">Lightweight, flexible component for showcasing hero unit style content.</p>
+
+          <div class="divider"></div>
+
+          <h2 id="example">Example</h2>
+          <p>Lightweight, flexible component that can optionally extend the entire viewport to showcase key marketing messages on your site. This is a simple hero unit, a simple hero-style component for calling extra attention to featured content or information.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview" role="tabpanel">
+              <section class="hero" style="background-image: url('../../upload/img/hero/hero.jpg');">
+                <div class="overlay"></div>
+                <div class="container">
+                  <div class="hero-block">
+                    <h2 class="hero-title">The Witcher 3: Blood and Wine</h2>
+                    <p>The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
+                    <a class="btn btn-primary btn-lg btn-shadow btn-rounded" href="game-post.html" role="button">Game Details</a>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="tab-pane" id="markup" role="tabpanel">
+              <pre><code id="copy" class="html">&lt;section class=&quot;hero&quot; style=&quot;background-image: url('img/hero/hero.jpg');&quot;&gt;
+  &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;hero-block&quot;&gt;
+      &lt;h2 class=&quot;hero-title&quot;&gt;The Witcher 3: Blood and Wine&lt;/h2&gt;
+      &lt;p&gt;The world is in chaos. The air is thick with tension and the smoke of burnt villages.&lt;/p&gt;
+      &lt;a class=&quot;btn btn-primary btn-lg btn-shadow btn-rounded&quot; href=&quot;game-post.html&quot; role=&quot;button&quot;&gt;Game Details&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="example">Chart</h2>
+          <p>Add custom chart to the hero like easyPieChart and use <code>.hero-game</code> like in the example below. Easy to add lightbox component with buttons etc.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-2" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-2" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-2"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-2" role="tabpanel">
+              <section class="hero hero-game" style="background-image: url('../../upload/img/hero/hero.jpg');">
+                <div class="overlay"></div>
+                <div class="container">
+                  <div class="hero-block p-x-20">
+                    <div class="hero-left">
+                      <h2 class="hero-title">The Witcher 3: Wild Hunt</h2>
+                      <p>The world is in chaos. The air is thick with tension and the smoke.</p>
+                      <a class="btn btn-primary btn-shadow btn-rounded btn-lg" href="https://www.youtube.com/watch?v=c0i88t0Kacs" data-lightbox role="button">Watch Trailer <i class="fa fa-play"></i></a>
+                      <a class="btn btn-outline-default btn-shadow m-l-10 btn-md btn-rounded btn-lg" href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/5007730" target="_blank" role="button">Purchase Now <i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                    <div class="hero-right">
+                      <div class="hero-review">
+                        <span>Gameforest</span>
+                        <a href="review-post.php" class="chart easypiechart" data-percent="89" data-scale-color="#e3e3e3"><span>89</span>%</a>
+                      </div>
+                      <div class="hero-review">
+                        <span>MetaCritic</span>
+                        <a href="#">93</a>
+                      </div>
+                      <div class="hero-review">
+                        <span>Users</span>
+                        <a href="#">9.1</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="tab-pane" id="markup-2" role="tabpanel">
+              <pre><code id="copy-2" class="html">&lt;section class=&quot;hero hero-game&quot; style=&quot;background-image: url('img/hero/hero.jpg');&quot;&gt;
+  &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;hero-block&quot;&gt;
+      &lt;div class=&quot;hero-left&quot;&gt;
+        &lt;h2 class=&quot;hero-title&quot;&gt;The Witcher 3: Wild Hunt&lt;/h2&gt;
+        &lt;p&gt;The world is in chaos. The air is thick with tension and the smoke.&lt;/p&gt;
+        &lt;a class=&quot;btn btn-primary btn-shadow btn-rounded btn-lg&quot; href=&quot;https://www.youtube.com/watch?v=c0i88t0Kacs&quot; data-lightbox role=&quot;button&quot;&gt;Watch Trailer &lt;i class=&quot;fa fa-play&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+        &lt;a class=&quot;btn btn-outline-default btn-shadow m-l-10 btn-md btn-rounded btn-lg&quot; href=&quot;https://themeforest.net/item/gameforest-responsive-gaming-html-theme/5007730&quot; target=&quot;_blank&quot; role=&quot;button&quot;&gt;Purchase Now &lt;i class=&quot;fa fa-shopping-cart&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;hero-right&quot;&gt;
+        &lt;div class=&quot;hero-review&quot;&gt;
+          &lt;span&gt;Gameforest&lt;/span&gt;
+          &lt;a href=&quot;review-post.php&quot; class=&quot;chart easypiechart&quot; data-percent=&quot;89&quot; data-scale-color=&quot;#e3e3e3&quot;&gt;&lt;span&gt;89&lt;/span&gt;%&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;hero-review&quot;&gt;
+          &lt;span&gt;MetaCritic&lt;/span&gt;
+          &lt;a href=&quot;#&quot;&gt;93&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;hero-review&quot;&gt;
+          &lt;span&gt;Users&lt;/span&gt;
+          &lt;a href=&quot;#&quot;&gt;9.1&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="example">Review</h2>
+          <p>Use the hero component for reviews at top of the page with <code>.hero-review</code> class and with buttons, charts.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-3" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-3" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-3"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-3" role="tabpanel">
+              <section class="hero hero-review" style="background-image: url('https://i.ytimg.com/vi/JbgJA-r86HQ/maxresdefault.jpg');">
+                <div class="overlay"></div>
+                <div class="container">
+                  <div class="hero-block">
+                    <div class="chart easypiechart m-b-20" data-percent="85" data-scale-color="#e3e3e3"><span>85</span>%</div>
+                    <h2 class="hero-title">Uncharted 4: A Thief's End Review</h2>
+                    <p>Uncharted 4: A Thief's End will explore what it means when Drake is forced back into the world of thieves.</p>
+                    <a class="btn btn-primary btn-lg btn-shadow btn-rounded m-t-20" href="review-post.html" role="button">Read Review</a>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="tab-pane" id="markup-3" role="tabpanel">
+              <pre><code id="copy-3" class="html">&lt;section class=&quot;hero hero-review&quot; style=&quot;background-image: url('https://i.ytimg.com/vi/D3pYbbA1kfk/maxresdefault.jpg');&quot;&gt;
+  &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;hero-block&quot;&gt;
+      &lt;div class=&quot;chart easypiechart m-b-20&quot; data-percent=&quot;85&quot; data-scale-color=&quot;#e3e3e3&quot;&gt;&lt;span&gt;85&lt;/span&gt;%&lt;/div&gt;
+      &lt;h2 class=&quot;hero-title&quot;&gt;Uncharted 4: A Thief's End Review&lt;/h2&gt;
+      &lt;p&gt;Uncharted 4: A Thief's End will explore what it means when Drake is forced back into the world of thieves.&lt;/p&gt;
+      &lt;a class=&quot;btn btn-primary btn-lg btn-shadow btn-rounded m-t-20&quot; href=&quot;review-post.html&quot; role=&quot;button&quot;&gt;Read Review&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-3 sidebar-right">
+
+          <ul>
+            <li><a href="#hero">Hero</a></li>
+            <li><a href="#example">Example</a></li>
+            <li><a href="#chart">Chart</a></li>
+            <li><a href="#review">Review</a></li>
+            <li class="divider"></li>
+            <li><a href="https://themeforest.net/user/yakuzi#contact" target="_blank"><i class="fa fa-bell-o"></i> Report issue</a></li>
+            <li><a href="pages/support.html#get-help"><i class="fa fa-life-ring"></i> Get help</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- footer -->
+  <div class="version">
+    version: 4.1.2
+  </div>
+
+  <!-- scripts -->
+  <script src="../../upload/plugins/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../../upload/plugins/popper/popper.min.js"></script>
+  <script src="../../upload/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/plugins/clipboard/clipboard.min.js"></script>
+  <script src="../assets/plugins/highlight/highlight.pack.js" charset="utf-8"></script>
+
+  <script src="../../upload/plugins/lightbox/lightbox.js"></script>
+  <script src="../../upload/plugins/sticky/jquery.sticky.js"></script>
+  <script src="../../upload/plugins/easypiechart/jquery.easing.1.3.js"></script>
+  <script src="../../upload/plugins/easypiechart/jquery.easypiechart.min.js"></script>
+  <script>
+    (function($) {
+      "use strict";
+      // easyPieChart
+      $('.chart').easyPieChart({
+        barColor: '#5eb404',
+        trackColor: '#e3e3e3',
+        easing: 'easeOutBounce',
+        onStep: function(from, to, percent) {
+          $(this.el).find('span').text(Math.round(percent));
+        }
+      });
+      // lightbox
+      $('[data-lightbox]').lightbox({
+        disqus: 'gameforestyakuzieu'
+      });
+    })(jQuery);
+  </script>
+
+  <script src="../../upload/js/theme.min.js"></script>
+  <script src="../assets/js/app.min.js"></script>
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+{% extends "views/layout.twig" %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Tabs Component</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Tabs</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h5>Example</h5>
+    <p class="m-b-30">Add quick, dynamic tab functionality to transition through panes of local content, even via dropdown menus.</p>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item"><a class="nav-link active" href="#ps4" aria-controls="ps4" role="tab" data-toggle="tab">Playstation 4</a></li>
+      <li class="nav-item"><a class="nav-link" href="#xbox" aria-controls="xbox" role="tab" data-toggle="tab">Xbox One</a></li>
+      <li class="nav-item"><a class="nav-link" href="#pc" aria-controls="pc" role="tab" data-toggle="tab">PC</a></li>
+      <li class="nav-item"><a class="nav-link" href="#steam" aria-controls="glyphicons" role="tab" data-toggle="tab">Steam</a></li>
+    </ul>
+
+    <div class="tab-content p-t-30">
+      <div class="tab-pane active" id="ps4" role="tabpanel">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer malesuada lacinia lobortis. Proin sodales ligula augue, at mattis ipsum accumsan at. Proin aliquam fermentum pretium. Etiam euismod velit tempus orci porttitor, vel efficitur libero gravida. Donec pretium convallis suscipit.</p>
+      </div>
+      <div class="tab-pane" id="xbox" role="tabpanel">
+        <p>Mauris ultrices semper sapien, nec mollis orci aliquam a. Praesent nec urna quis enim venenatis faucibus. Aliquam hendrerit commodo diam, eu bibendum magna sodales et.</p>
+      </div>
+      <div class="tab-pane" id="pc" role="tabpanel">
+        <p>Quisque et tincidunt dolor. Praesent nec lacinia dolor. Pellentesque ligula ante, dignissim a suscipit in, rutrum ac nulla. Fusce sagittis dolor massa, in pellentesque erat ultricies vitae.</p>
+      </div>
+      <div class="tab-pane" id="steam" role="tabpanel">
+        <p>Suspendisse massa nisi, maximus eu ligula posuere, blandit scelerisque neque. Praesent consequat leo malesuada, eleifend augue nec, porta quam.</p>
+      </div>
+    </div>
+
+    <h5 class="m-t-80">Icons</h5>
+    <p class="m-b-30">You can activate a tab or pill navigation without writing any JavaScript by simply specifying data-toggle="tab" or data-toggle="pill" on an element.</p>
+    <ul class="nav nav-tabs nav-icon-left" role="tablist">
+      <li class="nav-item"><a class="nav-link active" href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-user-o"></i> Profile</a></li>
+      <li class="nav-item"><a class="nav-link" href="#settings" aria-controls="settings" role="tab" data-toggle="tab"><i class="fa fa-cog"></i> Settings</a></li>
+      <li class="nav-item"><a class="nav-link" href="#inbox" aria-controls="inbox" role="tab" data-toggle="tab"><i class="fa fa-envelope-open-o"></i> Inbox</a></li>
+      <li class="nav-item"><a class="nav-link" href="#games" aria-controls="games" role="tab" data-toggle="tab"><i class="fa fa-heart-o"></i> Games</a></li>
+    </ul>
+    <div class="tab-content p-t-30">
+      <div class="tab-pane active" id="profile" role="tabpanel">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer malesuada lacinia lobortis. Proin sodales ligula augue, at mattis ipsum accumsan at. Proin aliquam fermentum pretium. Etiam euismod velit tempus orci porttitor, vel efficitur libero gravida.</p>
+      </div>
+      <div class="tab-pane" id="settings" role="tabpanel">
+        <p>Mauris ultrices semper sapien, nec mollis orci aliquam a. Praesent nec urna quis enim venenatis faucibus. Aliquam hendrerit commodo diam, eu bibendum magna sodales et. In vestibulum ornare dapibus. Ut posuere urna eget turpis eleifend, a facilisis justo aliquet.</p>
+      </div>
+      <div class="tab-pane" id="inbox" role="tabpanel">
+        <p>Quisque et tincidunt dolor. Praesent nec lacinia dolor. Pellentesque ligula ante, dignissim a suscipit in, rutrum ac nulla. Fusce sagittis dolor massa, in pellentesque erat ultricies vitae.</p>
+      </div>
+      <div class="tab-pane" id="games" role="tabpanel">
+        <p>Suspendisse massa nisi, maximus eu ligula posuere, blandit scelerisque neque. Praesent consequat leo malesuada, eleifend augue nec, porta quam.</p>
+      </div>
+    </div>
+
+    <h5 class="m-t-80">Boxed Tabs</h5>
+    <p class="m-b-30">Add <code>.tabs-boxed</code> div to make tab compatible with boxed style.</p>
+    <div class="tabs-boxed">
+      <ul class="nav nav-tabs nav-icon-left" role="tablist">
+        <li class="nav-item"><a class="nav-link active" href="#boxed-profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-user-o"></i> Profile</a></li>
+        <li class="nav-item"><a class="nav-link" href="#boxed-settings" aria-controls="settings" role="tab" data-toggle="tab"><i class="fa fa-cog"></i> Settings</a></li>
+        <li class="nav-item"><a class="nav-link" href="#boxed-inbox" aria-controls="inbox" role="tab" data-toggle="tab"><i class="fa fa-envelope-open-o"></i> Inbox</a></li>
+        <li class="nav-item"><a class="nav-link" href="#boxed-games" aria-controls="games" role="tab" data-toggle="tab"><i class="fa fa-heart-o"></i> Games</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="boxed-profile" role="tabpanel">
+          <p class="m-b-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer malesuada lacinia lobortis. Proin sodales ligula augue, at mattis ipsum accumsan at. Proin aliquam fermentum pretium. Etiam euismod velit tempus orci porttitor, vel efficitur libero gravida. Donec pretium convallis suscipit. Aliquam vel ullamcorper purus, quis lobortis urna. Nam faucibus facilisis diam. Nullam elementum libero at eleifend accumsan.</p>
+        </div>
+        <div class="tab-pane" id="boxed-settings" role="tabpanel">
+          <p class="m-b-0">Mauris ultrices semper sapien, nec mollis orci aliquam a. Praesent nec urna quis enim venenatis faucibus. Aliquam hendrerit commodo diam, eu bibendum magna sodales et. In vestibulum ornare dapibus. Ut posuere urna eget turpis eleifend, a facilisis justo aliquet.</p>
+        </div>
+        <div class="tab-pane" id="boxed-inbox" role="tabpanel">
+          <p class="m-b-0">Quisque et tincidunt dolor. Praesent nec lacinia dolor. Pellentesque ligula ante, dignissim a suscipit in, rutrum ac nulla. Fusce sagittis dolor massa, in pellentesque erat ultricies vitae.</p>
+        </div>
+        <div class="tab-pane" id="boxed-games" role="tabpanel">
+          <p class="m-b-0">Suspendisse massa nisi, maximus eu ligula posuere, blandit scelerisque neque. Praesent consequat leo malesuada, eleifend augue nec, porta quam.</p>
+        </div>
+      </div>
+    </div>
+
+    <h5 class="m-t-70">Colorized Tabs</h5>
+    <p class="m-b-30">Use <code>.tabs-color</code> class with the tab component and it will be looks like in the example below.</p>
+
+    <div class="tabs-color">
+      <ul class="nav nav-tabs nav-icon-left" role="tablist">
+        <li class="nav-item"><a class="nav-link active" href="#color-profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-user-o"></i> Profile</a></li>
+        <li class="nav-item"><a class="nav-link" href="#color-settings" aria-controls="settings" role="tab" data-toggle="tab"><i class="fa fa-cog"></i> Settings</a></li>
+        <li class="nav-item"><a class="nav-link" href="#color-inbox" aria-controls="inbox" role="tab" data-toggle="tab"><i class="fa fa-envelope-open-o"></i> Inbox</a></li>
+        <li class="nav-item"><a class="nav-link" href="#color-games" aria-controls="games" role="tab" data-toggle="tab"><i class="fa fa-heart-o"></i> Games</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="color-profile" role="tabpanel">
+          <p class="m-b-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer malesuada lacinia lobortis. Proin sodales ligula augue, at mattis ipsum accumsan at. Proin aliquam fermentum pretium. Etiam euismod velit tempus orci porttitor, vel efficitur libero gravida. Donec pretium convallis suscipit. Aliquam vel ullamcorper purus, quis lobortis urna. Nam faucibus facilisis diam. Nullam elementum libero at eleifend accumsan.</p>
+        </div>
+        <div class="tab-pane" id="color-settings" role="tabpanel">
+          <p class="m-b-0">Mauris ultrices semper sapien, nec mollis orci aliquam a. Praesent nec urna quis enim venenatis faucibus. Aliquam hendrerit commodo diam, eu bibendum magna sodales et. In vestibulum ornare dapibus. Ut posuere urna eget turpis eleifend, a facilisis justo aliquet.</p>
+        </div>
+        <div class="tab-pane" id="color-inbox" role="tabpanel">
+          <p class="m-b-0">Quisque et tincidunt dolor. Praesent nec lacinia dolor. Pellentesque ligula ante, dignissim a suscipit in, rutrum ac nulla. Fusce sagittis dolor massa, in pellentesque erat ultricies vitae.</p>
+        </div>
+        <div class="tab-pane" id="color-games" role="tabpanel">
+          <p class="m-b-0">Suspendisse massa nisi, maximus eu ligula posuere, blandit scelerisque neque. Praesent consequat leo malesuada, eleifend augue nec, porta quam.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

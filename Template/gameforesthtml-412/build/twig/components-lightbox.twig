@@ -1,0 +1,66 @@
+{% extends "views/layout.twig" %}
+
+{% block js %}
+<script src="plugins/lightbox/lightbox.js"></script>
+<script>
+(function($) {
+  "use strict";
+    // lightbox
+  	$('[data-lightbox]').lightbox({
+  		disqus: 'gameforestyakuzieu'
+  	});
+  })(jQuery);
+</script>
+{% endblock %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Lightbox</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Lightbox</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h5>Image Lightbox</h5>
+        <p>Add <code>data-lightbox</code> attribute to a html element with link to set default lightbox plugin. You can set the image source with href attribute.</p>
+        <a class="btn btn-primary" href="img/gallery/gallery-lightbox-1.jpg" data-lightbox role="button">Open lightbox</a>
+      </div>
+      <div class="col-lg-6">
+        <h5>Gallery</h5>
+        <p>Add multiple images into a gallery with <code>data-lightbox='{"gallery": "name"}'</code> attribute. You can add multiple galleries with custom gallery names.</p>
+        <a class="btn btn-primary" href="img/gallery/gallery-lightbox-1.jpg" data-lightbox='{"gallery": "witcher"}' role="button">Open gallery</a>
+        <a href="img/gallery/gallery-lightbox-2.jpg" data-lightbox='{"gallery": "witcher"}'></a>
+        <a href="https://i1.ytimg.com/vi/-FAfCbkpicw/maxresdefault.jpg" data-lightbox='{"gallery": "witcher"}'></a>
+      </div>
+    </div>
+
+    <div class="row m-t-60">
+      <div class="col-lg-6">
+        <h5>Comments Lightbox</h5>
+        <p>Use <code>data-lightbox='{"disqus": true}'</code> or <code>data-lightbox='{"facebook": true}'</code> to add comment section to the lightbox plugin.</p>
+        <a class="btn btn-primary" href="img/gallery/gallery-lightbox-1.jpg" data-lightbox='{"disqus": true}' role="button">Open disqus</a>
+        <a class="btn btn-primary" href="img/gallery/gallery-lightbox-1.jpg" data-lightbox='{"facebook": true}' role="button">Open facebook</a>
+      </div>
+      <div class="col-lg-6">
+        <h5>Video Lightbox</h5>
+        <p>It is also possible to add youtube or twitch video to the lightbox just use the full url of video like in the example below.</p>
+        <a class="btn btn-primary" href="https://www.youtube.com/watch?v=i8qzBkHjk_0" data-lightbox role="button">Open youtube</a>
+        <a class="btn btn-primary" href="https://player.twitch.tv/?channel=enigmastream" data-lightbox role="button">Open twitch</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

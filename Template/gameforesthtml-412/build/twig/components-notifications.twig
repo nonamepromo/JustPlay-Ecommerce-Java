@@ -1,0 +1,60 @@
+{% extends "views/layout.twig" %}
+
+{% block js %}
+<script src="plugins/notification/notification.js" charset="utf-8"></script>
+<script>
+(function($) {
+  "use strict";
+    // notification
+    $('[data-toggle="notification"]').notification();
+  })(jQuery);
+</script>
+{% endblock %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Notifications</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Notifications</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h5>Example</h5>
+        <p>Send a message to your visitors about action by adding notification.</p>
+        <button type="button" class="btn btn-primary" data-toggle="notification" data-title="Default notification alert!">Notify me!</button>
+      </div>
+      <div class="col-lg-6">
+        <h5>Variations</h5>
+        <p>It is also possible to use different types of notification just like alert, danger etc.</p>
+        <button type="button" class="btn btn-success" data-toggle="notification" data-notification="success" data-title="Success notification alert!">Success Notify</button>
+        <button type="button" class="btn btn-danger" data-toggle="notification" data-notification="danger" data-title="Danger notification alert!">Danger Notify</button>
+        <button type="button" class="btn btn-warning" data-toggle="notification" data-notification="warning" data-title="Warning notification alert!">Warning Notify</button>
+        <button type="button" class="btn btn-info" data-toggle="notification" data-notification="info" data-title="Info notification alert!">Info Notify</button>
+      </div>
+    </div>
+
+    <h5 class="m-t-50">Positions</h5>
+    <p>Add custom placement to your notification. Use <code>data-alignment="*"</code> attribute to give a position.</p>
+    <button type="button" class="btn btn-primary" data-toggle="notification" data-alignment="left" data-title="Notification alert!">Top left</button>
+    <button type="button" class="btn btn-primary" data-toggle="notification" data-alignment="right" data-title="Notification alert!">Top right</button>
+    <button type="button" class="btn btn-primary" data-toggle="notification" data-title="Notification alert!">Top center</button>
+    <button type="button" class="btn btn-primary" data-toggle="notification" data-alignment="bottom-left" data-title="Notification alert!">Bottom left</button>
+    <button type="button" class="btn btn-primary" data-toggle="notification" data-alignment="bottom-right" data-title="Notification alert!">Bottom right</button>
+    <button type="button" class="btn btn-primary" data-toggle="notification" data-alignment="bottom" data-title="Notification alert!">Bottom center</button>
+
+  </div>
+</section>
+{% endblock %}

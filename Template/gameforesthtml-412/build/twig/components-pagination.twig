@@ -1,0 +1,83 @@
+{% extends "views/layout.twig" %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Pagination</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Pagination</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h5>Default Pagination</h5>
+        <p class="m-b-10">Provide pagination links for your site or app with the multi-page pagination component, or the simpler pager alternative.</p>
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-lg-6">
+        <h5>Disabled and active states</h5>
+        <p class="m-b-10">Links are customizable for different circumstances. Use .disabled for unclickable links and .active to indicate the current page.</p>
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+            <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row m-t-60">
+      <div class="col-lg-6">
+        <h5>Custom Pagination</h5>
+        <p class="m-b-10">Separate pagination by adding .separate class to the li in the list.</p>
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true"><i class="fa fa-angle-left"></i></span></a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="separate"><span>...</span></li>
+            <li class="page-item"><a class="page-link" href="#">25</a></li>
+            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true"><i class="fa fa-angle-right"></i></span></a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-lg-6">
+        <h5>Pagination Results</h5>
+        <p class="m-b-10">Add .pagination-results to the pagination to display results.</p>
+        <div class="pagination-results m-t-30">
+          <span>Showing 10 to 20 of 48 results</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "views/layout.twig" %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Badges Component</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Badges</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+    		<h5>Badges</h5>
+    		<p>Add any of the below mentioned modifier classes to change the appearance of a badge.</p>
+    		<span class="badge badge-primary">Primary</span>
+    		<span class="badge badge-success">Success</span>
+    		<span class="badge badge-info">Info</span>
+    		<span class="badge badge-warning">Warning</span>
+        <span class="badge badge-danger">Danger</span>
+    		<span class="badge badge-dark">Dark</span>
+      </div>
+      <div class="col-lg-5">
+        <h5>Badge Outline</h5>
+        <p>Add <code>.badge-outline-*</code> to display your outline badges.</p>
+    		<span class="badge badge-outline-primary">Primary</span>
+    		<span class="badge badge-outline-success">Success</span>
+    		<span class="badge badge-outline-info">Info</span>
+    		<span class="badge badge-outline-warning">Warning</span>
+        <span class="badge badge-outline-danger">Danger</span>
+    		<span class="badge badge-outline-dark">Dark</span>
+      </div>
+    </div>
+
+    <div class="row m-t-60">
+      <div class="col-lg-8">
+      	<h5>Social Badges</h5>
+      	<p>It is also possible to add social badges just use the <code>.badge-*</code> and social name class.</p>
+      	<span class="badge badge-facebook">Facebook</span>
+      	<span class="badge badge-twitter">Twitter</span>
+      	<span class="badge badge-skype">Skype</span>
+      	<span class="badge badge-vk">VK</span>
+      	<span class="badge badge-vimeo">Vimeo</span>
+      	<span class="badge badge-youtube">Youtube</span>
+      	<span class="badge badge-google-plus">Google Plus</span>
+      	<span class="badge badge-reddit">Reddit</span>
+      	<span class="badge badge-pinterest">Pinterest</span>
+      	<span class="badge badge-instagram">Instagram</span>
+      </div>
+      <div class="col-lg-4">
+        <h5>Category Badges</h5>
+      	<p>Use any of these category badges.</p>
+      	<span class="badge badge-ps4">Ps4</span>
+      	<span class="badge badge-xbox">Xbox</span>
+      	<span class="badge badge-pc">PC</span>
+      	<span class="badge badge-uplay">Uplay</span>
+      	<span class="badge badge-steam">Steam</span>
+      	<span class="badge badge-twitch">Twitch</span>
+      </div>
+    </div>
+	</div>
+</section>
+{% endblock %}

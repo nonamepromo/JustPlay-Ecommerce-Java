@@ -1,0 +1,59 @@
+{% extends "views/layout.twig" %}
+
+{% block css %}
+<link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+{% endblock %}
+
+{% block js %}
+<script src="plugins/summernote/summernote-bs4.js"></script>
+<script type="text/javascript">
+(function($) {
+  "use strict";
+  $('.summernote').summernote({
+    height: 200,
+    styleTags: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+  });
+  $('.summernote2').summernote({
+    height: 200,
+    toolbar: [
+      ['style', ['bold', 'italic', 'underline', 'picture']],
+      ['para', ['ul', 'ol', 'paragraph']]
+    ]
+  });
+})(jQuery);
+</script>
+{% endblock %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Text Editor</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Text Editor</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h5>Summernote</h5>
+    <p>Super Simple WYSIWYG Editor on Bootstrap <a href="http://summernote.org/" target="_blank">Summernote</a> is a JavaScript library that helps you create WYSIWYG editors online.</p>
+    <div class="summernote"></div>
+
+    <h5 class="m-t-70">Custom Summernote</h5>
+    <p>Customize by Initializing various options and modules. Summernote allows you to make own custom toolbar.</p>
+    <div class="row">
+      <div class="col-9">
+        <div class="summernote2"></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

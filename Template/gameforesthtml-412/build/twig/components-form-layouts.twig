@@ -1,0 +1,209 @@
+{% extends "views/layout.twig" %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Form Layouts</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Form Layouts</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h5>Login Form</h5>
+    <p>Use login form to handle user authentication. Add your custom component like social button, checkbox or inputs.</p>
+    <div class="row m-t-30">
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><i class="fa fa-sign-in"></i> Login to your account</h4>
+          </div>
+          <div class="card-block">
+            <form action="profile.html">
+              <a class="btn btn-social btn-facebook btn-block btn-icon-left" href="" role="button"><i class="fa fa-facebook"></i> Connect with Facebook</a>
+              <div class="divider">
+                <span>or</span>
+              </div>
+              <div class="form-group input-icon-left m-b-10">
+                <i class="fa fa-user"></i>
+                <input type="email" class="form-control form-control-secondary" placeholder="Username">
+              </div>
+              <div class="form-group input-icon-left m-b-15">
+                <i class="fa fa-lock"></i>
+                <input type="password" class="form-control form-control-secondary" placeholder="Password">
+              </div>
+              <label class="custom-control custom-checkbox custom-checkbox-primary">
+                <input type="checkbox" class="custom-control-input">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Remember me</span>
+              </label>
+              <button type="submit" class="btn btn-primary btn-block m-t-10">Login <i class="fa fa-sign-in"></i></button>
+              <div class="divider">
+                <span>Don't have an account?</span>
+              </div>
+              <a class="btn btn-secondary btn-block" href="register.html" role="button">Register</a>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <form action="profile.html">
+          <a class="btn btn-social btn-facebook btn-block btn-icon-left" href="" role="button"><i class="fa fa-facebook"></i> Connect with Facebook</a>
+          <div class="divider">
+            <span>or</span>
+          </div>
+          <div class="form-group input-icon-left m-b-10">
+            <i class="fa fa-user"></i>
+            <input type="email" class="form-control" placeholder="Username">
+          </div>
+          <div class="form-group input-icon-left m-b-15">
+            <i class="fa fa-lock"></i>
+            <input type="password" class="form-control" placeholder="Password">
+          </div>
+          <label class="custom-control custom-checkbox custom-checkbox-primary">
+            <input type="checkbox" class="custom-control-input">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Remember me</span>
+          </label>
+          <button type="submit" class="btn btn-primary btn-block m-t-10">Login <i class="fa fa-sign-in"></i></button>
+          <div class="divider">
+            <span>Don't have an account?</span>
+          </div>
+          <a class="btn btn-default btn-block" href="register.html" role="button">Register</a>
+        </form>
+      </div>
+    </div>
+
+    <div class="row m-t-30">
+      <div class="col-lg-4">
+        <h5>Registration Form</h5>
+        <p class="m-b-30">Easy to create and use registration forms.</p>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"><i class="fa fa-user-plus"></i> Register a new account</h4>
+          </div>
+          <div class="card-block">
+            <form action="profile.html">
+              <a class="btn btn-social btn-google-plus btn-block btn-icon-left" href="" role="button"><i class="fa fa-google-plus"></i> Register with Google Plus</a>
+              <div class="divider"><span>or</span></div>
+              <div class="form-group input-icon-left m-b-10">
+                <i class="fa fa-user"></i>
+                <input type="text" class="form-control form-control-secondary" placeholder="Username">
+              </div>
+              <div class="form-group input-icon-left m-b-10">
+                <i class="fa fa-envelope"></i>
+                <input type="email" class="form-control form-control-secondary" placeholder="Email Address">
+              </div>
+              <div class="divider"><span>Security</span></div>
+              <div class="form-group input-icon-left m-b-10">
+                <i class="fa fa-lock"></i>
+                <input type="password" class="form-control form-control-secondary" placeholder="Password">
+              </div>
+              <div class="form-group input-icon-left m-b-10">
+                <i class="fa fa-unlock"></i>
+                <input type="password" class="form-control form-control-secondary" placeholder="Repeat Password">
+              </div>
+              <div class="divider"><span>I am not a robot</span></div>
+              <div class="g-recaptcha-outer">
+                <script src='https://www.google.com/recaptcha/api.js'></script>
+                <div class="g-recaptcha" data-sitekey="6LeBwhwUAAAAAG1RDj-rS2Wu4WYNoV021q0z-LNY"></div>
+              </div>
+              <div class="divider"><span>Terms of Service</span></div>
+              <label class="custom-control custom-checkbox custom-checkbox-primary custom-checked">
+                <input type="checkbox" class="custom-control-input" checked="">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Subscribe to monthly newsletter</span>
+              </label>
+              <label class="custom-control custom-checkbox custom-checkbox-primary">
+                <input type="checkbox" class="custom-control-input">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Accept <a href="#">terms of service</a></span>
+              </label>
+              <button type="submit" class="btn btn-primary m-t-10 btn-block">Complete Registration</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <h5>Reset Password</h5>
+        <p class="m-b-30">Add your custom component like social button, checkbox or inputs.</p>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Forgotten Password?</h4>
+              </div>
+              <div class="card-block">
+                <form>
+                  <div class="form-group input-icon-left">
+                    <i class="fa fa-user"></i>
+                    <input type="email" class="form-control form-control-secondary" placeholder="Username">
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block m-t-10">Reset Password</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <h6>Forgotten Password?</h6>
+            <form class="m-t-15">
+              <div class="form-group input-icon-left">
+                <i class="fa fa-user"></i>
+                <input type="email" class="form-control" placeholder="Username">
+              </div>
+              <button type="submit" class="btn btn-primary btn-shadow btn-block m-t-10">Reset Password</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h5 class="m-t-40">Contact Form</h5>
+    <p>Use login form to handle user authentication. Add your custom component like social button, checkbox or inputs.</p>
+    <div class="row m-t-30">
+      <div class="col-lg-6">
+        <form method="post">
+          <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <b>Well done!</b> You successfully read this important alert message.
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+            <small class="form-text">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" class="form-control">
+              <option>General</option>
+              <option>Partnership</option>
+              <option>Report Bug</option>
+              <option>Support</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea class="form-control" rows="4" placeholder="Your message"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-shadow">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

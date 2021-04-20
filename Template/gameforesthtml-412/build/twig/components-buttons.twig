@@ -1,0 +1,137 @@
+{% extends "views/layout.twig" %}
+
+{% block js %}
+<script type="text/javascript">
+// Copy Component
+function copy(element) {
+	var $temp = $("<input>");
+	$("body").append($temp);
+	$temp.val($(element).clone().wrap('<p>').parent().html()).select();
+	document.execCommand("copy");
+	$temp.remove();
+	$(element).wrap( "<span></span>" );
+	$(element).parent().append('<div class="notification animated fadeInDown fast"><div class="alert alert-info">Component copied to clipboard!</div></div>');
+
+	setTimeout(function(){
+		$(element).parent().find('.notification').removeClass('fadeInDown');
+		$(element).parent().find('.notification').addClass('fadeOutUp');
+	}, 2000);
+
+	setTimeout(function(){
+		$(element).parent().find('.notification').remove();
+		$(element).unwrap();
+	}, 4000);
+}
+
+(function($) {
+	"use strict";
+  $('.btn').click(function() {
+    copy(this);
+		return false;
+  });
+})(jQuery);
+</script>
+{% endblock %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Buttons Component</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Buttons</li>
+    </ol>
+  </div>
+</section>
+
+<section class="btn-demo">
+  <div class="container">
+    <h5>Default Buttons</h5>
+    <p class="m-b-25">Press the button to copy the source code to clipboard. Use any of the available button classes to quickly create a styled button.</p>
+    <a class="btn btn-primary" href="#" role="button">Primary</a>
+    <a class="btn btn-success" href="#" role="button">Success</a>
+    <a class="btn btn-info" href="#" role="button">Info</a>
+    <a class="btn btn-warning" href="#" role="button">Warning</a>
+    <a class="btn btn-danger" href="#" role="button">Danger</a>
+    <a class="btn btn-dark" href="#" role="button">Dark</a>
+    <a class="btn btn-default" href="#" role="button">Default</a>
+		<a class="btn btn-secondary" href="#" role="button">Secondary</a>
+    <a class="btn btn-link" href="#" role="button">Link</a>
+
+    <div class="m-t-70">
+      <h5>Button Icons</h5>
+      <p class="m-b-25">You can use buttons with icons just add your icon type with <code>.btn-icon-alignment</code>.</p>
+      <a class="btn btn-primary" href="#" role="button">Primary <i class="fa fa-heart-o"></i></a>
+      <a class="btn btn-success" href="#" role="button">Success <i class="fa fa-check"></i></a>
+      <a class="btn btn-info btn-icon-left" href="#" role="button"><i class="fa fa-bell"></i> Info</a>
+      <a class="btn btn-warning btn-icon-left" href="#" role="button"><i class="fa fa-volume-up"></i> Warning</a>
+      <a class="btn btn-danger" href="#" role="button">Danger <i class="fa fa-trash"></i></a>
+      <a class="btn btn-dark" href="#" role="button">Dark <i class="fa fa-cog"></i></a>
+			<a class="btn btn-default" href="#" role="button">Default <i class="fa fa-refresh"></i></a>
+      <a class="btn btn-secondary" href="#" role="button">Secondary <i class="fa fa-refresh"></i></a>
+    </div>
+
+    <div class="m-t-70">
+      <h5>Buttons Rounded</h5>
+      <p class="m-b-25">Use <code>.btn-rounded</code> to create rounded buttons and <code>.btn-shadow</code> to add shadow to buttons.</p>
+      <a class="btn btn-primary btn-rounded" href="#" role="button">Primary Button</a>
+      <a class="btn btn-success btn-rounded" href="#" role="button">Success Button</a>
+      <a class="btn btn-info btn-rounded" href="#" role="button">Info Button</a>
+      <a class="btn btn-warning btn-rounded" href="#" role="button">Warning Button</a>
+      <a class="btn btn-danger btn-rounded" href="#" role="button">Danger Button</a>
+      <a class="btn btn-dark btn-rounded" href="#" role="button">Dark Button</a>
+      <a class="btn btn-default btn-rounded" href="#" role="button">Default Button</a>
+			<a class="btn btn-secondary btn-rounded" href="#" role="button">Secondary</a>
+    </div>
+
+    <div class="m-t-70">
+      <h5>Buttons Outline</h5>
+      <p class="m-b-25">In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the <code>.btn-outline-*</code> ones to remove all background images and colors on any button.</p>
+      <a class="btn btn-outline-primary" href="#" role="button">Primary Button</a>
+      <a class="btn btn-outline-success" href="#" role="button">Success Button</a>
+      <a class="btn btn-outline-info" href="#" role="button">Info Button</a>
+      <a class="btn btn-outline-warning" href="#" role="button">Warning Button</a>
+      <a class="btn btn-outline-danger" href="#" role="button">Danger Button</a>
+      <a class="btn btn-outline-dark" href="#" role="button">Dark Button</a>
+    </div>
+
+    <div class="row m-y-80">
+      <div class="col-lg-6">
+        <h5>Button Sizes</h5>
+        <p class="m-b-25">Add <code>.btn-lg</code>, <code>.btn-sm</code> or <code>.btn-xs</code> to display your button with different sizes.</p>
+        <button type="button" class="btn btn-primary btn-lg">Large button</button>
+        <button type="button" class="btn btn-primary">Default button</button>
+        <button type="button" class="btn btn-primary btn-sm">Small button</button>
+        <button type="button" class="btn btn-primary btn-xs">Extra small button</button>
+      </div>
+      <div class="col-lg-6">
+        <h5>Buttons Blocks</h5>
+        <p class="m-b-25">Create block level buttons those that span the full width of a paren by adding <code>.btn-block.</code></p>
+        <button type="button" class="btn btn-primary btn-shadow btn-lg btn-block">Block level button</button>
+        <button type="button" class="btn btn-dark btn-shadow btn-block">Block level button</button>
+      </div>
+    </div>
+
+    <div class="row m-y-80 m-b-20">
+      <div class="col-lg-6">
+        <h5>Active state</h5>
+        <p class="m-b-25">If you need to force the same appearance, go ahead and add .active.</p>
+        <a href="#" class="btn btn-primary active" role="button" aria-pressed="true">Primary link</a>
+        <a href="#" class="btn btn-dark active" role="button" aria-pressed="true">Link</a>
+      </div>
+      <div class="col-lg-6">
+        <h5>Disabled state</h5>
+        <p class="m-b-25">Make buttons look unclickable by fading them back with opacity.</p>
+        <button type="button" class="btn btn-primary" disabled>Primary button</button>
+        <button type="button" class="btn btn-secondary" disabled>Button</button>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

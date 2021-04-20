@@ -1,0 +1,135 @@
+{% extends "views/layout.twig" %}
+
+{% block css %}
+<link rel="stylesheet" href="plugins/prettify/prettify.css">
+{% endblock %}
+
+{% block js %}
+<script src="plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+(function($) {
+	"use strict";
+  window.prettyPrint && prettyPrint();
+})(jQuery);
+</script>
+{% endblock %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Utilities</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Utilities</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+      <h5>Clearfix</h5>
+      <p>Easily clear floats by adding <code>.clearfix</code> to the parent element. Can also be used as a mixin.</p>
+      <pre class="prettyprint linenums">&lt;!-- Usage as a class --&gt;
+&lt;div class=&quot;clearfix&quot;&gt;...&lt;/div&gt;</pre>
+
+      <h5 class="m-t-50">Display</h5>
+      <p>Force an element to be shown or hidden (including for screen readers) with the use of .display-block and .display-none classes. These classes use !important to avoid specificity conflicts, just like the quick floats. They are only available for block level toggling. They can also be used as mixins.</p>
+      <pre class="prettyprint linenums">&lt;div class=&quot;display-block&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;display-inline-block&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;display-inline&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;display-none&quot;&gt;...&lt;/div&gt;</pre>
+
+      <h5 class="m-t-50">Resets</h5>
+      <p>Use reset classes to remove border, shadow from elements.</p>
+      <pre class="prettyprint linenums">&lt;!-- Border reset --&gt;
+&lt;div class=&quot;no-border&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;no-border-top&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;no-border-bottom&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;no-border-left&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;no-border-right&quot;&gt;...&lt;/div&gt;
+
+&lt;!-- Box-shadow reset --&gt;
+&lt;div class=&quot;no-shadow&quot;&gt;...&lt;/div&gt;
+
+&lt;!-- Border-radius reset --&gt;
+&lt;div class=&quot;no-radius&quot;&gt;...&lt;/div&gt;</pre>
+
+      <h5 class="m-t-50">Margin &amp; Padding</h5>
+      <p>You can use helper classes to set padding or margin between elements by adding <code>.type-position-*</code> class. The type can be <code>p</code> or <code>m</code> just like padding or margin.</p>
+      <pre class="prettyprint linenums">&lt;!-- Margin --&gt;
+&lt;div class=&quot;m-t-*&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;m-b-*&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;m-l-*&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;m-r-*&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;m-a-*&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;m-x-*&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;m-y-*&quot;&gt;...&lt;/div&gt;
+
+&lt;!-- Padding --&gt;
+&lt;div class=&quot;p-t-*&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;p-b-*&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;p-l-*&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;p-r-*&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;p-a-*&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;p-x-*&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;p-y-*&quot;&gt;...&lt;/div&gt;
+
+&lt;!-- Example --&gt;
+&lt;div class=&quot;p-t-35&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;m-t-20 m-b-35&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;p-a-0&quot;&gt;...&lt;/div&gt;</pre>
+
+			<h5 class="m-t-50">Responsive Utilities</h5>
+			<p>For faster mobile-friendly development, use these utility classes for showing and hiding content by device via media query. Learn more at <a href="https://v4-alpha.getbootstrap.com/layout/responsive-utilities/" target="_blank">Bootstrap</a></p>
+			<pre class="prettyprint linenums">&lt;div class=&quot;hidden-xs-down&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;hidden-sm-down&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;hidden-md-down&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;hidden-lg-down&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;hidden-xl-down&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;hidden-xs-up&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;hidden-sm-up&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;hidden-md-up&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;hidden-lg-up&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;hidden-xl-up&quot;&gt;...&lt;/div&gt;
+</pre>
+
+    <div class="m-t-50 m-b-50">
+			<h5>Text Colors</h5>
+      <p>Convey meaning through color with a handful of emphasis utility classes. These may also be applied to links and will darken on hover just like our default link styles.</p>
+
+			<div class="card">
+				<div class="card-block">
+					<span class="text-muted m-r-15">Muted text</span>
+		      <span class="text-primary m-r-15">Primary text</span>
+		      <span class="text-success m-r-15">Success text</span>
+		      <span class="text-info m-r-15">Info text</span>
+		      <span class="text-warning m-r-15">Warning text</span>
+		      <span class="text-danger">Danger text</span>
+				</div>
+			</div>
+
+			<pre class="prettyprint linenums m-t-30">&lt;span class=&quot;text-muted&quot;&gt;Muted text&lt;/span&gt;
+&lt;span class=&quot;text-primary&quot;&gt;Primary text&lt;/span&gt;
+&lt;span class=&quot;text-success&quot;&gt;Success text&lt;/span&gt;
+&lt;span class=&quot;text-info&quot;&gt;Info text&lt;/span&gt;
+&lt;span class=&quot;text-warning&quot;&gt;Warning text&lt;/span&gt;
+&lt;span class=&quot;text-danger&quot;&gt;Danger text&lt;/span&gt;</pre>
+    </div>
+
+		<h5>Background Colors</h5>
+    <p>Similar to the contextual text color classes, easily set the background of an element to any contextual class. Anchor components will darken on hover, just like the text classes.</p>
+    <span class="bg-primary display-inline-block p-y-10 p-x-15 m-b-5">Background Primary</span>
+    <span class="bg-success display-inline-block p-y-10 p-x-15 m-b-5">Background Success</span>
+    <span class="bg-info display-inline-block p-y-10 p-x-15 m-b-5">Background Info</span>
+    <span class="bg-warning display-inline-block p-y-10 p-x-15 m-b-5">Background Warning</span>
+    <span class="bg-danger display-inline-block p-y-10 p-x-15 m-b-5">Background Danger</span>
+    <span class="bg-inverse display-inline-block p-y-10 p-x-15 m-b-5">Background Inverse</span>
+  </div>
+</section>
+{% endblock %}

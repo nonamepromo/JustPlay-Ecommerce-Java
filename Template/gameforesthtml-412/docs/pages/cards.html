@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gameforest - Documentation v4.1.2</title>
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  <link rel="stylesheet" href="../../upload/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/animate/animate.min.css">
+  <link rel="stylesheet" href="../assets/plugins/highlight/styles/github-gist.css">
+  <!-- theme stylesheet -->
+  <link href="../../upload/css/theme.min.css" rel="stylesheet">
+  <link href="../assets/css/app.min.css" rel="stylesheet">
+</head>
+<body class="fixed-header">
+  <!-- header -->
+  <header id="header">
+    <div class="container-fluid">
+      <div class="navbar-backdrop">
+        <div class="navbar">
+          <div class="navbar-left">
+            <a class="navbar-toggle"><i class="fa fa-bars"></i></a>
+            <a href="../index.html" class="logo"><img src="../assets/img/logo.png" alt="Gameforest - Game Theme HTML"></a>
+          </div>
+          <div class="nav navbar-right">
+            <ul>
+              <li><a href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/full_screen_preview/5007730" target="_blank">Preview</a></li>
+              <li><a href="../../documentation.html">Documentation</a></li>
+              <li><a href="../../changelog.html">Changelog</a></li>
+              <li><a href="https://www.facebook.com/yakuthemes" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            </ul>
+            <a class="btn btn-outline-default btn-rounded" href="https://themeforest.net/downloads#item-5007730" target="_blank">Rate Now <i class="fa fa-star"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- sidebar -->
+  <div id="sidebar">
+    <h2>Documentation</h2>
+    <ul>
+      <li class="sidebar-header"><span>Getting Started</span></li>
+      <li><a href="../../documentation.html">Introduction</a></li>
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="gulp.html">Gulp</a></li>
+      <li><a href="twig.html">Twig</a></li>
+      <li><a href="javascript.html">JavaScript</a></li>
+      <li><a href="plugins.html">Plugins</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="../../changelog.html">Changelog</a></li>
+      <li class="sidebar-header"><span>Components</span></li>
+      <li><a href="accordions.html">Accordions</a></li>
+      <li><a href="alerts.html">Alerts</a></li>
+      <li><a href="badges.html">Badges</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="buttons.html">Buttons</a></li>
+      <li class="active"><a href="cards.html">Cards</a></li>
+      <li><a href="carousel.html">Carousel</a></li>
+      <li><a href="charts.html">Charts</a></li>
+      <li><a href="columns.html">Columns</a></li>
+      <li><a href="comment.html">Comment</a></li>
+      <li><a href="datatable.html">DataTable</a></li>
+      <li><a href="dropdown.html">Dropdown</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="form-plugins.html">Form Plugins</a></li>
+      <li><a href="google-maps.html">Google Maps</a></li>
+      <li><a href="hero.html">Hero</a></li>
+      <li><a href="icons.html">Icons</a></li>
+      <li><a href="lightbox.html">Lightbox</a></li>
+      <li><a href="media-player.html">Media Player</a></li>
+      <li><a href="modal.html">Modal</a></li>
+      <li><a href="notification.html">Notification</a></li>
+      <li><a href="pagination.html">Pagination</a></li>
+      <li><a href="popovers.html">Popovers</a></li>
+      <li><a href="progress.html">Progress</a></li>
+      <li><a href="tabs.html">Tabs</a></li>
+      <li><a href="tables.html">Tables</a></li>
+      <li><a href="tooltips.html">Tooltips</a></li>
+      <li><a href="text-editor.html">Text Editor</a></li>
+      <li><a href="typography.html">Typography</a></li>
+      <li><a href="utilities.html">Utilities</a></li>
+    </ul>
+  </div>
+
+  <!-- main -->
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+
+          <h1 id="cards">Cards</h1>
+          <p class="lead">Gameforest's cards provide a flexible and extensible content container with multiple variants and options. A card is a flexible and extensible content container.</p>
+
+          <div class="divider"></div>
+
+          <h2 id="example">Example</h2>
+          <p>Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy"><i class="fa fa-clipboard"></i></button>
+          </div>
+
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview" role="tabpanel">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Card Title</h5>
+                </div>
+                <div class="card-block">
+                  <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <div class="card-footer">
+                  Card Footer
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="markup" role="tabpanel">
+              <pre><code id="copy" class="html">&lt;div class=&quot;card&quot;&gt;
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;h5 class=&quot;card-title&quot;&gt;Card Title&lt;/h5&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-block&quot;&gt;
+    &lt;p&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-footer&quot;&gt;
+    Card Footer
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="colors">Colors</h2>
+          <p>Cards include various options for customizing their backgrounds, borders, and color. Use text and background utilities to change the appearance of a card.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-2" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-2" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-2"><i class="fa fa-clipboard"></i></button>
+          </div>
+
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-2" role="tabpanel">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="card card-primary">
+                    <div class="card-header">
+                      <h5 class="card-title">Card Primary</h5>
+                    </div>
+                    <div class="card-block">
+                      <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="card card-success">
+                    <div class="card-header">
+                      <h5 class="card-title">Card Success</h5>
+                    </div>
+                    <div class="card-block">
+                      <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="card card-info">
+                    <div class="card-header">
+                      <h5 class="card-title">Card Info</h5>
+                    </div>
+                    <div class="card-block">
+                      <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="card card-danger">
+                    <div class="card-header">
+                      <h5 class="card-title">Card Danger</h5>
+                    </div>
+                    <div class="card-block">
+                      <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="card card-warning">
+                    <div class="card-header">
+                      <h5 class="card-title">Card Warning</h5>
+                    </div>
+                    <div class="card-block">
+                      <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="card card-inverse">
+                    <div class="card-header">
+                      <h5 class="card-title">Card Inverse</h5>
+                    </div>
+                    <div class="card-block">
+                      <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="markup-2" role="tabpanel">
+              <pre><code id="copy-2" class="html">&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-lg-4&quot;&gt;
+    &lt;div class=&quot;card card-primary&quot;&gt;
+      &lt;div class=&quot;card-header&quot;&gt;
+        &lt;h5 class=&quot;card-title&quot;&gt;Card Primary&lt;/h5&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;card-block&quot;&gt;
+        &lt;p&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-lg-4&quot;&gt;
+    &lt;div class=&quot;card card-success&quot;&gt;
+      &lt;div class=&quot;card-header&quot;&gt;
+        &lt;h5 class=&quot;card-title&quot;&gt;Card Success&lt;/h5&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;card-block&quot;&gt;
+        &lt;p&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-lg-4&quot;&gt;
+    &lt;div class=&quot;card card-info&quot;&gt;
+      &lt;div class=&quot;card-header&quot;&gt;
+        &lt;h5 class=&quot;card-title&quot;&gt;Card Info&lt;/h5&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;card-block&quot;&gt;
+        &lt;p&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-lg-4&quot;&gt;
+    &lt;div class=&quot;card card-danger&quot;&gt;
+      &lt;div class=&quot;card-header&quot;&gt;
+        &lt;h5 class=&quot;card-title&quot;&gt;Card Danger&lt;/h5&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;card-block&quot;&gt;
+        &lt;p&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-lg-4&quot;&gt;
+    &lt;div class=&quot;card card-warning&quot;&gt;
+      &lt;div class=&quot;card-header&quot;&gt;
+        &lt;h5 class=&quot;card-title&quot;&gt;Card Warning&lt;/h5&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;card-block&quot;&gt;
+        &lt;p&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-lg-4&quot;&gt;
+    &lt;div class=&quot;card card-inverse&quot;&gt;
+      &lt;div class=&quot;card-header&quot;&gt;
+        &lt;h5 class=&quot;card-title&quot;&gt;Card Inverse&lt;/h5&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;card-block&quot;&gt;
+        &lt;p&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="game">Game</h2>
+          <p>Game cards can be used if you would like to listing games on single page.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-3" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-3" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-3"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-3" role="tabpanel">
+              <div class="row">
+                <div class="col-lg-5">
+                  <div class="card card-lg">
+                    <div class="card-img">
+                      <a href="game-post.html"><img src="http://via.placeholder.com/336x250/ddd" class="card-img-top" alt="Assassin's Creed Syndicate"></a>
+                      <div class="badge badge-ps4">Playstation 4</div>
+                      <div class="card-likes">
+                        <a href="#">15</a>
+                      </div>
+                    </div>
+                    <div class="card-block">
+                      <h4 class="card-title"><a href="game-post.html">The Witcher 3: Wild Hunt</a></h4>
+                      <div class="card-meta"><span>June 13, 2017</span></div>
+                      <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="markup-3" role="tabpanel">
+              <pre><code id="copy-3" class="html">&lt;div class=&quot;card card-lg&quot;&gt;
+  &lt;div class=&quot;card-img&quot;&gt;
+    &lt;a href=&quot;game-post.html&quot;&gt;&lt;img src=&quot;http://via.placeholder.com/360x270&quot; class=&quot;card-img-top&quot; alt=&quot;Assassin's Creed Syndicate&quot;&gt;&lt;/a&gt;
+    &lt;div class=&quot;badge badge-xbox-one&quot;&gt;Xbox One&lt;/div&gt;
+    &lt;div class=&quot;card-likes&quot;&gt;
+      &lt;a href=&quot;#&quot;&gt;15&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-block&quot;&gt;
+    &lt;h4 class=&quot;card-title&quot;&gt;&lt;a href=&quot;game-post.html&quot;&gt;The Witcher 3: Wild Hunt&lt;/a&gt;&lt;/h4&gt;
+    &lt;div class=&quot;card-meta&quot;&gt;&lt;span&gt;June 13, 2017&lt;/span&gt;&lt;/div&gt;
+    &lt;p&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="review">Review</h2>
+          <p>Use review cards with owl carousel and you can loop reviews without any limitation. Add <code>.card-review</code> to card class.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-4" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-4" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-4"><i class="fa fa-clipboard"></i></button>
+          </div>
+
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-4" role="tabpanel">
+              <div class="row">
+                <div class="col-lg-5">
+                  <div class="card card-review">
+                    <a class="card-img" href="review-post.html">
+            <img src="http://via.placeholder.com/336x250/ddd" alt="">
+            <div class="badge badge-success">7.2</div>
+          </a>
+                    <div class="card-block">
+                      <h4 class="card-title">
+                        <a href="review-post.html">Uncharted 4</a>
+                      </h4>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="markup-4" role="tabpanel">
+              <pre><code id="copy-4" class="html">&lt;div class=&quot;card card-review&quot;&gt;
+  &lt;a class=&quot;card-img&quot; href=&quot;review-post.html&quot;&gt;
+    &lt;img src=&quot;http://via.placeholder.com/360x320&quot; alt=&quot;&quot;&gt;
+    &lt;div class=&quot;badge badge-success&quot;&gt;7.2&lt;/div&gt;
+  &lt;/a&gt;
+  &lt;div class=&quot;card-block&quot;&gt;
+    &lt;h4 class=&quot;card-title&quot;&gt;
+      &lt;a href=&quot;review-post.html&quot;&gt;Uncharted 4&lt;/a&gt;
+    &lt;/h4&gt;
+    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="video">Video</h2>
+          <p>Add <code>.card-video</code> to card class and you can display it as a widget in sidebar or list it on a single page.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-5" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-5" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-5"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-5" role="tabpanel">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="card card-video">
+                    <div class="card-img">
+                      <a href="video-post.html">
+              <img src="http://via.placeholder.com/409x250/ddd" class="card-img-top" alt="Watch Dogs 2 - Reveal Trailer"> </a>
+                      <div class="card-meta">
+                        <span>4:04</span>
+                      </div>
+                    </div>
+                    <div class="card-block">
+                      <h4 class="card-title">
+                        <a href="video-post.html">Shadow of War Gameplay Walkthrough</a>
+                      </h4>
+                      <div class="card-meta">
+                        <span>
+                <i class="fa fa-clock-o"></i> March 15, 2017</span>
+                        <span>546 views</span>
+                      </div>
+                      <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="markup-5" role="tabpanel">
+              <pre><code id="copy-5" class="html">&lt;div class=&quot;card card-video&quot;&gt;
+  &lt;div class=&quot;card-img&quot;&gt;
+    &lt;a href=&quot;video-post.html&quot;&gt;
+      &lt;img src=&quot;http://via.placeholder.com/360x250&quot; class=&quot;card-img-top&quot; alt=&quot;Watch Dogs 2 - Reveal Trailer&quot;&gt; &lt;/a&gt;
+    &lt;div class=&quot;card-meta&quot;&gt;
+      &lt;span&gt;4:04&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-block&quot;&gt;
+    &lt;h4 class=&quot;card-title&quot;&gt;
+      &lt;a href=&quot;video-post.html&quot;&gt;Shadow of War Gameplay Walkthrough&lt;/a&gt;
+    &lt;/h4&gt;
+    &lt;div class=&quot;card-meta&quot;&gt;
+      &lt;span&gt;
+        &lt;i class=&quot;fa fa-clock-o&quot;&gt;&lt;/i&gt; March 15, 2017&lt;/span&gt;
+      &lt;span&gt;546 views&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;p&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-3 sidebar-right">
+
+          <ul>
+            <li><a href="#cards">Cards</a></li>
+            <li><a href="#example">Example</a></li>
+            <li><a href="#colors">Colors</a></li>
+            <li><a href="#game">Game</a></li>
+            <li><a href="#review">Review</a></li>
+            <li><a href="#video">Video</a></li>
+            <li class="divider"></li>
+            <li><a href="https://themeforest.net/user/yakuzi#contact" target="_blank"><i class="fa fa-bell-o"></i> Report issue</a></li>
+            <li><a href="pages/support.html#get-help"><i class="fa fa-life-ring"></i> Get help</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- footer -->
+  <div class="version">
+    version: 4.1.2
+  </div>
+
+  <!-- scripts -->
+  <script src="../../upload/plugins/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../../upload/plugins/popper/popper.min.js"></script>
+  <script src="../../upload/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/plugins/clipboard/clipboard.min.js"></script>
+  <script src="../assets/plugins/highlight/highlight.pack.js" charset="utf-8"></script>
+
+  <script src="../../upload/js/theme.min.js"></script>
+  <script src="../assets/js/app.min.js"></script>
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

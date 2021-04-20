@@ -1,0 +1,188 @@
+{% extends "views/layout.twig" %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Cards Component</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Cards</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h5>Basic</h5>
+    <p class="m-b-30">Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Gameforest components.</p>
+
+    <div class="row m-t-30">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Card Title</h5>
+          </div>
+          <div class="card-block">
+            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a class="btn btn-secondary" href="#" role="button">Cancel</a>
+            <a class="btn btn-primary" href="#" role="button">Button</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Card Title</h5>
+          </div>
+          <div class="card-block">
+            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="card-footer">
+            Card footer
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h5 class="m-t-50">Block</h5>
+    <p class="m-b-30">The building block of a card is the <code>.card-block</code>. Use it whenever you need a padded section within a card.</p>
+    <div class="card">
+      <div class="card-block">
+        <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+
+    <h5 class="m-t-80">Colors</h5>
+    <p class="m-b-30">Cards include various options for customizing their backgrounds, borders, and color. Use text and background utilities to change the appearance of a card.</p>
+    <div class="row m-t-30">
+      <div class="col-lg-4">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h5 class="card-title">Card Primary</h5>
+          </div>
+          <div class="card-block">
+            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-success">
+          <div class="card-header">
+            <h5 class="card-title">Card Success</h5>
+          </div>
+          <div class="card-block">
+            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-info">
+          <div class="card-header">
+            <h5 class="card-title">Card Info</h5>
+          </div>
+          <div class="card-block">
+            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-danger">
+          <div class="card-header">
+            <h5 class="card-title">Card Danger</h5>
+          </div>
+          <div class="card-block">
+            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-warning">
+          <div class="card-header">
+            <h5 class="card-title">Card Warning</h5>
+          </div>
+          <div class="card-block">
+            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-inverse">
+          <div class="card-header">
+            <h5 class="card-title">Card Inverse</h5>
+          </div>
+          <div class="card-block">
+            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row m-t-70">
+      <div class="col-lg-4">
+        <h5>Game Card</h5>
+        <p class="m-b-30">Game cards can be used if you would like to listing games on single page.</p>
+        <div class="card card-lg">
+          <div class="card-img">
+            <a href="game-post.html"><img src="http://via.placeholder.com/360x270" class="card-img-top" alt="Assassin's Creed Syndicate"></a>
+            <div class="badge badge-xbox-one">Xbox One</div>
+            <div class="card-likes">
+              <a href="#">15</a>
+            </div>
+          </div>
+          <div class="card-block">
+            <h4 class="card-title"><a href="game-post.html">The Witcher 3: Wild Hunt</a></h4>
+            <div class="card-meta"><span>June 13, 2017</span></div>
+            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <h5>Review Card</h5>
+        <p class="m-b-30">Use review cards with owl carousel and you can loop reviews without any limitation.</p>
+        <div class="card card-review">
+          <a class="card-img" href="review-post.html">
+            <img src="http://via.placeholder.com/360x320" alt="">
+            <div class="badge badge-success">7.2</div>
+          </a>
+          <div class="card-block">
+            <h4 class="card-title">
+              <a href="review-post.html">Uncharted 4</a>
+            </h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <h5>Video Card</h5>
+        <p class="m-b-30">Add <code>.card-video</code> to card class and you can display it as a widget in sidebar or list it on a single page.</p>
+        <div class="card card-video">
+          <div class="card-img">
+            <a href="video-post.html">
+              <img src="http://via.placeholder.com/360x250" class="card-img-top" alt="Watch Dogs 2 - Reveal Trailer"> </a>
+            <div class="card-meta">
+              <span>4:04</span>
+            </div>
+          </div>
+          <div class="card-block">
+            <h4 class="card-title">
+              <a href="video-post.html">Shadow of War Gameplay Walkthrough</a>
+            </h4>
+            <div class="card-meta">
+              <span>
+                <i class="fa fa-clock-o"></i> March 15, 2017</span>
+              <span>546 views</span>
+            </div>
+            <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

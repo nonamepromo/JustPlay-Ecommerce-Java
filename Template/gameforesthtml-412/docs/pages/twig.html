@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gameforest - Documentation v4.1.2</title>
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  <link rel="stylesheet" href="../../upload/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/animate/animate.min.css">
+  <link rel="stylesheet" href="../assets/plugins/highlight/styles/github-gist.css">
+  <!-- theme stylesheet -->
+  <link href="../../upload/css/theme.min.css" rel="stylesheet">
+  <link href="../assets/css/app.min.css" rel="stylesheet">
+</head>
+<body class="fixed-header">
+  <!-- header -->
+  <header id="header">
+    <div class="container-fluid">
+      <div class="navbar-backdrop">
+        <div class="navbar">
+          <div class="navbar-left">
+            <a class="navbar-toggle"><i class="fa fa-bars"></i></a>
+            <a href="../index.html" class="logo"><img src="../assets/img/logo.png" alt="Gameforest - Game Theme HTML"></a>
+          </div>
+          <div class="nav navbar-right">
+            <ul>
+              <li><a href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/full_screen_preview/5007730" target="_blank">Preview</a></li>
+              <li><a href="../../documentation.html">Documentation</a></li>
+              <li><a href="../../changelog.html">Changelog</a></li>
+              <li><a href="https://www.facebook.com/yakuthemes" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            </ul>
+            <a class="btn btn-outline-default btn-rounded" href="https://themeforest.net/downloads#item-5007730" target="_blank">Rate Now <i class="fa fa-star"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- sidebar -->
+  <div id="sidebar">
+    <h2>Documentation</h2>
+    <ul>
+      <li class="sidebar-header"><span>Getting Started</span></li>
+      <li><a href="../../documentation.html">Introduction</a></li>
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="gulp.html">Gulp</a></li>
+      <li class="active"><a href="twig.html">Twig</a></li>
+      <li><a href="javascript.html">JavaScript</a></li>
+      <li><a href="plugins.html">Plugins</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="../../changelog.html">Changelog</a></li>
+      <li class="sidebar-header"><span>Components</span></li>
+      <li><a href="accordions.html">Accordions</a></li>
+      <li><a href="alerts.html">Alerts</a></li>
+      <li><a href="badges.html">Badges</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="buttons.html">Buttons</a></li>
+      <li><a href="cards.html">Cards</a></li>
+      <li><a href="carousel.html">Carousel</a></li>
+      <li><a href="charts.html">Charts</a></li>
+      <li><a href="columns.html">Columns</a></li>
+      <li><a href="comment.html">Comment</a></li>
+      <li><a href="datatable.html">DataTable</a></li>
+      <li><a href="dropdown.html">Dropdown</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="form-plugins.html">Form Plugins</a></li>
+      <li><a href="google-maps.html">Google Maps</a></li>
+      <li><a href="hero.html">Hero</a></li>
+      <li><a href="icons.html">Icons</a></li>
+      <li><a href="lightbox.html">Lightbox</a></li>
+      <li><a href="media-player.html">Media Player</a></li>
+      <li><a href="modal.html">Modal</a></li>
+      <li><a href="notification.html">Notification</a></li>
+      <li><a href="pagination.html">Pagination</a></li>
+      <li><a href="popovers.html">Popovers</a></li>
+      <li><a href="progress.html">Progress</a></li>
+      <li><a href="tabs.html">Tabs</a></li>
+      <li><a href="tables.html">Tables</a></li>
+      <li><a href="tooltips.html">Tooltips</a></li>
+      <li><a href="text-editor.html">Text Editor</a></li>
+      <li><a href="typography.html">Typography</a></li>
+      <li><a href="utilities.html">Utilities</a></li>
+    </ul>
+  </div>
+
+  <!-- main -->
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+
+          <h1 id="twig">Twig</h1>
+          <p class="lead">Twig.js is a pure JavaScript implementation of the Twig PHP templating language. The goal is to provide a library that is compatible with both browsers and server side containers such as node.js.</p>
+
+          <div class="divider"></div>
+
+          <h2 id="how-to-use">How to Use</h2>
+          <p>Gameforest built with twig files and these sources are available in <code>build/twig</code> folder so open a twig file and save after you edited it. If you would like to compile to html don't forget to use the gulp task runner.</p>
+          <p>Run gulp build-html command to rebuild every single html file.</p>
+          <pre class="m-t-0 m-b-40"><code class="shell-session">$ gulp build-html</code></pre>
+
+          <div class="divider"></div>
+
+          <h2 id="extends">Extends</h2>
+          <p>It is required to include the <code>layout.twig</code> at the top of every twig page with the following command.Be careful because without layout.twig you are not able to compile html pages.</p>
+          <pre class="m-t-0 m-b-40"><code class="html">{&#37; extends "views/layout.twig" &#37;}</code></pre>
+
+          <div class="divider"></div>
+
+          <h2 id="blocks">Blocks</h2>
+          <p>Gameforest is using three kind of blocks: css, js and body. Write your html content into the body block and use your custom js or css just like in the example and compile the html page.</p>
+          <h6 class="m-t-50">CSS</h6>
+          <p>Add custom css files into css block like below. After you compiled the twig page then css files will be loaded from header section.</p>
+          <pre class="m-t-0 m-b-40"><code class="html">{&#37; block css &#37;}
+&lt;link href=&quot;plugins/**/*.css&quot; rel=&quot;stylesheet&quot;&gt;
+{&#37; endblock &#37;}</code></pre>
+
+          <h6 class="m-t-50 m-b-20">JS</h6>
+          <p>Add custom js files into js block like below. After you compiled the twig page then js files will be loaded from body after the footer and before theme.min.js script.</p>
+          <pre class="m-t-0 m-b-40"><code class="html">{&#37; block js &#37;}
+&lt;script src=&quot;plugins/**/*.js&quot;&gt;&lt;/script&gt;
+{&#37; endblock &#37;}</code></pre>
+
+          <h6 class="m-t-50 m-b-20">HTML</h6>
+          <p>Insert custom html code into body block like below. After you compiled the twig page then your html code will be added after the header section.</p>
+          <pre class="m-t-0 m-b-40"><code class="html">{&#37; block body &#37;}
+&lt;section&gt;&lt;/section&gt;
+{&#37; endblock &#37;}
+</code></pre>
+
+          <div class="divider"></div>
+
+          <h2 id="example">Example</h2>
+          <p>Use the code below if you would like to start your project with blank page. Add your custom html content, scripts and css files.</p>
+          <pre class="m-t-0 m-b-40"><code class="html">{&#37; extends "views/layout.twig" &#37;}
+
+{&#37; block css &#37;}
+&lt;link href=&quot;plugins/example/example.css&quot; rel=&quot;stylesheet&quot;&gt;
+{&#37; endblock &#37;}
+
+{&#37; block js &#37;}
+&lt;script src=&quot;plugins/example/example.js&quot;&gt;&lt;/script&gt;
+{&#37; endblock &#37;}
+
+{&#37; block body &#37;}
+&lt;section class=&quot;breadcrumbs&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;ol class=&quot;breadcrumb&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li class=&quot;active&quot;&gt;Blank Page&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class=&quot;blank&quot;&gt;
+  &lt;!-- add content --&gt;
+&lt;/section&gt;
+{&#37; endblock &#37;}
+</code></pre>
+
+        </div>
+        <div class="col-lg-3 sidebar-right">
+
+          <ul>
+            <li><a href="#twig">Twig</a></li>
+            <li><a href="#how-to-use">How to Use</a></li>
+            <li><a href="#extends">Extends</a></li>
+            <li><a href="#blocks">Blocks</a></li>
+            <li><a href="#example">Example</a></li>
+            <li class="divider"></li>
+            <li><a href="https://themeforest.net/user/yakuzi#contact" target="_blank"><i class="fa fa-bell-o"></i> Report issue</a></li>
+            <li><a href="pages/support.html#get-help"><i class="fa fa-life-ring"></i> Get help</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- footer -->
+  <div class="version">
+    version: 4.1.2
+  </div>
+
+  <!-- scripts -->
+  <script src="../../upload/plugins/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../../upload/plugins/popper/popper.min.js"></script>
+  <script src="../../upload/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/plugins/clipboard/clipboard.min.js"></script>
+  <script src="../assets/plugins/highlight/highlight.pack.js" charset="utf-8"></script>
+
+  <script src="../../upload/js/theme.min.js"></script>
+  <script src="../assets/js/app.min.js"></script>
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

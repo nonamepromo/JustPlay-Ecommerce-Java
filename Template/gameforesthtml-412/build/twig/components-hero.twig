@@ -1,0 +1,90 @@
+{% extends "views/layout.twig" %}
+
+{% block js %}
+<script src="plugins/lightbox/lightbox.js"></script>
+<script src="plugins/sticky/jquery.sticky.js"></script>
+<script src="plugins/easypiechart/jquery.easing.1.3.js"></script>
+<script src="plugins/easypiechart/jquery.easypiechart.min.js"></script>
+<script>
+(function($) {
+  "use strict";
+    // easyPieChart
+    $('.chart').easyPieChart({
+			barColor: '#5eb404',
+			trackColor: '#e3e3e3',
+      easing: 'easeOutBounce',
+			onStep: function(from, to, percent) {
+				$(this.el).find('span').text(Math.round(percent));
+			}
+    });
+    // lightbox
+  	$('[data-lightbox]').lightbox({
+  		disqus: 'gameforestyakuzieu'
+  	});
+  })(jQuery);
+</script>
+{% endblock %}
+
+{% block body %}
+<section class="hero" style="background-image: url('img/hero/hero.jpg');">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="hero-block text-left">
+      <h2 class="hero-title">The Witcher 3: Blood and Wine</h2>
+      <p>The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
+      <a class="btn btn-primary btn-lg btn-shadow btn-rounded" href="game-post.html" role="button">Game Details</a>
+    </div>
+  </div>
+</section>
+
+<section class="hero" style="background-image: url('img/hero/hero.jpg');">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="hero-block">
+      <h2 class="hero-title">The Witcher 3: Blood and Wine</h2>
+      <p>The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
+      <a class="btn btn-primary btn-lg btn-shadow btn-rounded" href="game-post.html" role="button">Game Details</a>
+    </div>
+  </div>
+</section>
+
+<section class="hero hero-game" style="background-image: url('img/hero/hero.jpg');">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="hero-block">
+      <div class="hero-left">
+        <h2 class="hero-title">The Witcher 3: Wild Hunt</h2>
+        <p>The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
+        <a class="btn btn-primary btn-shadow btn-rounded btn-lg" href="https://www.youtube.com/watch?v=c0i88t0Kacs" data-lightbox role="button">Watch Trailer <i class="fa fa-play"></i></a>
+        <a class="btn btn-outline-default btn-shadow m-l-10 btn-md btn-rounded btn-lg" href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/5007730" target="_blank" role="button">Purchase Now <i class="fa fa-shopping-cart"></i></a>
+      </div>
+      <div class="hero-right">
+        <div class="hero-review">
+          <span>Gameforest</span>
+          <a href="review-post.php" class="chart easypiechart" data-percent="89" data-scale-color="#e3e3e3"><span>89</span>%</a>
+        </div>
+        <div class="hero-review">
+          <span>MetaCritic</span>
+          <a href="#">93</a>
+        </div>
+        <div class="hero-review">
+          <span>Users</span>
+          <a href="#">9.1</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero hero-review" style="background-image: url('https://i.ytimg.com/vi/D3pYbbA1kfk/maxresdefault.jpg');">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="hero-block">
+      <div class="chart easypiechart m-b-20" data-percent="85" data-scale-color="#e3e3e3"><span>85</span>%</div>
+      <h2 class="hero-title">Uncharted 4: A Thief's End Review</h2>
+      <p>Uncharted 4: A Thief's End will explore what it means when Drake is forced back into the world of thieves.</p>
+      <a class="btn btn-primary btn-lg btn-shadow btn-rounded m-t-20" href="review-post.html" role="button">Read Review</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "views/layout.twig" %}
+
+{% block js %}
+<script type="text/javascript">
+function initMap() {
+  var uluru = {lat: -12.043333, lng: -77.028333};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: uluru,
+    scrollwheel: false,
+  });
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map
+  });
+}
+</script>
+<script src="https://maps.google.com/maps/api/js?key=AIzaSyAUenkGu4SV4tMbrhcLbnqI8LWOE93v3Jc&callback=initMap"></script>
+{% endblock %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Google Maps</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Google Maps</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h5>Basic Maps</h5>
+    <p>The Google Maps Embed API lets you place an interactive map, or Street View panorama on your site with a simple HTTP request.</p>
+    <div id="map" style="height: 500px;"></div>
+
+    <div class="row m-t-80">
+      <div class="col-lg-6">
+        <h5>Static Maps</h5>
+        <p>The Google Static Maps API returns an image (either GIF, PNG or JPEG) in response to an HTTP request via a URL.</p>
+        <img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=555x450&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyCFHwOU3OoTBLDkppUsfRJLWYYq8kdCm28">
+      </div>
+      <div class="col-lg-6">
+        <h5>Place mode</h5>
+        <p>Place mode displays a map pin at a particular place or address, such as a landmark, business, geographic feature, or town.</p>
+        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBXCr6EY-ehCjZJ7p0OuXLaAHISi8LF5ss&q=Eiffel+Tower,Paris+France" width="600" height="450"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

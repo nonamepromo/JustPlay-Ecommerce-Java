@@ -1,0 +1,249 @@
+{% extends "views/layout.twig" %}
+
+{% block body %}
+<section class="bg-primary">
+  <div class="container">
+    <h3 class="text-white font-weight-300 m-b-0">Tables</h3>
+  </div>
+</section>
+
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Compontents</a></li>
+      <li class="active">Tables</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h5>Basic example</h5>
+    <p>All table styles are inherited in Bootstrap 4, meaning any nested tables will be styled in the same manner as the parent.</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nickname</th>
+          <th>Registered</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>YAKUZI</td>
+          <td>14/06/2017</td>
+          <td>User</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Venom</td>
+          <td>24/03/2017</td>
+          <td>Moderator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Elizabeth</td>
+          <td>12/06/2017</td>
+          <td>Administrator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>Clark Kent</td>
+          <td>11/06/2017</td>
+          <td>Administrator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h5 class="m-t-80">Striped rows</h5>
+    <p>Use <code>.table-striped</code> to add zebra-striping to any table row within the <code>&lt;tbody&gt;</code>.</p>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nickname</th>
+          <th>Registered</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>YAKUZI</td>
+          <td>14/06/2017</td>
+          <td>User</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Venom</td>
+          <td>24/03/2017</td>
+          <td>Moderator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Elizabeth</td>
+          <td>12/06/2017</td>
+          <td>Administrator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>Clark Kent</td>
+          <td>11/06/2017</td>
+          <td>Administrator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h5 class="m-t-80">Hover rows</h5>
+    <p>Add <code>.table-hover</code> to enable a hover state on table rows within a <code>&lt;tbody&gt;</code>.</p>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nickname</th>
+          <th>Registered</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>YAKUZI</td>
+          <td>14/06/2017</td>
+          <td>User</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Venom</td>
+          <td>24/03/2017</td>
+          <td>Moderator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Elizabeth</td>
+          <td>12/06/2017</td>
+          <td>Administrator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>Clark Kent</td>
+          <td>11/06/2017</td>
+          <td>Administrator</td>
+          <td>
+            <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+            <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h5 class="m-t-80">Responsive tables</h5>
+    <p>Create responsive tables by adding <code>.table-responsive</code> to any <code>.table</code> to make them scroll horizontally on small devices. When viewing on anything larger than 768px wide, you will not see any difference in these tables.</p>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nickname</th>
+            <th>Registered</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>YAKUZI</td>
+            <td>14/06/2017</td>
+            <td>User</td>
+            <td>
+              <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+              <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Venom</td>
+            <td>24/03/2017</td>
+            <td>Moderator</td>
+            <td>
+              <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+              <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Elizabeth</td>
+            <td>12/06/2017</td>
+            <td>Administrator</td>
+            <td>
+              <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+              <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Clark Kent</td>
+            <td>11/06/2017</td>
+            <td>Administrator</td>
+            <td>
+              <a class="btn btn-link p-a-5" href="#" title="Delete"><i class="fa fa-trash-o"></i></a>
+              <a class="btn btn-link p-a-5" href="#" title="Edit"><i class="fa fa-pencil"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}

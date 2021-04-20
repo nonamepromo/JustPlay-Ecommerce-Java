@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gameforest - Documentation v4.1.2</title>
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  <link rel="stylesheet" href="../../upload/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../upload/plugins/animate/animate.min.css">
+  <link rel="stylesheet" href="../assets/plugins/highlight/styles/github-gist.css">
+  <!-- theme stylesheet -->
+  <link href="../../upload/css/theme.min.css" rel="stylesheet">
+  <link href="../assets/css/app.min.css" rel="stylesheet">
+</head>
+<body class="fixed-header">
+  <!-- header -->
+  <header id="header">
+    <div class="container-fluid">
+      <div class="navbar-backdrop">
+        <div class="navbar">
+          <div class="navbar-left">
+            <a class="navbar-toggle"><i class="fa fa-bars"></i></a>
+            <a href="../index.html" class="logo"><img src="../assets/img/logo.png" alt="Gameforest - Game Theme HTML"></a>
+          </div>
+          <div class="nav navbar-right">
+            <ul>
+              <li><a href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/full_screen_preview/5007730" target="_blank">Preview</a></li>
+              <li><a href="../../documentation.html">Documentation</a></li>
+              <li><a href="../../changelog.html">Changelog</a></li>
+              <li><a href="https://www.facebook.com/yakuthemes" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            </ul>
+            <a class="btn btn-outline-default btn-rounded" href="https://themeforest.net/downloads#item-5007730" target="_blank">Rate Now <i class="fa fa-star"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- sidebar -->
+  <div id="sidebar">
+    <h2>Documentation</h2>
+    <ul>
+      <li class="sidebar-header"><span>Getting Started</span></li>
+      <li><a href="../../documentation.html">Introduction</a></li>
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="gulp.html">Gulp</a></li>
+      <li><a href="twig.html">Twig</a></li>
+      <li><a href="javascript.html">JavaScript</a></li>
+      <li><a href="plugins.html">Plugins</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="../../changelog.html">Changelog</a></li>
+      <li class="sidebar-header"><span>Components</span></li>
+      <li><a href="accordions.html">Accordions</a></li>
+      <li><a href="alerts.html">Alerts</a></li>
+      <li><a href="badges.html">Badges</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="buttons.html">Buttons</a></li>
+      <li><a href="cards.html">Cards</a></li>
+      <li><a href="carousel.html">Carousel</a></li>
+      <li><a href="charts.html">Charts</a></li>
+      <li><a href="columns.html">Columns</a></li>
+      <li class="active"><a href="comment.html">Comment</a></li>
+      <li><a href="datatable.html">DataTable</a></li>
+      <li><a href="dropdown.html">Dropdown</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="form-plugins.html">Form Plugins</a></li>
+      <li><a href="google-maps.html">Google Maps</a></li>
+      <li><a href="hero.html">Hero</a></li>
+      <li><a href="icons.html">Icons</a></li>
+      <li><a href="lightbox.html">Lightbox</a></li>
+      <li><a href="media-player.html">Media Player</a></li>
+      <li><a href="modal.html">Modal</a></li>
+      <li><a href="notification.html">Notification</a></li>
+      <li><a href="pagination.html">Pagination</a></li>
+      <li><a href="popovers.html">Popovers</a></li>
+      <li><a href="progress.html">Progress</a></li>
+      <li><a href="tabs.html">Tabs</a></li>
+      <li><a href="tables.html">Tables</a></li>
+      <li><a href="tooltips.html">Tooltips</a></li>
+      <li><a href="text-editor.html">Text Editor</a></li>
+      <li><a href="typography.html">Typography</a></li>
+      <li><a href="utilities.html">Utilities</a></li>
+    </ul>
+  </div>
+
+  <!-- main -->
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+
+          <h1 id="comment">Comment</h1>
+          <p class="lead">Includes styles for comments, for example for a blog section on your site.</p>
+
+          <div class="divider"></div>
+
+          <h2 id="example">Example</h2>
+          <p>The Comment component consists of the comment itself, a comment header, including an avatar, a title and meta data, and a comment body.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy"><i class="fa fa-clipboard"></i></button>
+          </div>
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview" role="tabpanel">
+              <div id="comments" class="comments anchor p-t-50">
+                <ul>
+                  <li>
+                    <div class="comment">
+                      <div class="comment-avatar">
+                        <a href="profile.html"><img src="../../upload/img/user/user-1.jpg" alt=""></a>
+                      </div>
+                      <div class="comment-post">
+                        <div class="comment-header">
+                          <div class="comment-author">
+                            <h5><a href="profile.html">Venom</a></h5>
+                            <span>Member</span>
+                          </div>
+                          <div class="comment-action">
+                            <div class="dropdown float-right">
+                              <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-chevron-down"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">Moderate</a>
+                                <a class="dropdown-item" href="#">Embed</a>
+                                <a class="dropdown-item" href="#">Report</a>
+                                <a class="dropdown-item" href="#">Mark as spam</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+                          gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                        <div class="comment-footer">
+                          <ul>
+                            <li><a href="#"><i class="fa fa-heart-o"></i> Like</a></li>
+                            <li><a href="#"><i class="icon-reply"></i> Reply</a></li>
+                            <li><a href="#"><i class="fa fa-clock-o"></i> 3 hours ago</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="tab-pane" id="markup" role="tabpanel">
+              <pre><code id="copy" class="html">&lt;div id=&quot;comments&quot; class=&quot;comments anchor p-t-50&quot;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;div class=&quot;comment&quot;&gt;
+        &lt;div class=&quot;comment-avatar&quot;&gt;
+          &lt;a href=&quot;profile.html&quot;&gt;&lt;img src=&quot;../../upload/img/user/user-1.jpg&quot; alt=&quot;&quot;&gt;&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;comment-post&quot;&gt;
+          &lt;div class=&quot;comment-header&quot;&gt;
+            &lt;div class=&quot;comment-author&quot;&gt;
+              &lt;h5&gt;&lt;a href=&quot;profile.html&quot;&gt;Venom&lt;/a&gt;&lt;/h5&gt;
+              &lt;span&gt;Member&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;comment-action&quot;&gt;
+              &lt;div class=&quot;dropdown float-right&quot;&gt;
+                &lt;a href=&quot;#&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot;&gt;&lt;i class=&quot;fa fa-chevron-down&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;div class=&quot;dropdown-menu dropdown-menu-right&quot;&gt;
+                  &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Moderate&lt;/a&gt;
+                  &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Embed&lt;/a&gt;
+                  &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Report&lt;/a&gt;
+                  &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Mark as spam&lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.&lt;/p&gt;
+          &lt;div class=&quot;comment-footer&quot;&gt;
+            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-heart-o&quot;&gt;&lt;/i&gt; Like&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;icon-reply&quot;&gt;&lt;/i&gt; Reply&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-clock-o&quot;&gt;&lt;/i&gt; 3 hours ago&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="m-b-100"></div>
+
+          <h2 id="lists">Lists</h2>
+          <p>Add the extra sub ul to a <code>&lt;ul&gt;</code> element to create a list of comments. You can nest any <code>&lt;ul&gt;</code> number of elements inside a comment list.</p>
+          <div class="tabs-color tabs-app">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" href="#preview-2" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+              <li class="nav-item"><a class="nav-link" href="#markup-2" aria-controls="markup" role="tab" data-toggle="tab">Markup</a></li>
+            </ul>
+            <button class="btn btn-link btn-clipboard" data-toggle="tooltip" title="Copy to clipboard!" rel="#copy-2"><i class="fa fa-clipboard"></i></button>
+          </div>
+
+          <div class="tab-content tab-app">
+            <div class="tab-pane active" id="preview-2" role="tabpanel">
+              <div id="comments" class="comments anchor">
+                <div class="comments-header">
+                  <h5><i class="fa fa-comment-o m-r-5"></i> Comments (5)</h5>
+                  <div class="dropdown float-right">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Sorted by Best <span class="caret"></span></button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item active" href="#">Best</a>
+                      <a class="dropdown-item" href="#">Latest</a>
+                      <a class="dropdown-item" href="#">Oldest</a>
+                      <a class="dropdown-item" href="#">Random</a>
+                    </div>
+                  </div>
+                </div>
+                <a class="btn btn-primary text-left m-t-15 btn-block" href="#comments" role="button"><i class="fa fa-spinner fa-pulse m-r-5"></i> Load more 4 comments</a>
+                <ul>
+                  <li>
+                    <div class="comment">
+                      <div class="comment-avatar">
+                        <a href="profile.html"><img src="../../upload/img/user/user-1.jpg" alt=""></a>
+                        <a class="badge badge-primary" href="profile.html" data-toggle="tooltip" data-placement="bottom" title="Add as friend"><i class="fa fa-user-plus"></i></a>
+                      </div>
+                      <div class="comment-post">
+                        <div class="comment-header">
+                          <div class="comment-author">
+                            <h5><a href="profile.html">Venom</a></h5>
+                            <span>Member</span>
+                          </div>
+                          <div class="comment-action">
+                            <div class="dropdown float-right">
+                              <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-chevron-down"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">Moderate</a>
+                                <a class="dropdown-item" href="#">Embed</a>
+                                <a class="dropdown-item" href="#">Report</a>
+                                <a class="dropdown-item" href="#">Mark as spam</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <p>Awesome these are news we were looking for, thanks yakuthemes best thing i've heard today, but more game modes are welcome.</p>
+                        <p>Maecenas at tristique dolor, nec condimentum tellus. Fusce in aliquet augue. Sed non rhoncus ante, sed posuere neque. Suspendisse ac maximus arcu, at ornare nulla. Sed metus tellus, lobortis ut dignissim sed, consequat sit amet
+                          mi.</p>
+                        <div class="comment-footer">
+                          <ul>
+                            <li><a href="#"><i class="fa fa-heart-o"></i> Like</a></li>
+                            <li><a href="#"><i class="icon-reply"></i> Reply</a></li>
+                            <li><a href="#"><i class="fa fa-clock-o"></i> 3 hours ago</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <ul>
+                      <li>
+                        <div class="comment">
+                          <div class="comment-avatar"><img src="../../upload/img/user/user-2.jpg" alt=""></div>
+                          <div class="comment-post">
+                            <div class="comment-header">
+                              <div class="comment-author">
+                                <h5><a href="profile.html">Elizabeth</a></h5>
+                                <span>Member</span>
+                              </div>
+                              <div class="comment-action">
+                                <div class="dropdown float-right">
+                                  <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-chevron-down"></i></a>
+                                  <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">Moderate</a>
+                                    <a class="dropdown-item" href="#">Embed</a>
+                                    <a class="dropdown-item" href="#">Report</a>
+                                    <a class="dropdown-item" href="#">Mark as spam</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <p>Please also consider replacing Battles with Blast (in Skirmish): it can use the same AI and would be much more fun (tokens are annoying and maps are limited)!</p>
+                            <div class="comment-footer">
+                              <ul>
+                                <li><a href="#"><i class="fa fa-heart-o"></i> Like</a></li>
+                                <li><a href="#"><i class="icon-reply"></i> Reply</a></li>
+                                <li><a href="#"><i class="fa fa-clock-o"></i> 24 minutes ago</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="comment">
+                      <div class="comment-avatar"><a href="profile.html"><img src="../../upload/img/user/user-3.jpg" alt=""></a></div>
+                      <div class="comment-post">
+                        <div class="comment-header">
+                          <div class="comment-author">
+                            <h5>
+                              <a href="profile.html">Clark</a>
+                              <span class="badge badge-outline-primary">Admin</span>
+                            </h5>
+                          </div>
+                          <div class="comment-action">
+                            <div class="comment-action">
+                              <div class="dropdown float-right">
+                                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-chevron-down"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                  <a class="dropdown-item" href="#">Moderate</a>
+                                  <a class="dropdown-item" href="#">Embed</a>
+                                  <a class="dropdown-item" href="#">Report</a>
+                                  <a class="dropdown-item" href="#">Mark as spam</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <p>Thank you this news and I can't wait for offline content to drop next week. Aliquam a tortor at erat pulvinar volutpat eget sit amet libero. Quisque pretium lacus augue. Integer lobortis ligula non eleifend hendrerit. Cras venenatis
+                          laoreet risus, lacinia consectetur nunc scelerisque sed.</p>
+                        <div class="comment-footer">
+                          <ul>
+                            <li><a href="#"><i class="fa fa-heart-o"></i> Like</a></li>
+                            <li><a href="#"><i class="icon-reply"></i> Reply</a></li>
+                            <li><a href="#"><i class="fa fa-clock-o"></i> June 16, 2017 8:13pm</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="comment">
+                      <div class="comment-avatar"><a href="profile.html"><img src="../../upload/img/user/user-4.jpg" alt=""></a></div>
+                      <div class="comment-post">
+                        <div class="comment-header">
+                          <div class="comment-author">
+                            <h5><a href="profile.html">Strange</a></h5>
+                            <span>Member</span>
+                          </div>
+                          <div class="comment-action">
+                            <div class="comment-action">
+                              <div class="dropdown float-right">
+                                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-chevron-down"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                  <a class="dropdown-item" href="#">Moderate</a>
+                                  <a class="dropdown-item" href="#">Embed</a>
+                                  <a class="dropdown-item" href="#">Report</a>
+                                  <a class="dropdown-item" href="#">Mark as spam</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <p>To all those reading who have not yet bought this game yet, and are a fan of Uncharted - Don't listen to the nay-sayers on these comments, this game is simply amazing!</p>
+                        <div class="comment-footer">
+                          <ul>
+                            <li><a href="#"><i class="fa fa-heart-o"></i> Like</a></li>
+                            <li><a href="#"><i class="icon-reply"></i> Reply</a></li>
+                            <li><a href="#"><i class="fa fa-clock-o"></i> June 11, 2017 14:26am</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="tab-pane" id="markup-2" role="tabpanel">
+              <pre><code id="copy-2" class="html">&lt;div id=&quot;comments&quot; class=&quot;comments anchor&quot;&gt;
+  &lt;div class=&quot;comments-header&quot;&gt;
+    &lt;h5&gt;&lt;i class=&quot;fa fa-comment-o m-r-5&quot;&gt;&lt;/i&gt; Comments (5)&lt;/h5&gt;
+    &lt;div class=&quot;dropdown float-right&quot;&gt;
+      &lt;button class=&quot;btn btn-secondary dropdown-toggle&quot; type=&quot;button&quot; id=&quot;dropdownMenu1&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;true&quot;&gt;Sorted by Best &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/button&gt;
+      &lt;div class=&quot;dropdown-menu dropdown-menu-right&quot;&gt;
+        &lt;a class=&quot;dropdown-item active&quot; href=&quot;#&quot;&gt;Best&lt;/a&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Latest&lt;/a&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Oldest&lt;/a&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Random&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;a class=&quot;btn btn-primary text-left m-t-15 btn-block&quot; href=&quot;#comments&quot; role=&quot;button&quot;&gt;&lt;i class=&quot;fa fa-spinner fa-pulse m-r-5&quot;&gt;&lt;/i&gt; Load more 4 comments&lt;/a&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;div class=&quot;comment&quot;&gt;
+        &lt;div class=&quot;comment-avatar&quot;&gt;
+          &lt;a href=&quot;profile.html&quot;&gt;&lt;img src=&quot;../../upload/img/user/user-1.jpg&quot; alt=&quot;&quot;&gt;&lt;/a&gt;
+          &lt;a class=&quot;badge badge-primary&quot; href=&quot;profile.html&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;bottom&quot; title=&quot;Add as friend&quot;&gt;&lt;i class=&quot;fa fa-user-plus&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;comment-post&quot;&gt;
+          &lt;div class=&quot;comment-header&quot;&gt;
+            &lt;div class=&quot;comment-author&quot;&gt;
+              &lt;h5&gt;&lt;a href=&quot;profile.html&quot;&gt;Venom&lt;/a&gt;&lt;/h5&gt;
+              &lt;span&gt;Member&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;comment-action&quot;&gt;
+              &lt;div class=&quot;dropdown float-right&quot;&gt;
+                &lt;a href=&quot;#&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot;&gt;&lt;i class=&quot;fa fa-chevron-down&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;div class=&quot;dropdown-menu dropdown-menu-right&quot;&gt;
+                  &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Moderate&lt;/a&gt;
+                  &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Embed&lt;/a&gt;
+                  &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Report&lt;/a&gt;
+                  &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Mark as spam&lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p&gt;Awesome these are news we were looking for, thanks yakuthemes best thing i've heard today, but more game modes are welcome.&lt;/p&gt;
+          &lt;p&gt;Maecenas at tristique dolor, nec condimentum tellus. Fusce in aliquet augue. Sed non rhoncus ante, sed posuere neque. Suspendisse ac maximus arcu, at ornare nulla. Sed metus tellus, lobortis ut dignissim sed, consequat sit amet mi.&lt;/p&gt;
+          &lt;div class=&quot;comment-footer&quot;&gt;
+            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-heart-o&quot;&gt;&lt;/i&gt; Like&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;icon-reply&quot;&gt;&lt;/i&gt; Reply&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-clock-o&quot;&gt;&lt;/i&gt; 3 hours ago&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;ul&gt;
+        &lt;li&gt;
+          &lt;div class=&quot;comment&quot;&gt;
+            &lt;div class=&quot;comment-avatar&quot;&gt;&lt;img src=&quot;../../upload/img/user/user-2.jpg&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;comment-post&quot;&gt;
+              &lt;div class=&quot;comment-header&quot;&gt;
+                &lt;div class=&quot;comment-author&quot;&gt;
+                  &lt;h5&gt;&lt;a href=&quot;profile.html&quot;&gt;Elizabeth&lt;/a&gt;&lt;/h5&gt;
+                  &lt;span&gt;Member&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;comment-action&quot;&gt;
+                  &lt;div class=&quot;dropdown float-right&quot;&gt;
+                    &lt;a href=&quot;#&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot;&gt;&lt;i class=&quot;fa fa-chevron-down&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                    &lt;div class=&quot;dropdown-menu dropdown-menu-right&quot;&gt;
+                      &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Moderate&lt;/a&gt;
+                      &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Embed&lt;/a&gt;
+                      &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Report&lt;/a&gt;
+                      &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Mark as spam&lt;/a&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;p&gt;Please also consider replacing Battles with Blast (in Skirmish): it can use the same AI and would be much more fun (tokens are annoying and maps are limited)!&lt;/p&gt;
+              &lt;div class=&quot;comment-footer&quot;&gt;
+                &lt;ul&gt;
+                  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-heart-o&quot;&gt;&lt;/i&gt; Like&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;icon-reply&quot;&gt;&lt;/i&gt; Reply&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-clock-o&quot;&gt;&lt;/i&gt; 24 minutes ago&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;div class=&quot;comment&quot;&gt;
+        &lt;div class=&quot;comment-avatar&quot;&gt;&lt;a href=&quot;profile.html&quot;&gt;&lt;img src=&quot;../../upload/img/user/user-3.jpg&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div class=&quot;comment-post&quot;&gt;
+          &lt;div class=&quot;comment-header&quot;&gt;
+            &lt;div class=&quot;comment-author&quot;&gt;
+              &lt;h5&gt;
+                &lt;a href=&quot;profile.html&quot;&gt;Clark&lt;/a&gt;
+                &lt;span class=&quot;badge badge-outline-primary&quot;&gt;Admin&lt;/span&gt;
+              &lt;/h5&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;comment-action&quot;&gt;
+              &lt;div class=&quot;comment-action&quot;&gt;
+                &lt;div class=&quot;dropdown float-right&quot;&gt;
+                  &lt;a href=&quot;#&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot;&gt;&lt;i class=&quot;fa fa-chevron-down&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                  &lt;div class=&quot;dropdown-menu dropdown-menu-right&quot;&gt;
+                    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Moderate&lt;/a&gt;
+                    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Embed&lt;/a&gt;
+                    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Report&lt;/a&gt;
+                    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Mark as spam&lt;/a&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p&gt;Thank you this news and I can't wait for offline content to drop next week. Aliquam a tortor at erat pulvinar volutpat eget sit amet libero. Quisque pretium lacus augue. Integer lobortis ligula non eleifend hendrerit. Cras venenatis laoreet risus, lacinia consectetur nunc scelerisque sed.&lt;/p&gt;
+          &lt;div class=&quot;comment-footer&quot;&gt;
+            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-heart-o&quot;&gt;&lt;/i&gt; Like&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;icon-reply&quot;&gt;&lt;/i&gt; Reply&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-clock-o&quot;&gt;&lt;/i&gt; June 16, 2017 8:13pm&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;div class=&quot;comment&quot;&gt;
+        &lt;div class=&quot;comment-avatar&quot;&gt;&lt;a href=&quot;profile.html&quot;&gt;&lt;img src=&quot;../../upload/img/user/user-4.jpg&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div class=&quot;comment-post&quot;&gt;
+          &lt;div class=&quot;comment-header&quot;&gt;
+            &lt;div class=&quot;comment-author&quot;&gt;
+              &lt;h5&gt;&lt;a href=&quot;profile.html&quot;&gt;Strange&lt;/a&gt;&lt;/h5&gt;
+              &lt;span&gt;Member&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;comment-action&quot;&gt;
+              &lt;div class=&quot;comment-action&quot;&gt;
+                &lt;div class=&quot;dropdown float-right&quot;&gt;
+                  &lt;a href=&quot;#&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot;&gt;&lt;i class=&quot;fa fa-chevron-down&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                  &lt;div class=&quot;dropdown-menu dropdown-menu-right&quot;&gt;
+                    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Moderate&lt;/a&gt;
+                    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Embed&lt;/a&gt;
+                    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Report&lt;/a&gt;
+                    &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Mark as spam&lt;/a&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;p&gt;To all those reading who have not yet bought this game yet, and are a fan of Uncharted - Don't listen to the nay-sayers on these comments, this game is simply amazing!&lt;/p&gt;
+          &lt;div class=&quot;comment-footer&quot;&gt;
+            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-heart-o&quot;&gt;&lt;/i&gt; Like&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;icon-reply&quot;&gt;&lt;/i&gt; Reply&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-clock-o&quot;&gt;&lt;/i&gt; June 11, 2017 14:26am&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-3 sidebar-right">
+
+          <ul>
+            <li><a href="#comment">Comment</a></li>
+            <li><a href="#example">Example</a></li>
+            <li><a href="#lists">Lists</a></li>
+            <li class="divider"></li>
+            <li><a href="https://themeforest.net/user/yakuzi#contact" target="_blank"><i class="fa fa-bell-o"></i> Report issue</a></li>
+            <li><a href="pages/support.html#get-help"><i class="fa fa-life-ring"></i> Get help</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- footer -->
+  <div class="version">
+    version: 4.1.2
+  </div>
+
+  <!-- scripts -->
+  <script src="../../upload/plugins/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../../upload/plugins/popper/popper.min.js"></script>
+  <script src="../../upload/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/plugins/clipboard/clipboard.min.js"></script>
+  <script src="../assets/plugins/highlight/highlight.pack.js" charset="utf-8"></script>
+
+  <script src="../../upload/js/theme.min.js"></script>
+  <script src="../assets/js/app.min.js"></script>
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

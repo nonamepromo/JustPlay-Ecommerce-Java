@@ -1,0 +1,22 @@
+{% extends "views/layout.twig" %}
+
+{% block css %}
+<link href="plugins/ytplayer/jquery.mb.YTPlayer.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+<script src="plugins/ytplayer/jquery.mb.YTPlayer.min.js"></script>
+<script>
+(function($) {
+  "use strict";
+  // Background Player
+  $(".player").mb_YTPlayer();
+})(jQuery);
+</script>
+{% endblock %}
+
+{% block body %}
+<section class="bg-image bg-image-sm section-streamer player p-y-65" style="height: 700px;background-image: url('https://img.youtube.com/vi/oqElIW1mjlQ/maxresdefault.jpg');" data-property="{videoURL:'1GWRDuL04-Q',containment:'self',mute:true,stopMovieOnBlur:false, showControls: false, realfullscreen: true, showYTLogo: false, quality: 'hd1080',autoPlay:true,loop:true,opacity:1}">
+  <div class="overlay"></div>
+</section>
+{% endblock %}
