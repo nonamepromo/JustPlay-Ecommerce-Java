@@ -26,7 +26,6 @@ import lombok.extern.slf4j.Slf4j;
 public class JDBCUtenteServiceImpl implements UtenteService {
 	
 	private static final String FIND_USERNAME = "SELECT * FROM utenti u WHERE u.username = ?";
-	private static final String FIND_USERNAME_ROLES = "SELECT r.* FROM ruoli_utenti ur, ruoli r WHERE ur.id_utente = ? AND ur.id_ruolo = r.id_ruolo";
 	private static final String UPDATE_PROFILE = "UPDATE utenti SET email=?, codice_fiscale=? , data_nascita=?, telefono=? WHERE id_utente=?";
 	
 	@Autowired
