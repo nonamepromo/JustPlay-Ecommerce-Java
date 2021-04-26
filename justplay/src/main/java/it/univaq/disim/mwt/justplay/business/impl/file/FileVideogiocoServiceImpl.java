@@ -37,11 +37,6 @@ public class FileVideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
-	public void createVideogioco(Videogioco videogioco) throws BusinessException {
-		
-	}
-
-	@Override
 	public ResponseGrid findAllVideogiochiPaginated(RequestGrid requestGrid) throws BusinessException {
 		return null;
 	}
@@ -53,14 +48,18 @@ public class FileVideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
-	public void updateVideogioco(Videogioco videogioco) throws BusinessException {
+	public void deleteVideogioco(Videogioco videogioco) throws BusinessException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteVideogioco(Videogioco videogioco) throws BusinessException {
-		// TODO Auto-generated method stub
+	public void addVideogiocoInVendita(Videogioco videogioco, Long idUtente) throws BusinessException {
+		
+	}
+
+	@Override
+	public void addVideogiocoDesiderato(Videogioco videogioco, Long idUtente) throws BusinessException {
 		
 	}
 }

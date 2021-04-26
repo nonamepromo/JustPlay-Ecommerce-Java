@@ -29,9 +29,9 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 
 	private static final String FIND_VIDEOGIOCHI = "SELECT vg.* FROM videogiochi vg order by vg.titolo";
 	private static final String FIND_VIDEOGIOCO_BY_PK = "SELECT vg.* FROM videogiochi vg WHERE vg.id_videogioco = ?";
-	private static final String INSERT_VIDEOGIOCO = "INSERT INTO videogiochi (titolo) VALUES (?,?)";
-	private static final String UPDATE_VIDEOGIOCO = "UPDATE videogiochi SET titolo=? WHERE id_videogioco=?";
 	private static final String DELETE_VIDEOGIOCO = "DELETE FROM videogiochi WHERE id_videogioco=?";
+	private static final String INSERT_VIDEOGIOCO_IN_VENDITA = "INSERT INTO videogiochi (fk_videogioco, fk_utente) VALUES (?,?)";
+	private static final String INSERT_VIDEOGIOCO_DESIDERATO = "INSERT INTO videogiochi (fk_videogioco, fk_utente) VALUES (?,?)";
 
 	@Autowired
 	private DataSource dataSource;
@@ -112,29 +112,6 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
-	public void createVideogioco(Videogioco videogioco) throws BusinessException {
-		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO);) {
-			st.setString(1, videogioco.getTitolo());
-			st.executeUpdate();
-		} catch (SQLException e) {
-			log.error("createVideogioco", e);
-			throw new BusinessException("createVideogioco", e);
-		}
-	}
-
-	@Override
-	public void updateVideogioco(Videogioco videogioco) throws BusinessException {
-		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(UPDATE_VIDEOGIOCO);) {
-			st.setString(1, videogioco.getTitolo());
-			st.setLong(2, videogioco.getId());
-			st.executeUpdate();
-		} catch (SQLException e) {
-			log.error("updateVideogioco", e);
-			throw new BusinessException("updateVideogioco", e);
-		}
-	}
-
-	@Override
 	public void deleteVideogioco(Videogioco videogioco) throws BusinessException {
 		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(DELETE_VIDEOGIOCO);) {
 			st.setLong(1, videogioco.getId());
@@ -142,6 +119,30 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		} catch (SQLException e) {
 			log.error("deleteVideogioco", e);
 			throw new BusinessException("deleteVideogioco", e);
+		}
+	}
+
+	@Override
+	public void addVideogiocoInVendita(Videogioco videogioco, Long idUtente) throws BusinessException {
+		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_IN_VENDITA);) {
+			st.setLong(1, idUtente);
+			st.setLong(1, videogioco.getId());
+			st.executeUpdate();
+		} catch (SQLException e) {
+			log.error("addVideogiocoInVendita", e);
+			throw new BusinessException("addVideogiocoInVendita", e);
+		}
+	}
+
+	@Override
+	public void addVideogiocoDesiderato(Videogioco videogioco, Long idUtente) throws BusinessException {
+		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_DESIDERATO);) {
+			st.setLong(1, idUtente);
+			st.setLong(1, videogioco.getId());
+			st.executeUpdate();
+		} catch (SQLException e) {
+			log.error("addVideogiocoInVendita", e);
+			throw new BusinessException("addVideogiocoInVendita", e);
 		}
 	}
 }

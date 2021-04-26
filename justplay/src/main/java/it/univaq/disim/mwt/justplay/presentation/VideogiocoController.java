@@ -44,34 +44,13 @@ public class VideogiocoController {
 		return "videogiochi/form";
 	}
 	
-	@PostMapping("/create")
-	public String create(@Valid @ModelAttribute("videogioco") Videogioco videogioco, Errors errors) throws BusinessException {
-		//Prendere e validare i dati dalla form e costruire un oggetto di tipo Videogioco
-		//Se la validazione va a buon fine Invocare la logica di business. Altrimenti far vedere la form con gli errori
-		//Fare il "forward" alla vista
-		if (errors.hasErrors()) {
-			return "videogiochi/form";
-		}
-		service.createVideogioco(videogioco);
-		return "redirect:/videogiochi/list";
-	}
-
 	@GetMapping("/update")
 	public String updateStart(@RequestParam("id") Long id, Model model) throws BusinessException {
 		Videogioco videogioco = service.findVideogiocoByID(id);
 		model.addAttribute("videogioco", videogioco);
 		return "videogiochi/form";
 	}
-	
-	@PostMapping("/update")
-	public String update(@Valid @ModelAttribute("videogioco") Videogioco videogioco, Errors errors) throws BusinessException {
-		if (errors.hasErrors()) {
-			return "videogiochi/form";
-		}
-		service.updateVideogioco(videogioco);
-		return "redirect:/videogiochi/list";
-	}
-	
+		
 	@GetMapping("/delete")
 	public String deleteStart(@RequestParam("id") Long id, Model model) throws BusinessException {
 		Videogioco videogioco = service.findVideogiocoByID(id);
