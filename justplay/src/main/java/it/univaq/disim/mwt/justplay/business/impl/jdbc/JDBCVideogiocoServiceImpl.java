@@ -30,8 +30,8 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	private static final String FIND_VIDEOGIOCHI = "SELECT vg.* FROM videogiochi vg order by vg.titolo";
 	private static final String FIND_VIDEOGIOCO_BY_PK = "SELECT vg.* FROM videogiochi vg WHERE vg.id_videogioco = ?";
 	private static final String DELETE_VIDEOGIOCO = "DELETE FROM videogiochi WHERE id_videogioco=?";
-	private static final String INSERT_VIDEOGIOCO_IN_VENDITA = "INSERT INTO videogiochi (fk_videogioco, fk_utente) VALUES (?,?)";
-	private static final String INSERT_VIDEOGIOCO_DESIDERATO = "INSERT INTO videogiochi (fk_videogioco, fk_utente) VALUES (?,?)";
+	private static final String INSERT_VIDEOGIOCO_IN_VENDITA = "INSERT INTO videogiochi_in_vendita (fk_videogioco, fk_utente) VALUES (?,?)";
+	private static final String INSERT_VIDEOGIOCO_DESIDERATO = "INSERT INTO videogiochi_desiderato (fk_videogioco, fk_utente) VALUES (?,?)";
 
 	@Autowired
 	private DataSource dataSource;
