@@ -14,7 +14,7 @@
      <nav class="mt-2">
        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" sec:authorize="isAuthenticated()">
 		<li class="nav-item" sec:authorize="hasRole('amministratore')">
-			<a href="#" th:href="@{/videogiochi/list}" class="nav-link">
+			<a href="#" th:href="@{/backend/videogiochi/list}" class="nav-link">
 			 <i class="far fa-circle nav-icon"></i>
 			 <p th:text="#{menu.areessd}"></p>
 			</a>
