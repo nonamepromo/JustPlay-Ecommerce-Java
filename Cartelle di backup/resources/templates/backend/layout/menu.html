@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4" th:fragment="menu">
+	<!-- Brand Logo -->
+	<a href="#" th:href="@{/common/welcome}" class="brand-link">
+	  <img src="#" th:src="@{/backend/dist/img/AdminLTELogo.png}" alt="My Univaq Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+	  <span class="brand-text font-weight-light">JustPlay</span>
+	</a>
+
+  	<div class="sidebar">
+     <nav class="mt-2">
+       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" sec:authorize="isAuthenticated()">
+		<li class="nav-item" sec:authorize="hasRole('amministratore')">
+			<a href="#" th:href="@{/backend/videogiochi/list}" class="nav-link">
+			 <i class="far fa-circle nav-icon"></i>
+			 <p th:text="#{menu.areessd}"></p>
+			</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasRole('amministratore')">
+			<a href="#" th:href="@{/ssds/list}" class="nav-link">
+			 <i class="far fa-circle nav-icon"></i>
+			 <p th:text="#{menu.settoriscientificodisciplinari}"></p>
+			</a>
+		</li>
+		
+		<li class="nav-item" sec:authorize="hasRole('docente')">
+			<a href="#" th:href="@{/notizie/list}" class="nav-link">
+			 <i class="far fa-newspaper nav-icon"></i>
+			 <p th:text="#{menu.mienotizie}"></p>
+			</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasRole('docente')">
+			<a href="#" th:href="@{/insegnamenti/list}" class="nav-link">
+			 <i class="fas fa-cogs nav-icon"></i>
+			 <p th:text="#{menu.esami}"></p>
+			</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasRole('docente')">
+			<a href="#" th:href="@{/lezioni/list}" class="nav-link">
+			 <i class="far fa-calendar-times nav-icon"></i>
+			 <p th:text="#{menu.lezioni}"></p>
+			</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasRole('docente')">
+			<a href="#" th:href="@{/diario/list}"class="nav-link">
+			 <i class="fas fa-book nav-icon"></i>
+			 <p th:text="#{menu.diario}"></p>
+			</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasRole('docente')">
+			<a href="#" th:href="@{/approvazionepiani/list}" class="nav-link">
+			 <i class="fas fa-th nav-icon"></i>
+			 <p th:text="#{menu.approvazionepiani}"></p>
+			</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasRole('docente')">
+			<a href="#" th:href="@{/questionari/list}" class="nav-link">
+			 <i class="far fa-lightbulb nav-icon"></i>
+			 <p th:text="#{menu.questionari}"></p>
+			</a>
+		</li>								
+
+		<li class="nav-item" sec:authorize="hasRole('studente')">
+			<a href="#" th:href="@{/pianodistudi/list}" class="nav-link">
+			 <i class="fas fa-graduation-cap nav-icon"></i>
+			 <p th:text="#{menu.pianodistudi}"></p>
+			</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasRole('studente')">
+			<a href="#" th:href="@{tasse/list}" class="nav-link">
+			 <i class="fas fa-euro-sign nav-icon"></i>
+			 <p th:text="#{menu.tasse}"></p>
+			</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasRole('studente')">
+			<a href="#" th:href="@{/libretto/list}" class="nav-link">
+			 <i class="fas fa-book nav-icon"></i>
+			 <p th:text="#{menu.libretto}"></p>
+			</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasRole('studente')">
+			<a href="#" th:href="@{/appelli/list}" class="nav-link">
+			 <i class="fas fa-cogs nav-icon"></i>
+			 <p th:text="#{menu.appelli}"></p>
+			</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasRole('studente')">
+			<a href="#" th:href="@{/orario/list}" class="nav-link">
+			 <i class="far fa-calendar-times nav-icon"></i>
+			 <p th:text="#{menu.orario}"></p>
+			</a>
+		</li>			
+		<li class="nav-item" sec:authorize="hasRole('presidentecad')">
+			<a href="#" th:href="@{/common/welcome}" class="nav-link">
+			 <i class="fas fa-tachometer-alt nav-icon"></i>
+			 <p th:text="#{menu.presidentecad}"></p>
+			</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasRole('segreteriadidattica')">
+			<a href="#" th:href="@{/common/welcome}" class="nav-link">
+			 <i class="fas fa-tachometer-alt nav-icon"></i>
+			 <p th:text="#{menu.dashboard}"></p>
+			</a>
+		</li>			
+       </ul>
+     </nav>
+	</div>
+</aside>
+</body>
+</html>
