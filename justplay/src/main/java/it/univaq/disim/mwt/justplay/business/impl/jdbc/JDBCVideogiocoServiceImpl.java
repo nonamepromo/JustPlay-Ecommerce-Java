@@ -28,8 +28,8 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 
 
 	private static final String FIND_VIDEOGIOCHI = "SELECT vg.* FROM videogiochi vg order by vg.titolo";
-	private static final String FIND_VIDEOGIOCO_BY_PK = "SELECT vg.* FROM videogiochi vg WHERE vg.id_videogioco = ?";
-	private static final String DELETE_VIDEOGIOCO = "DELETE FROM videogiochi WHERE id_videogioco=?";
+	private static final String FIND_VIDEOGIOCO_BY_PK = "SELECT vg.* FROM videogiochi vg WHERE vg.id = ?";
+	private static final String DELETE_VIDEOGIOCO = "DELETE FROM videogiochi WHERE id=?";
 	private static final String INSERT_VIDEOGIOCO_IN_VENDITA = "INSERT INTO videogiochi_in_vendita (fk_videogioco, fk_utente) VALUES (?,?)";
 	private static final String INSERT_VIDEOGIOCO_DESIDERATO = "INSERT INTO videogiochi_desiderato (fk_videogioco, fk_utente) VALUES (?,?)";
 
@@ -41,7 +41,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	public ResponseGrid<Videogioco> findAllVideogiochiPaginated(RequestGrid requestGrid) throws BusinessException {
 		String sortCol = requestGrid.getSortCol();
 		if ("id".equals(requestGrid.getSortCol())) {
-			sortCol = "vg.id_videogioco";
+			sortCol = "vg.id";
 		}
 		String orderBy = (!"".equals(sortCol) && !"".equals(requestGrid.getSortDir())) ? " ORDER BY " + sortCol + " " + requestGrid.getSortDir() : "";
 		String baseSearch = "SELECT vg.* " + "FROM videogiochi vg " + ((!"".equals(requestGrid.getSearch().getValue())) ? " WHERE vg.titolo like '" + ConversionUtility.addPercentSuffix(requestGrid.getSearch().getValue()) + "'" : "");
@@ -61,7 +61,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 			try (ResultSet rs = st.executeQuery(sql);) {
 				while (rs.next()) {
 					Videogioco videogioco = new Videogioco();
-					videogioco.setId(rs.getLong("id_videogioco"));
+					videogioco.setId(rs.getLong("id"));
 					videogioco.setTitolo(rs.getString("titolo"));
 					videogiochi.add(videogioco);
 				}
@@ -81,7 +81,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		try (Connection con = dataSource.getConnection(); Statement st = con.createStatement(); ResultSet rs = st.executeQuery(FIND_VIDEOGIOCHI);) {
 			while (rs.next()) {
 				Videogioco videogioco = new Videogioco();
-				videogioco.setId(rs.getLong("id_videogioco"));
+				videogioco.setId(rs.getLong("id"));
 				videogioco.setTitolo(rs.getString("titolo"));
 				result.add(videogioco);
 			}
@@ -100,7 +100,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 			try (ResultSet rs = st.executeQuery();) {
 				if (rs.next()) {
 					result = new Videogioco();
-					result.setId(rs.getLong("id_videogioco"));
+					result.setId(rs.getLong("id"));
 					result.setTitolo(rs.getString("titolo"));
 				}
 			}

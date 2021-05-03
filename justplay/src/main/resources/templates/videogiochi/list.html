@@ -8,9 +8,7 @@
 $(document).ready(function() {
 	$('#videogiochi_table').DataTable({
 		"columns":[
-	                {"data":"id"},
-	                {"data":"codice"},
-	                {"data":"denominazione"},		                
+	                {"data":"titolo"},		                
 	                { "data": "action",
 	                    "searchable": false,
 	                    "sortable": false,
@@ -37,20 +35,14 @@ $(document).ready(function() {
 	        <table id="videogiochi_table" class="table table-bordered table-striped">
 	          <thead>
 	          <tr>
-	            <th th:text="#{common.id}"></th>
-	            <th th:text="#{videogioco.codice}"></th>
-	            <th th:text="#{videogioco.denominazione}"></th>
-	            <th th:text="#{common.action}"></th>
+	            <th th:text="#{videogioco.titolo}"></th>
 	          </tr>
 	          </thead>
 	          <tbody>
 	          </tbody>
 	          <tfoot>
 	          <tr>
-	            <th th:text="#{common.id}"></th>
-	            <th th:text="#{videogioco.codice}"></th>
-	            <th th:text="#{videogioco.denominazione}"></th>
-	            <th th:text="#{common.action}"></th>
+	            <th th:text="#{videogioco.titolo}"></th>
 	          </tr>
 	          </tfoot>
 	        </table>         
