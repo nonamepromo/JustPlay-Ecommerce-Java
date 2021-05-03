@@ -32,7 +32,8 @@
 		  <i class="far fa-user"></i> 
 		</a>      
 		<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-		  <span class="dropdown-item dropdown-header" sec:authentication="principal.username"></span>
+		<!-- QUESTO ANDREBBE INSERITO NELLA CLASSE SEGUENTE MA DA PROBLEMI sec:authentication="principal.username" -->
+		  <span class="dropdown-item dropdown-header"></span>
 		  <div class="dropdown-divider"></div>
 		  <a href="#" th:href="@{/common/profilo}" class="dropdown-item" >
 		    <i class="fas fa-user-circle mr-2"></i> [[#{common.profile}]]
