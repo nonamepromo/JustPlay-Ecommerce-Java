@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.UtenteService;
 import it.univaq.disim.mwt.justplay.domain.Utente;
+import it.univaq.disim.mwt.justplay.domain.Admin;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -26,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class JDBCUtenteServiceImpl implements UtenteService {
 	
 	private static final String FIND_USERNAME = "SELECT * FROM utenti u WHERE u.username = ?";
-	private static final String UPDATE_PROFILE = "UPDATE utenti SET email=?, codice_fiscale=? , data_nascita=?, telefono=? WHERE id=?";
+	private static final String UPDATE_PROFILE = "UPDATE utenti SET email=? WHERE id=?";
 	
 	@Autowired
 	private DataSource dataSource;

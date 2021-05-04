@@ -1,27 +1,25 @@
 package it.univaq.disim.mwt.justplay.domain;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public class Utente {
 
 	private Long id;
-
-	@Size(max = 200)
 	private String nome;
-
-	@Size(max = 200)
 	private String cognome;
-
+	private String email;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private String username;
-
 	private String password;
-	
+
+	private Set<Ruolo> ruoli = new HashSet<>();
 }
