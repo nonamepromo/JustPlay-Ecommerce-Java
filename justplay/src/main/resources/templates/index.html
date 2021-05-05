@@ -3,8 +3,10 @@
 	  xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{layout/layout}">
 <body>
+
   <!-- main -->
   <div layout:fragment="content">
+  
   <section class="p-y-80">
     <div class="container">
       <div class="heading">
@@ -200,17 +202,17 @@
   </div>
   <!-- /main -->
 
-  <!-- vendor js -->
-  <script src="plugins/jquery/jquery-3.2.1.min.js"></script>
-  <script src="plugins/popper/popper.min.js"></script>
-  <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- vendor js -->
+ <script src="plugins/jquery/jquery-3.2.1.min.js"></script>
+ <script src="plugins/popper/popper.min.js"></script>
+ <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 
-  <!-- theme js -->
-  <script src="js/theme.min.js"></script>
+ <!-- theme js -->
+ <script src="js/theme.min.js"></script>
 
-  <!-- plugins js -->
+<!-- plugins js -->
   <script src="plugins/lightbox/lightbox.js"></script>
-  <script src="plugins/owl-carousel/js/owl.carousel.min.js"></script>
+  <script src="plugins/owl-carousel/js/owl.carousel.min.js" th:inline="javascript"></script>
   <script>
     (function($) {
       "use strict";
@@ -248,7 +250,6 @@
       $('[data-lightbox]').lightbox();
     })(jQuery);
   </script>
-
-
+  
 </body>
 </html>
