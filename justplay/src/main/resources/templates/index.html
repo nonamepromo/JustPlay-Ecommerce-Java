@@ -7,6 +7,44 @@
   <!-- main -->
   <div layout:fragment="content">
   
+  <script th:inline="javascript">
+    (function($) {
+      "use strict";
+
+      // Full Width Carousel
+      $('.owl-slide').owlCarousel({
+        nav: true,
+        loop: true,
+        autoplay: true,
+        items: 1
+      });
+
+      // Recent Reviews
+      $('.owl-list').owlCarousel({
+        margin: 25,
+        nav: true,
+        dots: false,
+        responsive: {
+          0: {
+            items: 1
+          },
+          500: {
+            items: 2
+          },
+          701: {
+            items: 3
+          },
+          1000: {
+            items: 4
+          }
+        }
+      });
+
+      // lightbox
+      $('[data-lightbox]').lightbox();
+    })(jQuery);
+  </script>
+  
   <section class="p-y-80">
     <div class="container">
       <div class="heading">
@@ -18,7 +56,7 @@
         <div class="col-12 col-sm-6 col-md-4">
           <div class="card card-lg">
             <div class="card-img">
-              <a href="game-post.html"><img src="img/game/game-1.jpg" class="card-img-top" alt="Assassin's Creed Syndicate"></a>
+              <a href="#" th:href="@{/common/login}"><img src="img/game/game-1.jpg" class="card-img-top" alt="Assassin's Creed Syndicate"></a>
               <div class="badge badge-warning">pc</div>
               <div class="card-likes">
                 <a href="#">15</a>
@@ -213,43 +251,7 @@
 <!-- plugins js -->
   <script src="plugins/lightbox/lightbox.js"></script>
   <script src="plugins/owl-carousel/js/owl.carousel.min.js" th:inline="javascript"></script>
-  <script>
-    (function($) {
-      "use strict";
-
-      // Full Width Carousel
-      $('.owl-slide').owlCarousel({
-        nav: true,
-        loop: true,
-        autoplay: true,
-        items: 1
-      });
-
-      // Recent Reviews
-      $('.owl-list').owlCarousel({
-        margin: 25,
-        nav: true,
-        dots: false,
-        responsive: {
-          0: {
-            items: 1
-          },
-          500: {
-            items: 2
-          },
-          701: {
-            items: 3
-          },
-          1000: {
-            items: 4
-          }
-        }
-      });
-
-      // lightbox
-      $('[data-lightbox]').lightbox();
-    })(jQuery);
-  </script>
+  
   
 </body>
 </html>
