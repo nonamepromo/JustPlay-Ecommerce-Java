@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title th:text="#{common.applicationtitle}">JustPlay</title>
+  <!-- vendor css -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+  <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css" th:href="@{/plugins/font-awesome/css/font-awesome.min.css}">
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css" th:href="@{/plugins/bootstrap/css/bootstrap.min.css}">
+  <link rel="stylesheet" href="plugins/animate/animate.min.css" th:href="@{/plugins/animate/animate.min.css}">
+  <!-- plugins css -->
+  <link href="plugins/owl-carousel/css/owl.carousel.min.css" th:href="@{/plugins/owl-carousel/css/owl.carousel.min.css}" rel="stylesheet">
+  <!-- theme css -->
+  <link rel="stylesheet" href="css/theme.min.css" th:href="@{/css/theme.min.css}">
+  <link rel="stylesheet" href="css/custom.css" th:href="@{/css/custom.css}">
+  
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body class="fixed-header">
+<!-- <script th:inline="javascript">
+		$.extend( true, $.fn.dataTable.defaults, {
+			"processing": true,
+			"serverSide": true,
+			"language": {"url": "[(@{'/i18n/datatables/'+ ${#locale.language} + '.properties'})]"},
+			"ajax": {
+				"type": "POST",
+	            dataType: "json",
+	            "contentType": "application/json",
+			    "data": function ( d ) {
+	                return JSON.stringify( d );
+	            }
+			}
+		} );
+		$.fn.dataTable.render.moment = function ( from, to, locale ) {
+		    // Argument shifting
+		    if ( arguments.length === 1 ) {
+		        locale = '${#locale.language}';
+		        to = from;
+		        from = 'YYYY-MM-DD';
+		    }
+		    else if ( arguments.length === 2 ) {
+		        locale = 'en';
+		    }
+		 
+		    return function ( d, type, row ) {
+		        if (! d) {
+		            return type === 'sort' || type === 'type' ? 0 : d;
+		        }
+		 
+		        var m = window.moment( d, from, locale, true );
+		 
+		        // Order and type get a number value from Moment, everything else
+		        // sees the rendered value
+		        return m.format( type === 'sort' || type === 'type' ? 'x' : to );
+	    	};
+		};
+</script> -->
+<header th:replace="~{layout/header :: header}"></header>
+<div layout:fragment="content"></div>
+<footer id="footer" th:replace="~{layout/footer :: footer}">
+</footer>
+
+</body>
+</html>
