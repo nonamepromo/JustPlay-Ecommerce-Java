@@ -32,6 +32,11 @@ public class VideogiocoController {
 	public String list() {
 		return "videogiochi/list";
 	}
+	
+	@GetMapping("/details")
+	public String details() {
+		return "videogiochi/details";
+	}
 
 	@GetMapping("/findallpaginated")
 	public ResponseEntity<List<Videogioco>> findAllPaginated()
