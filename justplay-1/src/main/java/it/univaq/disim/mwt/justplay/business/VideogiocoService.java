@@ -14,7 +14,7 @@ public interface VideogiocoService {
 
 	ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws BusinessException;
 
-	Videogioco findVideogiocoByID(Long id) throws BusinessException;
+	ResponseEntity<Videogioco> findVideogiocoByID(Long id) throws BusinessException;
 
 	void deleteVideogioco(Videogioco videogioco) throws BusinessException;
 

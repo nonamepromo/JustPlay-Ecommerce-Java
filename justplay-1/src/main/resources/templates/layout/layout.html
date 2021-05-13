@@ -21,7 +21,7 @@
 <body class="fixed-header">
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
-<script th:inline="javascript">
+<!-- <script th:inline="javascript">
 		$.extend( true, $.fn.dataTable.defaults, {
 			"processing": true,
 			"serverSide": true,
@@ -58,7 +58,7 @@
 		        return m.format( type === 'sort' || type === 'type' ? 'x' : to );
 	    	};
 		};
-</script>
+</script> -->
 <header th:replace="~{layout/header :: header}"></header>
 <div layout:fragment="content"></div>
 <footer id="footer" th:replace="~{layout/footer :: footer}">

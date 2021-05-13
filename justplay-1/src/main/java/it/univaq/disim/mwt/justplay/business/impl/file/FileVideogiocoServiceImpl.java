@@ -42,7 +42,7 @@ public class FileVideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
-	public Videogioco findVideogiocoByID(Long id) throws BusinessException {
+	public ResponseEntity<Videogioco> findVideogiocoByID(Long id) throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
 	}

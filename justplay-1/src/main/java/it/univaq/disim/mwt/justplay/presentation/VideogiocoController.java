@@ -37,6 +37,12 @@ public class VideogiocoController {
 	public String details() {
 		return "videogiochi/details";
 	}
+	
+	@GetMapping("/videogiocoDetails")
+	public ResponseEntity<Videogioco> videogiocoDetails(@RequestParam("id") Long id)
+			throws BusinessException {
+		return service.findVideogiocoByID(id);
+	}
 
 	@GetMapping("/findallpaginated")
 	public ResponseEntity<List<Videogioco>> findAllPaginated()
@@ -52,15 +58,15 @@ public class VideogiocoController {
 	
 	@GetMapping("/update")
 	public String updateStart(@RequestParam("id") Long id, Model model) throws BusinessException {
-		Videogioco videogioco = service.findVideogiocoByID(id);
-		model.addAttribute("videogioco", videogioco);
+		//Videogioco videogioco = service.findVideogiocoByID(id);
+		//model.addAttribute("videogioco", videogioco);
 		return "videogiochi/form";
 	}
 		
 	@GetMapping("/delete")
 	public String deleteStart(@RequestParam("id") Long id, Model model) throws BusinessException {
-		Videogioco videogioco = service.findVideogiocoByID(id);
-		model.addAttribute("videogioco", videogioco);
+		//Videogioco videogioco = service.findVideogiocoByID(id);
+		//model.addAttribute("videogioco", videogioco);
 		return "videogiochi/form";
 	}
 	

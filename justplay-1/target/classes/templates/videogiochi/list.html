@@ -6,51 +6,11 @@
 
   <!-- main -->
   <div layout:fragment="content">
-    <!-- <script th:inline="javascript">
-      $(document).ready(function () {
-        $('#videogiochi_table').DataTable({
-          "columns": [
-            { "data": "titolo" },
-            {
-              "data": "action",
-              "searchable": false,
-              "sortable": false,
-              "defaultContent": "",
-              "render": function (data, type, row, meta) {
-                return "<a href='[(@{/videogiochi/update})]?id=" + row.id + "'><i class='fas fa-edit'></i></a>" + " | " +
-                  "<a href='[(@{/videogiochi/delete})]?id=" + row.id + "'><i class='fas fa-trash'></a>";
-              }
-            }
-          ],
-          "ajax": {
-            "url": "[(@{/videogiochi/findallpaginated})]"
-          },
-        });
-      });
-    </script> -->
-
-    <!-- <script>
-      $(document).ready(function () {
-        $.ajax({
-
-          type: "GET",
-          url: '[(@{/videogiochi/findallpaginated})]',
-          data: "id=" + id, // appears as $_GET['id'] @ your backend side
-          success: function (data) {
-            // data is ur summary
-            $('#summary').html(data);
-          }
-
-        });
-
-      });
-    </script> -->
     <script type="text/javascript">
 
       $(document).ready(function () {
 
-
-        $.ajax({    //create an ajax request to display.php
+        $.ajax({
           type: "GET",
           url: '[(@{/videogiochi/findallpaginated})]',
           dataType: 'json',
@@ -59,30 +19,30 @@
             var len = response.length;
             html += '<div></div>';
             for (var i = 0; i < len; i++) {
-              html += 
+              html +=
                 '<div class="col-12 col-sm-6 col-md-4">' +
-            '<div class="card card-lg">' +
-              '<div class="card-img">' +
-                '<a href="details" >' +
-                  '<img src="/justplay/img/game/game-1.jpg" class="card-img-top" alt="Assassins Creed Syndicate">' +
+                '<div class="card card-lg">' +
+                '<div class="card-img">' +
+                '<a onclick="openDetails('+ response[i].id +')" >' +
+                '<img src="/justplay/img/game/game-1.jpg" class="card-img-top" alt="Assassins Creed Syndicate">' +
                 '</a>' +
                 '<div class="badge badge-pc">pc</div>' +
                 '<div class="card-likes">' +
-                  '<a href="#">15</a>' +
+                '<a href="#">15</a>' +
                 '</div>' +
-              '</div>' +
-              '<div class="card-block">' +
+                '</div>' +
+                '<div class="card-block">' +
                 '<h4 class="card-title">' +
-                  '<a href="#" th:href="@{/videogiochi/game-details}">'+ response[i].titolo + '</a>' +
+                '<a onclick="openDetails('+ response[i].id +')">' + response[i].titolo + '</a>' +
                 '</h4>' +
                 '<div class="card-meta">' +
-                  '<span>June 13, 2017</span>' +
+                '<span>June 13, 2017</span>' +
                 '</div>' +
                 '<p class="card-text">Defeating the corrupt tyrants entrenched there will require not only strength, but' +
-                  'leadership.</p>' +
-              '</div>' +
-            '</div>' +
-          '</div>'
+                'leadership.</p>' +
+                '</div>' +
+                '</div>' +
+                '</div>'
             }
             html += '</div>';
             $('#videogiochi').html(html);
@@ -92,67 +52,12 @@
       });
 
     </script>
-    <!-- <script>
-      $(document).ready(function () {
+    <script>
+      function openDetails(idVideogioco) {
+        window.location.href = "details?id=" + idVideogioco;
+      }
+    </script>
 
-        $.ajax({
-          method: 'GET',
-          url: '[(@{/videogiochi/findallpaginated})]',
-          dataType: 'json',
-          success: function (data) {
-            console.log(typeof (data));
-            data = Object.entries(data);
-            for (var i = 0; i < data.length; i++) {
-
-            }
-          },
-          error: function () {
-
-          }
-        })
-
-      });
-    </script> -->
-
-    <!-- VECCHIO -->
-    <!-- <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div id="cityId" path="cityId" cssClass="form-control">
-            <form:options items="${videogiochi}" itemValue="id" itemLabel="name" />
-          <div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <div class="card card-info">
-          <div class="card-header">
-            <h3 class="card-title" th:text="#{videogiochi.titolo}"></h3>
-          </div>
-          <div class="card-body">
-            <p><a href="#" th:href="@{/videogiochi/create}" class="btn btn-app"><i
-                  class="fa fa-plus"></i>[[#{common.create}]]</a></p>
-            <table class="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th th:text="#{videogioco.titolo}"></th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th th:text="#{videogioco.titolo}"></th>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- NUOVO -->
     <section class="p-t-30">
       <div class="container">
         <div class="toolbar-custom">

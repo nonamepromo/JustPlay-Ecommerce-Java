@@ -79,7 +79,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
-	public Videogioco findVideogiocoByID(Long id) throws BusinessException {
+	public ResponseEntity<Videogioco> findVideogiocoByID(Long id) throws BusinessException {
 		Videogioco result = null;
 		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(FIND_VIDEOGIOCO_BY_PK);) {
 			st.setLong(1, id);
@@ -94,7 +94,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 			log.error("findVideogiocoByID", e);
 			throw new BusinessException("findVideogiocoByID", e);
 		}
-		return result;
+		return ResponseEntity.ok(result);
 	}
 
 	@Override
