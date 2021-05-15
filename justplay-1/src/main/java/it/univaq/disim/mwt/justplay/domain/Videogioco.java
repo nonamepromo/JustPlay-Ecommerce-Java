@@ -18,4 +18,15 @@ public class Videogioco {
 	@Size(max = 200)
 	private String titolo;
 
+	@NotBlank
+	@Size(max = 200)
+	private String piattaforma;	
+
+	@NotBlank
+	@Size(max = 200)
+	private int annoDiUscita;
+
+	@NotBlank
+	@Size(max = 200)
+	private String descrizione;
 }

@@ -49,6 +49,9 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 				Videogioco videogioco = new Videogioco();
 				videogioco.setId(rs.getLong("id"));
 				videogioco.setTitolo(rs.getString("titolo"));
+				videogioco.setPiattaforma(rs.getString("piattaforma"));
+				videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
+				videogioco.setDescrizione(rs.getString("descrizione"));
 				videogiochi.add(videogioco);
 			}
 		} catch (SQLException e) {
@@ -88,6 +91,8 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 					result = new Videogioco();
 					result.setId(rs.getLong("id"));
 					result.setTitolo(rs.getString("titolo"));
+					result.setPiattaforma(rs.getString("piattaforma"));
+					result.setAnnoDiUscita(rs.getInt("annoDiUscita"));
 				}
 			}
 		} catch (SQLException e) {
