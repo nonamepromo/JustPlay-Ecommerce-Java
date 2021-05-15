@@ -65,18 +65,21 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
-	public List<Videogioco> findAllVideogiochi() throws BusinessException {
+	public List<Videogioco> findAll() throws BusinessException {
 		List<Videogioco> result = new ArrayList<>();
 		try (Connection con = dataSource.getConnection(); Statement st = con.createStatement(); ResultSet rs = st.executeQuery(FIND_VIDEOGIOCHI);) {
 			while (rs.next()) {
 				Videogioco videogioco = new Videogioco();
 				videogioco.setId(rs.getLong("id"));
 				videogioco.setTitolo(rs.getString("titolo"));
+				videogioco.setDescrizione(rs.getString("descrizione"));
+				videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
+				videogioco.setPiattaforma(rs.getString("piattaforma"));
 				result.add(videogioco);
 			}
 		} catch (SQLException e) {
-			log.error("findAllVideogiochi", e);
-			throw new BusinessException("findAllVideogiochi", e);
+			log.error("findAll", e);
+			throw new BusinessException("findAll", e);
 		}
 		return result;
 	}

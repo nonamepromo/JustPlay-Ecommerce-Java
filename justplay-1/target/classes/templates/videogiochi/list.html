@@ -15,38 +15,8 @@
           url: '[(@{/videogiochi/findallpaginated})]',
           dataType: 'json',
           success: function (response) {
-            var html = '';
-            var len = response.length;
-            html += '<div></div>';
-            for (var i = 0; i < len; i++) {
-              html +=
-                '<div class="col-12 col-sm-6 col-md-4">' +
-                '<div class="card card-lg">' +
-                '<div class="card-img">' +
-                '<a onclick="openDetails('+ response[i].id +')" >' +
-                '<img src="/justplay/img/game/game-1.jpg" class="card-img-top" alt="Assassins Creed Syndicate">' +
-                '</a>' +
-                '<div class="badge badge-ps4">'+ response[i].piattaforma +'</div>' +
-                '<div class="card-likes">' +
-                '<a href="#">15</a>' +
-                '</div>' +
-                '</div>' +
-                '<div class="card-block">' +
-                '<h4 class="card-title">' +
-                '<a onclick="openDetails('+ response[i].id +')">' + response[i].titolo + '</a>' +
-                '</h4>' +
-                '<div class="card-meta">' +
-                '<span>'+ response[i].annoDiUscita +'</span>' +
-                '</div>' +
-                '<p class="card-text">'+ response[i].descrizione +'</p>' +
-                '</div>' +
-                '</div>' +
-                '</div>'
-            }
-            html += '</div>';
-            $('#videogiochi').html(html);
+            
           }
-
         });
       });
 
@@ -94,10 +64,30 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div th:each="videogioco : ${videogiochi}" class="col-12 col-sm-6 col-md-4">
+            <div class="card card-lg">
+              <div class="card-img">
+                <a th:onclick="|openDetails('${videogioco.id}')|">
+                  <img src="/justplay/img/game/game-1.jpg" class="card-img-top" alt="Assassins Creed Syndicate">
+                </a>
+                <div th:text="${videogioco.piattaforma}" class="badge" th:classappend="${videogioco.piattaforma}  == 'Ps4' ? badge-ps4 : (${videogioco.piattaforma}  == 'Xbox One' ? badge-xbox-one : badge-pc)"> </div>
+                <div class="card-likes">
+                  <a href="#">15</a>
+                </div>
+              </div>
+              <div class="card-block">
+                <h4 class="card-title">
+                  <a th:onclick="|openDetails('${videogioco.id}')|" th:text="${videogioco.titolo}"> </a>
+                </h4>
+                <div class="card-meta">
+                  <span th:text="${videogioco.annoDiUscita}"> </span>
+                </div>
+                <p th:text="${videogioco.descrizione}" class="card-text">'</p>
+              </div>
+            </div>
+          </div>'
 
-        <div id="videogiochi" class="row">
-          
-          
         </div>
 
         <div class="pagination-results m-t-0">

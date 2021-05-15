@@ -10,7 +10,7 @@ import it.univaq.disim.mwt.justplay.domain.Videogioco;
 
 public interface VideogiocoService {
 
-	List<Videogioco> findAllVideogiochi() throws BusinessException;
+	List<Videogioco> findAll() throws BusinessException;
 
 	ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws BusinessException;
 
