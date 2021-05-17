@@ -84,8 +84,29 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		return result;
 	}
 
+	// @Override
+	// public ResponseEntity<Videogioco> findVideogiocoByID(Long id) throws BusinessException {
+	// 	Videogioco result = null;
+	// 	try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(FIND_VIDEOGIOCO_BY_PK);) {
+	// 		st.setLong(1, id);
+	// 		try (ResultSet rs = st.executeQuery();) {
+	// 			if (rs.next()) {
+	// 				result = new Videogioco();
+	// 				result.setId(rs.getLong("id"));
+	// 				result.setTitolo(rs.getString("titolo"));
+	// 				result.setPiattaforma(rs.getString("piattaforma"));
+	// 				result.setAnnoDiUscita(rs.getInt("annoDiUscita"));
+	// 			}
+	// 		}
+	// 	} catch (SQLException e) {
+	// 		log.error("findVideogiocoByID", e);
+	// 		throw new BusinessException("findVideogiocoByID", e);
+	// 	}
+	// 	return ResponseEntity.ok(result);
+	// }
+	
 	@Override
-	public ResponseEntity<Videogioco> findVideogiocoByID(Long id) throws BusinessException {
+	public Videogioco findVideogiocoByID(Long id) throws BusinessException {
 		Videogioco result = null;
 		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(FIND_VIDEOGIOCO_BY_PK);) {
 			st.setLong(1, id);
@@ -94,15 +115,14 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 					result = new Videogioco();
 					result.setId(rs.getLong("id"));
 					result.setTitolo(rs.getString("titolo"));
-					result.setPiattaforma(rs.getString("piattaforma"));
-					result.setAnnoDiUscita(rs.getInt("annoDiUscita"));
+					result.setDescrizione(rs.getString("descrizione"));
 				}
 			}
 		} catch (SQLException e) {
 			log.error("findVideogiocoByID", e);
 			throw new BusinessException("findVideogiocoByID", e);
 		}
-		return ResponseEntity.ok(result);
+		return result;
 	}
 
 	@Override
