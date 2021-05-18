@@ -33,7 +33,7 @@ public class VideogiocoController {
 		return "videogiochi/list";
 	}
 	
-	@GetMapping("/details")
+	@GetMapping("/s")
 	public String details() {
 		return "videogiochi/details";
 	}
@@ -43,12 +43,6 @@ public class VideogiocoController {
 	    model.addAttribute("videogiochi", service.findAll());
 	    return "videogiochi/list";
 	}
-	
-	@GetMapping("/videogiocoDetails")
-	public ResponseEntity<Videogioco> videogiocoDetails(@RequestParam("id") Long id)
-			throws BusinessException {
-		return service.findVideogiocoByID(id);
-	}
 
 	@GetMapping("/findallpaginated")
 	public ResponseEntity<List<Videogioco>> findAllPaginated()
@@ -56,16 +50,16 @@ public class VideogiocoController {
 		return service.findAllVideogiochiPaginated();
 	}
 	
+	@GetMapping("/details")
+	public String updateStart(@RequestParam("id") Long id, Model model) throws BusinessException {
+		Videogioco videogioco = service.findVideogiocoByID(id);
+		model.addAttribute("videogioco", videogioco);
+		return "videogiochi/details";
+	}
+	
 	@GetMapping("/create")
 	public String createStart(Model model) {
 		model.addAttribute("videogioco", new Videogioco());
-		return "videogiochi/form";
-	}
-	
-	@GetMapping("/update")
-	public String updateStart(@RequestParam("id") Long id, Model model) throws BusinessException {
-		//Videogioco videogioco = service.findVideogiocoByID(id);
-		//model.addAttribute("videogioco", videogioco);
 		return "videogiochi/form";
 	}
 		

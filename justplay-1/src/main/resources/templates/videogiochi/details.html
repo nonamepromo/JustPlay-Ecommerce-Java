@@ -8,22 +8,22 @@
   <div layout:fragment="content">
     <script type="text/javascript">
 
-      $(document).ready(function () {
+      // $(document).ready(function () {
 
-        let searchParams = new URLSearchParams(window.location.search)
-        $.ajax({
-          type: "GET",
-          url: '[(@{/videogiochi/videogiocoDetails})]?id=' + searchParams.get('id'),
-          dataType: 'json',
-          contentType: "application/json; charset=ytf-8",
-          data: { "field1": searchParams.get('id')},
-          success: function (result) {
-            $("#titolo").text(result.titolo);
-            $("#titolo-2").text(result.titolo);
-          },
+      //   let searchParams = new URLSearchParams(window.location.search)
+      //   $.ajax({
+      //     type: "GET",
+      //     url: '[(@{/videogiochi/videogiocoDetails})]?id=' + searchParams.get('id'),
+      //     dataType: 'json',
+      //     contentType: "application/json; charset=ytf-8",
+      //     data: { "field1": searchParams.get('id')},
+      //     success: function (result) {
+      //       $("#titolo").text(result.titolo);
+      //       $("#titolo-2").text(result.titolo);
+      //     },
 
-        });
-      });
+      //   });
+      // });
 
     </script>
     <section class="hero hero-game" style="background-image: url('img/hero/hero.jpg');">
@@ -31,7 +31,7 @@
       <div class="container">
         <div class="hero-block">
           <div class="hero-left">
-            <h2 id="titolo" class="hero-title"></h2>
+            <h2 th:text="${videogioco.titolo}" class="hero-title"></h2>
             <p>The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
             <a class="btn btn-primary btn-shadow btn-rounded btn-lg" href="https://www.youtube.com/watch?v=c0i88t0Kacs"
               data-lightbox role="button">Watch Trailer <i class="fa fa-play"></i></a>
@@ -60,7 +60,7 @@
 
     <section class="toolbar toolbar-links" data-fixed="true">
       <div class="container">
-        <h5 id="titolo-2"></h5>
+        <h5 th:text="${videogioco.titolo}"></h5>
         <div class="dropdown float-right">
           <a class="btn btn-secondary btn-icon float-right" href="#" data-toggle="dropdown" role="button"><i
               class="fa fa-cog"></i></a>
