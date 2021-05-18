@@ -31,8 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.headers().disable().csrf().disable()
-				.formLogin().loginPage("/").loginProcessingUrl("/login")
-				.failureUrl("/?error=invalidlogin").defaultSuccessUrl("/common/welcome", false)
+				.formLogin().loginPage("/common/login").loginProcessingUrl("/login")
+				.failureUrl("/?error=invalidlogin").defaultSuccessUrl("/", false)
 				.and().logout().logoutSuccessUrl("/")
 				.and().exceptionHandling().accessDeniedPage("/common/accessdenied")
 				.and().authorizeRequests()

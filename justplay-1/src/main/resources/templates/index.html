@@ -7,7 +7,7 @@
   <!-- main -->
   <div layout:fragment="content">
   
-  <script th:inline="javascript">
+  <!--<script th:inline="javascript">
     (function($) {
       "use strict";
 
@@ -43,12 +43,13 @@
       // lightbox
       $('[data-lightbox]').lightbox();
     })(jQuery);
-  </script>
+  </script> -->
   
   <section class="p-y-80">
     <div class="container">
       <div class="heading">
         <i class="fa fa-steam"></i>
+         <p th:if="${param.error != null}" th:text="#{common.loginerror}">error</p>
         <h2>Recent Games</h2>
         <a href="#" th:href="@{/videogiochi/list}" style="font-size: 20px; color: red;">Per comodità videogiochi list</a> 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
