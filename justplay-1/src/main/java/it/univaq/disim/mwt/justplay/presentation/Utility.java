@@ -9,7 +9,7 @@ import it.univaq.disim.mwt.justplay.security.UserDetailsImpl;
 
 public class Utility {
 
-	public static it.univaq.disim.mwt.justplay.domain.Utente getUtente() {
+	public static Utente getUtente() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication != null && authentication instanceof UsernamePasswordAuthenticationToken) {
 			UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = (UsernamePasswordAuthenticationToken) authentication;
