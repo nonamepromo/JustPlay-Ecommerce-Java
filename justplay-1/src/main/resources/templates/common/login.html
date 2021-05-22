@@ -25,7 +25,7 @@
             </div>
             <div class="card-block">
             <p th:if="${param.error != null}" th:text="#{common.loginerror}">error</p>
-              <form action="#" th:attr="action=@{/login}" method="POST">
+              <form th:action="@{/login}" method="post">
                 <a class="btn btn-social btn-facebook btn-block btn-icon-left" href="" role="button"><i class="fa fa-facebook"></i> Connect with Facebook</a>
                 <div class="divider">
                   <span>or</span>

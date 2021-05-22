@@ -27,16 +27,6 @@ public class VideogiocoController {
 
 	@Autowired
 	private VideogiocoService service;
-
-	@GetMapping("/ciao")
-	public String list() {
-		return "videogiochi/list";
-	}
-	
-	@GetMapping("/s")
-	public String details() {
-		return "videogiochi/details";
-	}
 	
 	@GetMapping("/list")
 	public String showAll(Model model) throws BusinessException {
