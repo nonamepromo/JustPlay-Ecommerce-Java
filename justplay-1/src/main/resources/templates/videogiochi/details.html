@@ -32,7 +32,7 @@
         <div class="hero-block">
           <div class="hero-left">
             <h2 th:text="${videogioco.titolo}" class="hero-title"></h2>
-            <p>The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
+            <p></p>
             <a class="btn btn-primary btn-shadow btn-rounded btn-lg" href="https://www.youtube.com/watch?v=c0i88t0Kacs"
               data-lightbox role="button">Watch Trailer <i class="fa fa-play"></i></a>
             <a class="btn btn-outline-default btn-shadow btn-rounded btn-lg m-l-10"
@@ -126,6 +126,7 @@
                   </a>
                 </div>
                 <div>
+                 <!--
                   <h2 class="post-title">
                     <a href="blog-post.html">The Witcher 3: Don't Miss This Hidden Contract in Blood and Wine</a>
                   </h2>
@@ -134,21 +135,16 @@
                     <span><a href="#">PS4</a>, <a href="#">Xbox One</a></span>
                     <span><a href="blog-post.html#comments"><i class="fa fa-comment-o"></i> 98 comments</a></span>
                   </div>
+                    -->
                 </div>
               </div>
+                <!--
               <div class="post-thumbnail">
                 <img src="img/game/post-1.jpg" alt="The Witcher 3: Don't Miss This Hidden Contract in Blood and Wine">
                 <span class="badge badge-danger">Blog</span>
               </div>
-              <p><b>The Witcher 3: Wild Hunt</b>, officially announced in February 3, 2013, is an action-role playing
-                video game developed by Polish studio, CD Projekt RED. It is the third title in The Witcher video game
-                series, based on The Witcher saga,
-                a collection of short stories by Polish author, Andrzej Sapkowski.</p>
-              <p>Player have access to a in-game glossary. This allows players to read up on characters, bestiary,
-                crafting and game mechanics. The bestiary tab gives detailed information about the beast in question,
-                but also gives insight into their vulnerabilities.
-                The tutorial tab allows for a deeper explanation on the game's mechanics. The character tab will give a
-                condensed biography on the games characters.</p>
+                -->
+              <p th:text="${videogioco.descrizione}"></p>
             </div>
 
             <!-- post -->
@@ -439,17 +435,12 @@
   </div>
   <!-- /main -->
 
-  <!-- vendor js -->
-  <script src="plugins/jquery/jquery-3.2.1.min.js"></script>
-  <script src="plugins/popper/popper.min.js"></script>
-  <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-
   <!-- plugins js -->
-  <script src="plugins/lightbox/lightbox.js"></script>
-  <script src="plugins/sticky/jquery.sticky.js"></script>
-  <script src="plugins/easypiechart/jquery.easing.1.3.js"></script>
-  <script src="plugins/easypiechart/jquery.easypiechart.min.js"></script>
-  <script>
+  <script src="plugins/lightbox/lightbox.js" th:src="@{/plugins/lightbox/lightbox.js}"></script>
+  <script src="plugins/sticky/jquery.sticky.js" th:src="@{/plugins/sticky/jquery.sticky.js}"></script>
+  <script src="plugins/easypiechart/jquery.easing.1.3.js" th:src="@{/plugins/easypiechart/jquery.easing.1.3.js}"></script>
+  <script src="plugins/easypiechart/jquery.easypiechart.min.js" th:src="@{/plugins/easypiechart/jquery.easypiechart.min.js}"></script>
+  <script th:inline="javascript">
     (function ($) {
       "use strict";
       // easyPieChart
@@ -468,9 +459,6 @@
       });
     })(jQuery);
   </script>
-
-  <!-- theme js -->
-  <script src="js/theme.min.js"></script>
 </body>
 
 </html>

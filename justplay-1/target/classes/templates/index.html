@@ -49,7 +49,7 @@
     <div class="container">
       <div class="heading">
         <i class="fa fa-steam"></i>
-         <p th:if="${param.error != null}" th:text="#{common.loginerror}">error</p>
+         <p th:if="${param.error != null}" th:text="#{common.loginerror}"></p>
         <h2>Recent Games</h2>
         <a href="#" th:href="@{/videogiochi/list}" style="font-size: 20px; color: red;">Per comodità videogiochi list</a> 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -242,17 +242,9 @@
   </div>
   <!-- /main -->
 
-<!-- vendor js -->
- <script src="plugins/jquery/jquery-3.2.1.min.js"></script>
- <script src="plugins/popper/popper.min.js"></script>
- <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-
- <!-- theme js -->
- <script src="js/theme.min.js"></script>
-
 <!-- plugins js -->
-  <script src="plugins/lightbox/lightbox.js"></script>
-  <script src="plugins/owl-carousel/js/owl.carousel.min.js"></script>
+  <script src="plugins/lightbox/lightbox.js" th:src="@{/plugins/lightbox/lightbox.js}"></script>
+  <script src="plugins/owl-carousel/js/owl.carousel.min.js" th:src="@{/plugins/owl-carousel/js/owl.carousel.min.js}"></script>
   
   
 </body>
