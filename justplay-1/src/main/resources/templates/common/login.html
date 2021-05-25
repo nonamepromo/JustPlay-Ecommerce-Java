@@ -24,8 +24,12 @@
               <h4 class="card-title"><i class="fa fa-sign-in"></i> Login to your account</h4>
             </div>
             <div class="card-block">
+<<<<<<< Updated upstream
             <p th:if="${param.error != null}" th:text="#{common.loginerror}">error</p>
               <form th:action="@{/login}" method="post">
+=======
+              <form action="#" th:attr="action=@{/login}" method="POST">
+>>>>>>> Stashed changes
                 <a class="btn btn-social btn-facebook btn-block btn-icon-left" href="" role="button"><i class="fa fa-facebook"></i> Connect with Facebook</a>
                 <div class="divider">
                   <span>or</span>
