@@ -6,6 +6,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -49,10 +51,21 @@ public class VideogiocoController {
 	}
 	
 	@GetMapping("/addGameToWishlist")
-	public void addGameToWishlist() throws BusinessException {
-		Utente utente = new Utente();
-		Long idVideogioco = (long) 3;
-		service.addGameToWishlist(idVideogioco, utente);
+	public void addGameToWishlist(@RequestParam("idVideogioco") Long id) throws BusinessException {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Utente utente = (Utente)authentication.getPrincipal();
+		
+		System.out.println(authentication.getPrincipal());
+		
+		System.out.println(((Utente) authentication).getId());
+
+		System.out.println(authentication.getName());
+		
+		Long idUtente = (long) 3;
+		
+		Long idVideogioco = id;
+		service.addGameToWishlist(idVideogioco, idUtente);
 	}
 	
 	@GetMapping("/create")

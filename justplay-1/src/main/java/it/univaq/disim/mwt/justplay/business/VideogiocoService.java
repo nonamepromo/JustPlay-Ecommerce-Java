@@ -17,7 +17,7 @@ public interface VideogiocoService {
 
 	Videogioco findVideogiocoByID(Long id) throws BusinessException;	
 
-	void addGameToWishlist(Long idVideogioco, Utente utente) throws BusinessException;
+	void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
 	void deleteVideogioco(Videogioco videogioco) throws BusinessException;
 

@@ -127,10 +127,10 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	}
 	
 	@Override
-	public void addGameToWishlist(Long idVideogioco, Utente utente) throws BusinessException {
+	public void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
 		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_DESIDERATO);) {
 			st.setLong(1, idVideogioco);
-			st.setLong(2, utente.getId());
+			st.setLong(2, idUtente);	
 			st.executeUpdate();
 		} catch (SQLException e) {
 			log.error("addGameToWishlist", e);
