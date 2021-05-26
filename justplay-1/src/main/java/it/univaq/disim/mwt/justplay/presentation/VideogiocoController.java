@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
+import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 
 @Controller
@@ -45,6 +46,13 @@ public class VideogiocoController {
 		Videogioco videogioco = service.findVideogiocoByID(id);
 		model.addAttribute("videogioco", videogioco);
 		return "videogiochi/details";
+	}
+	
+	@GetMapping("/addGameToWishlist")
+	public void addGameToWishlist() throws BusinessException {
+		Utente utente = new Utente();
+		Long idVideogioco = (long) 3;
+		service.addGameToWishlist(idVideogioco, utente);
 	}
 	
 	@GetMapping("/create")

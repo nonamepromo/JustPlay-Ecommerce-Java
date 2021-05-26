@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
+import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,8 +32,8 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	private static final String FIND_VIDEOGIOCHI = "SELECT vg.* FROM videogiochi vg order by vg.titolo";
 	private static final String FIND_VIDEOGIOCO_BY_PK = "SELECT vg.* FROM videogiochi vg WHERE vg.id = ?";
 	private static final String DELETE_VIDEOGIOCO = "DELETE FROM videogiochi WHERE id=?";
+	private static final String INSERT_VIDEOGIOCO_DESIDERATO = "INSERT INTO videogiochi_desiderati (fk_videogioco, fk_utente) VALUES (?,?)";
 	private static final String INSERT_VIDEOGIOCO_IN_VENDITA = "INSERT INTO videogiochi_in_vendita (fk_videogioco, fk_utente) VALUES (?,?)";
-	private static final String INSERT_VIDEOGIOCO_DESIDERATO = "INSERT INTO videogiochi_desiderato (fk_videogioco, fk_utente) VALUES (?,?)";
 
 	@Autowired
 	private DataSource dataSource;
@@ -123,6 +124,18 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 			throw new BusinessException("findVideogiocoByID", e);
 		}
 		return result;
+	}
+	
+	@Override
+	public void addGameToWishlist(Long idVideogioco, Utente utente) throws BusinessException {
+		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_DESIDERATO);) {
+			st.setLong(1, idVideogioco);
+			st.setLong(2, utente.getId());
+			st.executeUpdate();
+		} catch (SQLException e) {
+			log.error("addGameToWishlist", e);
+			throw new BusinessException("addGameToWishlist", e);
+		}
 	}
 
 	@Override

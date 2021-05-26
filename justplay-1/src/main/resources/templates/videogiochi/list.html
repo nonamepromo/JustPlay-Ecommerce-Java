@@ -15,7 +15,7 @@
           url: '[(@{/videogiochi/findallpaginated})]',
           dataType: 'json',
           success: function (response) {
-            
+
           }
         });
       });
@@ -24,6 +24,21 @@
     <script>
       function openDetails(idVideogioco) {
         window.location.href = "details?id=" + idVideogioco;
+      }
+    </script>
+
+    <script>
+      function addGameToWishlist(idVideogioco) {
+        $.ajax({
+          url: '[(@{/videogiochi/addGameToWishlist})]',
+          contentType: "application/json; charset=utf-8",
+          type: "GET",
+          data: { 'idVideogioco': idVideogioco },
+          dataType: 'json',
+          success: function (response) {
+
+          }
+        });
       }
     </script>
 
@@ -71,9 +86,11 @@
                 <a href="[(@{/videogiochi/details})]?id=" + ${videogioco.titolo}>
                   <img src="/justplay/img/game/game-1.jpg" class="card-img-top" alt="Assassins Creed Syndicate">
                 </a>
-                <div th:text="${videogioco.piattaforma}" class="badge" th:classappend="${videogioco.piattaforma}  == 'Ps4' ? badge-ps4 : (${videogioco.piattaforma}  == 'Xbox One' ? badge-xbox-one : badge-pc)"> </div>
+                <div th:text="${videogioco.piattaforma}" class="badge"
+                  th:classappend="${videogioco.piattaforma}  == 'Ps4' ? badge-ps4 : (${videogioco.piattaforma}  == 'Xbox One' ? badge-xbox-one : badge-pc)">
+                </div>
                 <div class="card-likes">
-                  <a href="#">15</a>
+                  <a th:onclick="|addGameToWishlist('${videogioco.id}')|" href="#">15</a>
                 </div>
               </div>
               <div class="card-block">

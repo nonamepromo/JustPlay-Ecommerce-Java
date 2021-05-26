@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 
+import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 
 public interface VideogiocoService {
@@ -14,7 +15,9 @@ public interface VideogiocoService {
 
 	ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws BusinessException;
 
-	Videogioco findVideogiocoByID(Long id) throws BusinessException;
+	Videogioco findVideogiocoByID(Long id) throws BusinessException;	
+
+	void addGameToWishlist(Long idVideogioco, Utente utente) throws BusinessException;
 
 	void deleteVideogioco(Videogioco videogioco) throws BusinessException;
 
