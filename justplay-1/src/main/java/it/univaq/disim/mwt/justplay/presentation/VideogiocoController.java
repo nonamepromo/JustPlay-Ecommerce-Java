@@ -51,20 +51,13 @@ public class VideogiocoController {
 	}
 	
 	@GetMapping("/addGameToWishlist")
-	public void addGameToWishlist(@RequestParam("idVideogioco") Long id) throws BusinessException {
+	public void addGameToWishlist(@RequestParam("idVideogioco") Long idVideogioco) throws BusinessException {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		Utente utente = (Utente)authentication.getPrincipal();
+		String id = authentication.getPrincipal().toString();
 		
-		System.out.println(authentication.getPrincipal());
+		Long idUtente = Long.parseLong(id);
 		
-		System.out.println(((Utente) authentication).getId());
-
-		System.out.println(authentication.getName());
-		
-		Long idUtente = (long) 3;
-		
-		Long idVideogioco = id;
 		service.addGameToWishlist(idVideogioco, idUtente);
 	}
 	

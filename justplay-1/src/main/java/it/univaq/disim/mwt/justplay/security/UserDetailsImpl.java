@@ -54,7 +54,7 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public String toString() {
-		return "UserDetailsImpl [username=" + utente.getUsername() + "]";
+		return utente.getId().toString();
 	}
 
 	public Utente getUtente() {

@@ -82,7 +82,7 @@
           <div th:each="videogioco : ${videogiochi}" class="col-12 col-sm-6 col-md-4">
             <div class="card card-lg">
               <div class="card-img">
-                <a href="[(@{/videogiochi/details})]?id=" + ${videogioco.titolo}>
+                <a th:onclick="|openDetails('${videogioco.id}')|">
                   <img src="/justplay/img/game/game-1.jpg" class="card-img-top" alt="Assassins Creed Syndicate">
                 </a>
                 <div th:text="${videogioco.piattaforma}" class="badge"
