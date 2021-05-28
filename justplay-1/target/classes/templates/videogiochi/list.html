@@ -104,7 +104,7 @@
                   th:classappend="${videogioco.piattaforma}  == 'Ps4' ? badge-ps4 : (${videogioco.piattaforma}  == 'Xbox One' ? badge-xbox-one : badge-pc)">
                 </div>
                 <div class="card-likes">
-                  <a th:onclick="|addGameToWishlist('${videogioco.id}')|"  href="#"></a>
+                  <a th:onclick="|addGameToWishlist('${videogioco.id}')|"></a>
                 </div>
               </div>
               <div class="card-block">
