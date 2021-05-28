@@ -31,14 +31,29 @@
       function addGameToWishlist(idVideogioco) {
         $.ajax({
           url: '[(@{/videogiochi/addGameToWishlist})]',
-          contentType: "application/json; charset=utf-8",
-          type: "GET",
-          data: { 'idVideogioco': idVideogioco },
-          dataType: 'json',
+          type: "POST",
+          data: 'idVideogioco=' + idVideogioco,
           success: function (response) {
+
           }
         });
       }
+    </script>
+
+    <script type="text/javascript">
+
+      function checkIfGameIsDesired() {
+
+        $.ajax({
+          type: "GET",
+          url: '[(@{/videogiochi/checkIfGameIsDesidered})]',
+          data: 'idUtente=' + 1 + '&idVideogioco=' + 4,
+          success: function (response) {
+            return response;
+          }
+        });
+      };
+
     </script>
 
     <section class="p-t-30">
@@ -89,7 +104,7 @@
                   th:classappend="${videogioco.piattaforma}  == 'Ps4' ? badge-ps4 : (${videogioco.piattaforma}  == 'Xbox One' ? badge-xbox-one : badge-pc)">
                 </div>
                 <div class="card-likes">
-                  <a th:onclick="|addGameToWishlist('${videogioco.id}')|" href="#">15</a>
+                  <a th:onclick="|addGameToWishlist('${videogioco.id}')|"  href="#"></a>
                 </div>
               </div>
               <div class="card-block">

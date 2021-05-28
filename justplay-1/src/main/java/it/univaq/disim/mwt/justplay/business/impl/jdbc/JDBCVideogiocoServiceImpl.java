@@ -21,6 +21,7 @@ import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
+import it.univaq.disim.mwt.justplay.domain.VideogiocoDesiderato;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -34,7 +35,8 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	private static final String DELETE_VIDEOGIOCO = "DELETE FROM videogiochi WHERE id=?";
 	private static final String INSERT_VIDEOGIOCO_DESIDERATO = "INSERT INTO videogiochi_desiderati (fk_videogioco, fk_utente) VALUES (?,?)";
 	private static final String INSERT_VIDEOGIOCO_IN_VENDITA = "INSERT INTO videogiochi_in_vendita (fk_videogioco, fk_utente) VALUES (?,?)";
-
+	private static final String CHECK_IF_VIDEOGIOCO_IS_DESIDERATO = "SELECT vg.* FROM videogiochi_desiderati vg WHERE vg.fk_utente = ? AND vg.fk_videogioco = ?";
+	
 	@Autowired
 	private DataSource dataSource;
 	
@@ -136,6 +138,24 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 			log.error("addGameToWishlist", e);
 			throw new BusinessException("addGameToWishlist", e);
 		}
+	}
+	
+	@Override
+	public boolean checkIfGameIsDesidered(Long idUtente, Long idVideogioco) throws BusinessException {
+		boolean result = false;
+		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(CHECK_IF_VIDEOGIOCO_IS_DESIDERATO);) {
+			st.setLong(1, idUtente);
+			st.setLong(2, idVideogioco);
+			try (ResultSet rs = st.executeQuery();) {
+				if (rs.next()) {
+					result = true;
+				}
+			}
+		} catch (SQLException e) {
+			log.error("checkIfGameIsDesidered", e);
+			throw new BusinessException("checkIfGameIsDesidered", e);
+		}
+		return result;
 	}
 
 	@Override
