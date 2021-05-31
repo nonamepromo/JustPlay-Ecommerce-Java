@@ -37,14 +37,34 @@ public class VideogiocoController {
 	@GetMapping("/list")
 	public String showAll(Model model) throws BusinessException {
 	    model.addAttribute("videogiochi", service.findAll());
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
+	    
+		getWishlist(model, idUtente);
+		
 	    return "videogiochi/list";
 	}
+	
+	public void getWishlist(Model model, Long idUtente) throws BusinessException {
 
-	@GetMapping("/findallpaginated")
-	public ResponseEntity<List<Videogioco>> findAllPaginated()
-			throws BusinessException {
-		return service.findAllVideogiochiPaginated();
+	    model.addAttribute("wishList", service.getWishlist(idUtente));
 	}
+	
+//	@GetMapping("/list")
+//	public String getWishList(Model model) throws BusinessException {
+//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//		String id = authentication.getPrincipal().toString();
+//		
+//		Long idUtente = Long.parseLong(id);
+//	    model.addAttribute("wishList", service.getWishlist(idUtente));
+//	    return "videogiochi/list";
+//	}
+
+//	@GetMapping("/findallpaginated")
+//	public ResponseEntity<List<Videogioco>> findAllPaginated()
+//			throws BusinessException {
+//		return service.findAllVideogiochiPaginated();
+//	}
 	
 	@GetMapping("/details")
 	public String details(@RequestParam("id") Long id, Model model) throws BusinessException {
@@ -54,8 +74,7 @@ public class VideogiocoController {
 	}
 	
 	@PostMapping("/addGameToWishlist")
-	@ResponseStatus(value = HttpStatus.OK)
-	public void addGameToWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco) throws BusinessException {
+	public String addGameToWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco) throws BusinessException {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
@@ -63,6 +82,19 @@ public class VideogiocoController {
 		Long idUtente = Long.parseLong(id);
 		
 		service.addGameToWishlist(idVideogioco, idUtente);
+	    return "videogiochi/list";
+	}
+	
+	@PostMapping("/removeGameFromWishlist")
+	public String removeGameFromWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco) throws BusinessException {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String id = authentication.getPrincipal().toString();
+		
+		Long idUtente = Long.parseLong(id);
+		
+		service.removeGameFromWishlist(idVideogioco, idUtente);
+	    return "videogiochi/list";
 	}
 	
 	@GetMapping("/checkIfGameIsDesidered")

@@ -14,11 +14,15 @@ public interface VideogiocoService {
 
 	List<Videogioco> findAll() throws BusinessException;
 
+	List<Long> getWishlist(Long idUtente) throws BusinessException;
+	
 	ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws BusinessException;
 
 	Videogioco findVideogiocoByID(Long id) throws BusinessException;	
 
 	void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
+	
+	void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
 	boolean checkIfGameIsDesidered(Long idVideogioco, Long idUtente) throws BusinessException;
 	

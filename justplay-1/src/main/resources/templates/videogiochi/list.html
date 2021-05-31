@@ -6,7 +6,7 @@
 
   <!-- main -->
   <div layout:fragment="content">
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
 
       $(document).ready(function () {
 
@@ -20,7 +20,7 @@
         });
       });
 
-    </script>
+    </script> -->
     <script>
       function openDetails(idVideogioco) {
         window.location.href = "details?id=" + idVideogioco;
@@ -31,6 +31,19 @@
       function addGameToWishlist(idVideogioco) {
         $.ajax({
           url: '[(@{/videogiochi/addGameToWishlist})]',
+          type: "POST",
+          data: 'idVideogioco=' + idVideogioco,
+          success: function (response) {
+
+          }
+        });
+      }
+    </script>
+    
+    <script>
+      function removeGameFromWishlist(idVideogioco) {
+        $.ajax({
+          url: '[(@{/videogiochi/removeGameFromWishlist})]',
           type: "POST",
           data: 'idVideogioco=' + idVideogioco,
           success: function (response) {
@@ -104,7 +117,11 @@
                   th:classappend="${videogioco.piattaforma}  == 'Ps4' ? badge-ps4 : (${videogioco.piattaforma}  == 'Xbox One' ? badge-xbox-one : badge-pc)">
                 </div>
                 <div class="card-likes">
+<<<<<<< Updated upstream
                   <a th:onclick="|addGameToWishlist('${videogioco.id}')|"></a>
+=======
+                  <a th:onclick="|removeGameFromWishlist('${videogioco.id}')|" th:style="${wishList.contains(videogioco.id)} ? 'color: red' : 'color: white'" href="#"></a>
+>>>>>>> Stashed changes
                 </div>
               </div>
               <div class="card-block">
