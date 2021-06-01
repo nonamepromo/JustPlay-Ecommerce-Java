@@ -173,23 +173,23 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		}
 	}
 	
-	@Override
-	public boolean checkIfGameIsDesidered(Long idUtente, Long idVideogioco) throws BusinessException {
-		boolean result = false;
-		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(CHECK_IF_VIDEOGIOCO_IS_DESIDERATO);) {
-			st.setLong(1, idUtente);
-			st.setLong(2, idVideogioco);
-			try (ResultSet rs = st.executeQuery();) {
-				if (rs.next()) {
-					result = true;
-				}
-			}
-		} catch (SQLException e) {
-			log.error("checkIfGameIsDesidered", e);
-			throw new BusinessException("checkIfGameIsDesidered", e);
-		}
-		return result;
-	}
+	// @Override
+	// public boolean checkIfGameIsDesidered(Long idUtente, Long idVideogioco) throws BusinessException {
+	// 	boolean result = false;
+	// 	try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(CHECK_IF_VIDEOGIOCO_IS_DESIDERATO);) {
+	// 		st.setLong(1, idUtente);
+	// 		st.setLong(2, idVideogioco);
+	// 		try (ResultSet rs = st.executeQuery();) {
+	// 			if (rs.next()) {
+	// 				result = true;
+	// 			}
+	// 		}
+	// 	} catch (SQLException e) {
+	// 		log.error("checkIfGameIsDesidered", e);
+	// 		throw new BusinessException("checkIfGameIsDesidered", e);
+	// 	}
+	// 	return result;
+	// }
 
 	@Override
 	public void deleteVideogioco(Videogioco videogioco) throws BusinessException {

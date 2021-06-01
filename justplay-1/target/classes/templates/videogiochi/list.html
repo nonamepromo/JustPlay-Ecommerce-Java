@@ -53,7 +53,7 @@
       }
     </script>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
 
       function checkIfGameIsDesired() {
 
@@ -67,7 +67,7 @@
         });
       };
 
-    </script>
+    </script> -->
 
     <section class="p-t-30">
       <div class="container">
@@ -117,11 +117,7 @@
                   th:classappend="${videogioco.piattaforma}  == 'Ps4' ? badge-ps4 : (${videogioco.piattaforma}  == 'Xbox One' ? badge-xbox-one : badge-pc)">
                 </div>
                 <div class="card-likes">
-<<<<<<< Updated upstream
-                  <a th:onclick="|addGameToWishlist('${videogioco.id}')|"></a>
-=======
-                  <a th:onclick="|removeGameFromWishlist('${videogioco.id}')|" th:style="${wishList.contains(videogioco.id)} ? 'color: red' : 'color: white'" href="#"></a>
->>>>>>> Stashed changes
+                  <a th:onclick="${wishList.contains(videogioco.id)} ? |removeGameFromWishlist('${videogioco.id}')| : |addGameToWishlist('${videogioco.id}')|" th:style="${wishList.contains(videogioco.id)} ? 'color: red' : 'color: white'" href="#"></a>
                 </div>
               </div>
               <div class="card-block">

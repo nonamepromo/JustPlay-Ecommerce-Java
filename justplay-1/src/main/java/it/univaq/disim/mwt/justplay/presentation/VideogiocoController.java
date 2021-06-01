@@ -97,19 +97,19 @@ public class VideogiocoController {
 	    return "videogiochi/list";
 	}
 	
-	@GetMapping("/checkIfGameIsDesidered")
-	public ResponseEntity<String> checkIfGameIsDesidered(@RequestParam("idUtente") Long idUtente, @RequestParam("idVideogioco") Long idVideogioco) throws BusinessException {
-		boolean exist = service.checkIfGameIsDesidered(idUtente, idVideogioco);
-		String result = null;
-		if(exist) {
-			result = "SUCCESS";
-			}
-		else {
-			result = "FAIL";
-		}
-		return ResponseEntity.ok(result);
+	// @GetMapping("/checkIfGameIsDesidered")
+	// public ResponseEntity<String> checkIfGameIsDesidered(@RequestParam("idUtente") Long idUtente, @RequestParam("idVideogioco") Long idVideogioco) throws BusinessException {
+	// 	boolean exist = service.checkIfGameIsDesidered(idUtente, idVideogioco);
+	// 	String result = null;
+	// 	if(exist) {
+	// 		result = "SUCCESS";
+	// 		}
+	// 	else {
+	// 		result = "FAIL";
+	// 	}
+	// 	return ResponseEntity.ok(result);
 
-	}
+	// }
 	
 	@GetMapping("/create")
 	public String createStart(Model model) {

@@ -24,7 +24,7 @@ public interface VideogiocoService {
 	
 	void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
-	boolean checkIfGameIsDesidered(Long idVideogioco, Long idUtente) throws BusinessException;
+	//boolean checkIfGameIsDesidered(Long idVideogioco, Long idUtente) throws BusinessException;
 	
 	void deleteVideogioco(Videogioco videogioco) throws BusinessException;
 
