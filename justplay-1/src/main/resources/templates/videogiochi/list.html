@@ -117,7 +117,7 @@
                   th:classappend="${videogioco.piattaforma}  == 'Ps4' ? badge-ps4 : (${videogioco.piattaforma}  == 'Xbox One' ? badge-xbox-one : badge-pc)">
                 </div>
                 <div class="card-likes">
-                  <a th:onclick="${wishList.contains(videogioco.id)} ? |removeGameFromWishlist('${videogioco.id}')| : |addGameToWishlist('${videogioco.id}')|" th:style="${wishList.contains(videogioco.id)} ? 'color: red' : 'color: white'" href="#"></a>
+                  <a th:onclick="${wishList.contains(videogioco.id)} ? |removeGameFromWishlist('${videogioco.id}')| : |addGameToWishlist('${videogioco.id}')|" th:style="${wishList.contains(videogioco.id)} ? 'color: red' : 'color: white'" th:href="@{/videogiochi/list}"></a>
                 </div>
               </div>
               <div class="card-block">

@@ -38,9 +38,12 @@ public class VideogiocoController {
 	public String showAll(Model model) throws BusinessException {
 	    model.addAttribute("videogiochi", service.findAll());
 	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
+	    if(authentication.getPrincipal() != "anonymousUser") {
+
+		    Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
+			getWishlist(model, idUtente);
+	    }
 	    
-		getWishlist(model, idUtente);
 		
 	    return "videogiochi/list";
 	}
