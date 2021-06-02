@@ -230,6 +230,7 @@
             <ul>
               <li sec:authorize="!isAuthenticated()" class="hidden-xs-down"><a href="#" th:href="@{/common/login}">[[#{common.login}]]</a></li>
               <li sec:authorize="!isAuthenticated()" class="hidden-xs-down"><a href="#" th:href="@{/common/register}">[[#{common.register}]]</a></li>
+              <li sec:authorize="isAuthenticated()" class="hidden-xs-down"><a href="#" th:href="@{/common/profilo}">[[#{common.profile}]]</a></li>
               <li sec:authorize="isAuthenticated()" class="hidden-xs-down"><a href="#" th:href="@{/logout}">[[#{common.logout}]]</a></li>
               <li><a data-toggle="search"><i class="fa fa-search"></i></a></li>
             </ul>
