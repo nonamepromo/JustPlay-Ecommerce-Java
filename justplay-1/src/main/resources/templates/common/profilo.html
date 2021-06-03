@@ -6,7 +6,6 @@
 
   <!-- main -->
   <div layout:fragment="content">
-  
    <section th:object="${profilo}" method="get"  class="hero hero-profile" style="background-image: url('https://img.youtube.com/vi/D3pYbbA1kfk/maxresdefault.jpg');">
     <div class="overlay"></div>
     <div class="container">
@@ -42,14 +41,16 @@
         <li class="active"><a href="#">Dati Personali</a></li>
         <li><a href="#">Videogiochi Desiderati</a></li>
         <li><a href="#">Videogiochi Giocati</a></li>
-        <li><a href="#">Friends (628)</a></li>
+        <li><a href="#">Messi in Vendita</a></li>
         <li><a href="#">Images (23)</a></li>
-      </ul>
-    </div>
-  </section>
-
+      </ul>      
+    </div>    
+  </section>  
   <section class="p-y-30">
     <div class="container">
+    
+      <div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}"></div>
+      
       <div class="row">
         <div class="col-lg-3 hidden-md-down">
           <!-- widget about -->
@@ -75,10 +76,18 @@
 	              		<i class="fa fa-user"></i>
 	              		<input type="text" th:field="*{username}" class="form-control form-control-secondary" placeholder="Username">
 	        		</div>
+	        		 <div class="form-group input-icon-left m-b-10">
+	              		<i class="fa fa-user"></i>
+	                  <input type="text" th:field="*{nome}" class="form-control form-control-secondary" placeholder="Email Address" required maxlength="100">
+	                </div>
+	                <div class="form-group input-icon-left m-b-10">
+	              		<i class="fa fa-user"></i>
+	                  <input type="text" th:field="*{cognome}" class="form-control form-control-secondary" placeholder="Email Address" required maxlength="100">
+	                </div>
 	                <div class="form-group input-icon-left m-b-10">
 	                  <i class="fa fa-envelope"></i>
 	                  <input type="email" th:field="*{email}" class="form-control form-control-secondary" placeholder="Email Address" required maxlength="100">
-	                </div>
+	                </div>             
 	             	<button type="submit" th:text="#{common.submit}" class="btn btn-primary m-t-10 btn-block"></button>
                </form>
           </div>
