@@ -3,54 +3,104 @@
 	  xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{layout/layout}">
 <body>
-<div layout:fragment="content">
 
-<script th:inline="javascript">
-  $(document).ready(function () {
-    //Datemask dd/mm/yyyy
-    $('#dataNascita').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
-  });
-</script>
+  <!-- main -->
+  <div layout:fragment="content">
+  
+   <section th:object="${profilo}" method="get"  class="hero hero-profile" style="background-image: url('https://img.youtube.com/vi/D3pYbbA1kfk/maxresdefault.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="hero-block">
+        <h5 th:text="*{username}"></h5>
+        <a class="btn btn-primary btn-sm btn-shadow btn-rounded btn-icon btn-add" href="#" data-toggle="tooltip" title="Add friend" role="button"><i class="fa fa-user-plus"></i></a>
+      </div>
+    </div>
+  </section>
 
-<div class="row">
-<div class="col-12">
-	<div class="card card-info">
-		<div class="card-header"><h3 class="card-title" th:text="#{profilo.titolo}"></h3></div>
-		<form class="form-horizontal" th:action="@{/common/profilo}" th:object="${profilo}" method="post">
-		  <div class="card-body">
-	  	    <div class="input-group mb-3">
-                 <div class="input-group-prepend">
-                   <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                 </div>
-                 <input type="email" th:field="*{email}" class="form-control" required maxlength="100">
-            </div>		  	
-	  	    <div class="input-group mb-3">
-                 <div class="input-group-prepend">
-                   <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                 </div>
-                 <input type="tel" th:field="*{telefono}" class="form-control" required>                 
-            </div>
-	  	    <div class="input-group mb-3">
-                 <div class="input-group-prepend">
-                   <span class="input-group-text"><i class="far fa-address-card"></i></span>
-                 </div>
-                 <input type="text" th:field="*{codiceFiscale}" class="form-control" required maxlength="16">
-            </div>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-              </div>
-              <input type="text" th:field="*{dataNascita}" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask required>
-            </div>            
-		  </div>
-		  <div class="card-footer">
-			<button type="submit" class="btn btn-info" th:text="#{common.submit}"></button>
-			<a href="#" th:href="@{/common/welcome}" class="btn btn-default float-right" th:text="#{common.cancel}"></a>	
-		  </div>
-		</form>
-	</div>
-</div>
-</div>
-</div>
-</body>
+  <section class="toolbar toolbar-profile" data-fixed="true">
+    <div class="container">
+      <div class="profile-avatar">
+        <a href="#"><img src="img/user/avatar.jpg" alt=""></a>
+        <div class="sticky">
+          <a href="#"><img src="img/user/avatar-sm.jpg" alt=""></a>
+          <div class="profile-info">
+            <h5 th:text ="*{username}" ></h5>
+            <span>@nathan</span>
+          </div>
+        </div>
+      </div>
+      <div class="dropdown float-right hidden-md-down">
+        <a class="btn btn-secondary btn-icon btn-sm m-l-25 float-right" href="#" data-toggle="dropdown" role="button"><i class="fa fa-cog"></i></a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item active" href="#">Setting</a>
+          <a class="dropdown-item" href="#">Mail</a>
+          <a class="dropdown-item" href="#">Report</a>
+          <a class="dropdown-item" href="#">Block</a>
+        </div>
+      </div>
+      <ul class="toolbar-nav hidden-md-down">
+        <li class="active"><a href="#">Dati Personali</a></li>
+        <li><a href="#">Videogiochi Desiderati</a></li>
+        <li><a href="#">Videogiochi Giocati</a></li>
+        <li><a href="#">Friends (628)</a></li>
+        <li><a href="#">Images (23)</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="p-y-30">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 hidden-md-down">
+          <!-- widget about -->
+          <div class="widget widget-about">
+            <h5 class="widget-title">About Me</h5>
+            <p>I am a frontend developer &amp; web designer. I love to work on creative and standalone projects like gameforest.</p>
+            <ul>
+              <li><i class="fa fa-clock-o"></i> Joined December 2009</li>
+              <li><i class="fa fa-map-marker"></i> United Kingdom</li>
+            </ul>
+          </div>
+
+
+        
+        </div>
+
+        <div class="col-lg-9">
+          <!-- post -->
+          <div class="post post-card post-profile">
+            <div class="post-header">
+               <form class="form-horizontal" th:action="@{/common/profilo}" th:object="${profilo}" method="post">                   
+	            	<div class="form-group input-icon-left m-b-10">
+	              		<i class="fa fa-user"></i>
+	              		<input type="text" th:field="*{username}" class="form-control form-control-secondary" placeholder="Username">
+	        		</div>
+	                <div class="form-group input-icon-left m-b-10">
+	                  <i class="fa fa-envelope"></i>
+	                  <input type="email" th:field="*{email}" class="form-control form-control-secondary" placeholder="Email Address" required maxlength="100">
+	                </div>
+	             	<button type="submit" th:text="#{common.submit}" class="btn btn-primary m-t-10 btn-block"></button>
+               </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  </div>
+  
+   <!-- plugins js -->
+  <script src="plugins/sticky/jquery.sticky.js"></script>
+  <script src="plugins/lightbox/lightbox.js"></script>
+  <script>
+    (function($) {
+      "use strict";
+      // lightbox
+      $('[data-lightbox]').lightbox({
+        disqus: 'gameforestyakuzieu'
+      });
+    })(jQuery);
+  </script>
+  
+  </body>
 </html>

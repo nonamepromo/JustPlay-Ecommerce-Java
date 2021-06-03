@@ -31,14 +31,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.headers().disable().csrf().disable()
-				.formLogin().loginPage("/login").loginProcessingUrl("/login")
+				.formLogin().loginPage("/common/login").loginProcessingUrl("/login")
 				.failureUrl("/?error=invalidlogin").defaultSuccessUrl("/", false)
 				.and().logout().logoutSuccessUrl("/")
 				.and().exceptionHandling().accessDeniedPage("/common/accessdenied")
 				.and().authorizeRequests()
 				// Specificare le url che sono soggette ad autenticazione ed autorizzazione
-				.antMatchers("/", "/static/**", "/favicon.ico").permitAll();
-				//.antMatchers("/common/**").authenticated()
+				.antMatchers("/", "/static/**", "/favicon.ico").permitAll()
+				.antMatchers("/common/profilo").authenticated();
 				//.antMatchers("/areessd/**", "/ssds/**").hasAnyRole("amministratore")
 				//.antMatchers("/insegnamenti/**", "/appelli/**").hasAnyRole("docente");
 	}
