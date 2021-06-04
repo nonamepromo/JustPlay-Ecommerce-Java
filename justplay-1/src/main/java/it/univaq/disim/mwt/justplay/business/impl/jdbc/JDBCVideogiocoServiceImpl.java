@@ -58,6 +58,10 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 				videogioco.setPiattaforma(rs.getString("piattaforma"));
 				videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
 				videogioco.setDescrizione(rs.getString("descrizione"));
+				videogioco.setPs4Url(rs.getString("ps4Url"));
+				videogioco.setXboxUrl(rs.getString("xboxUrl"));
+				videogioco.setPcUrl(rs.getString("pcUrl"));
+				videogioco.setImageUrl(rs.getString("imageUrl"));
 				videogiochi.add(videogioco);
 			}
 		} catch (SQLException e) {
@@ -81,6 +85,10 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 				videogioco.setDescrizione(rs.getString("descrizione"));
 				videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
 				videogioco.setPiattaforma(rs.getString("piattaforma"));
+				videogioco.setPs4Url(rs.getString("ps4Url"));
+				videogioco.setXboxUrl(rs.getString("xboxUrl"));
+				videogioco.setPcUrl(rs.getString("pcUrl"));
+				videogioco.setImageUrl(rs.getString("imageUrl"));
 				result.add(videogioco);
 			}
 		} catch (SQLException e) {
@@ -140,6 +148,11 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 					result.setId(rs.getLong("id"));
 					result.setTitolo(rs.getString("titolo"));
 					result.setDescrizione(rs.getString("descrizione"));
+					result.setAnnoDiUscita(rs.getInt("annoDiUscita"));
+					result.setPs4Url(rs.getString("ps4Url"));
+					result.setXboxUrl(rs.getString("xboxUrl"));
+					result.setPcUrl(rs.getString("pcUrl"));
+					result.setImageUrl(rs.getString("imageUrl"));
 				}
 			}
 		} catch (SQLException e) {

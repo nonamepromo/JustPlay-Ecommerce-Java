@@ -39,7 +39,7 @@
         });
       }
     </script>
-    
+
     <script>
       function removeGameFromWishlist(idVideogioco) {
         $.ajax({
@@ -111,13 +111,18 @@
             <div class="card card-lg">
               <div class="card-img">
                 <a th:onclick="|openDetails('${videogioco.id}')|">
-                  <img src="/justplay/img/game/game-1.jpg" class="card-img-top" alt="Assassins Creed Syndicate">
+                  <img style="height: 268px; object-fit: cover;" th:src="${videogioco.imageUrl}" class="card-img-top">
                 </a>
-                <div th:text="${videogioco.piattaforma}" class="badge"
-                  th:classappend="${videogioco.piattaforma}  == 'Ps4' ? badge-ps4 : (${videogioco.piattaforma}  == 'Xbox One' ? badge-xbox-one : badge-pc)">
-                </div>
-                <div class="card-likes">
-                  <a th:onclick="${wishList.contains(videogioco.id)} ? |removeGameFromWishlist('${videogioco.id}')| : |addGameToWishlist('${videogioco.id}')|" th:style="${wishList.contains(videogioco.id)} ? 'color: red' : 'color: white'" th:href="@{/videogiochi/list}"></a>
+                <div th:if="${videogioco.ps4Url != null}" class="badge badge-ps4"
+                  style="position: relative; bottom: 46px;">Ps4</div>
+                <div th:if="${videogioco.xboxUrl != null}" class="badge badge-xbox-one"
+                  style="position: relative; bottom: 46px;">Xbox One</div>
+                <div th:if="${videogioco.pcUrl != null}" class="badge" style="position: relative; bottom: 46px;"
+                  th:classappend="badge-steam">Pc</div>
+                <div th:if="${wishList != null}" class="card-likes">
+                  <a th:onclick="${wishList.contains(videogioco.id)} ? |removeGameFromWishlist('${videogioco.id}')| : |addGameToWishlist('${videogioco.id}')|"
+                    th:style="${wishList.contains(videogioco.id)} ? 'color: red' : 'color: white'"
+                    th:href="@{/videogiochi/list}"></a>
                 </div>
               </div>
               <div class="card-block">
@@ -127,7 +132,9 @@
                 <div class="card-meta">
                   <span th:text="${videogioco.annoDiUscita}"> </span>
                 </div>
-                <p th:text="${videogioco.descrizione}" class="card-text">'</p>
+                <p th:text="${videogioco.descrizione}" class="card-text"></p>
+                <!-- <p th:text="${videogioco.descrizione}" class="card-text" style="overflow: hidden; text-overflow: ellipsis;
+   		 			white-space: nowrap;"></p> -->
               </div>
             </div>
           </div>

@@ -7,18 +7,18 @@
   <!-- main -->
   <div layout:fragment="content">
     
-    <section class="hero hero-game" style="background-image: url('img/hero/hero.jpg');">
+    <section class="hero hero-game" th:style="'background:url('+ ${videogioco.imageUrl} +'); background-size: 1262px;'">
       <div class="overlay"></div>
       <div class="container">
         <div class="hero-block">
           <div class="hero-left">
             <h2 th:text="${videogioco.titolo}" class="hero-title"></h2>
             <p></p>
-            <a class="btn btn-primary btn-shadow btn-rounded btn-lg" href="https://www.youtube.com/watch?v=c0i88t0Kacs"
-              data-lightbox role="button">Watch Trailer <i class="fa fa-play"></i></a>
+            <a class="btn btn-outline-default btn-shadow btn-rounded btn-lg" href="https://www.youtube.com/watch?v=c0i88t0Kacs"
+              data-lightbox role="button">Aggiungi alla wishlist <i class="fa fa-heart-o"></i></a>
             <a class="btn btn-outline-default btn-shadow btn-rounded btn-lg m-l-10"
               href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/5007730" target="_blank"
-              role="button">Purchase Now <i class="fa fa-shopping-cart"></i></a>
+              role="button">Metti in vendita <i class="fa fa-shopping-cart"></i></a>
           </div>
           <div class="hero-right">
             <div class="hero-review">
@@ -65,11 +65,11 @@
       </div>
     </section>
 
-    <section class="p-t-30">
+    <section class="p-t-10">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <div class="toolbar-custom">
+            <!-- <div class="toolbar-custom">
               <a class="btn btn-default btn-icon m-r-10 float-left hidden-xs-down" href="#" data-toggle="tooltip"
                 title="refresh" data-placement="bottom" role="button"><i class="fa fa-refresh"></i></a>
               <div class="dropdown float-left">
@@ -96,7 +96,7 @@
                   <a class="dropdown-item" href="#">Oldest</a>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- post -->
             <div class="post">
@@ -169,7 +169,6 @@
                     <span class="sr-only">Next</span>
                   </a>
                 </div>
-                <span class="badge badge-success">Carousel</span>
               </div>
               <p>The game plays much like the previous installment, <b>The Witcher 3</b>, with minor refinements made.
                 The game will track both player choice and actions which ultimately affect how the game will end. The
@@ -269,13 +268,13 @@
                   style="background-image: url('https://img.youtube.com/vi/U75Qkzc2tqA/maxresdefault.jpg')">
                   <div class="overlay"></div>
                   <div class="widget-item">
-                    <h4>The Witcher 3: Wild Hunt</h4>
-                    <span class="meta">Released: May 18, 2015</span>
+                    <h4 th:text="${videogioco.titolo}"></h4>
+                    <span th:text="${videogioco.annoDiUscita}" class="meta"></span>
 
-                    <h5>Platforms</h5>
-                    <a href="#"><span class="badge badge-xbox-one">Xbox One</span></a>
-                    <a href="#"><span class="badge badge-ps4">Ps4</span></a>
-                    <a href="#"><span class="badge badge-steam">Steam</span></a>
+                    <h5>Piattaforme</h5>
+                    <a th:if="${videogioco.ps4Url != null}" href="#"><span class="badge badge-ps4">Ps4</span></a>
+                    <a th:if="${videogioco.xboxUrl != null}" href="#"><span class="badge badge-xbox-one">Xbox One</span></a>
+                    <a th:if="${videogioco.pcUrl != null}" href="#"><span class="badge badge-steam">Pc</span></a>
 
                     <h5>Developed</h5>
                     <ul>

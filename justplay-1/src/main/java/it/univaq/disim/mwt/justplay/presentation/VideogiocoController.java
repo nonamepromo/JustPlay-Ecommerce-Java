@@ -33,7 +33,7 @@ public class VideogiocoController {
 
 	@Autowired
 	private VideogiocoService service;
-	
+
 	@GetMapping("/list")
 	public String showAll(Model model) throws BusinessException {
 	    model.addAttribute("videogiochi", service.findAll());
@@ -43,9 +43,8 @@ public class VideogiocoController {
 		    Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
 			getWishlist(model, idUtente);
 	    }
+		return "videogiochi/list";
 	    
-		
-	    return "videogiochi/list";
 	}
 	
 	public void getWishlist(Model model, Long idUtente) throws BusinessException {
