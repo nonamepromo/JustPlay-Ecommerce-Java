@@ -72,6 +72,16 @@ public class VideogiocoController {
 	public String details(@RequestParam("id") Long id, Model model) throws BusinessException {
 		Videogioco videogioco = service.findVideogiocoByID(id);
 		model.addAttribute("videogioco", videogioco);
+		String[] ps4Urls = null;
+		String[] xboxUrls = null;
+		String[] pcUrls = null;
+		if(videogioco.getPs4Url() != null) {ps4Urls = videogioco.getPs4Url().split(";");};
+		if(videogioco.getXboxUrl() != null) {xboxUrls = videogioco.getXboxUrl().split(";");};
+		if(videogioco.getPcUrl() != null) {pcUrls = videogioco.getPcUrl().split(";");};
+		model.addAttribute("ps4Urls", ps4Urls);
+		model.addAttribute("xboxUrls", xboxUrls);
+		model.addAttribute("pcUrls", pcUrls);
+
 		return "videogiochi/details";
 	}
 	
