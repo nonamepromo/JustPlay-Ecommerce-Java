@@ -49,6 +49,7 @@
     <div class="container">
       <div class="heading">
         <i class="fa fa-steam"></i>
+        <div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}"></div>
          <p th:if="${param.error != null}" th:text="#{common.loginerror}"></p>
         <h2>Recent Games</h2>
         <a href="#" th:href="@{/videogiochi/list}" style="font-size: 20px; color: red;">Per comodità videogiochi list</a> 
