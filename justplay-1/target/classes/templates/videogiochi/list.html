@@ -113,19 +113,20 @@
                 <a th:onclick="|openDetails('${videogioco.id}')|">
                   <img style="height: 268px; object-fit: cover;" th:src="${videogioco.imageUrl}" class="card-img-top">
                 </a>
-                <div th:if="${videogioco.ps4Url != null}" class="badge badge-ps4"
-                  style="position: relative; bottom: 46px;">Ps4</div>
-                <div th:if="${videogioco.xboxUrl != null}" class="badge badge-xbox-one"
-                  style="position: relative; bottom: 46px;">Xbox One</div>
-                <div th:if="${videogioco.pcUrl != null}" class="badge" style="position: relative; bottom: 46px;"
-                  th:classappend="badge-steam">Pc</div>
-                <div th:if="${wishList != null}" class="card-likes">
+                <div th:if="${wishList != null}" th:classappend="${wishList.contains(videogioco.id)} ? 'card-liked' : 'card-likes'"
+                   style="bottom: -43px;">
                   <a th:onclick="${wishList.contains(videogioco.id)} ? |removeGameFromWishlist('${videogioco.id}')| : |addGameToWishlist('${videogioco.id}')|"
-                    th:style="${wishList.contains(videogioco.id)} ? 'color: red' : 'color: white'"
+                    th:style="${wishList.contains(videogioco.id)} ? 'color: red' : 'color: light-grey'"
                     th:href="@{/videogiochi/list}"></a>
                 </div>
               </div>
               <div class="card-block">
+                <div th:if="${videogioco.ps4Url != null}" class="badge badge-ps4"
+                  style="position: relative; bottom: 13px;">Ps4</div>
+                <div th:if="${videogioco.xboxUrl != null}" class="badge badge-xbox-one"
+                  style="position: relative; bottom: 13px;">Xbox One</div>
+                <div th:if="${videogioco.pcUrl != null}" class="badge" style="position: relative; bottom: 13px;"
+                  th:classappend="badge-steam">Pc</div>
                 <h4 class="card-title">
                   <a th:onclick="|openDetails('${videogioco.id}')|" th:text="${videogioco.titolo}"> </a>
                 </h4>

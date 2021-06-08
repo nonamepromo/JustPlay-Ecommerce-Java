@@ -111,19 +111,20 @@
                     <span><a href="blog-post-video.html#comments"><i class="fa fa-comment-o"></i> 33 comments</a></span>
                   </div> -->
               <div th:if="${ps4Urls} != null" class="mt-4 mb-4">
-                <h1 class="post-title">
-                  Ps4:
-                </h1>
+                <span class="badge badge-ps4">Ps4</span>
                 <div th:each="ps4Url : ${ps4Urls}" class="row">
-                  <a class="col-md-6" th:href="${ps4Url}" target="_blank">
+                  <a class="col-md-4" th:href="${ps4Url}" target="_blank">
                     <img class="mt-3" th:if="${ps4Url.contains('amazon')}"
-                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1280px-Amazon_logo.svg.png"
+                      src="https://www.kanguru.it/wp-content/uploads/2017/09/amazon-logo.png"
                       style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
                     <img class="mt-3" th:if="${ps4Url.contains('unieuro')}"
                       src="https://upload.wikimedia.org/wikipedia/it/thumb/b/b3/Unieuro_Logo_2015.png/1200px-Unieuro_Logo_2015.png"
                       style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
+                    <img class="mt-3" th:if="${ps4Url.contains('mediaworld')}"
+                      src="https://www.mediaworld.it/frontend/2018-11/MediaWorld_Logo_1.png"
+                      style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
                   </a>
-                  <h4 class="col-md-4 mt-3">15,99 €</h4>
+                  <a class="col-md-2 mt-3" th:href="${ps4Url}" target="_blank"><h4>15,99 €</h4></a>
                 </div>
               </div>
               <!-- <div class="post-meta">
@@ -132,19 +133,20 @@
                     <span><a href="blog-post-video.html#comments"><i class="fa fa-comment-o"></i> 33 comments</a></span>
                   </div> -->
               <div th:if="${xboxUrls} != null" class="mt-4 mb-4">
-                <h1 class="post-title">
-                  Xbox One:
-                </h1>
+                <span class="badge badge-xbox">Xbox One</span>
                 <div th:each="xboxUrl : ${xboxUrls}" class="row">
-                  <a class="col-md-6" th:href="${xboxUrl}" target="_blank">
+                  <a class="col-md-4" th:href="${xboxUrl}" target="_blank">
                     <img class="mt-3" th:if="${xboxUrl.contains('amazon')}"
-                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1280px-Amazon_logo.svg.png"
+                      src="https://www.kanguru.it/wp-content/uploads/2017/09/amazon-logo.png"
                       style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
                     <img class="mt-3" th:if="${xboxUrl.contains('unieuro')}"
                       src="https://upload.wikimedia.org/wikipedia/it/thumb/b/b3/Unieuro_Logo_2015.png/1200px-Unieuro_Logo_2015.png"
                       style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
+                    <img class="mt-3" th:if="${xboxUrl.contains('mediaworld')}"
+                      src="https://www.mediaworld.it/frontend/2018-11/MediaWorld_Logo_1.png"
+                      style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
                   </a>
-                  <h4 class="col-md-4 mt-3">15,99 €</h4>
+                  <a class="col-md-2 mt-3" th:href="${xboxUrl}" target="_blank"><h4>15,99 €</h4></a>
                 </div>
               </div>
               <!-- <div class="post-meta">
@@ -153,19 +155,20 @@
                     <span><a href="blog-post-video.html#comments"><i class="fa fa-comment-o"></i> 33 comments</a></span>
                   </div> -->
               <div th:if="${pcUrls} != null" class="mt-4 mb-4">
-                <h1 class="post-title">
-                  Pc:
-                </h1>
+                <span class="badge badge-steam">Pc</span>
                 <div th:each="pcUrl : ${pcUrls}" class="row">
-                  <a class="col-md-6" th:href="${pcUrl}" target="_blank">
+                  <a class="col-md-4" th:href="${pcUrl}" target="_blank">
                     <img class="mt-3" th:if="${pcUrl.contains('amazon')}"
-                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1280px-Amazon_logo.svg.png"
+                      src="https://www.kanguru.it/wp-content/uploads/2017/09/amazon-logo.png"
                       style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
                     <img class="mt-3" th:if="${pcUrl.contains('unieuro')}"
                       src="https://upload.wikimedia.org/wikipedia/it/thumb/b/b3/Unieuro_Logo_2015.png/1200px-Unieuro_Logo_2015.png"
                       style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
+                    <img class="mt-3" th:if="${pcUrl.contains('mediaworld')}"
+                      src="https://www.mediaworld.it/frontend/2018-11/MediaWorld_Logo_1.png"
+                      style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
                   </a>
-                  <h4 class="col-md-4 mt-3">15,99 €</h4>
+                  <a class="col-md-2 mt-3" th:href="${pcUrl}" target="_blank"><h4>15,99 €</h4></a>
                 </div>
               </div>
             </div>
