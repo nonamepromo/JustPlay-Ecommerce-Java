@@ -73,101 +73,7 @@
                       </div>
                     </li>
                   </ul>
-                </li>
-                <li class="has-dropdown">
-                  <a href="blog.html">Blog</a>
-                  <ul>
-                    <li class="has-dropdown">
-                      <a href="blog.html">Blog Default</a>
-                      <ul>
-                        <li><a href="blog.html">Blog Lists</a></li>
-                        <li><a href="blog-sidebar.html">Sidebar</a></li>
-                        <li><a href="blog-post.html">Single Post</a></li>
-                      </ul>
-                    </li>
-                    <li class="has-dropdown">
-                      <a href="blog-medium.html">Blog Medium</a>
-                      <ul>
-                        <li><a href="blog-medium.html">Blog Lists</a></li>
-                        <li><a href="blog-post-medium.html">Single Post</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="blog-cards.html">Blog Cards</a></li>
-                    <li><a href="blog-columns.html">Blog Columns</a></li>
-                    <li><a href="blog-timeline.html">Blog Timeline</a></li>
-                    <li class="has-dropdown">
-                      <a href="blog-post.html">Blog Single</a>
-                      <ul>
-                        <li><a href="blog-post.html">Image Post</a></li>
-                        <li><a href="blog-post-carousel.html">Carousel Post</a></li>
-                        <li><a href="blog-post-video.html">Video Post</a></li>
-                        <li><a href="blog-post-audio.html">Audio Post</a></li>
-                        <li><a href="blog-post-disqus.html">Disqus Comments</a></li>
-                        <li><a href="blog-post-facebook.html">Facebook Comments</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="videos.html">Videos</a></li>
-                <li class="has-dropdown">
-                  <a href="forums.html">Forums</a>
-                  <ul>
-                    <li><a href="forums.html">Forum</a></li>
-                    <li><a href="forum-topic.html">Forum Topic</a></li>
-                    <li><a href="forum-post.html">Forum Post</a></li>
-                    <li><a href="forum-create.html">Forum Create</a></li>
-                  </ul>
-                </li>
-                <li class="has-dropdown">
-                  <a href="#">Pages</a>
-                  <ul>
-                    <li class="has-dropdown">
-                      <a href="games.html">Games</a>
-                      <ul>
-                        <li><a href="games.html">Game Lists</a></li>
-                        <li><a href="game-post.html">Game Post</a></li>
-                      </ul>
-                    </li>
-                    <li class="has-dropdown">
-                      <a href="reviews.html">Reviews</a>
-                      <ul>
-                        <li><a href="reviews.html">Review Lists</a></li>
-                        <li><a href="review-post.html">Review Post</a></li>
-                      </ul>
-                    </li>
-                    <li class="has-dropdown">
-                      <a href="forums.html">Forums</a>
-                      <ul>
-                        <li><a href="forums.html">Forum</a></li>
-                        <li><a href="forum-topic.html">Forum Topic</a></li>
-                        <li><a href="forum-post.html">Forum Post</a></li>
-                        <li><a href="forum-create.html">Forum Create</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li class="has-dropdown">
-                      <a href="videos.html">Videos</a>
-                      <ul>
-                        <li><a href="videos.html">Video Lists</a></li>
-                        <li><a href="video-post.html">Video Post</a></li>
-                      </ul>
-                    </li>
-                    <li class="has-dropdown">
-                      <a href="#">User</a>
-                      <ul>
-                        <li><a href="profile.html">Profile</a></li>
-                        <li><a href="#" th:href="@{/common/login}">Login</a></li>
-                        <li><a href="login-2.html">Login 2</a></li>
-                        <li><a href="register.html">Register</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="faq.html">Faq</a></li>
-                    <li><a href="404.html">404</a></li>
-                    <li><a href="full-width.html">Full Width</a></li>
-                    <li><a href="blank-page.html">Blank Page</a></li>
-                  </ul>
-                </li>
+                </li>                              
                 <li class="has-dropdown mega-menu">
                   <a href="#">Components</a>
                   <ul style="background-image: url('img/menu/mega-menu.png');">
@@ -229,12 +135,19 @@
           <div class="nav navbar-right">
             <ul>
               <li sec:authorize="!isAuthenticated()" class="hidden-xs-down"><a href="#" th:href="@{/common/login}">[[#{common.login}]]</a></li>
-              <li sec:authorize="!isAuthenticated()" class="hidden-xs-down"><a href="#" th:href="@{/common/register}">[[#{common.register}]]</a></li>
-              <li sec:authorize="isAuthenticated()" class="hidden-xs-down"><a href="#" th:href="@{/common/profilo}">[[#{common.profile}]]</a></li>
+              <li sec:authorize="!isAuthenticated()" class="hidden-xs-down"><a href="#" th:href="@{/common/register}">[[#{common.register}]]</a></li>             
+              <li sec:authorize="isAuthenticated()" class="hidden-xs-down has-dropdown"><a href="#" th:href="@{/common/profilo}">[[#{common.profile}]]</a>
+              	<ul>
+                    <li><a href="home-magazine.html">Videogiochi Desiderati</a></li>
+                    <li><a href="home-blog.html">Videogiochi Giocati</a></li>
+                    <li><a href="index.html">Videogiochi in Vendita</a></li>
+                    <li><a href="home-videos.html">Chat</a></li>
+              	</ul>             
+              </li>
               <li sec:authorize="isAuthenticated()" class="hidden-xs-down"><a href="#" th:href="@{/logout}">[[#{common.logout}]]</a></li>
               <li><a data-toggle="search"><i class="fa fa-search"></i></a></li>
             </ul>
-          </div>
+          </div>              
         </div>
       </div>
       <div class="navbar-search">
