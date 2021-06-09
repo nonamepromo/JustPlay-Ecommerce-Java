@@ -113,7 +113,7 @@
                 <a th:onclick="|openDetails('${videogioco.id}')|">
                   <img style="height: 268px; object-fit: cover;" th:src="${videogioco.imageUrl}" class="card-img-top">
                 </a>
-                <div th:if="${wishList != null}" th:classappend="${wishList.contains(videogioco.id)} ? 'card-liked' : 'card-likes'"
+                <div sec:authorize="isAuthenticated()" th:classappend="${wishList != null} ? (${wishList.contains(videogioco.id)} ? 'card-liked' : 'card-likes') : ''"
                    style="bottom: -43px;">
                   <a th:onclick="${wishList.contains(videogioco.id)} ? |removeGameFromWishlist('${videogioco.id}')| : |addGameToWishlist('${videogioco.id}')|"
                     th:style="${wishList.contains(videogioco.id)} ? 'color: red' : 'color: light-grey'"

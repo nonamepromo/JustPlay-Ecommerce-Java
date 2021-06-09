@@ -101,16 +101,18 @@
             <!-- post -->
             <div class="post">
               <!-- <h2 th:text="${videogioco.titolo}"></h2> -->
-              <p th:text="${videogioco.descrizione}"></p>
+              <!-- <p th:text="${videogioco.descrizione}"></p> -->
+              <h4>STORE IN CUI E' DISPONIBILE</h4>
             </div>
 
-            <div class="post">
+            
               <!-- <div class="post-meta">
                     <span><i class="fa fa-clock-o"></i> June 16, 2017 by <a href="profile.html">Trevor</a></span>
                     <span><a href="#">PS4</a></span>
                     <span><a href="blog-post-video.html#comments"><i class="fa fa-comment-o"></i> 33 comments</a></span>
                   </div> -->
               <div th:if="${ps4Urls} != null" class="mt-4 mb-4">
+              <div class="post">
                 <span class="badge badge-ps4">Ps4</span>
                 <div th:each="ps4Url : ${ps4Urls}" class="row">
                   <a class="col-md-4" th:href="${ps4Url}" target="_blank">
@@ -127,12 +129,15 @@
                   <a class="col-md-2 mt-3" th:href="${ps4Url}" target="_blank"><h4>15,99 €</h4></a>
                 </div>
               </div>
+              </div>
               <!-- <div class="post-meta">
                     <span><i class="fa fa-clock-o"></i> June 16, 2017 by <a href="profile.html">Trevor</a></span>
                     <span><a href="#">PS4</a></span>
                     <span><a href="blog-post-video.html#comments"><i class="fa fa-comment-o"></i> 33 comments</a></span>
                   </div> -->
+                  
               <div th:if="${xboxUrls} != null" class="mt-4 mb-4">
+              <div class="post">
                 <span class="badge badge-xbox">Xbox One</span>
                 <div th:each="xboxUrl : ${xboxUrls}" class="row">
                   <a class="col-md-4" th:href="${xboxUrl}" target="_blank">
@@ -149,12 +154,16 @@
                   <a class="col-md-2 mt-3" th:href="${xboxUrl}" target="_blank"><h4>15,99 €</h4></a>
                 </div>
               </div>
+              </div>
+              
               <!-- <div class="post-meta">
                     <span><i class="fa fa-clock-o"></i> June 16, 2017 by <a href="profile.html">Trevor</a></span>
                     <span><a href="#">PS4</a></span>
                     <span><a href="blog-post-video.html#comments"><i class="fa fa-comment-o"></i> 33 comments</a></span>
                   </div> -->
+                   
               <div th:if="${pcUrls} != null" class="mt-4 mb-4">
+              <div class="post">
                 <span class="badge badge-steam">Pc</span>
                 <div th:each="pcUrl : ${pcUrls}" class="row">
                   <a class="col-md-4" th:href="${pcUrl}" target="_blank">
@@ -171,7 +180,8 @@
                   <a class="col-md-2 mt-3" th:href="${pcUrl}" target="_blank"><h4>15,99 €</h4></a>
                 </div>
               </div>
-            </div>
+              </div>
+         
 
             <!-- post -->
             <div class="post">
@@ -277,22 +287,14 @@
                         One</span></a>
                     <a th:if="${videogioco.pcUrl != null}" href="#"><span class="badge badge-steam">Pc</span></a>
 
-                    <h5>Developed</h5>
+                    <h5></h5>
                     <ul>
-                      <li><a href="#">CD Projekt Red Studio</a></li>
-                      <li><a href="#">CD Projekt S.A.</a></li>
+                      <li><a ></a></li>
+                      <li><a ></a></li>
                     </ul>
 
-                    <h5>Published</h5>
-                    <ul>
-                      <li><a href="#">Warner Bros. Interactive Entertainment</a></li>
-                      <li><a href="#">CD Projekt RED S.A.</a></li>
-                      <li><a href="#">Bandai Games</a></li>
-                    </ul>
-                    <p>The Witcher 3: Wild Hunt is a story-driven, next-generation open world role-playing game, set in
-                      a visually stunning fantasy universe, full of meaningful choices and impactful consequences.</p>
-                    <button type="submit" class="btn btn-outline-default btn-block">Follow Now <i
-                        class="fa fa-heart-o"></i></button>
+                    <h5>Descrizione</h5>
+                  	<p th:text="${videogioco.descrizione}"></p>                 
                   </div>
                 </div>
               </div>
@@ -382,32 +384,7 @@
                 </h4>
                 <span><i class="fa fa-clock-o"></i> June 12, 2017</span>
                 <span><i class="fa fa-eye"></i> 723x</span>
-              </div>
-
-              <!-- widget gallery -->
-              <div class="widget widget-gallery">
-                <h5 class="widget-title">Galleries</h5>
-                <ul>
-                  <li>
-                    <a href="img/gallery/gallery-lightbox-1.jpg" data-lightbox='{"disqus": true, "gallery": "witcher"}'>
-                      <img src="https://i1.ytimg.com/vi/uRCS8JLPLfs/mqdefault.jpg" alt="">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://i1.ytimg.com/vi/dPCPRtEf5IU/maxresdefault.jpg"
-                      data-lightbox='{"disqus": true, "gallery": "witcher"}'>
-                      <img src="https://i1.ytimg.com/vi/dPCPRtEf5IU/mqdefault.jpg" alt="">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://i1.ytimg.com/vi/kZb9gnrnxS0/maxresdefault.jpg"
-                      data-lightbox='{"disqus": true, "gallery": "witcher"}'>
-                      <img src="https://i1.ytimg.com/vi/kZb9gnrnxS0/mqdefault.jpg" alt="">
-                    </a>
-                  </li>
-                </ul>
-                <a class="btn btn-primary btn-block m-t-15" href="gallery.html" role="button">Open Gallery</a>
-              </div>
+              </div>            
             </div>
           </div>
         </div>
