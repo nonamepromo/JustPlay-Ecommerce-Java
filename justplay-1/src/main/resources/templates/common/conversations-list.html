@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+  layout:decorate="~{layout/layout}">
+
+<body>
+
+  <!-- main -->
+  <div layout:fragment="content">
+
+    
+
+    <script>
+      function openChat(fk_utente1, fk_utente2) {
+        window.location.href = "conversation?fk_utente1=" + fk_utente1 + "&fk_utente2=" + fk_utente2;
+      }
+    </script>
+
+    <section class="p-t-30">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-3 col-md-3">
+            <a th:each="conversazione : ${conversazioni}">
+              <div th:onclick="|openChat(${conversazione.fk_utente1}, ${conversazione.fk_utente2})|"
+                class="card card-lg">
+                <div class="card-block">
+                  <div th:text="${conversazione.chat}"></div>
+                  <!-- <h4 class="card-title">
+                    <a th:onclick="|openDetails('${videogioco.id}')|" th:text="${videogioco.titolo}"> </a>
+                  </h4>
+                  <div class="card-meta">
+                    <span th:text="${videogioco.annoDiUscita}"> </span>
+                  </div>
+                  <p th:text="${videogioco.descrizione}" class="card-text"></p> -->
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 col-sm-3 col-md-3">
+            <div th:each="messaggio : ${messaggi}">
+              <div class="card card-lg">
+                <div class="card-block">
+                  <div th:text="${messaggio}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+
+</body>
+
+</html>

@@ -141,7 +141,7 @@
                     <li><a href="home-magazine.html">Videogiochi Desiderati</a></li>
                     <li><a href="home-blog.html">Videogiochi Giocati</a></li>
                     <li><a href="index.html">Videogiochi in Vendita</a></li>
-                    <li><a href="home-videos.html">Chat</a></li>
+                    <li><a th:href="@{/common/conversations-list}">Chat</a></li>
               	</ul>             
               </li>
               <li sec:authorize="isAuthenticated()" class="hidden-xs-down"><a href="#" th:href="@{/logout}">[[#{common.logout}]]</a></li>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+  layout:decorate="~{layout/layout}">
+
+<body>
+
+  <!-- main -->
+  <div layout:fragment="content">
+
+    <script>
+        function openChat(fk_utente1, fk_utente2) {
+          $.ajax({
+            url: '[(@{/common/conversations-list/conversation})]',
+            type: "GET",
+            data: "fk_utente1=" + fk_utente1 + "&fk_utente2=" + fk_utente2,
+            success: function (response) {
+  
+            }
+          });
+        }
+      </script>
+
+    <script>
+      function ocpenChat(fk_utente1, fk_utente2) {
+        $.ajax({
+          url: '[(@{/common/conversations-list/findConversazione})]',
+          type: "PATCH",
+          data: "fk_utente1=" + fk_utente1+ "&fk_utente2=" +  fk_utente2,
+          success: function (response) {
+
+          }
+        });
+      }
+    </script>
+
+    <section class="p-t-30">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12">
+            <div th:each="messaggio : ${messaggi}">
+              <div class="card card-lg">
+                <div class="card-block">
+                  <div th:text="${messaggio}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+
+</body>
+
+</html>
