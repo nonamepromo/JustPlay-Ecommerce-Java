@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+  layout:decorate="~{layout/layout}">
+
+<body>
+
+  <!-- main -->
+  <div layout:fragment="content">
+
+    <script>
+      function openChat(fk_utente1, fk_utente2) {
+        $.ajax({
+          url: '[(@{/common/conversations-list/conversation})]',
+          type: "GET",
+          data: "fk_utente1=" + fk_utente1 + "&fk_utente2=" + fk_utente2,
+          success: function (response) {
+
+          }
+        });
+      }
+    </script>
+
+    <section class="p-t-30">
+      <div class="container">
+        <h2 th:text="${nomeUtente}" class="hero-title mb-5"></h2>
+        <div class="row">
+          <div th:each="messaggio : ${messaggi}" class="col-10 col-sm-10 col-md-10"
+            th:classappend="${messaggio.fk_mittente} == ${idUtente} ? 'ml-auto': ''">
+            <div>
+              <div class="card card-lg">
+                <div th:style="${messaggio.fk_mittente} == ${idUtente} ? 'background-color:lightskyblue': ''"
+                  class="card-block">
+                  <div th:text="${messaggio.contenuto}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="form-horizontal" th:action="@{/common/createMessaggio}" th:object="${messaggio}" method="post">
+          <div class="input-group mb-3">
+            <input type="hidden" th:value="${idUtente}" th:name="idUtente" class="form-control">
+          </div>
+          <div class="input-group mb-3">
+            <input type="hidden" th:value="${idConversazione}" th:name="idConversazione" class="form-control">
+          </div>
+          <div class="input-group mb-3">
+            <input th:field="*{contenuto}" placeholder="Scrivi un messaggio..." class="form-control" maxlength="100">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary btn-info" type="submit" th:text="#{common.send}" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px;"></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+
+</body>
+
+</html>
