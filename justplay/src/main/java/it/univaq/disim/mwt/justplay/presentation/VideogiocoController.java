@@ -17,18 +17,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoDesiderato;
+import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 
 @Controller
-@RequestMapping("videogiochi")
+@RequestMapping(value = "videogiochi", method = RequestMethod.POST )
 public class VideogiocoController {
 
 	@Autowired
@@ -42,6 +45,7 @@ public class VideogiocoController {
 
 		    Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
 			getWishlist(model, idUtente);
+			getPlayedlist(model, idUtente);
 	    }
 		return "videogiochi/list";
 	    
@@ -50,6 +54,16 @@ public class VideogiocoController {
 	public void getWishlist(Model model, Long idUtente) throws BusinessException {
 
 	    model.addAttribute("wishList", service.getWishlist(idUtente));
+	}
+	
+	public void getPlayedlist(Model model, Long idUtente) throws BusinessException {
+
+	    model.addAttribute("playedList", service.getPlayedlist(idUtente));
+	}
+	
+	public void getSellinglist(Model model, Long idVideogioco) throws BusinessException {
+
+	    model.addAttribute("sellingList", service.getSellinglist(idVideogioco));
 	}
 	
 //	@GetMapping("/list")
@@ -72,6 +86,10 @@ public class VideogiocoController {
 	public String details(@RequestParam("id") Long id, Model model) throws BusinessException {
 		Videogioco videogioco = service.findVideogiocoByID(id);
 		model.addAttribute("videogioco", videogioco);
+		
+	    //Long idVideogioco = Long.parseLong(videogioco.toString());
+		//getSellinglist(model, idVideogioco);
+		
 		String[] ps4Urls = null;
 		String[] xboxUrls = null;
 		String[] pcUrls = null;
@@ -86,7 +104,7 @@ public class VideogiocoController {
 	}
 	
 	@PostMapping("/addGameToWishlist")
-	public String addGameToWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco) throws BusinessException {
+	public String addGameToWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco, RedirectAttributes redirAttrs) throws BusinessException {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
@@ -94,8 +112,49 @@ public class VideogiocoController {
 		Long idUtente = Long.parseLong(id);
 		
 		service.addGameToWishlist(idVideogioco, idUtente);
-	    
+		redirAttrs.addFlashAttribute("success", "");
 	    return "redirect:/videogiochi/list";
+	}
+	
+	@PostMapping("/addGameToPlayedlist")
+	public String addGameToPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco, RedirectAttributes redirAttrs) throws BusinessException {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String id = authentication.getPrincipal().toString();
+		
+		Long idUtente = Long.parseLong(id);
+		
+		service.addGameToPlayedlist(idVideogioco, idUtente);
+		redirAttrs.addFlashAttribute("success", "");
+	    return "/videogiochi/list";
+	}
+	
+	@PostMapping("/addGameToSellinglist")
+	public String addGameToSellinglist(@RequestParam(value = "idVideogioco") Long idVideogioco) throws BusinessException {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String id = authentication.getPrincipal().toString();
+		
+		Long idUtente = Long.parseLong(id);
+		
+		service.addGameToSellinglist(idVideogioco, idUtente);
+	    return "videogiochi/list";
+	}
+	
+	@PostMapping("/addGameToSellinglistProva")
+	public String addGameToSellinglistProva(@ModelAttribute("videogiochi_in_vendita") VideogiocoInVendita nuovoVideogiocoInVendita, @RequestParam(value = "idVideogioco") Long idVideogioco, RedirectAttributes redirAttrs) throws BusinessException {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String id = authentication.getPrincipal().toString();
+					
+		Utente utente = Utility.getUtente();
+
+		nuovoVideogiocoInVendita.setFk_utente(utente.getId());
+		nuovoVideogiocoInVendita.setFk_videogioco(idVideogioco);
+		
+		service.addGameToSellinglistProva(nuovoVideogiocoInVendita);
+	    redirAttrs.addFlashAttribute("success", "");
+	    return "videogiochi/details";
 	}
 	
 	@PostMapping("/removeGameFromWishlist")
@@ -109,6 +168,30 @@ public class VideogiocoController {
 		service.removeGameFromWishlist(idVideogioco, idUtente);
 	    
 	    return "redirect:/videogiochi/list";
+	}
+	
+	@PostMapping("/removeGameFromPlayedlist")
+	public String removeGameFromPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco) throws BusinessException {
+	
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String id = authentication.getPrincipal().toString();
+		
+		Long idUtente = Long.parseLong(id);
+		
+		service.removeGameFromPlayedlist(idVideogioco, idUtente);
+	    return "videogiochi/list";
+	}
+	
+	@PostMapping("/removeGameFromSellinglist")
+	public String removeGameFromSellinglist(@RequestParam(value = "idVideogioco") Long idVideogioco) throws BusinessException {
+	
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String id = authentication.getPrincipal().toString();
+		
+		Long idUtente = Long.parseLong(id);
+		
+		service.removeGameFromSellinglist(idVideogioco, idUtente);
+	    return "videogiochi/list";
 	}
 	
 	// @GetMapping("/checkIfGameIsDesidered")
