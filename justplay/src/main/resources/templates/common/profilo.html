@@ -3,9 +3,32 @@
 	layout:decorate="~{layout/layout}">
 
 <body>
-
 	<!-- main -->
 	<div layout:fragment="content">
+		<script>
+			function removeGameFromWishlist(idVideogioco) {
+				$.ajax({
+					url: '[(@{/videogiochi/removeGameFromWishlist})]',
+					type: "POST",
+					data: 'idVideogioco=' + idVideogioco,
+					success: function (response) {
+
+					}
+				});
+			}
+		</script>
+		<script>
+			function removeGameFromPlayedlist(idVideogioco) {
+				$.ajax({
+					url: '[(@{/videogiochi/removeGameFromPlayedlist})]',
+					type: "POST",
+					data: 'idVideogioco=' + idVideogioco,
+					success: function (response) {
+
+					}
+				});
+			}
+		</script>
 		<section th:object="${profilo}" method="get" class="hero hero-profile"
 			style="background-image: url('https://img.youtube.com/vi/D3pYbbA1kfk/maxresdefault.jpg');">
 			<div class="overlay"></div>
@@ -15,7 +38,6 @@
 				</div>
 			</div>
 		</section>
-
 		<section class="toolbar toolbar-profile" data-fixed="true">
 			<div class="container">
 				<div class="profile-avatar">
@@ -28,20 +50,22 @@
 						</div>
 					</div>
 				</div>
-
-				<ul class="toolbar-nav hidden-md-down">
-					<li class="active"><a href="#">[[#{common.profile}]]</a></li>
-					<li><a href="#">Videogiochi Desiderati</a></li>
-					<li><a href="#">Videogiochi Giocati</a></li>
-					<li><a href="#">Videogiochi in Vendita</a></li>
-				</ul>
-			</div>
+				<div class="tabs-color">
+					<ul class="nav nav-tabs toolbar-nav hidden-md-down" role="tablist">
+						<li class="nav-item"><a class="nav-link active" href="#account" role="tab" data-toggle="tab"><i
+									class="fa fa-user"></i> [[#{common.profile}]]</a></li>
+						<li class="nav-item"><a class="nav-link" href="#wishlist" role="tab" data-toggle="tab"><i
+									class="fa fa-heart"></i> Videogiochi Desiderati</a></li>
+						<li class="nav-item"><a class="nav-link" href="#playedlist" role="tab" data-toggle="tab"><i
+									class="fa fa-gamepad"></i> Videogiochi Giocati</a></li>
+						<li class="nav-item"><a class="nav-link" href="#sellinglist" role="tab" data-toggle="tab"><i
+									class="fa fa-shopping-cart"></i> Videogiochi in Vendita</a></li>
+					</ul>
+				</div>
 		</section>
 		<section class="p-y-30">
 			<div class="container">
-
 				<div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}"></div>
-
 				<div class="row">
 					<div class="col-lg-3 hidden-md-down">
 						<!-- widget about -->
@@ -57,44 +81,57 @@
 					</div>
 					<div class="col-lg-9">
 						<!-- post -->
-						<div class="post post-card post-profile">
-							<div class="post-header">
-								<form class="form-horizontal" th:action="@{/common/profilo}" th:object="${profilo}"
-									method="post">
-									<div class="form-group input-icon-left m-b-10">
-										<i class="fa fa-user"></i>
-										<input type="text" th:field="*{username}"
-											class="form-control form-control-secondary" placeholder="Username">
+						<div class="post post-card post-profile tab-content">
+							<div class="tab-content">
+								<div class="tab-pane active" id="account" role="tabpanel">
+									<form class="form-horizontal" th:action="@{/common/profilo}" th:object="${profilo}"
+										method="post">
+										<div class="form-group input-icon-left m-b-10">
+											<i class="fa fa-user"></i>
+											<input type="text" th:field="*{username}"
+												class="form-control form-control-secondary" placeholder="Username">
+										</div>
+										<div class="form-group input-icon-left m-b-10">
+											<i class="fa fa-user"></i>
+											<input type="text" th:field="*{nome}"
+												class="form-control form-control-secondary" placeholder="Nome" required
+												maxlength="100">
+										</div>
+										<div class="form-group input-icon-left m-b-10">
+											<i class="fa fa-user"></i>
+											<input type="text" th:field="*{cognome}"
+												class="form-control form-control-secondary" placeholder="Cognome"
+												required maxlength="100">
+										</div>
+										<div class="form-group input-icon-left m-b-10">
+											<i class="fa fa-envelope"></i>
+											<input type="email" th:field="*{email}"
+												class="form-control form-control-secondary" placeholder="Email Address"
+												required maxlength="100">
+										</div>
+										<button type="submit" th:text="#{common.submit}"
+											class="btn btn-primary m-t-10 btn-block"></button>
+									</form>
+								</div>
+								<div class="tab-pane" id="wishlist" role="tabpanel">
+									<div th:each="videogioco : ${videogiochi}" class="col-12 col-sm-6 col-md-4">
+										<div th:classappend="${wishList != null} ? (${wishList.contains(videogioco.id)} ? 'card-liked' : 'card-likes') : 'card-likes'"
+											style="bottom: -43px;">
+											<a th:onclick="${wishList != null} ? (${wishList.contains(videogioco.id)} ? |removeGameFromWishlist('${videogioco.id}')| : |addGameToWishlist('${videogioco.id}')|) : |javascript:location.href='@{/common/login}'|"
+												th:style="${wishList != null} ? (${wishList.contains(videogioco.id)} ? 'color: red' : 'color: light-grey') : 'color: light-grey'"></a></button>
+										</div>
 									</div>
-									<div class="form-group input-icon-left m-b-10">
-										<i class="fa fa-user"></i>
-										<input type="text" th:field="*{nome}"
-											class="form-control form-control-secondary" placeholder="Nome" required
-											maxlength="100">
-									</div>
-									<div class="form-group input-icon-left m-b-10">
-										<i class="fa fa-user"></i>
-										<input type="text" th:field="*{cognome}"
-											class="form-control form-control-secondary" placeholder="Cognome" required
-											maxlength="100">
-									</div>
-									<div class="form-group input-icon-left m-b-10">
-										<i class="fa fa-envelope"></i>
-										<input type="email" th:field="*{email}"
-											class="form-control form-control-secondary" placeholder="Email Address"
-											required maxlength="100">
-									</div>
-									<button type="submit" th:text="#{common.submit}"
-										class="btn btn-primary m-t-10 btn-block"></button>
-								</form>
+								</div>
+								<div class="tab-pane" id="playedlist" role="tabpanel">
+								</div>
+								<div class="tab-pane" id="sellinglist" role="tabpanel">
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 		</section>
-
 	</div>
-
 	<!-- plugins js -->
 	<script src="plugins/sticky/jquery.sticky.js"></script>
 	<script src="plugins/lightbox/lightbox.js"></script>
@@ -107,7 +144,6 @@
 			});
 		})(jQuery);
 	</script>
-
 </body>
 
 </html>
