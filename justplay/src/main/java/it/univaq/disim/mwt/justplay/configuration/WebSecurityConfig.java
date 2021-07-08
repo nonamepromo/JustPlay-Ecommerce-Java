@@ -39,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// Specificare le url che sono soggette ad autenticazione ed autorizzazione
 				.antMatchers("/", "/static/**", "/favicon.ico").permitAll()
 				.antMatchers("/common/profilo").authenticated();
+
 				//.antMatchers("/areessd/**", "/ssds/**").hasAnyRole("amministratore")
 				//.antMatchers("/insegnamenti/**", "/appelli/**").hasAnyRole("docente");
 	}

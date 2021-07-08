@@ -51,6 +51,11 @@ public class VideogiocoController {
 	    
 	}
 	
+	@GetMapping("/wishlist")
+	public String wishlist(Model model) throws BusinessException{
+		return "videogiochi/wishlist";
+	}
+	
 	public void getWishlist(Model model, Long idUtente) throws BusinessException {
 
 	    model.addAttribute("wishList", service.getWishlist(idUtente));
