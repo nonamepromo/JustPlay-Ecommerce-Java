@@ -12,7 +12,7 @@ import it.univaq.disim.mwt.justplay.domain.VideogiocoDesiderato;
 
 public interface VideogiocoService {
 
-	List<Videogioco> findAll() throws BusinessException;
+	List<Videogioco> findAll(int index) throws BusinessException;
 
 	List<Long> getWishlist(Long idUtente) throws BusinessException;
 	

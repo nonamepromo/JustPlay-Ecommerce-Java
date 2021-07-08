@@ -35,8 +35,8 @@ public class VideogiocoController {
 	private VideogiocoService service;
 
 	@GetMapping("/list")
-	public String showAll(Model model) throws BusinessException {
-	    model.addAttribute("videogiochi", service.findAll());
+	public String showAll(@RequestParam(value = "index", defaultValue = "1") int index, Model model) throws BusinessException {
+	    model.addAttribute("videogiochi", service.findAll(3 * index));
 	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    if(authentication.getPrincipal() != "anonymousUser") {
 
@@ -95,7 +95,7 @@ public class VideogiocoController {
 		
 		service.addGameToWishlist(idVideogioco, idUtente);
 	    
-	    return "redirect:/videogiochi/list";
+	    return "redirect:/common/conversation?idConversazione=" + 1;
 	}
 	
 	@PostMapping("/removeGameFromWishlist")
@@ -108,7 +108,7 @@ public class VideogiocoController {
 		
 		service.removeGameFromWishlist(idVideogioco, idUtente);
 	    
-	    return "redirect:/videogiochi/list";
+	    return "redirect:/common/conversation?idConversazione=" + 1;
 	}
 	
 	// @GetMapping("/checkIfGameIsDesidered")

@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 
 
-	private static final String FIND_VIDEOGIOCHI = "SELECT vg.* FROM videogiochi vg order by vg.titolo";
+	private static final String FIND_VIDEOGIOCHI = "SELECT vg.* FROM videogiochi vg order by vg.titolo LIMIT ?,?";
 	private static final String FIND_VIDEOGIOCO_BY_PK = "SELECT vg.* FROM videogiochi vg WHERE vg.id = ?";
 	private static final String DELETE_VIDEOGIOCO = "DELETE FROM videogiochi WHERE id=?";
 	private static final String INSERT_VIDEOGIOCO_DESIDERATO = "INSERT INTO videogiochi_desiderati (fk_videogioco, fk_utente) VALUES (?,?)";
@@ -75,9 +75,12 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
-	public List<Videogioco> findAll() throws BusinessException {
+	public List<Videogioco> findAll(int index) throws BusinessException {
 		List<Videogioco> result = new ArrayList<>();
-		try (Connection con = dataSource.getConnection(); Statement st = con.createStatement(); ResultSet rs = st.executeQuery(FIND_VIDEOGIOCHI);) {
+		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(FIND_VIDEOGIOCHI);) {
+			(st).setLong(1, index - 3);
+			(st).setLong(2, index);
+			try (ResultSet rs = st.executeQuery();) {
 			while (rs.next()) {
 				Videogioco videogioco = new Videogioco();
 				videogioco.setId(rs.getLong("id"));
@@ -91,6 +94,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 				videogioco.setImageUrl(rs.getString("imageUrl"));
 				result.add(videogioco);
 			}
+		}
 		} catch (SQLException e) {
 			log.error("findAll", e);
 			throw new BusinessException("findAll", e);

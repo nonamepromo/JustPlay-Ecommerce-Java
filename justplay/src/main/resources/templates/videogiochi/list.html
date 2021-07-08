@@ -6,21 +6,12 @@
 
   <!-- main -->
   <div layout:fragment="content">
-    <!-- <script type="text/javascript">
+    <script>
+      function listWithIndex(index) {
+        window.location.href = "list?index=" + index;
+      }
+    </script>
 
-      $(document).ready(function () {
-
-        $.ajax({
-          type: "GET",
-          url: '[(@{/videogiochi/findallpaginated})]',
-          dataType: 'json',
-          success: function (response) {
-
-          }
-        });
-      });
-
-    </script> -->
     <script>
       function openDetails(idVideogioco) {
         window.location.href = "details?id=" + idVideogioco;
@@ -34,7 +25,9 @@
           type: "POST",
           data: 'idVideogioco=' + idVideogioco,
           success: function (response) {
-
+            const queryString = window.location.search
+            const urlParams = new URLSearchParams(queryString);
+            window.open("list?index=" + urlParams.get('index'), "_self")
           }
         });
       }
@@ -47,7 +40,9 @@
           type: "POST",
           data: 'idVideogioco=' + idVideogioco,
           success: function (response) {
-
+            const queryString = window.location.search
+            const urlParams = new URLSearchParams(queryString);
+            window.open("list?index=" + urlParams.get('index'), "_self")
           }
         });
       }
@@ -120,20 +115,19 @@
                     ></a>
                 </div>
               </div>
-              <div class="card-block">
+              <div class="card-block" style="height: 133px;">
                 <div th:if="${videogioco.ps4Url != null}" class="badge badge-ps4"
                   style="position: relative; bottom: 13px;">Ps4</div>
                 <div th:if="${videogioco.xboxUrl != null}" class="badge badge-xbox-one"
                   style="position: relative; bottom: 13px;">Xbox One</div>
                 <div th:if="${videogioco.pcUrl != null}" class="badge" style="position: relative; bottom: 13px;"
                   th:classappend="badge-steam">Pc</div>
-                <h4 class="card-title">
+                <h4>
                   <a th:onclick="|openDetails('${videogioco.id}')|" th:text="${videogioco.titolo}"> </a>
                 </h4>
                 <div class="card-meta">
                   <span th:text="${videogioco.annoDiUscita}"> </span>
                 </div>
-                <p th:text="${videogioco.descrizione}" class="card-text"></p>
                 <!-- <p th:text="${videogioco.descrizione}" class="card-text" style="overflow: hidden; text-overflow: ellipsis;
    		 			white-space: nowrap;"></p> -->
               </div>
@@ -148,9 +142,9 @@
             <ul class="pagination">
               <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span
                     aria-hidden="true"><i class="fa fa-angle-left"></i></span></a></li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="" th:class="${param.index != null} ? (${param.index[0] == '1'} ? 'page-item active' : 'page-item') : 'page-item active'"><a class="page-link" th:onclick="|listWithIndex(1)|">1</a></li>
+              <li class="" th:class="${param.index != null} ? (${param.index[0] == '2'} ? 'page-item active' : 'page-item') : 'page-item'"><a class="page-link" th:onclick="|listWithIndex(2)|">2</a></li>
+              <li class="" th:class="${param.index != null} ? (${param.index[0] == '3'} ? 'page-item active' : 'page-item') : 'page-item'"><a class="page-link" th:onclick="|listWithIndex(3)|">3</a></li>
               <li class="page-item"><a class="page-link" href="#">4</a></li>
               <li class="page-item"><a class="page-link" href="#">5</a></li>
               <li class="separate"><span>...</span></li>
