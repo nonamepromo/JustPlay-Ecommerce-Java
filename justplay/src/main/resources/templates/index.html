@@ -52,7 +52,7 @@
         <div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}"></div>
          <p th:if="${param.error != null}" th:text="#{common.loginerror}"></p>
         <h2>Recent Games</h2>
-        <a href="#" th:href="@{/videogiochi/list}" style="font-size: 20px; color: red;">Per comodità videogiochi list</a> 
+        <a href="#" th:href="@{/videogiochi/list?index=1}" style="font-size: 20px; color: red;">Per comodità videogiochi list</a> 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       </div>
       <div class="row">

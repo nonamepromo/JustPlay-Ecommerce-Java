@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.UtenteService;
+import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 
 @Controller
@@ -19,6 +20,7 @@ public class ProfiloController {
 
 	@Autowired
 	private UtenteService service;
+	private VideogiocoService gameService;
 
 	@GetMapping
 	public String modificaProfiloStart(Model model) throws BusinessException {
@@ -38,4 +40,6 @@ public class ProfiloController {
 		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/common/profilo";
 	}
+	
+	
 }
