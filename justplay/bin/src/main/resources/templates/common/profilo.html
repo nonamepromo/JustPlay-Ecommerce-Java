@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout/layout}">
+<body>
+
+  <!-- main -->
+  <div layout:fragment="content">
+   <section th:object="${profilo}" method="get"  class="hero hero-profile" style="background-image: url('https://img.youtube.com/vi/D3pYbbA1kfk/maxresdefault.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="hero-block">
+        <h5 th:text="*{nome}"></h5>
+      </div>
+    </div>
+  </section>
+
+  <section class="toolbar toolbar-profile" data-fixed="true">
+    <div class="container">
+      <div class="profile-avatar">
+        <a href="#"><img src="img/user/avatar.jpg" alt=""></a>
+        <div class="sticky">
+          <a href="#"><img src="img/user/avatar-sm.jpg" alt=""></a>
+          <div class="profile-info">
+            <h5 th:text ="*{username}" ></h5>
+            <span>@nathan</span>
+          </div>
+        </div>
+      </div>
+      
+      <ul class="toolbar-nav hidden-md-down">
+        <li class="active"><a href="#">Dati Personali</a></li>
+        <li><a href="#">Videogiochi Desiderati</a></li>
+        <li><a href="#">Videogiochi Giocati</a></li>
+        <li><a href="#">Messi in Vendita</a></li>
+      </ul>      
+    </div>    
+  </section>  
+  <section class="p-y-30">
+    <div class="container">
+    
+      <div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}"></div>
+      
+      <div class="row">
+        <div class="col-lg-3 hidden-md-down">
+          <!-- widget about -->
+          <div class="widget widget-about">
+            <h5 class="widget-title">About Me</h5>
+            <p>I am a frontend developer &amp; web designer. I love to work on creative and standalone projects like gameforest.</p>
+            <ul>
+              <li><i class="fa fa-clock-o"></i> Joined December 2009</li>
+              <li><i class="fa fa-map-marker"></i> United Kingdom</li>
+            </ul>
+          </div>
+
+
+        
+        </div>
+
+        <div class="col-lg-9">
+          <!-- post -->
+          <div class="post post-card post-profile">
+            <div class="post-header">
+               <form class="form-horizontal" th:action="@{/common/profilo}" th:object="${profilo}" method="post">                   
+	            	<div class="form-group input-icon-left m-b-10">
+	              		<i class="fa fa-user"></i>
+	              		<input type="text" th:field="*{username}" class="form-control form-control-secondary" placeholder="Username">
+	        		</div>
+	        		 <div class="form-group input-icon-left m-b-10">
+	              		<i class="fa fa-user"></i>
+	                  <input type="text" th:field="*{nome}" class="form-control form-control-secondary" placeholder="Email Address" required maxlength="100">
+	                </div>
+	                <div class="form-group input-icon-left m-b-10">
+	              		<i class="fa fa-user"></i>
+	                  <input type="text" th:field="*{cognome}" class="form-control form-control-secondary" placeholder="Email Address" required maxlength="100">
+	                </div>
+	                <div class="form-group input-icon-left m-b-10">
+	                  <i class="fa fa-envelope"></i>
+	                  <input type="email" th:field="*{email}" class="form-control form-control-secondary" placeholder="Email Address" required maxlength="100">
+	                </div>             
+	             	<button type="submit" th:text="#{common.submit}" class="btn btn-primary m-t-10 btn-block"></button>
+               </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  </div>
+  
+   <!-- plugins js -->
+  <script src="plugins/sticky/jquery.sticky.js"></script>
+  <script src="plugins/lightbox/lightbox.js"></script>
+  <script>
+    (function($) {
+      "use strict";
+      // lightbox
+      $('[data-lightbox]').lightbox({
+        disqus: 'gameforestyakuzieu'
+      });
+    })(jQuery);
+  </script>
+  
+  </body>
+</html>

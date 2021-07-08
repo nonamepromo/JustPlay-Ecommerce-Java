@@ -22,6 +22,7 @@ import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoDesiderato;
+import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -34,11 +35,17 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	private static final String FIND_VIDEOGIOCO_BY_PK = "SELECT vg.* FROM videogiochi vg WHERE vg.id = ?";
 	private static final String DELETE_VIDEOGIOCO = "DELETE FROM videogiochi WHERE id=?";
 	private static final String INSERT_VIDEOGIOCO_DESIDERATO = "INSERT INTO videogiochi_desiderati (fk_videogioco, fk_utente) VALUES (?,?)";
+	private static final String INSERT_VIDEOGIOCO_GIOCATO = "INSERT INTO videogiochi_giocati (fk_videogioco, fk_utente) VALUES (?,?)";
+	private static final String INSERT_VIDEOGIOCO_IN_VENDITA = "INSERT INTO videogiochi_in_vendita (fk_videogioco, fk_utente, prezzo, provincia) VALUES (?,?,?,?)";
 	private static final String DELETE_VIDEOGIOCO_DESIDERATO = "DELETE FROM videogiochi_desiderati WHERE fk_videogioco = ? AND fk_utente = ?";
-	private static final String INSERT_VIDEOGIOCO_IN_VENDITA = "INSERT INTO videogiochi_in_vendita (fk_videogioco, fk_utente) VALUES (?,?)";
+	private static final String DELETE_VIDEOGIOCO_GIOCATO = "DELETE FROM videogiochi_giocati WHERE fk_videogioco = ? AND fk_utente = ?";
+	private static final String DELETE_VIDEOGIOCO_IN_VENDITA = "DELETE FROM videogiochi_in_vendita WHERE fk_videogioco = ? AND fk_utente = ?";
 	private static final String CHECK_IF_VIDEOGIOCO_IS_DESIDERATO = "SELECT vg.* FROM videogiochi_desiderati vg WHERE vg.fk_utente = ? AND vg.fk_videogioco = ?";
+	private static final String CHECK_IF_VIDEOGIOCO_IS_GIOCATO = "SELECT vg.* FROM videogiochi_giocati vg WHERE vg.fk_utente = ? AND vg.fk_videogioco = ?";
+	private static final String CHECK_IF_VIDEOGIOCO_IS_IN_VENDITA = "SELECT vg.* FROM videogiochi_in_vendita vg WHERE vg.fk_utente = ? AND vg.fk_videogioco = ?";
 	private static final String FIND_VIDEOGIOCHI_DESIDERATI = "SELECT vg.* FROM videogiochi_desiderati vg WHERE vg.fk_utente = ?";
-	
+	private static final String FIND_VIDEOGIOCHI_GIOCATI = "SELECT vg.* FROM videogiochi_giocati vg WHERE vg.fk_utente = ?";
+	private static final String FIND_VIDEOGIOCHI_IN_VENDITA = "SELECT vg.* FROM videogiochi_in_vendita vg WHERE vg.fk_utente = ?";
 	
 	@Autowired
 	private DataSource dataSource;
@@ -119,6 +126,42 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		}
 		return result;
 	}
+	
+	@Override
+	public List<Long> getPlayedlist(Long idUtente) throws BusinessException {
+		List<Long> result = new ArrayList<>();
+		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(FIND_VIDEOGIOCHI_GIOCATI);) {
+			(st).setLong(1, idUtente);
+			try (ResultSet rs = st.executeQuery();) {
+			while (rs.next()) {
+				Long videogiocoGiocato = rs.getLong("fk_videogioco");
+				result.add(videogiocoGiocato);
+			}
+			}
+		} catch (SQLException e) {
+			log.error("findAll", e);
+			throw new BusinessException("findAll", e);
+		}
+		return result;
+	}
+	
+	@Override
+	public List<Long> getSellinglist(Long idUtente) throws BusinessException {
+		List<Long> result = new ArrayList<>();
+		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(FIND_VIDEOGIOCHI_IN_VENDITA);) {
+			(st).setLong(1, idUtente);
+			try (ResultSet rs = st.executeQuery();) {
+			while (rs.next()) {
+				Long videogiocoGiocato = rs.getLong("fk_videogioco");
+				result.add(videogiocoGiocato);
+			}
+			}
+		} catch (SQLException e) {
+			log.error("findAll", e);
+			throw new BusinessException("findAll", e);
+		}
+		return result;
+	}
 
 	// @Override
 	// public ResponseEntity<Videogioco> findVideogiocoByID(Long id) throws BusinessException {
@@ -179,6 +222,30 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	}
 	
 	@Override
+	public void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
+		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_GIOCATO);) {
+			st.setLong(1, idVideogioco);
+			st.setLong(2, idUtente);	
+			st.executeUpdate();
+		} catch (SQLException e) {
+			log.error("addGameToPlayedlist", e);
+			throw new BusinessException("addGameToPlayedlist", e);
+		}
+	}
+	
+	@Override
+	public void addGameToSellinglist(Long idVideogioco, Long idUtente) throws BusinessException {
+		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_IN_VENDITA);) {
+			st.setLong(1, idVideogioco);
+			st.setLong(2, idUtente);	
+			st.executeUpdate();
+		} catch (SQLException e) {
+			log.error("addGameToSellingList", e);
+			throw new BusinessException("addGameToSellingList", e);
+		}
+	}
+	
+	@Override
 	public void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
 		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(DELETE_VIDEOGIOCO_DESIDERATO);) {
 			st.setLong(1, idVideogioco);
@@ -187,6 +254,30 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		} catch (SQLException e) {
 			log.error("deleteVideogiocoDesiderato", e);
 			throw new BusinessException("deleteVideogiocoDesiderato", e);
+		}
+	}
+	
+	@Override
+	public void removeGameFromPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
+		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(DELETE_VIDEOGIOCO_GIOCATO);) {
+			st.setLong(1, idVideogioco);
+			st.setLong(2, idUtente);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			log.error("deleteVideogiocoGiocato", e);
+			throw new BusinessException("deleteVideogiocoGiocato", e);
+		}
+	}
+	
+	@Override
+	public void removeGameFromSellinglist(Long idVideogioco, Long idUtente) throws BusinessException {
+		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(DELETE_VIDEOGIOCO_IN_VENDITA);) {
+			st.setLong(1, idVideogioco);
+			st.setLong(2, idUtente);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			log.error("removeGameFromSellingList", e);
+			throw new BusinessException("removeGameFromSellingList", e);
 		}
 	}
 	
@@ -241,5 +332,23 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 			log.error("addVideogiocoInVendita", e);
 			throw new BusinessException("addVideogiocoInVendita", e);
 		}
+	}
+	
+	@Override
+	public void addVideogiocoGiocato(Videogioco videogioco, Long idUtente) throws BusinessException {
+		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_GIOCATO);) {
+			st.setLong(1, idUtente);
+			st.setLong(1, videogioco.getId());
+			st.executeUpdate();
+		} catch (SQLException e) {
+			log.error("addVideogiocoInVendita", e);
+			throw new BusinessException("addVideogiocoInVendita", e);
+		}
+	}
+
+	@Override
+	public void addGameToSellinglistProva(VideogiocoInVendita videogiocoInVendita) throws BusinessException {
+		// TODO Auto-generated method stub
+		
 	}
 }

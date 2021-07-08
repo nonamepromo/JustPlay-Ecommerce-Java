@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
-  layout:decorate="~{layout/layout}">
+	layout:decorate="~{layout/layout}">
 
 <body>
 
@@ -47,6 +47,32 @@
         });
       }
     </script>
+
+		<script>
+			function addGameToPlayedlist(idVideogioco) {
+				$.ajax({
+					url: '[(@{/videogiochi/addGameToPlayedlist})]',
+					type: "POST",
+					data: 'idVideogioco=' + idVideogioco,
+					success: function (response) {
+
+					}
+				});
+			}
+		</script>
+
+		<script>
+			function removeGameFromPlayedlist(idVideogioco) {
+				$.ajax({
+					url: '[(@{/videogiochi/removeGameFromPlayedlist})]',
+					type: "POST",
+					data: 'idVideogioco=' + idVideogioco,
+					success: function (response) {
+
+					}
+				});
+			}
+		</script>
 
     <!-- <script type="text/javascript">
 
@@ -101,6 +127,7 @@
             </div>
           </div>
         </div>
+        <div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}"></div>
         <div class="row">
           <div th:each="videogioco : ${videogiochi}" class="col-12 col-sm-6 col-md-4">
             <div class="card card-lg">
@@ -114,6 +141,11 @@
                     th:style="${wishList != null} ? (${wishList.contains(videogioco.id)} ? 'color: red' : 'color: light-grey') : 'color: light-grey'"
                     ></a>
                 </div>
+								<div th:classappend="${playedList != null} ? (${playedList.contains(videogioco.id)} ? 'card-liked' : 'card-likes') : 'card-likes'"
+									style="bottom: -43px; right: 60px;">
+									<a th:onclick="${playedList != null} ? (${playedList.contains(videogioco.id)} ? |removeGameFromPlayedlist('${videogioco.id}')| : |addGameToPlayedlist('${videogioco.id}')|) : |javascript:location.href='@{/common/login}'|"
+										th:style="${playedList != null} ? (${playedList.contains(videogioco.id)} ? 'color: red' : 'color: light-grey') : 'color: light-grey'"></a>
+								</div>
               </div>
               <div class="card-block" style="height: 133px;">
                 <div th:if="${videogioco.ps4Url != null}" class="badge badge-ps4"
