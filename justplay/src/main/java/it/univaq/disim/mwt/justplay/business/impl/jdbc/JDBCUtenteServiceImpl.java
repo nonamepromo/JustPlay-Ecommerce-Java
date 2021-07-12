@@ -35,6 +35,7 @@ public class JDBCUtenteServiceImpl implements UtenteService {
 	private static final String FIND_USERNAME_ROLES = "SELECT r.* FROM ruoli_utenti ur, ruoli r WHERE ur.id_utente = ? AND ur.id_ruolo = r.id_ruolo";
 	private static final String FIND_ID = "SELECT * FROM utenti u WHERE u.id_utente = ?";
 	private static final String UPDATE_PROFILE = "UPDATE utenti SET username=?, nome=?, cognome=?, email=? WHERE id_utente=?";
+	private static final String INSERT_UTENTE = "INSERT INTO utenti (username, nome, cognome, email, password, data_nascita, tipologia_utente) VALUES (?,?,?,?,?,?,?)";
 
 	@Autowired
 	private DataSource dataSource;
@@ -162,5 +163,22 @@ public class JDBCUtenteServiceImpl implements UtenteService {
 			throw new BusinessException("findRoles", e);
 		}
 		return result;
+	}
+
+	@Override
+	public void createUtente(Utente utente) throws BusinessException {
+		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(INSERT_UTENTE);) {
+			st.setString(1, utente.getUsername());
+			st.setString(2, utente.getNome());
+			st.setString(3, utente.getCognome());
+			st.setString(4, utente.getEmail());
+			st.setString(5, utente.getPassword());
+			st.setDate(6, Date.valueOf(utente.getDataNascita()));
+			st.setInt(7, 2);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			log.error("createUtente", e);
+			throw new BusinessException("createUtente", e);
+		}
 	}
 }

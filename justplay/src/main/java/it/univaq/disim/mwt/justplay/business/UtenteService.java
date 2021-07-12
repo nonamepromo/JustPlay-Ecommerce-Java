@@ -10,4 +10,5 @@ public interface UtenteService {
 
 	void updateProfilo(Utente nuovoProfilo) throws BusinessException;
 
+	void createUtente(Utente utente) throws BusinessException;
 }
