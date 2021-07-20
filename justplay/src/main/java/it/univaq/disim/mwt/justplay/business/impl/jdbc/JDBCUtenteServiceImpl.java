@@ -13,6 +13,7 @@ import java.util.Set;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,6 +40,9 @@ public class JDBCUtenteServiceImpl implements UtenteService {
 
 	@Autowired
 	private DataSource dataSource;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private UtenteService utenteService;
@@ -167,12 +171,15 @@ public class JDBCUtenteServiceImpl implements UtenteService {
 
 	@Override
 	public void createUtente(Utente utente) throws BusinessException {
+		if(!passwordEncoder.matches(utente.getPassword(), passwordEncoder.encode(utente.getMatchingPassword()))) {			
+			throw new BusinessException("Le due password non coincidono");
+		}
 		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(INSERT_UTENTE);) {
 			st.setString(1, utente.getUsername());
 			st.setString(2, utente.getNome());
 			st.setString(3, utente.getCognome());
 			st.setString(4, utente.getEmail());
-			st.setString(5, utente.getPassword());
+			st.setString(5, passwordEncoder.encode(utente.getPassword()));
 			st.setDate(6, Date.valueOf(utente.getDataNascita()));
 			st.setInt(7, 2);
 			st.executeUpdate();
