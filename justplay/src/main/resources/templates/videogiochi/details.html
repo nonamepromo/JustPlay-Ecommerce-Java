@@ -7,23 +7,6 @@
 	<!-- main -->
 	<div layout:fragment="content">
 
-		
-		<script>
-			function addGameToSellinglistProva(idVideogioco) {
-				$.ajax({
-					url: '[(@{/videogiochi/addGameToSellinglistProva})]',
-					type: "POST",
-					data: 'idVideogioco=' + idVideogioco,
-					success: function (response) {
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						window.open("details?id=" + urlParams.get('id'), "_self")
-					}
-				});
-			}
-		</script>
- 		
-
 		<section class="hero hero-game"
 			th:style="'background:url('+ ${videogioco.imageUrl} +'); background-size: 1262px;'">
 			<div class="overlay"></div>
@@ -77,7 +60,14 @@
 								</button>
 							</div>
 							<div class="modal-body p-a-20">
-								<form th:object="${videogioco_in_vendita}" method="post">
+								<form th:action="@{/videogiochi/addGameToSellinglistProva}"
+									th:object="${videogioco_in_vendita}" method="post">
+									
+									<div class="input-group mb-3">
+										<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco"
+											class="form-control">
+									</div>
+									
 									<h4 th:text="${videogioco.titolo}"></h4>
 									<div class="divider"></div>
 									<div class="form-group input-icon-left m-b-10">
@@ -100,13 +90,13 @@
 											<div class="dropdown-menu dropdown-menu-right">
 												<option value="" selected disabled hidden>Piattaforma</option>
 												<option value="PS4" th:if="${videogioco.ps4Url != null}"
-													th:field="*{piattaforma}" class="dropdown-item">PS4
+													th:field="*{piattaforma}" th:value="${piattaforma}" th:name="piattaforma" class="dropdown-item">PS4
 												</option>
 												<option value="Xbox" th:if="${videogioco.xboxUrl != null}"
-													th:field="*{piattaforma}" class="dropdown-item">Xbox
+													th:field="*{piattaforma}" th:value="${piattaforma}" th:name="piattaforma" class="dropdown-item">Xbox
 													One</option>
 												<option value="Pc" th:if="${videogioco.pcUrl != null}"
-													th:field="*{piattaforma}" class="dropdown-item">Pc
+													th:field="*{piattaforma}" th:value="${piattaforma}" th:name="piattaforma" class="dropdown-item">Pc
 												</option>
 											</div>
 										</select>

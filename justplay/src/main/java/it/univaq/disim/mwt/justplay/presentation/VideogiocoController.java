@@ -78,11 +78,12 @@ public class VideogiocoController {
 //	}
 
 	@GetMapping("/details")
-	public String details(@RequestParam("id") Long id, Model model) throws BusinessException {
+	public String details(@RequestParam("idVideogioco") Long idVideogioco, Model model) throws BusinessException {
 
-		Videogioco videogioco = service.findVideogiocoByID(id);
+		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		model.addAttribute("videogioco", videogioco);
-
+		model.addAttribute("idVideogioco", idVideogioco);
+		
 		VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
 
 		String[] ps4Urls = null;
@@ -106,7 +107,7 @@ public class VideogiocoController {
 		model.addAttribute("pcUrls", pcUrls);
 
 		model.addAttribute("videogioco_in_vendita", videogiocoInVendita);
-		getSellinglist(model, id);
+		getSellinglist(model, idVideogioco);
 
 		return "videogiochi/details";
 	}
@@ -151,9 +152,9 @@ public class VideogiocoController {
 		String id = authentication.getPrincipal().toString();
 		Long idUtente = Long.parseLong(id);
 
-		service.addGameToSellinglistProva(nuovoVideogiocoInVendita, idVideogioco, idUtente);
+		service.addGameToSellinglistProva(nuovoVideogiocoInVendita,idVideogioco, idUtente);
 		redirAttrs.addFlashAttribute("success", "");
-		return "videogiochi/list";
+		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
 
 	@PostMapping("/removeGameFromWishlist")

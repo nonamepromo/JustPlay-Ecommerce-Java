@@ -279,7 +279,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 			st.setInt(3, videogiocoInVendita.getPrezzo());
 			st.setInt(4, videogiocoInVendita.getPrezzo_spedizione());
 			st.setString(5, videogiocoInVendita.getProvincia());
-			st.setString(6, videogiocoInVendita.getPiattaforma());
+			st.setString(6, "ps5");
 			st.executeUpdate();
 		} catch (SQLException e) {
 			log.error("addGameToSellinglistProva", e);
