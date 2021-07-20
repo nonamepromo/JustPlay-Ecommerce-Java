@@ -20,7 +20,7 @@ import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 
 @Controller
-@RequestMapping(value = "videogiochi", method = RequestMethod.POST)
+@RequestMapping(value = "videogiochi" , method = RequestMethod.POST)
 public class VideogiocoController {
 
 	@Autowired
@@ -79,11 +79,11 @@ public class VideogiocoController {
 
 	@GetMapping("/details")
 	public String details(@RequestParam("id") Long id, Model model) throws BusinessException {
+
 		Videogioco videogioco = service.findVideogiocoByID(id);
 		model.addAttribute("videogioco", videogioco);
 
-		// Long idVideogioco = Long.parseLong(videogioco.toString());
-		// getSellinglist(model, idVideogioco);
+		VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
 
 		String[] ps4Urls = null;
 		String[] xboxUrls = null;
@@ -100,9 +100,13 @@ public class VideogiocoController {
 			pcUrls = videogioco.getPcUrl().split(";");
 		}
 		;
+
 		model.addAttribute("ps4Urls", ps4Urls);
 		model.addAttribute("xboxUrls", xboxUrls);
 		model.addAttribute("pcUrls", pcUrls);
+
+		model.addAttribute("videogioco_in_vendita", videogiocoInVendita);
+		getSellinglist(model, id);
 
 		return "videogiochi/details";
 	}
@@ -132,39 +136,24 @@ public class VideogiocoController {
 
 		service.addGameToPlayedlist(idVideogioco, idUtente);
 		redirAttrs.addFlashAttribute("success", "");
-		return "/videogiochi/list";
-	}
-
-	@PostMapping("/addGameToSellinglist")
-	public String addGameToSellinglist(@RequestParam(value = "idVideogioco") Long idVideogioco)
-			throws BusinessException {
-
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String id = authentication.getPrincipal().toString();
-
-		Long idUtente = Long.parseLong(id);
-
-		service.addGameToSellinglist(idVideogioco, idUtente);
 		return "videogiochi/list";
 	}
 
 	@PostMapping("/addGameToSellinglistProva")
-	public String addGameToSellinglistProva(
-			@ModelAttribute("videogiochi_in_vendita") VideogiocoInVendita nuovoVideogiocoInVendita,
+	public String addGameToSellinglistProva(@ModelAttribute VideogiocoInVendita nuovoVideogiocoInVendita,
 			@RequestParam(value = "idVideogioco") Long idVideogioco, RedirectAttributes redirAttrs)
 			throws BusinessException {
 
+		// VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
+		// model.addAttribute("videogioco_in_vendita", videogiocoInVendita);
+		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
+		Long idUtente = Long.parseLong(id);
 
-		Utente utente = Utility.getUtente();
-
-		nuovoVideogiocoInVendita.setFk_utente(utente.getId());
-		nuovoVideogiocoInVendita.setFk_videogioco(idVideogioco);
-
-		service.addGameToSellinglistProva(nuovoVideogiocoInVendita);
+		service.addGameToSellinglistProva(nuovoVideogiocoInVendita, idVideogioco, idUtente);
 		redirAttrs.addFlashAttribute("success", "");
-		return "videogiochi/details";
+		return "videogiochi/list";
 	}
 
 	@PostMapping("/removeGameFromWishlist")
@@ -238,7 +227,7 @@ public class VideogiocoController {
 
 	@PostMapping("/delete")
 	public String delete(@ModelAttribute("videogioco") Videogioco videogioco) throws BusinessException {
-		service.deleteVideogioco(videogioco);
+		// service.deleteVideogioco(videogioco);
 		return "redirect:/videogiochi/list";
 	}
 

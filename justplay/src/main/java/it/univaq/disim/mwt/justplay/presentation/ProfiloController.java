@@ -50,17 +50,21 @@ public class ProfiloController {
 	@PostMapping("/removeGameFromWishlist")
 	public String removeGameFromWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {
-
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String id = authentication.getPrincipal().toString();
-
-		Long idUtente = Long.parseLong(id);
-
+		Utente utente = Utility.getUtente();
+		Long idUtente = utente.getId();
 		gameService.removeGameFromWishlist(idVideogioco, idUtente);
-
 		return "/common/profilo";
 	}
-	
+
+	@PostMapping("/removeGameFromPlayedlist")
+	public String removeGameFromPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
+			throws BusinessException {
+		Utente utente = Utility.getUtente();
+		Long idUtente = utente.getId();
+		gameService.removeGameFromPlayedlist(idVideogioco, idUtente);
+		return "/common/profilo";
+	}
+
 	@PostMapping
 	public String modificaProfilo(@ModelAttribute Utente nuovoProfilo, RedirectAttributes redirAttrs)
 			throws BusinessException {
@@ -68,7 +72,7 @@ public class ProfiloController {
 		nuovoProfilo.setId(utente.getId());
 		service.updateProfilo(nuovoProfilo);
 		redirAttrs.addFlashAttribute("success", "");
-		return "redirect:/common/profilo";
+		return "redirect:/common/profilo?index=1";
 	}
 
 }

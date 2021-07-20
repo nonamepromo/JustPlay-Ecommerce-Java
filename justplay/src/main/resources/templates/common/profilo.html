@@ -10,7 +10,7 @@
 				window.location.href = "profilo?index=" + index;
 			}
 		</script>
-			<script>
+		<script>
 			function removeGameFromWishlist(idVideogioco) {
 				$.ajax({
 					url: '[(@{/common/profilo/removeGameFromWishlist})]',
@@ -24,6 +24,21 @@
 				});
 			}
 		</script>
+		<script>
+			function removeGameFromPlayedlist(idVideogioco) {
+				$.ajax({
+					url: '[(@{/common/profilo/removeGameFromPlayedlist})]',
+					type: "POST",
+					data: 'idVideogioco=' + idVideogioco,
+					success: function (response) {
+						const queryString = window.location.search
+						const urlParams = new URLSearchParams(queryString);
+						window.open("list?index=" + urlParams.get('index'), "_self")
+					}
+				});
+			}
+		</script>
+
 		<section th:object="${profilo}" method="get" class="hero hero-game"
 			style="background-image: url('https://img.youtube.com/vi/D3pYbbA1kfk/maxresdefault.jpg');">
 			<div class="overlay"></div>
@@ -109,15 +124,16 @@
 										<tbody th:each="videogioco : ${videogiochi}">
 											<tr th:if="${wishList.contains(videogioco.id)}">
 												<td th:text="${videogioco.titolo}"></td>
-												<td th:if="${videogioco.ps4Url != null}" class="badge badge-ps4"
-													style="position: relative; bottom: -8px; margin-right: 5px">PS4</td>
 												<td th:if="${videogioco.xboxUrl != null}" class="badge badge-xbox-one"
 													style="position: relative; bottom: -8px; margin-right: 5px">Xbox One
 												</td>
+												<td th:if="${videogioco.ps4Url != null}" class="badge badge-ps4"
+													style="position: relative; bottom: -8px; margin-right: 5px">PS4</td>
 												<td th:if="${videogioco.pcUrl != null}" class="badge badge-steam"
 													style="position: relative; bottom: -8px; margin-right: 5px">PC</td>
 												<td>
-													<a class="btn btn-link p-a-5" th:onclick="|removeGameFromWishlist('${videogioco.id}')|"><i
+													<a class="btn btn-link p-a-5"
+														th:onclick="|removeGameFromWishlist('${videogioco.id}')|"><i
 															class="fa fa-trash-o"></i></a>
 												</td>
 											</tr>
@@ -138,15 +154,16 @@
 										<tbody th:each="videogioco : ${videogiochi}">
 											<tr th:if="${playedList.contains(videogioco.id)}">
 												<td th:text="${videogioco.titolo}"></td>
-												<td th:if="${videogioco.ps4Url != null}" class="badge badge-ps4"
-													style="position: relative; bottom: -8px; margin-right: 5px">PS4</td>
 												<td th:if="${videogioco.xboxUrl != null}" class="badge badge-xbox-one"
 													style="position: relative; bottom: -8px; margin-right: 5px">Xbox One
 												</td>
+												<td th:if="${videogioco.ps4Url != null}" class="badge badge-ps4"
+													style="position: relative; bottom: -8px; margin-right: 5px">PS4</td>
 												<td th:if="${videogioco.pcUrl != null}" class="badge badge-steam"
 													style="position: relative; bottom: -8px; margin-right: 5px">PC</td>
 												<td>
-													<a class="btn btn-link p-a-5" href="#" title="Delete"><i
+													<a class="btn btn-link p-a-5"
+														th:onclick="|removeGameFromPlayedlist('${videogioco.id}')|"><i
 															class="fa fa-trash-o"></i></a>
 												</td>
 											</tr>
@@ -156,7 +173,15 @@
 								</div>
 								<div class="tab-pane" id="sellinglist" role="tabpanel"
 									th:class="${param.index != null} ? (${param.index[0] == '4'} ? 'tab-pane active' : 'tab-pane') : 'tab-pane'">
-									<a>Fracivhi</a>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Nome Gioco</th>
+												<th>Piattaforma</th>
+												<th>Azioni</th>
+											</tr>
+										</thead>
+									</table>
 								</div>
 							</div>
 						</div>

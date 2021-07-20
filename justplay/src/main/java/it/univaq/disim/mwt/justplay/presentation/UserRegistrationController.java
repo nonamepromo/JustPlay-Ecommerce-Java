@@ -52,5 +52,5 @@ public class UserRegistrationController {
 		service.createUtente(nuovoUtente);
 		return "/common/login";
 	}
-	
+
 }

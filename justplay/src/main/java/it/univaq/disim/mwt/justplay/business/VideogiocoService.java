@@ -21,7 +21,7 @@ public interface VideogiocoService {
 
 	List<Long> getPlayedlist(Long idUtente) throws BusinessException;
 
-	List<Long> getSellinglist(Long idUtente) throws BusinessException;
+	List<Long> getSellinglist(Long idVideogioco) throws BusinessException;
 
 	ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws BusinessException;
 
@@ -31,9 +31,7 @@ public interface VideogiocoService {
 
 	void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
-	void addGameToSellinglist(Long idVideogioco, Long idUtente) throws BusinessException;
-
-	void addGameToSellinglistProva(VideogiocoInVendita videogiocoInVendita) throws BusinessException;
+	void addGameToSellinglistProva(VideogiocoInVendita videogiocoInVendita, Long idVideogioco, Long idUtente) throws BusinessException;
 
 	void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
@@ -44,11 +42,11 @@ public interface VideogiocoService {
 	// boolean checkIfGameIsDesidered(Long idVideogioco, Long idUtente) throws
 	// BusinessException;
 
-	void deleteVideogioco(Videogioco videogioco) throws BusinessException;
+	//void deleteVideogioco(Videogioco videogioco) throws BusinessException;
 
-	void addVideogiocoDesiderato(Videogioco videogioco, Long idUtente) throws BusinessException;
+	//void addVideogiocoDesiderato(Videogioco videogioco, Long idUtente) throws BusinessException;
 
-	void addVideogiocoGiocato(Videogioco videogioco, Long idUtente) throws BusinessException;
+	//void addVideogiocoGiocato(Videogioco videogioco, Long idUtente) throws BusinessException;
 
-	void addVideogiocoInVendita(Videogioco videogioco, Long idUtente) throws BusinessException;
+	//void addVideogiocoInVendita(Videogioco videogioco, Long idUtente) throws BusinessException;
 }
