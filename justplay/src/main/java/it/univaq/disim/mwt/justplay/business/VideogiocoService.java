@@ -15,6 +15,8 @@ public interface VideogiocoService {
 
 	List<Videogioco> findAll(int index) throws BusinessException;
 
+	List<Videogioco> findByPlatform(String platform) throws BusinessException;
+
 	List<Videogioco> findAllProfile() throws BusinessException;
 
 	List<Long> getWishlist(Long idUtente) throws BusinessException;
@@ -23,7 +25,7 @@ public interface VideogiocoService {
 
 	List<Long> getSellinglist(Long idVideogioco) throws BusinessException;
 
-	ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws BusinessException;
+	// ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws BusinessException;
 
 	Videogioco findVideogiocoByID(Long id) throws BusinessException;
 

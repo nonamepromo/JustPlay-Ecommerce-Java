@@ -31,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 
 	private static final String FIND_VIDEOGIOCHI = "SELECT vg.* FROM videogiochi vg order by vg.titolo LIMIT ?,?";
+	private static final String FIND_VIDEOGIOCHI_BY_PLATFORM = "SELECT vg.* FROM videogiochi vg where vg.piattaforma = ? order by vg.titolo";
 	private static final String FIND_VIDEOGIOCHI_PROFILE = "SELECT vg.* FROM videogiochi vg order by vg.titolo";
 	private static final String FIND_VIDEOGIOCO_BY_PK = "SELECT vg.* FROM videogiochi vg WHERE vg.id = ?";
 	private static final String DELETE_VIDEOGIOCO = "DELETE FROM videogiochi WHERE id=?";
@@ -51,36 +52,36 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	private DataSource dataSource;
 
 	/* VIDEOGIOCO */
-	@Override
-	public ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws BusinessException {
+	// @Override
+	// public ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws BusinessException {
 
-		String baseSearch = "SELECT * FROM videogiochi";
+	// 	String baseSearch = "SELECT * FROM videogiochi";
 
-		List<Videogioco> videogiochi = new ArrayList<>();
-		try (Connection con = dataSource.getConnection();
-				Statement st = con.createStatement();
-				ResultSet rs = st.executeQuery(baseSearch);) {
-			while (rs.next()) {
-				Videogioco videogioco = new Videogioco();
-				videogioco.setId(rs.getLong("id"));
-				videogioco.setTitolo(rs.getString("titolo"));
-				videogioco.setPiattaforma(rs.getString("piattaforma"));
-				videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
-				videogioco.setDescrizione(rs.getString("descrizione"));
-				videogioco.setPs4Url(rs.getString("ps4Url"));
-				videogioco.setXboxUrl(rs.getString("xboxUrl"));
-				videogioco.setPcUrl(rs.getString("pcUrl"));
-				videogioco.setImageUrl(rs.getString("imageUrl"));
-				videogiochi.add(videogioco);
-			}
-		} catch (SQLException e) {
-			log.error("findAllVideogiochiPaginated", e);
-			throw new BusinessException("", e);
-		}
+	// 	List<Videogioco> videogiochi = new ArrayList<>();
+	// 	try (Connection con = dataSource.getConnection();
+	// 			Statement st = con.createStatement();
+	// 			ResultSet rs = st.executeQuery(baseSearch);) {
+	// 		while (rs.next()) {
+	// 			Videogioco videogioco = new Videogioco();
+	// 			videogioco.setId(rs.getLong("id"));
+	// 			videogioco.setTitolo(rs.getString("titolo"));
+	// 			videogioco.setPiattaforma(rs.getString("piattaforma"));
+	// 			videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
+	// 			videogioco.setDescrizione(rs.getString("descrizione"));
+	// 			videogioco.setPs4Url(rs.getString("ps4Url"));
+	// 			videogioco.setXboxUrl(rs.getString("xboxUrl"));
+	// 			videogioco.setPcUrl(rs.getString("pcUrl"));
+	// 			videogioco.setImageUrl(rs.getString("imageUrl"));
+	// 			videogiochi.add(videogioco);
+	// 		}
+	// 	} catch (SQLException e) {
+	// 		log.error("findAllVideogiochiPaginated", e);
+	// 		throw new BusinessException("", e);
+	// 	}
 
-		return ResponseEntity.ok(videogiochi);
+	// 	return ResponseEntity.ok(videogiochi);
 
-	}
+	// }
 
 	@Override
 	public List<Videogioco> findAll(int index) throws BusinessException {
@@ -89,6 +90,34 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 				PreparedStatement st = con.prepareStatement(FIND_VIDEOGIOCHI);) {
 			(st).setLong(1, index - 3);
 			(st).setLong(2, index);
+			try (ResultSet rs = st.executeQuery();) {
+				while (rs.next()) {
+					Videogioco videogioco = new Videogioco();
+					videogioco.setId(rs.getLong("id"));
+					videogioco.setTitolo(rs.getString("titolo"));
+					videogioco.setDescrizione(rs.getString("descrizione"));
+					videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
+					videogioco.setPiattaforma(rs.getString("piattaforma"));
+					videogioco.setPs4Url(rs.getString("ps4Url"));
+					videogioco.setXboxUrl(rs.getString("xboxUrl"));
+					videogioco.setPcUrl(rs.getString("pcUrl"));
+					videogioco.setImageUrl(rs.getString("imageUrl"));
+					result.add(videogioco);
+				}
+			}
+		} catch (SQLException e) {
+			log.error("findAll", e);
+			throw new BusinessException("findAll", e);
+		}
+		return result;
+	}
+
+	@Override
+	public List<Videogioco> findByPlatform(String platform) throws BusinessException {
+		List<Videogioco> result = new ArrayList<>();
+		try (Connection con = dataSource.getConnection();
+				PreparedStatement st = con.prepareStatement(FIND_VIDEOGIOCHI_BY_PLATFORM);) {
+			(st).setString(1, platform);
 			try (ResultSet rs = st.executeQuery();) {
 				while (rs.next()) {
 					Videogioco videogioco = new Videogioco();

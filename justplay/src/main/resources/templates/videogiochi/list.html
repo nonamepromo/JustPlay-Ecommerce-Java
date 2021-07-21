@@ -13,6 +13,12 @@
 		</script>
 
 		<script>
+			function listWithPlatform(platform) {
+				window.location.href = "list?platform=" + platform;
+			}
+		</script>
+
+		<script>
 			function openDetails(idVideogioco) {
 				window.location.href = "details?idVideogioco=" + idVideogioco;
 			}
@@ -104,15 +110,15 @@
 						</div>
 					</form>
 					<div class="dropdown float-left">
-						<button class="btn btn-default" type="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="true">All Platform <i class="fa fa-caret-down"></i></button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item active" href="#">All Platform</a>
-							<a class="dropdown-item" href="#">Playstation 4</a>
-							<a class="dropdown-item" href="#">Xbox One</a>
-							<a class="dropdown-item" href="#">Origin</a>
-							<a class="dropdown-item" href="#">Steam</a>
-						</div>
+						<select th:onchange="|listWithPlatform(this.value)|" class="form-control">
+							<div class="dropdown-menu dropdown-menu-right">
+								<option class="dropdown-item"
+									th:onclick="|listWithIndex(1)|">Tutte le piattaforme</option>
+								<option class="dropdown-item" th:value="ps4">Playstation 4</option>
+								<option class="dropdown-item" th:value="xbox">Xbox One</option>
+								<option class="dropdown-item" th:value="pc">Pc</option>
+							</div>
+						</select>
 					</div>
 
 					<div class="btn-group float-right m-l-5 hidden-sm-down" role="group">
@@ -181,13 +187,16 @@
 										aria-hidden="true"><i class="fa fa-angle-left"></i></span></a></li>
 							<li class=""
 								th:class="${param.index != null} ? (${param.index[0] == '1'} ? 'page-item active' : 'page-item') : 'page-item active'">
-								<a class="page-link" th:onclick="|listWithIndex(1)|">1</a></li>
+								<a class="page-link" th:onclick="|listWithIndex(1)|">1</a>
+							</li>
 							<li class=""
 								th:class="${param.index != null} ? (${param.index[0] == '2'} ? 'page-item active' : 'page-item') : 'page-item'">
-								<a class="page-link" th:onclick="|listWithIndex(2)|">2</a></li>
+								<a class="page-link" th:onclick="|listWithIndex(2)|">2</a>
+							</li>
 							<li class=""
 								th:class="${param.index != null} ? (${param.index[0] == '3'} ? 'page-item active' : 'page-item') : 'page-item'">
-								<a class="page-link" th:onclick="|listWithIndex(3)|">3</a></li>
+								<a class="page-link" th:onclick="|listWithIndex(3)|">3</a>
+							</li>
 							<li class="page-item"><a class="page-link" href="#">4</a></li>
 							<li class="page-item"><a class="page-link" href="#">5</a></li>
 							<li class="separate"><span>...</span></li>

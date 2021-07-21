@@ -26,10 +26,25 @@ public class VideogiocoController {
 	@Autowired
 	private VideogiocoService service;
 
-	@GetMapping("/list")
+	@GetMapping(value = "/list", params = "index")
 	public String showAll(@RequestParam(value = "index", defaultValue = "1") int index, Model model)
 			throws BusinessException {
 		model.addAttribute("videogiochi", service.findAll(3 * index));
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication.getPrincipal() != "anonymousUser") {
+
+			Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
+			getWishlist(model, idUtente);
+			getPlayedlist(model, idUtente);
+		}
+		return "videogiochi/list";
+
+	}
+
+	@GetMapping(value = "/list", params = "platform")
+	public String listWithPlatform(@RequestParam(value = "platform") String platform, Model model)
+			throws BusinessException {
+		model.addAttribute("videogiochi", service.findByPlatform(platform));
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication.getPrincipal() != "anonymousUser") {
 
