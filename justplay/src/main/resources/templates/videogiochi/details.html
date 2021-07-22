@@ -62,12 +62,12 @@
 							<div class="modal-body p-a-20">
 								<form th:action="@{/videogiochi/addGameToSellinglistProva}"
 									th:object="${videogioco_in_vendita}" method="post">
-									
+
 									<div class="input-group mb-3">
 										<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco"
 											class="form-control">
 									</div>
-									
+
 									<h4 th:text="${videogioco.titolo}"></h4>
 									<div class="divider"></div>
 									<div class="form-group input-icon-left m-b-10">
@@ -86,17 +86,16 @@
 											th:field="*{provincia}" placeholder="Luogo" required>
 									</div>
 									<div class="dropdown float-left">
-										<select class="form-control" required>
+										<select class="form-control" name="piattaforma" required>
 											<div class="dropdown-menu dropdown-menu-right">
-												<option value="" selected disabled hidden>Piattaforma</option>
-												<option value="PS4" th:if="${videogioco.ps4Url != null}"
-													th:field="*{piattaforma}" th:value="${piattaforma}" th:name="piattaforma" class="dropdown-item">PS4
+												<option selected disabled hidden>Piattaforma</option>
+												<option value="PS4" th:if="${videogioco.ps4Url != null}" th:value="PS4"
+													class="dropdown-item">PS4
 												</option>
 												<option value="Xbox" th:if="${videogioco.xboxUrl != null}"
-													th:field="*{piattaforma}" th:value="${piattaforma}" th:name="piattaforma" class="dropdown-item">Xbox
-													One</option>
-												<option value="Pc" th:if="${videogioco.pcUrl != null}"
-													th:field="*{piattaforma}" th:value="${piattaforma}" th:name="piattaforma" class="dropdown-item">Pc
+													th:value="Xbox" class="dropdown-item">Xbox</option>
+												<option value="Pc" th:if="${videogioco.pcUrl != null}" th:value="Pc"
+													class="dropdown-item">Pc
 												</option>
 											</div>
 										</select>

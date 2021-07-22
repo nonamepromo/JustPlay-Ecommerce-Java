@@ -159,14 +159,9 @@ public class VideogiocoController {
 	public String addGameToSellinglistProva(@ModelAttribute VideogiocoInVendita nuovoVideogiocoInVendita,
 			@RequestParam(value = "idVideogioco") Long idVideogioco, RedirectAttributes redirAttrs)
 			throws BusinessException {
-
-		// VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
-		// model.addAttribute("videogioco_in_vendita", videogiocoInVendita);
-		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
 		Long idUtente = Long.parseLong(id);
-
 		service.addGameToSellinglistProva(nuovoVideogiocoInVendita,idVideogioco, idUtente);
 		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
