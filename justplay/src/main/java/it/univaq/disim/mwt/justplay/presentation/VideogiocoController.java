@@ -20,7 +20,7 @@ import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 
 @Controller
-@RequestMapping(value = "videogiochi" , method = RequestMethod.POST)
+@RequestMapping(value = "videogiochi", method = RequestMethod.POST)
 public class VideogiocoController {
 
 	@Autowired
@@ -91,19 +91,9 @@ public class VideogiocoController {
 //			throws BusinessException {
 //		return service.findAllVideogiochiPaginated();
 //	}
-
-	@GetMapping("/details")
-	public String details(@RequestParam("idVideogioco") Long idVideogioco, Model model) throws BusinessException {
-
+	
+	public void platform(@RequestParam("idVideogioco") Long idVideogioco, Model model, String[] ps4Urls, String[] xboxUrls, String[] pcUrls) throws BusinessException {
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
-		model.addAttribute("videogioco", videogioco);
-		model.addAttribute("idVideogioco", idVideogioco);
-		
-		VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
-
-		String[] ps4Urls = null;
-		String[] xboxUrls = null;
-		String[] pcUrls = null;
 		if (videogioco.getPs4Url() != null) {
 			ps4Urls = videogioco.getPs4Url().split(";");
 		}
@@ -115,15 +105,22 @@ public class VideogiocoController {
 		if (videogioco.getPcUrl() != null) {
 			pcUrls = videogioco.getPcUrl().split(";");
 		}
-		;
-
 		model.addAttribute("ps4Urls", ps4Urls);
 		model.addAttribute("xboxUrls", xboxUrls);
 		model.addAttribute("pcUrls", pcUrls);
+	}
 
+	@GetMapping("/details")
+	public String details(@RequestParam("idVideogioco") Long idVideogioco, Model model) throws BusinessException {
+		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
+		model.addAttribute("videogioco", videogioco);
+		model.addAttribute("idVideogioco", idVideogioco);
+		VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
 		model.addAttribute("videogioco_in_vendita", videogiocoInVendita);
+		model.addAttribute("videogiochi_in_vendita", service.getSellinglist(idVideogioco));
+		model.addAttribute("effettivi", service.findAllProfile());
 		getSellinglist(model, idVideogioco);
-
+		platform(idVideogioco, model, null, null, null);
 		return "videogiochi/details";
 	}
 
@@ -138,7 +135,7 @@ public class VideogiocoController {
 
 		service.addGameToWishlist(idVideogioco, idUtente);
 		redirAttrs.addFlashAttribute("success", "");
-		return "redirect:/videogiochi/list";
+		return "videogiochi/list";
 	}
 
 	@PostMapping("/addGameToPlayedlist")
@@ -162,7 +159,7 @@ public class VideogiocoController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
 		Long idUtente = Long.parseLong(id);
-		service.addGameToSellinglistProva(nuovoVideogiocoInVendita,idVideogioco, idUtente);
+		service.addGameToSellinglistProva(nuovoVideogiocoInVendita, idVideogioco, idUtente);
 		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}

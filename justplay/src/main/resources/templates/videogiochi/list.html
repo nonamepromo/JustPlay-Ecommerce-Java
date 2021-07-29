@@ -112,8 +112,8 @@
 					<div class="dropdown float-left">
 						<select th:onchange="|listWithPlatform(this.value)|" class="form-control">
 							<div class="dropdown-menu dropdown-menu-right">
-								<option class="dropdown-item"
-									th:onclick="|listWithIndex(1)|">Tutte le piattaforme</option>
+								<option class="dropdown-item" th:onclick="|listWithIndex(1)|">Tutte le piattaforme
+								</option>
 								<option class="dropdown-item" th:value="ps4">Playstation 4</option>
 								<option class="dropdown-item" th:value="xbox">Xbox One</option>
 								<option class="dropdown-item" th:value="pc">Pc</option>
@@ -137,8 +137,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}"></div>
 				<div class="row">
+					<div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}">
+					</div>
 					<div th:each="videogioco : ${videogiochi}" class="col-12 col-sm-6 col-md-4">
 						<div class="card card-lg">
 							<div class="card-img">

@@ -46,7 +46,7 @@
 
 		<section class="post">
 			<div class="container">
-
+				<div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}"></div>
 				<!-- Button trigger modal -->
 				<button type="button" class="btn btn-primary btn-shadow btn-rounded" data-toggle="modal"
 					data-target="#modal-login">Metti in vendita <i class="fa fa-shopping-cart"></i></button>
@@ -65,6 +65,8 @@
 
 									<div class="input-group mb-3">
 										<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco"
+											class="form-control">
+										<input type="hidden" th:value="${idUtente}" th:name="idUtente"
 											class="form-control">
 									</div>
 
@@ -254,12 +256,33 @@
 								</div>
 							</div>
 						</div>
-
-						<!-- post -->
-						<div class="post">
-							<h4>VENDITE PRIVATE</h4>
+						<div th:if="${sellingList.contains(videogioco.id)}">
+							<!-- post -->
+							<div class="post">
+								<h4>VENDITE PRIVATE</h4>
+							</div>
+							<div class="post">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Utente</th>
+											<th>Piattaforma</th>
+											<th>Prezzo</th>
+											<th>Provincia</th>
+										</tr>
+									</thead>
+									<tbody th:each=" videogioco_in_vendita : ${videogiochi_in_vendita}">
+										<tr>
+											<td th:if="${effettivi.contains(videogioco_in_vendita)}"></td>
+											<td th:text="${videogioco_in_vendita}"></td>
+											<td>azz</td>
+											<td>azz</td>
+											<td>azz</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
-
 						<!-- post -->
 						<div class="post">
 							<h2 class="post-title">
