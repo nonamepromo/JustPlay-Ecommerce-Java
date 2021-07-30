@@ -33,6 +33,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	private static final String FIND_VIDEOGIOCHI = "SELECT vg.* FROM videogiochi vg order by vg.titolo LIMIT ?,?";
 	private static final String FIND_VIDEOGIOCHI_BY_PLATFORM = "SELECT vg.* FROM videogiochi vg where vg.piattaforma = ? order by vg.titolo";
 	private static final String FIND_VIDEOGIOCHI_PROFILE = "SELECT vg.* FROM videogiochi vg order by vg.titolo";
+	private static final String FIND_VIDEOGIOCHI_VENDITA = "SELECT vg.* FROM videogiochi_in_vendita vg where vg.fk_videogioco = ? order by vg.prezzo";
 	private static final String FIND_VIDEOGIOCO_BY_PK = "SELECT vg.* FROM videogiochi vg WHERE vg.id = ?";
 	private static final String DELETE_VIDEOGIOCO = "DELETE FROM videogiochi WHERE id=?";
 	private static final String INSERT_VIDEOGIOCO_DESIDERATO = "INSERT INTO videogiochi_desiderati (fk_videogioco, fk_utente) VALUES (?,?)";
@@ -53,33 +54,34 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 
 	/* VIDEOGIOCO */
 	// @Override
-	// public ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws BusinessException {
+	// public ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws
+	// BusinessException {
 
-	// 	String baseSearch = "SELECT * FROM videogiochi";
+	// String baseSearch = "SELECT * FROM videogiochi";
 
-	// 	List<Videogioco> videogiochi = new ArrayList<>();
-	// 	try (Connection con = dataSource.getConnection();
-	// 			Statement st = con.createStatement();
-	// 			ResultSet rs = st.executeQuery(baseSearch);) {
-	// 		while (rs.next()) {
-	// 			Videogioco videogioco = new Videogioco();
-	// 			videogioco.setId(rs.getLong("id"));
-	// 			videogioco.setTitolo(rs.getString("titolo"));
-	// 			videogioco.setPiattaforma(rs.getString("piattaforma"));
-	// 			videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
-	// 			videogioco.setDescrizione(rs.getString("descrizione"));
-	// 			videogioco.setPs4Url(rs.getString("ps4Url"));
-	// 			videogioco.setXboxUrl(rs.getString("xboxUrl"));
-	// 			videogioco.setPcUrl(rs.getString("pcUrl"));
-	// 			videogioco.setImageUrl(rs.getString("imageUrl"));
-	// 			videogiochi.add(videogioco);
-	// 		}
-	// 	} catch (SQLException e) {
-	// 		log.error("findAllVideogiochiPaginated", e);
-	// 		throw new BusinessException("", e);
-	// 	}
+	// List<Videogioco> videogiochi = new ArrayList<>();
+	// try (Connection con = dataSource.getConnection();
+	// Statement st = con.createStatement();
+	// ResultSet rs = st.executeQuery(baseSearch);) {
+	// while (rs.next()) {
+	// Videogioco videogioco = new Videogioco();
+	// videogioco.setId(rs.getLong("id"));
+	// videogioco.setTitolo(rs.getString("titolo"));
+	// videogioco.setPiattaforma(rs.getString("piattaforma"));
+	// videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
+	// videogioco.setDescrizione(rs.getString("descrizione"));
+	// videogioco.setPs4Url(rs.getString("ps4Url"));
+	// videogioco.setXboxUrl(rs.getString("xboxUrl"));
+	// videogioco.setPcUrl(rs.getString("pcUrl"));
+	// videogioco.setImageUrl(rs.getString("imageUrl"));
+	// videogiochi.add(videogioco);
+	// }
+	// } catch (SQLException e) {
+	// log.error("findAllVideogiochiPaginated", e);
+	// throw new BusinessException("", e);
+	// }
 
-	// 	return ResponseEntity.ok(videogiochi);
+	// return ResponseEntity.ok(videogiochi);
 
 	// }
 
@@ -162,6 +164,31 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		} catch (SQLException e) {
 			log.error("findAllProfile", e);
 			throw new BusinessException("findAllProfile", e);
+		}
+		return result;
+	}
+
+	@Override
+	public List<VideogiocoInVendita> findAllVendita(Long idVideogioco) throws BusinessException {
+		List<VideogiocoInVendita> result = new ArrayList<>();
+		try (Connection con = dataSource.getConnection();
+				PreparedStatement st = con.prepareStatement(FIND_VIDEOGIOCHI_IN_VENDITA);) {
+			(st).setLong(1, idVideogioco);
+			try (ResultSet rs = st.executeQuery();) {
+				while (rs.next()) {
+					VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
+					videogiocoInVendita.setFk_utente(rs.getLong("fk_utente"));
+					videogiocoInVendita.setFk_videogioco(rs.getLong("fk_videogioco"));
+					videogiocoInVendita.setPrezzo(rs.getInt("prezzo"));
+					videogiocoInVendita.setPrezzo_spedizione(rs.getInt("prezzo_spedizione"));
+					videogiocoInVendita.setProvincia(rs.getString("provincia"));
+					videogiocoInVendita.setPiattaforma(rs.getString("piattaforma"));
+					result.add(videogiocoInVendita);
+				}
+			}
+		} catch (SQLException e) {
+			log.error("findAllVendita", e);
+			throw new BusinessException("findAllVendita", e);
 		}
 		return result;
 	}

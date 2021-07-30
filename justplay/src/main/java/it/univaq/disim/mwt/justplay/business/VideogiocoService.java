@@ -18,6 +18,8 @@ public interface VideogiocoService {
 	List<Videogioco> findByPlatform(String platform) throws BusinessException;
 
 	List<Videogioco> findAllProfile() throws BusinessException;
+	
+	List<VideogiocoInVendita> findAllVendita(Long idVideogioco) throws BusinessException;
 
 	List<Long> getWishlist(Long idUtente) throws BusinessException;
 

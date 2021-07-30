@@ -266,18 +266,20 @@
 									<thead>
 										<tr>
 											<th>Utente</th>
-											<th>Piattaforma</th>
 											<th>Prezzo</th>
+											<th >Prezzo
+												Spedizione</th>
 											<th>Provincia</th>
+											<th>Piattaforma</th>
 										</tr>
 									</thead>
-									<tbody th:each=" videogioco_in_vendita : ${videogiochi_in_vendita}">
-										<tr>
-											<td th:if="${effettivi.contains(videogioco_in_vendita)}"></td>
-											<td th:text="${videogioco_in_vendita}"></td>
-											<td>azz</td>
-											<td>azz</td>
-											<td>azz</td>
+									<tbody>
+										<tr th:each=" videogioco_in_vendita : ${videogiochi_in_vendita}">
+											<td th:text="${videogioco_in_vendita.fk_utente}"></td>
+											<td th:text="${videogioco_in_vendita.prezzo}+ '€'"></td>
+											<td th:text="${videogioco_in_vendita.prezzo_spedizione}+ '€'"></td>
+											<td th:text="${videogioco_in_vendita.provincia}"></td>
+											<td th:text="${videogioco_in_vendita.piattaforma}"></td>
 										</tr>
 									</tbody>
 								</table>

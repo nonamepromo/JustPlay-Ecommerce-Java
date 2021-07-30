@@ -117,10 +117,10 @@ public class VideogiocoController {
 		model.addAttribute("idVideogioco", idVideogioco);
 		VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
 		model.addAttribute("videogioco_in_vendita", videogiocoInVendita);
-		model.addAttribute("videogiochi_in_vendita", service.getSellinglist(idVideogioco));
-		model.addAttribute("effettivi", service.findAllProfile());
+		model.addAttribute("videogiochi_in_vendita", service.findAllVendita(idVideogioco));
 		getSellinglist(model, idVideogioco);
 		platform(idVideogioco, model, null, null, null);
+		//model.addAttribute("effettivi", service.findAllVendita());
 		return "videogiochi/details";
 	}
 
