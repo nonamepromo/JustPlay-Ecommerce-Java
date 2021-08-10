@@ -6,7 +6,20 @@
 
 	<!-- main -->
 	<div layout:fragment="content">
-
+	<script>
+			function removeGameFromSellinglist(idVideogioco) {
+				$.ajax({
+					url: '[(@{/videogiochi/removeGameFromSellinglist})]',
+					type: "POST",
+					data: 'idVideogioco=' + idVideogioco,
+					success: function (response) {
+						const queryString = window.location.search
+						const urlParams = new URLSearchParams(queryString);
+						window.open("details?idVideogioco=" + urlParams.get('index'), "_self")
+					}
+				});
+			}
+		</script>
 		<section class="hero hero-game"
 			th:style="'background:url('+ ${videogioco.imageUrl} +'); background-size: 1262px;'">
 			<div class="overlay"></div>
@@ -267,10 +280,11 @@
 										<tr>
 											<th>Utente</th>
 											<th>Prezzo</th>
-											<th >Prezzo
+											<th>Prezzo
 												Spedizione</th>
 											<th>Provincia</th>
 											<th>Piattaforma</th>
+											<th>Azioni</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -280,6 +294,16 @@
 											<td th:text="${videogioco_in_vendita.prezzo_spedizione}+ '€'"></td>
 											<td th:text="${videogioco_in_vendita.provincia}"></td>
 											<td th:text="${videogioco_in_vendita.piattaforma}"></td>
+											<td th:if="${videogioco_in_vendita.fk_utente == idUtente}">
+												<a class="btn btn-link p-a-5"
+													th:onclick="|removeGameFromSellinglist('${idVideogioco}')|"><i
+														class="fa fa-trash-o"></i></a>
+											</td>
+											<td th:if="${videogioco_in_vendita.fk_utente != idUtente}">
+												<a class="btn btn-link p-a-5"
+													th:onclick=""><i
+														class="fa fa-wechat"></i></a>
+											</td>
 										</tr>
 									</tbody>
 								</table>

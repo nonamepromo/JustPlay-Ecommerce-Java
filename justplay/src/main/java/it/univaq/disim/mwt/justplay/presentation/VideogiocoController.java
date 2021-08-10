@@ -112,6 +112,11 @@ public class VideogiocoController {
 
 	@GetMapping("/details")
 	public String details(@RequestParam("idVideogioco") Long idVideogioco, Model model) throws BusinessException {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication.getPrincipal() != "anonymousUser") {
+			Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
+			model.addAttribute("idUtente", idUtente);
+		}
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		model.addAttribute("videogioco", videogioco);
 		model.addAttribute("idVideogioco", idVideogioco);
@@ -120,7 +125,6 @@ public class VideogiocoController {
 		model.addAttribute("videogiochi_in_vendita", service.findAllVendita(idVideogioco));
 		getSellinglist(model, idVideogioco);
 		platform(idVideogioco, model, null, null, null);
-		//model.addAttribute("effettivi", service.findAllVendita());
 		return "videogiochi/details";
 	}
 
@@ -199,9 +203,9 @@ public class VideogiocoController {
 		String id = authentication.getPrincipal().toString();
 
 		Long idUtente = Long.parseLong(id);
-
+		
 		service.removeGameFromSellinglist(idVideogioco, idUtente);
-		return "videogiochi/list";
+		return "videogiochi/details";
 	}
 
 	// @GetMapping("/checkIfGameIsDesidered")

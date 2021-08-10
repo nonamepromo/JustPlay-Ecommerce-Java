@@ -8,6 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class VideogiocoInVendita {
+	private Long id;
 
 	private Long fk_utente;
 
