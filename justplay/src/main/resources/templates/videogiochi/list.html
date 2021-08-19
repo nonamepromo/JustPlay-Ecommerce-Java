@@ -6,15 +6,15 @@
 
 	<!-- main -->
 	<div layout:fragment="content">
-		<script>
+		<!-- <script>
 			function listWithIndex(index) {
 				window.location.href = "list?index=" + index;
 			}
-		</script>
+		</script> -->
 
 		<script>
-			function listWithPlatform(platform) {
-				window.location.href = "list?platform=" + platform;
+			function listWithPlatform(platform, index) {
+				window.location.href = "list?platform=" + platform + "&index=" + index;
 			}
 		</script>
 
@@ -106,17 +106,25 @@
 					<form method="post" class="float-left cold-12 col-sm-6 p-l-0 p-r-10">
 						<div class="form-group input-icon-right">
 							<i class="fa fa-search"></i>
-							<input type="text" class="form-control search-game" placeholder="Search Game...">
+							<input type="text" class="form-control search-game" placeholder="Cerca videogioco...">
 						</div>
 					</form>
 					<div class="dropdown float-left">
-						<select th:onchange="|listWithPlatform(this.value)|" class="form-control">
+						<select th:onchange="|listWithPlatform(this.value, 1)|" class="form-control">
 							<div class="dropdown-menu dropdown-menu-right">
+<<<<<<< Updated upstream
 								<option class="dropdown-item" th:onclick="|listWithIndex(1)|">Tutte le piattaforme
 								</option>
 								<option class="dropdown-item" th:value="ps4">Playstation 4</option>
 								<option class="dropdown-item" th:value="xbox">Xbox One</option>
 								<option class="dropdown-item" th:value="pc">Pc</option>
+=======
+								<option class="dropdown-item" th:value="'ps4'">Playstation 4</option>
+								<option class="dropdown-item" th:value="'xbox'">Xbox One</option>
+								<option class="dropdown-item" th:value="'pc'">Pc</option>
+								<option class="dropdown-item" th:value="'all'">Tutte le piattaforme
+								</option>
+>>>>>>> Stashed changes
 							</div>
 						</select>
 					</div>
@@ -181,27 +189,24 @@
 				</div>
 
 				<div class="pagination-results m-t-0">
-					<span>Showing 10 to 20 of 48 videos</span>
 					<nav aria-label="Page navigation">
 						<ul class="pagination">
 							<li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span
 										aria-hidden="true"><i class="fa fa-angle-left"></i></span></a></li>
-							<li class=""
-								th:class="${param.index != null} ? (${param.index[0] == '1'} ? 'page-item active' : 'page-item') : 'page-item active'">
-								<a class="page-link" th:onclick="|listWithIndex(1)|">1</a>
+							<li th:each="i: ${#numbers.sequence(1, videogiochiCount)}" class=""
+								th:class="${param.index != null} ? (${param.index[0] == i} ? 'page-item active' : 'page-item') : 'page-item active'">
+								<a th:text="${i}" class="page-link" th:onclick="|listWithPlatform('all', ${i})|"></a>
 							</li>
-							<li class=""
+							<!-- <li class=""
 								th:class="${param.index != null} ? (${param.index[0] == '2'} ? 'page-item active' : 'page-item') : 'page-item'">
 								<a class="page-link" th:onclick="|listWithIndex(2)|">2</a>
 							</li>
 							<li class=""
 								th:class="${param.index != null} ? (${param.index[0] == '3'} ? 'page-item active' : 'page-item') : 'page-item'">
 								<a class="page-link" th:onclick="|listWithIndex(3)|">3</a>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-							<li class="separate"><span>...</span></li>
-							<li class="page-item"><a class="page-link" href="#">25</a></li>
+							</li> -->
+							<!-- <li th:each="i: ${#numbers.sequence(1, videogiochiCount)}" class="page-item"><a
+									th:text="${i}" class="page-link" href="#"></a></li> -->
 							<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span
 										aria-hidden="true"><i class="fa fa-angle-right"></i></span></a></li>
 						</ul>

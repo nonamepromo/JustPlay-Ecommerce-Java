@@ -13,9 +13,11 @@ import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 
 public interface VideogiocoService {
 
+	int getVideogiochiCount() throws BusinessException;
+
 	List<Videogioco> findAll(int index) throws BusinessException;
 
-	List<Videogioco> findByPlatform(String platform) throws BusinessException;
+	List<Videogioco> findByPlatform(String platform, int index) throws BusinessException;
 
 	List<Videogioco> findAllProfile() throws BusinessException;
 	

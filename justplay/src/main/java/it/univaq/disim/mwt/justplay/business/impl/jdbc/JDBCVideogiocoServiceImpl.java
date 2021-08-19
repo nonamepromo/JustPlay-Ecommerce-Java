@@ -30,8 +30,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 
+	private static final String GET_VIDEOGIOCHI_COUNT = "SELECT COUNT(*) FROM videogiochi";
 	private static final String FIND_VIDEOGIOCHI = "SELECT vg.* FROM videogiochi vg order by vg.titolo LIMIT ?,?";
-	private static final String FIND_VIDEOGIOCHI_BY_PLATFORM = "SELECT vg.* FROM videogiochi vg where vg.piattaforma = ? order by vg.titolo";
+	private static String FIND_VIDEOGIOCHI_BY_PLATFORM = null;
 	private static final String FIND_VIDEOGIOCHI_PROFILE = "SELECT vg.* FROM videogiochi vg order by vg.titolo";
 	private static final String FIND_VIDEOGIOCHI_VENDITA = "SELECT vg.* FROM videogiochi_in_vendita vg where vg.fk_videogioco = ? order by vg.prezzo";
 	private static final String FIND_VIDEOGIOCO_BY_PK = "SELECT vg.* FROM videogiochi vg WHERE vg.id = ?";
@@ -52,6 +53,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	@Autowired
 	private DataSource dataSource;
 
+<<<<<<< Updated upstream
 	/* VIDEOGIOCO */
 	// @Override
 	// public ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws
@@ -84,6 +86,23 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	// return ResponseEntity.ok(videogiochi);
 
 	// }
+=======
+	@Override
+	public int getVideogiochiCount() throws BusinessException {
+		int result = 0;
+		try (Connection con = dataSource.getConnection();
+				Statement st = con.createStatement();
+				ResultSet rs = st.executeQuery(GET_VIDEOGIOCHI_COUNT)) {
+					while (rs.next()) {
+						result = rs.getInt("COUNT(*)");
+					}
+		} catch (SQLException e) {
+			log.error("findAllProfile", e);
+			throw new BusinessException("findAllProfile", e);
+		}
+		return result;
+	}
+>>>>>>> Stashed changes
 
 	@Override
 	public List<Videogioco> findAll(int index) throws BusinessException {
@@ -115,11 +134,22 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
-	public List<Videogioco> findByPlatform(String platform) throws BusinessException {
+	public List<Videogioco> findByPlatform(String platform, int index) throws BusinessException {
 		List<Videogioco> result = new ArrayList<>();
+		switch(platform) {
+			case "all": FIND_VIDEOGIOCHI_BY_PLATFORM = FIND_VIDEOGIOCHI;
+			break;
+			case "ps4": FIND_VIDEOGIOCHI_BY_PLATFORM = "SELECT vg.* FROM videogiochi vg where vg.ps4Url IS NOT NULL order by vg.titolo LIMIT ?,?";
+			break;
+			case "xbox": FIND_VIDEOGIOCHI_BY_PLATFORM = "SELECT vg.* FROM videogiochi vg where vg.xboxUrl IS NOT NULL order by vg.titolo LIMIT ?,?";
+			break;
+			case "pc": FIND_VIDEOGIOCHI_BY_PLATFORM = "SELECT vg.* FROM videogiochi vg where vg.pcUrl IS NOT NULL order by vg.titolo LIMIT ?,?";
+			break;
+		} 
 		try (Connection con = dataSource.getConnection();
 				PreparedStatement st = con.prepareStatement(FIND_VIDEOGIOCHI_BY_PLATFORM);) {
-			(st).setString(1, platform);
+			(st).setLong(1, index - 3);
+			(st).setLong(2, index);
 			try (ResultSet rs = st.executeQuery();) {
 				while (rs.next()) {
 					Videogioco videogioco = new Videogioco();
