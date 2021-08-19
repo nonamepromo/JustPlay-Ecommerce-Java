@@ -26,25 +26,29 @@ public class VideogiocoController {
 	@Autowired
 	private VideogiocoService service;
 
-	@GetMapping(value = "/list", params = "index")
-	public String showAll(@RequestParam(value = "index", defaultValue = "1") int index, Model model)
-			throws BusinessException {
-		model.addAttribute("videogiochi", service.findAll(3 * index));
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication.getPrincipal() != "anonymousUser") {
+	// @GetMapping(value = "/list", params = "index")
+	// public String showAll(@RequestParam(value = "index", defaultValue = "1") int index, Model model)
+	// 		throws BusinessException {
+	// 	int numberOfIndexes = service.getVideogiochiCount() / 3 + ((service.getVideogiochiCount() % 3 == 0) ? 0 : 1); 
+	// 	model.addAttribute("videogiochiCount", numberOfIndexes);
+	// 	model.addAttribute("videogiochi", service.findAll(3 * index));
+	// 	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	// 	if (authentication.getPrincipal() != "anonymousUser") {
 
-			Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
-			getWishlist(model, idUtente);
-			getPlayedlist(model, idUtente);
-		}
-		return "videogiochi/list";
+	// 		Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
+	// 		getWishlist(model, idUtente);
+	// 		getPlayedlist(model, idUtente);
+	// 	}
+	// 	return "videogiochi/list";
 
-	}
+	// }
 
-	@GetMapping(value = "/list", params = "platform")
-	public String listWithPlatform(@RequestParam(value = "platform") String platform, Model model)
-			throws BusinessException {
-		model.addAttribute("videogiochi", service.findByPlatform(platform));
+	@GetMapping(value = "/list", params = { "platform", "index" })
+	public String listWithPlatform(@RequestParam(value = "platform") String platform,
+			@RequestParam(value = "index", defaultValue = "1") int index, Model model) throws BusinessException {
+				int numberOfIndexes = service.getVideogiochiCount() / 3 + ((service.getVideogiochiCount() % 3 == 0) ? 0 : 1); 
+				model.addAttribute("videogiochiCount", numberOfIndexes);
+		model.addAttribute("videogiochi", service.findByPlatform(platform, 3 * index));
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication.getPrincipal() != "anonymousUser") {
 
@@ -76,6 +80,7 @@ public class VideogiocoController {
 		model.addAttribute("sellingList", service.getSellinglist(idVideogioco));
 	}
 
+<<<<<<< Updated upstream
 //	@GetMapping("/list")
 //	public String getWishList(Model model) throws BusinessException {
 //		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -94,6 +99,37 @@ public class VideogiocoController {
 	
 	public void platform(@RequestParam("idVideogioco") Long idVideogioco, Model model, String[] ps4Urls, String[] xboxUrls, String[] pcUrls) throws BusinessException {
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
+=======
+	// @GetMapping("/list")
+	// public String getWishList(Model model) throws BusinessException {
+	// Authentication authentication =
+	// SecurityContextHolder.getContext().getAuthentication();
+	// String id = authentication.getPrincipal().toString();
+	//
+	// Long idUtente = Long.parseLong(id);
+	// model.addAttribute("wishList", service.getWishlist(idUtente));
+	// return "videogiochi/list";
+	// }
+
+	// @GetMapping("/findallpaginated")
+	// public ResponseEntity<List<Videogioco>> findAllPaginated()
+	// throws BusinessException {
+	// return service.findAllVideogiochiPaginated();
+	// }
+
+	@GetMapping("/details")
+	public String details(@RequestParam("idVideogioco") Long idVideogioco, Model model) throws BusinessException {
+
+		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
+		model.addAttribute("videogioco", videogioco);
+		model.addAttribute("idVideogioco", idVideogioco);
+
+		VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
+
+		String[] ps4Urls = null;
+		String[] xboxUrls = null;
+		String[] pcUrls = null;
+>>>>>>> Stashed changes
 		if (videogioco.getPs4Url() != null) {
 			ps4Urls = videogioco.getPs4Url().split(";");
 		}
@@ -160,9 +196,20 @@ public class VideogiocoController {
 	public String addGameToSellinglistProva(@ModelAttribute VideogiocoInVendita nuovoVideogiocoInVendita,
 			@RequestParam(value = "idVideogioco") Long idVideogioco, RedirectAttributes redirAttrs)
 			throws BusinessException {
+<<<<<<< Updated upstream
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
 		Long idUtente = Long.parseLong(id);
+=======
+
+		// VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
+		// model.addAttribute("videogioco_in_vendita", videogiocoInVendita);
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String id = authentication.getPrincipal().toString();
+		Long idUtente = Long.parseLong(id);
+
+>>>>>>> Stashed changes
 		service.addGameToSellinglistProva(nuovoVideogiocoInVendita, idVideogioco, idUtente);
 		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
