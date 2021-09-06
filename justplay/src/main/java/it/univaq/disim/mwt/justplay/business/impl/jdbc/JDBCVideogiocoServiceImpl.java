@@ -53,7 +53,6 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	@Autowired
 	private DataSource dataSource;
 
-<<<<<<< Updated upstream
 	/* VIDEOGIOCO */
 	// @Override
 	// public ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws
@@ -86,7 +85,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	// return ResponseEntity.ok(videogiochi);
 
 	// }
-=======
+
 	@Override
 	public int getVideogiochiCount() throws BusinessException {
 		int result = 0;
@@ -102,7 +101,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		}
 		return result;
 	}
->>>>>>> Stashed changes
+
 
 	@Override
 	public List<Videogioco> findAll(int index) throws BusinessException {

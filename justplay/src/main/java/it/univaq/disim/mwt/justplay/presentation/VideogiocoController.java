@@ -25,7 +25,8 @@ public class VideogiocoController {
 
 	@Autowired
 	private VideogiocoService service;
-
+	
+	//DEVE RIMANERE COMMENTATO OPPURE NO?
 	// @GetMapping(value = "/list", params = "index")
 	// public String showAll(@RequestParam(value = "index", defaultValue = "1") int index, Model model)
 	// 		throws BusinessException {
@@ -80,7 +81,6 @@ public class VideogiocoController {
 		model.addAttribute("sellingList", service.getSellinglist(idVideogioco));
 	}
 
-<<<<<<< Updated upstream
 //	@GetMapping("/list")
 //	public String getWishList(Model model) throws BusinessException {
 //		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -99,7 +99,22 @@ public class VideogiocoController {
 	
 	public void platform(@RequestParam("idVideogioco") Long idVideogioco, Model model, String[] ps4Urls, String[] xboxUrls, String[] pcUrls) throws BusinessException {
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
-=======
+		if (videogioco.getPs4Url() != null) {
+			ps4Urls = videogioco.getPs4Url().split(";");
+		}
+		;
+		if (videogioco.getXboxUrl() != null) {
+			xboxUrls = videogioco.getXboxUrl().split(";");
+		}
+		;
+		if (videogioco.getPcUrl() != null) {
+			pcUrls = videogioco.getPcUrl().split(";");
+		}
+		model.addAttribute("ps4Urls", ps4Urls);
+		model.addAttribute("xboxUrls", xboxUrls);
+		model.addAttribute("pcUrls", pcUrls);
+	}
+
 	// @GetMapping("/list")
 	// public String getWishList(Model model) throws BusinessException {
 	// Authentication authentication =
@@ -116,35 +131,6 @@ public class VideogiocoController {
 	// throws BusinessException {
 	// return service.findAllVideogiochiPaginated();
 	// }
-
-	@GetMapping("/details")
-	public String details(@RequestParam("idVideogioco") Long idVideogioco, Model model) throws BusinessException {
-
-		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
-		model.addAttribute("videogioco", videogioco);
-		model.addAttribute("idVideogioco", idVideogioco);
-
-		VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
-
-		String[] ps4Urls = null;
-		String[] xboxUrls = null;
-		String[] pcUrls = null;
->>>>>>> Stashed changes
-		if (videogioco.getPs4Url() != null) {
-			ps4Urls = videogioco.getPs4Url().split(";");
-		}
-		;
-		if (videogioco.getXboxUrl() != null) {
-			xboxUrls = videogioco.getXboxUrl().split(";");
-		}
-		;
-		if (videogioco.getPcUrl() != null) {
-			pcUrls = videogioco.getPcUrl().split(";");
-		}
-		model.addAttribute("ps4Urls", ps4Urls);
-		model.addAttribute("xboxUrls", xboxUrls);
-		model.addAttribute("pcUrls", pcUrls);
-	}
 
 	@GetMapping("/details")
 	public String details(@RequestParam("idVideogioco") Long idVideogioco, Model model) throws BusinessException {
@@ -196,20 +182,9 @@ public class VideogiocoController {
 	public String addGameToSellinglistProva(@ModelAttribute VideogiocoInVendita nuovoVideogiocoInVendita,
 			@RequestParam(value = "idVideogioco") Long idVideogioco, RedirectAttributes redirAttrs)
 			throws BusinessException {
-<<<<<<< Updated upstream
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
 		Long idUtente = Long.parseLong(id);
-=======
-
-		// VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
-		// model.addAttribute("videogioco_in_vendita", videogiocoInVendita);
-
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String id = authentication.getPrincipal().toString();
-		Long idUtente = Long.parseLong(id);
-
->>>>>>> Stashed changes
 		service.addGameToSellinglistProva(nuovoVideogiocoInVendita, idVideogioco, idUtente);
 		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
