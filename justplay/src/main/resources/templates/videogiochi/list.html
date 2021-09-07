@@ -110,39 +110,38 @@
 						</div>
 					</form>
 					<div class="dropdown float-left">
-						<select th:onchange="|listWithPlatform(this.value, 1)|" class="form-control">
+						<!-- <select th:onchange="|listWithPlatform(this.value, 1)|" class="form-control">
 							<div class="dropdown-menu dropdown-menu-right">
-<<<<<<< Updated upstream
 								<option class="dropdown-item" th:onclick="|listWithIndex(1)|">Tutte le piattaforme
 								</option>
 								<option class="dropdown-item" th:value="ps4">Playstation 4</option>
 								<option class="dropdown-item" th:value="xbox">Xbox One</option>
 								<option class="dropdown-item" th:value="pc">Pc</option>
-=======
-								<option class="dropdown-item" th:value="'ps4'">Playstation 4</option>
-								<option class="dropdown-item" th:value="'xbox'">Xbox One</option>
-								<option class="dropdown-item" th:value="'pc'">Pc</option>
-								<option class="dropdown-item" th:value="'all'">Tutte le piattaforme
-								</option>
->>>>>>> Stashed changes
 							</div>
-						</select>
+						</select> -->
+
 					</div>
 
 					<div class="btn-group float-right m-l-5 hidden-sm-down" role="group">
-						<a class="btn btn-default btn-icon" href="#" role="button"><i class="fa fa-th-large"></i></a>
-						<a class="btn btn-default btn-icon" href="#" role="button"><i class="fa fa-bars"></i></a>
+						<a class="btn btn-default btn-icon" th:classappend="${param.platform != null} ? (${param.platform[0] == 'all'} ? 'active' : '') : ''"
+							href="#" role="button" th:onclick="|listWithPlatform('all', 1)|">Tutte le piattaforme</a>
+						<a class="btn btn-default btn-icon" th:classappend="${param.platform != null} ? (${param.platform[0] == 'ps4'} ? 'active' : '') : ''"
+							href="#" role="button" th:onclick="|listWithPlatform('ps4', 1)|">Playstation 4</a>
+						<a class="btn btn-default btn-icon" th:classappend="${param.platform != null} ? (${param.platform[0] == 'xbox'} ? 'active' : '') : ''"
+							href="#" role="button" th:onclick="|listWithPlatform('xbox', 1)|">Xbox One</a>
+						<a class="btn btn-default btn-icon" th:classappend="${param.platform != null} ? (${param.platform[0] == 'pc'} ? 'active' : '') : ''"
+							href="#" role="button" th:onclick="|listWithPlatform('pc', 1)|">Pc</a>
 					</div>
 
 					<div class="dropdown float-right">
-						<button class="btn btn-default" type="button" data-toggle="dropdown" aria-haspopup="true"
+						<!-- <button class="btn btn-default" type="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="true">Date Added <i class="fa fa-caret-down"></i></button>
 						<div class="dropdown-menu dropdown-menu-right">
 							<a class="dropdown-item active" href="#">Date Added</a>
 							<a class="dropdown-item" href="#">Popular</a>
 							<a class="dropdown-item" href="#">Newest</a>
 							<a class="dropdown-item" href="#">Oldest</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="row">
@@ -195,8 +194,9 @@
 										aria-hidden="true"><i class="fa fa-angle-left"></i></span></a></li>
 							<li th:each="i: ${#numbers.sequence(1, videogiochiCount)}" class=""
 								th:class="${param.index != null} ? (${param.index[0] == i} ? 'page-item active' : 'page-item') : 'page-item active'">
-								<a th:text="${i}" class="page-link" th:onclick="|listWithPlatform('all', ${i})|"></a>
+								<a th:text="${i}" class="page-link" th:data-parameter1="${param.platform[0]}" th:onclick="|listWithPlatform(this.getAttribute('data-parameter1'), ${i})|"></a>
 							</li>
+							<!-- <li th:with="someVariable=${param.platform[0]}" th:text="${someVariable}"></li> -->
 							<!-- <li class=""
 								th:class="${param.index != null} ? (${param.index[0] == '2'} ? 'page-item active' : 'page-item') : 'page-item'">
 								<a class="page-link" th:onclick="|listWithIndex(2)|">2</a>

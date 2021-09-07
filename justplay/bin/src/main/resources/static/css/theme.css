@@ -1981,13 +1981,13 @@ fieldset[disabled] .btn-dark.focus {
 
 .btn-secondary.active, .btn-secondary:active {
   color: #787a7b;
-  background-color: #fafafa;
+  background-color: #fafafac4;
   border-color: #e6e6e6;
 }
 
 .btn-secondary.active:hover, .btn-secondary.active:focus, .btn-secondary.active.focus, .btn-secondary:active:hover, .btn-secondary:active:focus, .btn-secondary:active.focus {
   color: #787a7b;
-  background-color: #fafafa;
+  background-color: #fafafac4;
   border-color: #e6e6e6;
 }
 
@@ -1995,7 +1995,7 @@ fieldset[disabled] .btn-dark.focus {
 fieldset[disabled] .btn-secondary:hover,
 fieldset[disabled] .btn-secondary:focus,
 fieldset[disabled] .btn-secondary.focus {
-  background-color: #fafafa;
+  background-color: #fafafac4;
   border-color: #e6e6e6;
 }
 
@@ -2005,13 +2005,13 @@ fieldset[disabled] .btn-secondary.focus {
 .show > .btn-secondary.dropdown-toggle:focus {
   color: #787a7b;
   border-color: #d9d9d9;
-  background-color: #fafafa;
+  background-color: #fafafac4;
 }
 
 .btn-light,
 .btn-default {
   color: #717171;
-  background-color: #FFF;
+  background-color: #fafafac4;
   border-color: #e2e2e2;
 }
 
@@ -2028,7 +2028,7 @@ fieldset[disabled] .btn-secondary.focus {
 .show >
 .btn-default.dropdown-toggle:focus {
   color: #717171;
-  background-color: white;
+  background-color: fafafa9f;
   border-color: white;
   outline: 0;
 }
@@ -2044,7 +2044,7 @@ fieldset[disabled] .btn-secondary.focus {
 .btn-default.active,
 .btn-default:active {
   color: #717171;
-  background-color: #FFF;
+  background-color: #fafafa9f;
   border-color: #e2e2e2;
 }
 
@@ -2056,7 +2056,7 @@ fieldset[disabled] .btn-secondary.focus {
 .btn-default:active:focus,
 .btn-default:active.focus {
   color: #717171;
-  background-color: #FFF;
+  background-color: #fafafa9f;
   border-color: #e2e2e2;
 }
 
@@ -2076,7 +2076,7 @@ fieldset[disabled]
 .btn-default:focus,
 fieldset[disabled]
 .btn-default.focus {
-  background-color: #FFF;
+  background-color: #fafafa9f;
   border-color: #e2e2e2;
 }
 
@@ -2096,7 +2096,7 @@ fieldset[disabled]
 .btn-default.dropdown-toggle:focus {
   color: #717171;
   border-color: #d8d8d8;
-  background-color: #fafafa;
+  background-color: #717171;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
 }
