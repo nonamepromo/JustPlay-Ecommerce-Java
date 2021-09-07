@@ -1,3 +1,5 @@
+//DA ELIMINARE
+
 package it.univaq.disim.mwt.justplay.domain;
 
 import lombok.Getter;

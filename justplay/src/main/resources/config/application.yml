@@ -15,7 +15,15 @@ spring:
     basename: i18n/common, i18n/justplay
     encoding: UTF-8
     use-code-as-default-message: true
-    
+  jpa:
+    properties:
+      hibernate:
+        dialect: ${HIBERNATE_DIALECT}
+        hbm2ddl.auto: update
+        #format_sql: true
+        #show_sql: true
+    open-in-view: false
+
 ###############################################
 ############# JUSTPLAY PROPERTIES #############
 ###############################################

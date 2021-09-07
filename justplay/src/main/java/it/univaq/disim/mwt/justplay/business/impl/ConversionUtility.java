@@ -1,4 +1,4 @@
-package it.univaq.disim.mwt.justplay.business.impl.jdbc;
+package it.univaq.disim.mwt.justplay.business.impl;
 
 import java.text.DateFormat;
 import java.text.ParseException;

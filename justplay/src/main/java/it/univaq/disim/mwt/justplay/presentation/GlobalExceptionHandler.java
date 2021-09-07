@@ -15,10 +15,12 @@ import lombok.extern.slf4j.Slf4j;
 @ControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
-	
+
 	@ExceptionHandler(Exception.class)
-	public String handleException(HttpServletRequest request, Exception ex, Model model, RedirectAttributes redirAttrs) {
-		// log.error("Exception Occured:: URL=" + request.getRequestURL() + ", method=" + request.getMethod());
+	public String handleException(HttpServletRequest request, Exception ex, Model model,
+			RedirectAttributes redirAttrs) {
+		// log.error("Exception Occured:: URL=" + request.getRequestURL() + ", method="
+		// + request.getMethod());
 		// StringWriter stringWriter = new StringWriter();
 		// PrintWriter printWriter = new PrintWriter(stringWriter);
 		// ex.printStackTrace(printWriter);
@@ -28,8 +30,8 @@ public class GlobalExceptionHandler {
 		// model.addAttribute("errorCause", message);
 		// model.addAttribute("errorMessage", stringWriter.toString());
 		// return "/common/error";
-        redirAttrs.addFlashAttribute("error", (ex.getCause() == null) ? ex : ex.getCause().getMessage());
-	    return "redirect:" + request.getServletPath();
+		redirAttrs.addFlashAttribute("error", (ex.getCause() == null) ? ex : ex.getCause().getMessage());
+		return "redirect:" + request.getServletPath();
 	}
 
 }

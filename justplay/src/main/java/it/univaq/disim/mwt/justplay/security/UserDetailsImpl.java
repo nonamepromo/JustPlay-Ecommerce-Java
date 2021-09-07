@@ -65,16 +65,18 @@ public class UserDetailsImpl implements UserDetails {
 		return utente;
 	}
 
+	
+	//CAPIRE BENE COSA FARE CON I RUOLI@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> result = new ArrayList<GrantedAuthority>();
+		/*List<GrantedAuthority> result = new ArrayList<GrantedAuthority>();
 		
 		for (Ruolo ruolo : utente.getRuoli()) {
 			result.add(new SimpleGrantedAuthority(ROLE_PREFIX + ruolo.getNome()));
 		}
 		if (utente instanceof Admin) {
 			result.add(ROLE_ADMIN);
-		}
-		return result;
+		}*/
+		return null;
 	}
 }
