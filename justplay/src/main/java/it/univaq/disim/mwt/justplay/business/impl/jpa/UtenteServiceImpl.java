@@ -61,12 +61,13 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 
 	@Override
-	public void update(Utente nuovoProfilo, Long id) throws BusinessException {
+	public void save(Utente nuovoProfilo, Long id) throws BusinessException {
 		try {
-			Utente updUtente = utenteRepository.findById(id).get(); 
-			updUtente.setUsername(nuovoProfilo.getUsername()); 
-			updUtente.setNome(nuovoProfilo.getNome()); 
-			updUtente.setCognome(nuovoProfilo.getCognome()); 
+			Utente updUtente = utenteRepository.findById(id).get();
+			updUtente.setUsername(nuovoProfilo.getUsername());
+			updUtente.setNome(nuovoProfilo.getNome());
+			updUtente.setCognome(nuovoProfilo.getCognome());
+			updUtente.setEmail(nuovoProfilo.getEmail());
 			utenteRepository.save(updUtente);
 		} catch (Exception e) {
 			throw new BusinessException(e);

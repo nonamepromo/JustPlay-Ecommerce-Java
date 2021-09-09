@@ -355,7 +355,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
-	public void addGameToSellinglistProva(VideogiocoInVendita videogiocoInVendita, Long idVideogioco, Long idUtente)
+	public void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Long idVideogioco, Long idUtente)
 			throws BusinessException {
 		try (Connection con = dataSource.getConnection();
 				PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_IN_VENDITA);) {

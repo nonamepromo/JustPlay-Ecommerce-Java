@@ -185,7 +185,7 @@ public class VideogiocoController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
 		Long idUtente = Long.parseLong(id);
-		service.addGameToSellinglistProva(nuovoVideogiocoInVendita, idVideogioco, idUtente);
+		service.addGameToSellinglist(nuovoVideogiocoInVendita, idVideogioco, idUtente);
 		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}

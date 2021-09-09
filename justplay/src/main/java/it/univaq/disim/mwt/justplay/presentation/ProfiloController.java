@@ -35,7 +35,7 @@ public class ProfiloController {
 		Long idUtente = utente.getId();
 		getWishlist(model, idUtente);
 		getPlayedlist(model, idUtente);
-		model.addAttribute("profilo",newUtente);
+		model.addAttribute("profilo", newUtente);
 		return "/common/profilo";
 	}
 
@@ -44,7 +44,6 @@ public class ProfiloController {
 	}
 
 	public void getPlayedlist(Model model, Long idUtente) throws BusinessException {
-
 		model.addAttribute("playedList", gameService.getPlayedlist(idUtente));
 	}
 
@@ -70,8 +69,8 @@ public class ProfiloController {
 	public String modificaProfilo(@ModelAttribute Utente nuovoProfilo, RedirectAttributes redirAttrs)
 			throws BusinessException {
 		Utente utente = Utility.getUtente();
-		//nuovoProfilo.setId(utente.getId());
-		service.update(nuovoProfilo, utente.getId());
+		// nuovoProfilo.setId(utente.getId());
+		service.save(nuovoProfilo, utente.getId());
 		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/common/profilo?index=1";
 	}

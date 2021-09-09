@@ -12,7 +12,7 @@ import lombok.ToString;
 @ToString
 public class Videogioco {
 
-	private Long id;
+	private Long id;  //Si può togliere tanto sta id presente in AbrstractPersistableEntity
 
 	@NotBlank
 	@Size(max = 200)

@@ -19,9 +19,9 @@ public interface VideogiocoService {
 
 	List<Videogioco> findByPlatform(String platform, int index) throws BusinessException;
 
-	List<Videogioco> findAllProfile() throws BusinessException;
+	List<Videogioco> findAllProfile() throws BusinessException; //Serve per il profilo utente con i giochi da mostrare nell'area personale
 	
-	List<VideogiocoInVendita> findAllVendita(Long idVideogioco) throws BusinessException;
+	List<VideogiocoInVendita> findAllVendita(Long idVideogioco) throws BusinessException; //Serve per i giochi in vendit da mostrare in details
 
 	List<Long> getWishlist(Long idUtente) throws BusinessException;
 
@@ -37,7 +37,7 @@ public interface VideogiocoService {
 
 	void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
-	void addGameToSellinglistProva(VideogiocoInVendita videogiocoInVendita, Long idVideogioco, Long idUtente) throws BusinessException;
+	void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Long idVideogioco, Long idUtente) throws BusinessException;
 
 	void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
