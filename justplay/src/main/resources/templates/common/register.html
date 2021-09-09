@@ -22,6 +22,16 @@
 								<form th:action="@{/common/register}" th:object="${utente}" method="post">
 
 									<div class="form-group input-icon-left m-b-10">
+										<i class="fa fa-envelope"></i>
+										<input type="text" class="form-control form-control-secondary"
+											th:field="*{nome}" placeholder="Name" required autofocus="autofocus">
+									</div>
+									<div class="form-group input-icon-left m-b-10">
+										<i class="fa fa-envelope"></i>
+										<input type="text" class="form-control form-control-secondary"
+											th:field="*{cognome}" placeholder="Surname" required autofocus="autofocus">
+									</div>
+									<div class="form-group input-icon-left m-b-10">
 										<i class="fa fa-user"></i>
 										<input type="text" class="form-control form-control-secondary"
 											th:field="*{username}" placeholder="Username" required

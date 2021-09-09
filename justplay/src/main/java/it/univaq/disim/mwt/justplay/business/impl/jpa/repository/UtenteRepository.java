@@ -11,7 +11,7 @@ import it.univaq.disim.mwt.justplay.domain.Utente;
 @Repository
 public interface UtenteRepository extends JpaRepository<Utente, Long> {
 
-	Optional<Utente> findUtenteByUsername(String username);
+	Optional<Utente> findByUsername(String username);
 
 	boolean existsByUsername(String username);
 

@@ -16,12 +16,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import it.univaq.disim.mwt.justplay.presentation.validator.EmailUnique;
+import it.univaq.disim.mwt.justplay.presentation.validator.ValidEmail;
 import it.univaq.disim.mwt.justplay.presentation.validator.OnCreate;
 import it.univaq.disim.mwt.justplay.presentation.validator.OnUpdate;
 import it.univaq.disim.mwt.justplay.presentation.validator.UsernameUnique;
-import it.univaq.disim.mwt.justplay.security.PasswordMatches;
-import it.univaq.disim.mwt.justplay.security.ValidEmail;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -33,7 +31,6 @@ import org.hibernate.annotations.LazyGroup;
 @NoArgsConstructor
 @Getter
 @Setter
-@PasswordMatches
 public class Utente extends AbstractPersistableEntity {
 
 	@NotEmpty(groups = { OnCreate.class, Default.class })
@@ -44,15 +41,16 @@ public class Utente extends AbstractPersistableEntity {
 	@Size(min = 3, max = 25, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String cognome;
 
-	@EmailUnique(groups = { OnCreate.class })
+	@ValidEmail(groups = { OnCreate.class })
 	@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Email(groups = { OnCreate.class, OnUpdate.class, Default.class })
 	@Size(min = 3, max = 45, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	@Column(unique = true)
 	private String email;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private LocalDate dataNascita;
+	/*
+	 * @DateTimeFormat(pattern = "dd/MM/yyyy") private LocalDate dataNascita;
+	 */
 
 	@UsernameUnique(groups = { OnCreate.class })
 	@NotEmpty(groups = { OnCreate.class, Default.class })
@@ -68,6 +66,7 @@ public class Utente extends AbstractPersistableEntity {
 	@Column(name = "tipologia_utente", columnDefinition = "integer default 2")
 	private int tipologia;
 
+	@Transient
 	private String matchingPassword;
 
 	@Override
@@ -79,21 +78,21 @@ public class Utente extends AbstractPersistableEntity {
 		Utente utente = (Utente) o;
 		return Objects.equals(nome, utente.nome) && Objects.equals(cognome, utente.cognome)
 				&& Objects.equals(email, utente.email) && Objects.equals(username, utente.username)
-				&& Objects.equals(dataNascita, utente.dataNascita) && Objects.equals(password, utente.password);
+				&& Objects.equals(password, utente.password);
 		// Objects.equals(getRole(), user.getRole());
 	}
 
 	@Override
 	public String toString() {
 		return "Utente{" + "nome='" + nome + '\'' + ", cognome='" + cognome + '\'' + ", email='" + email + '\''
-				+ ", username='" + username + '\'' + ", dataNascita=" + dataNascita +
+				+ ", username='" + username + '\'' +
 				// ", role='" + getRole() + '\'' +
 				'}';
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nome, cognome, email, username, dataNascita, password/* ,getRole() */);
+		return Objects.hash(nome, cognome, email, username, password/* ,getRole() */);
 	}
 
 	// CAPIRE BENE COSA FARE CON I RUOLI@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

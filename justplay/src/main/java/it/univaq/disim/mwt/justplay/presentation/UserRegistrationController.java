@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -27,6 +28,8 @@ public class UserRegistrationController {
 
 	@Autowired
 	private UtenteService service;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@GetMapping
 	public String showRegistrationForm(Model model) throws BusinessException {
@@ -37,9 +40,11 @@ public class UserRegistrationController {
 
 	@PostMapping
 	public String SignUp(@ModelAttribute Utente nuovoUtente, Errors errors) throws BusinessException {
-		nuovoUtente.setNome("nome");
-		nuovoUtente.setCognome("cognome");
-		nuovoUtente.setDataNascita(LocalDate.of(2020, 1, 1));
+		//nuovoUtente.setNome("nome");
+		//nuovoUtente.setCognome("cognome");
+		//nuovoUtente.setPassword(passwordEncoder.encode(nuovoUtente.getPassword()));
+        //nuovoUtente.setPassword(passwordEncoder.encode(nuovoUtente.getPassword()));
+		//nuovoUtente.setDataNascita(LocalDate.of(2020, 1, 1));
 		// Ruolo ruolo = new Ruolo();
 		// ruolo.setId((long) 2);
 		// ruolo.setNome("Amministratore");
@@ -49,7 +54,7 @@ public class UserRegistrationController {
 		if (errors.hasErrors()) {
 			return "/common/register";
 		}
-		service.createUtente(nuovoUtente);
+		service.save(nuovoUtente);
 		return "/common/login";
 	}
 

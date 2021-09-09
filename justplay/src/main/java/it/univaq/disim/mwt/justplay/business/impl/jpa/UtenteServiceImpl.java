@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +20,9 @@ public class UtenteServiceImpl implements UtenteService {
 
 	@Autowired
 	private UtenteRepository utenteRepository;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public boolean existsByUsername(String username) throws BusinessException {
@@ -39,35 +43,43 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 
 	@Override
-	public Utente findUtenteByUsername(String username) throws BusinessException {
+	public Optional<Utente> findByUsername(String username) throws BusinessException {
 		try {
-			return utenteRepository.findUtenteByUsername(username).get();
+			return utenteRepository.findByUsername(username);
 		} catch (Exception e) {
 			throw new BusinessException(e);
 		}
 	}
 
 	@Override
-	public Utente findUtenteById(Long id) throws BusinessException {
+	public Optional<Utente> findById(Long id) throws BusinessException {
 		try {
-			return utenteRepository.findById(id).get();
+			return utenteRepository.findById(id);
 		} catch (Exception e) {
 			throw new BusinessException(e);
 		}
 	}
 
 	@Override
-	public void updateProfilo(Utente nuovoProfilo) throws BusinessException {
+	public void update(Utente nuovoProfilo, Long id) throws BusinessException {
 		try {
-			utenteRepository.save(nuovoProfilo);
+			Utente updUtente = utenteRepository.findById(id).get(); 
+			updUtente.setUsername(nuovoProfilo.getUsername()); 
+			updUtente.setNome(nuovoProfilo.getNome()); 
+			updUtente.setCognome(nuovoProfilo.getCognome()); 
+			utenteRepository.save(updUtente);
 		} catch (Exception e) {
 			throw new BusinessException(e);
 		}
 	}
 
 	@Override
-	public void createUtente(Utente utente) throws BusinessException {
+	public void save(Utente utente) throws BusinessException {
+		if (!passwordEncoder.matches(utente.getPassword(), passwordEncoder.encode(utente.getMatchingPassword()))) {
+			throw new BusinessException("Le due password non coincidono");
+		}
 		try {
+			utente.setPassword(passwordEncoder.encode(utente.getPassword()));
 			utenteRepository.save(utente);
 		} catch (Exception e) {
 			throw new BusinessException(e);

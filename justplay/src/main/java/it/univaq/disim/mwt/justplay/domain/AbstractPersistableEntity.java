@@ -14,22 +14,21 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @MappedSuperclass
-@ToString(exclude = {"createDateTime", "updateDateTime"})
+@ToString(exclude = { "createDateTime", "updateDateTime" })
 public class AbstractPersistableEntity implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Version
-    @JsonIgnore
-    private Long version;
+	@Version
+	@JsonIgnore
+	private Long version;
 
-    @CreationTimestamp
-    private LocalDateTime createDateTime;
+	@CreationTimestamp
+	private LocalDateTime createDateTime;
 
-    @UpdateTimestamp
-    private LocalDateTime updateDateTime;
+	@UpdateTimestamp
+	private LocalDateTime updateDateTime;
 
 }
-
