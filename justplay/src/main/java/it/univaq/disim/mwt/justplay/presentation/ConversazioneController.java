@@ -82,7 +82,7 @@ public class ConversazioneController {
 	}
     
     @PostMapping("/updateConversazione")
-	public String updateConversazione(@RequestParam(value = "fk_utente") Long idUtenteContattato, @RequestParam(value = "nuovoMessaggio") String nuovoMessaggio) throws BusinessException {
+	public String updateConversazione(@RequestParam(value = "fkUtente") Long idUtenteContattato, @RequestParam(value = "nuovoMessaggio") String nuovoMessaggio) throws BusinessException {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();

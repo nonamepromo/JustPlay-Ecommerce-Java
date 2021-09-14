@@ -36,11 +36,11 @@ public class JDBCConversazioneServiceImpl implements ConversazioneService {
 	private DataSource dataSource;
 
 	@Override
-	public List<Conversazione> findAllByFkUtente(Long fk_utente) throws BusinessException {
+	public List<Conversazione> findAllByFkUtente(Long fkUtente) throws BusinessException {
 		List<Conversazione> result = new ArrayList<>();
 		try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(FIND_CONVERSAZIONI_BY_FK_UTENTE);) {
-			st.setLong(1, fk_utente);
-			st.setLong(2, fk_utente);
+			st.setLong(1, fkUtente);
+			st.setLong(2, fkUtente);
 			try (ResultSet rs = st.executeQuery();) {
 			while (rs.next()) {
 				Conversazione conversazione = new Conversazione();

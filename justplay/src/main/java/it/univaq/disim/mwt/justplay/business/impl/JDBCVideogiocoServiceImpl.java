@@ -28,27 +28,28 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Transactional
 @Slf4j
-public class JDBCVideogiocoServiceImpl implements VideogiocoService {
+public class JDBCVideogiocoServiceImpl {
 
 	private static final String GET_VIDEOGIOCHI_COUNT = "SELECT COUNT(*) FROM videogiochi";
+	private static String GET_VIDEOGIOCHI_COUNT_BY_PLATFORM = null;
 	private static final String FIND_VIDEOGIOCHI = "SELECT vg.* FROM videogiochi vg order by vg.titolo LIMIT ?,?";
 	private static String FIND_VIDEOGIOCHI_BY_PLATFORM = null;
 	private static final String FIND_VIDEOGIOCHI_PROFILE = "SELECT vg.* FROM videogiochi vg order by vg.titolo";
-	private static final String FIND_VIDEOGIOCHI_VENDITA = "SELECT vg.* FROM videogiochi_in_vendita vg where vg.fk_videogioco = ? order by vg.prezzo";
+	private static final String FIND_VIDEOGIOCHI_VENDITA = "SELECT vg.* FROM videogiochi_in_vendita vg where vg.fkVideogioco = ? order by vg.prezzo";
 	private static final String FIND_VIDEOGIOCO_BY_PK = "SELECT vg.* FROM videogiochi vg WHERE vg.id = ?";
 	private static final String DELETE_VIDEOGIOCO = "DELETE FROM videogiochi WHERE id=?";
-	private static final String INSERT_VIDEOGIOCO_DESIDERATO = "INSERT INTO videogiochi_desiderati (fk_videogioco, fk_utente) VALUES (?,?)";
-	private static final String INSERT_VIDEOGIOCO_GIOCATO = "INSERT INTO videogiochi_giocati (fk_videogioco, fk_utente) VALUES (?,?)";
-	private static final String INSERT_VIDEOGIOCO_IN_VENDITA = "INSERT INTO videogiochi_in_vendita (fk_videogioco, fk_utente, prezzo, prezzo_spedizione, provincia, piattaforma) VALUES (?,?,?,?,?,?)";
-	private static final String DELETE_VIDEOGIOCO_DESIDERATO = "DELETE FROM videogiochi_desiderati WHERE fk_videogioco = ? AND fk_utente = ?";
-	private static final String DELETE_VIDEOGIOCO_GIOCATO = "DELETE FROM videogiochi_giocati WHERE fk_videogioco = ? AND fk_utente = ?";
-	private static final String DELETE_VIDEOGIOCO_IN_VENDITA = "DELETE FROM videogiochi_in_vendita WHERE fk_videogioco = ? AND fk_utente = ?";
-	private static final String CHECK_IF_VIDEOGIOCO_IS_DESIDERATO = "SELECT vg.* FROM videogiochi_desiderati vg WHERE vg.fk_utente = ? AND vg.fk_videogioco = ?";
-	private static final String CHECK_IF_VIDEOGIOCO_IS_GIOCATO = "SELECT vg.* FROM videogiochi_giocati vg WHERE vg.fk_utente = ? AND vg.fk_videogioco = ?";
-	private static final String CHECK_IF_VIDEOGIOCO_IS_IN_VENDITA = "SELECT vg.* FROM videogiochi_in_vendita vg WHERE vg.fk_utente = ? AND vg.fk_videogioco = ?";
-	private static final String FIND_VIDEOGIOCHI_DESIDERATI = "SELECT vg.* FROM videogiochi_desiderati vg WHERE vg.fk_utente = ?";
-	private static final String FIND_VIDEOGIOCHI_GIOCATI = "SELECT vg.* FROM videogiochi_giocati vg WHERE vg.fk_utente = ?";
-	private static final String FIND_VIDEOGIOCHI_IN_VENDITA = "SELECT vg.* FROM videogiochi_in_vendita vg WHERE vg.fk_videogioco = ?";
+	private static final String INSERT_VIDEOGIOCO_DESIDERATO = "INSERT INTO videogiochi_desiderati (fkVideogioco, fkUtente) VALUES (?,?)";
+	private static final String INSERT_VIDEOGIOCO_GIOCATO = "INSERT INTO videogiochi_giocati (fkVideogioco, fkUtente) VALUES (?,?)";
+	private static final String INSERT_VIDEOGIOCO_IN_VENDITA = "INSERT INTO videogiochi_in_vendita (fkVideogioco, fkUtente, prezzo, prezzo_spedizione, provincia, piattaforma) VALUES (?,?,?,?,?,?)";
+	private static final String DELETE_VIDEOGIOCO_DESIDERATO = "DELETE FROM videogiochi_desiderati WHERE fkVideogioco = ? AND fkUtente = ?";
+	private static final String DELETE_VIDEOGIOCO_GIOCATO = "DELETE FROM videogiochi_giocati WHERE fkVideogioco = ? AND fkUtente = ?";
+	private static final String DELETE_VIDEOGIOCO_IN_VENDITA = "DELETE FROM videogiochi_in_vendita WHERE fkVideogioco = ? AND fkUtente = ?";
+	private static final String CHECK_IF_VIDEOGIOCO_IS_DESIDERATO = "SELECT vg.* FROM videogiochi_desiderati vg WHERE vg.fkUtente = ? AND vg.fkVideogioco = ?";
+	private static final String CHECK_IF_VIDEOGIOCO_IS_GIOCATO = "SELECT vg.* FROM videogiochi_giocati vg WHERE vg.fkUtente = ? AND vg.fkVideogioco = ?";
+	private static final String CHECK_IF_VIDEOGIOCO_IS_IN_VENDITA = "SELECT vg.* FROM videogiochi_in_vendita vg WHERE vg.fkUtente = ? AND vg.fkVideogioco = ?";
+	private static final String FIND_VIDEOGIOCHI_DESIDERATI = "SELECT vg.* FROM videogiochi_desiderati vg WHERE vg.fkUtente = ?";
+	private static final String FIND_VIDEOGIOCHI_GIOCATI = "SELECT vg.* FROM videogiochi_giocati vg WHERE vg.fkUtente = ?";
+	private static final String FIND_VIDEOGIOCHI_IN_VENDITA = "SELECT vg.* FROM videogiochi_in_vendita vg WHERE vg.fkVideogioco = ?";
 
 	@Autowired
 	private DataSource dataSource;
@@ -71,10 +72,10 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	// videogioco.setPiattaforma(rs.getString("piattaforma"));
 	// videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
 	// videogioco.setDescrizione(rs.getString("descrizione"));
-	// videogioco.setPs4Url(rs.getString("ps4Url"));
-	// videogioco.setXboxUrl(rs.getString("xboxUrl"));
-	// videogioco.setPcUrl(rs.getString("pcUrl"));
-	// videogioco.setImageUrl(rs.getString("imageUrl"));
+	// videogioco.setPs4Url(rs.getString("ps4_url"));
+	// videogioco.setXboxUrl(rs.getString("xbox_url"));
+	// videogioco.setPcUrl(rs.getString("pc_url"));
+	// videogioco.setImageUrl(rs.getString("image_url"));
 	// videogiochi.add(videogioco);
 	// }
 	// } catch (SQLException e) {
@@ -86,12 +87,22 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 
 	// }
 
-	@Override
-	public int getVideogiochiCount() throws BusinessException {
+	
+	public int getVideogiochiCount(String platform) throws BusinessException {
 		int result = 0;
+		switch(platform) {
+			case "all": GET_VIDEOGIOCHI_COUNT_BY_PLATFORM = GET_VIDEOGIOCHI_COUNT;
+			break;
+			case "ps4": GET_VIDEOGIOCHI_COUNT_BY_PLATFORM = "SELECT COUNT(*) FROM videogiochi WHERE ps4_url IS NOT NULL";
+			break;
+			case "xbox": GET_VIDEOGIOCHI_COUNT_BY_PLATFORM = "SELECT COUNT(*) FROM videogiochi WHERE xbox_url IS NOT NULL";
+			break;
+			case "pc": GET_VIDEOGIOCHI_COUNT_BY_PLATFORM = "SELECT COUNT(*) FROM videogiochi WHERE pc_url IS NOT NULL";
+			break;
+		} 
 		try (Connection con = dataSource.getConnection();
 				Statement st = con.createStatement();
-				ResultSet rs = st.executeQuery(GET_VIDEOGIOCHI_COUNT)) {
+				ResultSet rs = st.executeQuery(GET_VIDEOGIOCHI_COUNT_BY_PLATFORM)) {
 					while (rs.next()) {
 						result = rs.getInt("COUNT(*)");
 					}
@@ -103,7 +114,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	}
 
 
-	@Override
+	
 	public List<Videogioco> findAll(int index) throws BusinessException {
 		List<Videogioco> result = new ArrayList<>();
 		try (Connection con = dataSource.getConnection();
@@ -118,10 +129,10 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 					videogioco.setDescrizione(rs.getString("descrizione"));
 					videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
 					videogioco.setPiattaforma(rs.getString("piattaforma"));
-					videogioco.setPs4Url(rs.getString("ps4Url"));
-					videogioco.setXboxUrl(rs.getString("xboxUrl"));
-					videogioco.setPcUrl(rs.getString("pcUrl"));
-					videogioco.setImageUrl(rs.getString("imageUrl"));
+					// videogioco.setPs4Url(rs.getString("ps4_url"));
+					// videogioco.setXboxUrl(rs.getString("xbox_url"));
+					// videogioco.setPcUrl(rs.getString("pc_url"));
+					// videogioco.setImageUrl(rs.getString("image_url"));
 					result.add(videogioco);
 				}
 			}
@@ -132,17 +143,17 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		return result;
 	}
 
-	@Override
+	
 	public List<Videogioco> findByPlatform(String platform, int index) throws BusinessException {
 		List<Videogioco> result = new ArrayList<>();
 		switch(platform) {
 			case "all": FIND_VIDEOGIOCHI_BY_PLATFORM = FIND_VIDEOGIOCHI;
 			break;
-			case "ps4": FIND_VIDEOGIOCHI_BY_PLATFORM = "SELECT vg.* FROM videogiochi vg where vg.ps4Url IS NOT NULL order by vg.titolo LIMIT ?,?";
+			case "ps4": FIND_VIDEOGIOCHI_BY_PLATFORM = "SELECT vg.* FROM videogiochi vg where vg.ps4_url IS NOT NULL order by vg.titolo LIMIT ?,?";
 			break;
-			case "xbox": FIND_VIDEOGIOCHI_BY_PLATFORM = "SELECT vg.* FROM videogiochi vg where vg.xboxUrl IS NOT NULL order by vg.titolo LIMIT ?,?";
+			case "xbox": FIND_VIDEOGIOCHI_BY_PLATFORM = "SELECT vg.* FROM videogiochi vg where vg.xbox_url IS NOT NULL order by vg.titolo LIMIT ?,?";
 			break;
-			case "pc": FIND_VIDEOGIOCHI_BY_PLATFORM = "SELECT vg.* FROM videogiochi vg where vg.pcUrl IS NOT NULL order by vg.titolo LIMIT ?,?";
+			case "pc": FIND_VIDEOGIOCHI_BY_PLATFORM = "SELECT vg.* FROM videogiochi vg where vg.pc_url IS NOT NULL order by vg.titolo LIMIT ?,?";
 			break;
 		} 
 		try (Connection con = dataSource.getConnection();
@@ -157,10 +168,10 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 					videogioco.setDescrizione(rs.getString("descrizione"));
 					videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
 					videogioco.setPiattaforma(rs.getString("piattaforma"));
-					videogioco.setPs4Url(rs.getString("ps4Url"));
-					videogioco.setXboxUrl(rs.getString("xboxUrl"));
-					videogioco.setPcUrl(rs.getString("pcUrl"));
-					videogioco.setImageUrl(rs.getString("imageUrl"));
+					// videogioco.setPs4Url(rs.getString("ps4_url"));
+					// videogioco.setXboxUrl(rs.getString("xbox_url"));
+					// videogioco.setPcUrl(rs.getString("pc_url"));
+					// videogioco.setImageUrl(rs.getString("image_url"));
 					result.add(videogioco);
 				}
 			}
@@ -171,7 +182,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		return result;
 	}
 
-	@Override
+	
 	public List<Videogioco> findAllProfile() throws BusinessException {
 		List<Videogioco> result = new ArrayList<>();
 		try (Connection con = dataSource.getConnection();
@@ -184,10 +195,10 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 				videogioco.setDescrizione(rs.getString("descrizione"));
 				videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
 				videogioco.setPiattaforma(rs.getString("piattaforma"));
-				videogioco.setPs4Url(rs.getString("ps4Url"));
-				videogioco.setXboxUrl(rs.getString("xboxUrl"));
-				videogioco.setPcUrl(rs.getString("pcUrl"));
-				videogioco.setImageUrl(rs.getString("imageUrl"));
+				// videogioco.setPs4Url(rs.getString("ps4_url"));
+				// videogioco.setXboxUrl(rs.getString("xbox_url"));
+				// videogioco.setPcUrl(rs.getString("pc_url"));
+				// videogioco.setImageUrl(rs.getString("image_url"));
 				result.add(videogioco);
 			}
 		} catch (SQLException e) {
@@ -197,32 +208,32 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		return result;
 	}
 
-	@Override
-	public List<VideogiocoInVendita> findAllVendita(Long idVideogioco) throws BusinessException {
-		List<VideogiocoInVendita> result = new ArrayList<>();
-		try (Connection con = dataSource.getConnection();
-				PreparedStatement st = con.prepareStatement(FIND_VIDEOGIOCHI_IN_VENDITA);) {
-			(st).setLong(1, idVideogioco);
-			try (ResultSet rs = st.executeQuery();) {
-				while (rs.next()) {
-					VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
-					videogiocoInVendita.setFk_utente(rs.getLong("fk_utente"));
-					videogiocoInVendita.setFk_videogioco(rs.getLong("fk_videogioco"));
-					videogiocoInVendita.setPrezzo(rs.getInt("prezzo"));
-					videogiocoInVendita.setPrezzo_spedizione(rs.getInt("prezzo_spedizione"));
-					videogiocoInVendita.setProvincia(rs.getString("provincia"));
-					videogiocoInVendita.setPiattaforma(rs.getString("piattaforma"));
-					result.add(videogiocoInVendita);
-				}
-			}
-		} catch (SQLException e) {
-			log.error("findAllVendita", e);
-			throw new BusinessException("findAllVendita", e);
-		}
-		return result;
-	}
+	
+	// public List<VideogiocoInVendita> findAllVendita(Long idVideogioco) throws BusinessException {
+	// 	List<VideogiocoInVendita> result = new ArrayList<>();
+	// 	try (Connection con = dataSource.getConnection();
+	// 			PreparedStatement st = con.prepareStatement(FIND_VIDEOGIOCHI_IN_VENDITA);) {
+	// 		(st).setLong(1, idVideogioco);
+	// 		try (ResultSet rs = st.executeQuery();) {
+	// 			while (rs.next()) {
+	// 				VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
+	// 				videogiocoInVendita.setFk_utente(rs.getLong("fkUtente"));
+	// 				videogiocoInVendita.setFk_videogioco(rs.getLong("fkVideogioco"));
+	// 				videogiocoInVendita.setPrezzo(rs.getInt("prezzo"));
+	// 				videogiocoInVendita.setPrezzo_spedizione(rs.getInt("prezzo_spedizione"));
+	// 				videogiocoInVendita.setProvincia(rs.getString("provincia"));
+	// 				videogiocoInVendita.setPiattaforma(rs.getString("piattaforma"));
+	// 				result.add(videogiocoInVendita);
+	// 			}
+	// 		}
+	// 	} catch (SQLException e) {
+	// 		log.error("findAllVendita", e);
+	// 		throw new BusinessException("findAllVendita", e);
+	// 	}
+	// 	return result;
+	// }
 
-	@Override
+	
 	public List<Long> getWishlist(Long idUtente) throws BusinessException {
 		List<Long> result = new ArrayList<>();
 		try (Connection con = dataSource.getConnection();
@@ -230,7 +241,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 			(st).setLong(1, idUtente);
 			try (ResultSet rs = st.executeQuery();) {
 				while (rs.next()) {
-					Long videogiocoDesiderato = rs.getLong("fk_videogioco");
+					Long videogiocoDesiderato = rs.getLong("fkVideogioco");
 					result.add(videogiocoDesiderato);
 				}
 			}
@@ -241,7 +252,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		return result;
 	}
 
-	@Override
+	
 	public List<Long> getPlayedlist(Long idUtente) throws BusinessException {
 		List<Long> result = new ArrayList<>();
 		try (Connection con = dataSource.getConnection();
@@ -249,7 +260,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 			(st).setLong(1, idUtente);
 			try (ResultSet rs = st.executeQuery();) {
 				while (rs.next()) {
-					Long videogiocoGiocato = rs.getLong("fk_videogioco");
+					Long videogiocoGiocato = rs.getLong("fkVideogioco");
 					result.add(videogiocoGiocato);
 				}
 			}
@@ -260,7 +271,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		return result;
 	}
 
-	@Override
+	
 	public List<Long> getSellinglist(Long idVideogioco) throws BusinessException {
 		List<Long> result = new ArrayList<>();
 		try (Connection con = dataSource.getConnection();
@@ -268,7 +279,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 			(st).setLong(1, idVideogioco);
 			try (ResultSet rs = st.executeQuery();) {
 				while (rs.next()) {
-					Long videogiocoInVendita = rs.getLong("fk_videogioco");
+					Long videogiocoInVendita = rs.getLong("fkVideogioco");
 					result.add(videogiocoInVendita);
 				}
 			}
@@ -279,7 +290,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		return result;
 	}
 
-	// @Override
+	// 
 	// public ResponseEntity<Videogioco> findVideogiocoByID(Long id) throws
 	// BusinessException {
 	// Videogioco result = null;
@@ -302,7 +313,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	// return ResponseEntity.ok(result);
 	// }
 
-	@Override
+	
 	public Videogioco findVideogiocoByID(Long id) throws BusinessException {
 		Videogioco result = null;
 		try (Connection con = dataSource.getConnection();
@@ -315,10 +326,10 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 					result.setTitolo(rs.getString("titolo"));
 					result.setDescrizione(rs.getString("descrizione"));
 					result.setAnnoDiUscita(rs.getInt("annoDiUscita"));
-					result.setPs4Url(rs.getString("ps4Url"));
-					result.setXboxUrl(rs.getString("xboxUrl"));
-					result.setPcUrl(rs.getString("pcUrl"));
-					result.setImageUrl(rs.getString("imageUrl"));
+					// result.setPs4_Url(rs.getString("ps4_url"));
+					// result.setXboxUrl(rs.getString("xbox_url"));
+					// result.setPcUrl(rs.getString("pc_url"));
+					// result.setImageUrl(rs.getString("image_url"));
 				}
 			}
 		} catch (SQLException e) {
@@ -328,7 +339,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		return result;
 	}
 
-	@Override
+	
 	public void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
 		try (Connection con = dataSource.getConnection();
 				PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_DESIDERATO);) {
@@ -341,7 +352,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		}
 	}
 
-	@Override
+	
 	public void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
 		try (Connection con = dataSource.getConnection();
 				PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_GIOCATO);) {
@@ -354,7 +365,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		}
 	}
 
-	@Override
+	
 	public void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Long idVideogioco, Long idUtente)
 			throws BusinessException {
 		try (Connection con = dataSource.getConnection();
@@ -372,7 +383,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		}
 	}
 
-	@Override
+	
 	public void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
 		try (Connection con = dataSource.getConnection();
 				PreparedStatement st = con.prepareStatement(DELETE_VIDEOGIOCO_DESIDERATO);) {
@@ -385,7 +396,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		}
 	}
 
-	@Override
+	
 	public void removeGameFromPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
 		try (Connection con = dataSource.getConnection();
 				PreparedStatement st = con.prepareStatement(DELETE_VIDEOGIOCO_GIOCATO);) {
@@ -398,7 +409,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		}
 	}
 
-	@Override
+	
 	public void removeGameFromSellinglist(Long idVideogioco, Long idUtente) throws BusinessException {
 		try (Connection con = dataSource.getConnection();
 				PreparedStatement st = con.prepareStatement(DELETE_VIDEOGIOCO_IN_VENDITA);) {
@@ -411,7 +422,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 		}
 	}
 
-	// @Override
+	// 
 	// public boolean checkIfGameIsDesidered(Long idUtente, Long idVideogioco)
 	// throws BusinessException {
 	// boolean result = false;
@@ -432,14 +443,14 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	// }
 
 	/*
-	 * @Override public void deleteVideogioco(Videogioco videogioco) throws
+	 *  public void deleteVideogioco(Videogioco videogioco) throws
 	 * BusinessException { try (Connection con = dataSource.getConnection();
 	 * PreparedStatement st = con.prepareStatement(DELETE_VIDEOGIOCO);) {
 	 * st.setLong(1, videogioco.getId()); st.executeUpdate(); } catch (SQLException
 	 * e) { log.error("deleteVideogioco", e); throw new
 	 * BusinessException("deleteVideogioco", e); } }
 	 * 
-	 * @Override public void addVideogiocoInVendita(Videogioco videogioco, Long
+	 *  public void addVideogiocoInVendita(Videogioco videogioco, Long
 	 * idUtente, Long prezzo, String provincia) throws BusinessException { try
 	 * (Connection con = dataSource.getConnection(); PreparedStatement st =
 	 * con.prepareStatement(INSERT_VIDEOGIOCO_IN_VENDITA);) { st.setLong(1,
@@ -447,7 +458,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	 * (SQLException e) { log.error("addVideogiocoInVendita", e); throw new
 	 * BusinessException("addVideogiocoInVendita", e); } }
 	 * 
-	 * @Override public void addVideogiocoDesiderato(Videogioco videogioco, Long
+	 *  public void addVideogiocoDesiderato(Videogioco videogioco, Long
 	 * idUtente) throws BusinessException { try (Connection con =
 	 * dataSource.getConnection(); PreparedStatement st =
 	 * con.prepareStatement(INSERT_VIDEOGIOCO_DESIDERATO);) { st.setLong(1,
@@ -455,7 +466,7 @@ public class JDBCVideogiocoServiceImpl implements VideogiocoService {
 	 * (SQLException e) { log.error("addVideogiocoInVendita", e); throw new
 	 * BusinessException("addVideogiocoInVendita", e); } }
 	 * 
-	 * @Override public void addVideogiocoGiocato(Videogioco videogioco, Long
+	 *  public void addVideogiocoGiocato(Videogioco videogioco, Long
 	 * idUtente) throws BusinessException { try (Connection con =
 	 * dataSource.getConnection(); PreparedStatement st =
 	 * con.prepareStatement(INSERT_VIDEOGIOCO_GIOCATO);) { st.setLong(1, idUtente);

@@ -7,7 +7,7 @@ import it.univaq.disim.mwt.justplay.domain.Messaggio;
 
 public interface ConversazioneService {
 
-	List<Conversazione> findAllByFkUtente(Long fk_utente) throws BusinessException;
+	List<Conversazione> findAllByFkUtente(Long fkUtente) throws BusinessException;
 
 	List<Messaggio> findMessaggiByFkConversazione(Long idConversazione) throws BusinessException;	
 

@@ -6952,7 +6952,7 @@
     this.showImageDialog = function () {
       return $.Deferred(function (deferred) {
         var $imageInput = self.$dialog.find('.note-image-input'),
-            $imageUrl = self.$dialog.find('.note-image-url'),
+            $image_url = self.$dialog.find('.note-image-url'),
             $imageBtn = self.$dialog.find('.note-image-btn');
 
         ui.onDialogShown(self.$dialog, function () {
@@ -6969,19 +6969,19 @@
           $imageBtn.click(function (event) {
             event.preventDefault();
 
-            deferred.resolve($imageUrl.val());
+            deferred.resolve($image_url.val());
           });
 
-          $imageUrl.on('keyup paste', function () {
-            var url = $imageUrl.val();
+          $image_url.on('keyup paste', function () {
+            var url = $image_url.val();
             ui.toggleBtn($imageBtn, url);
           }).val('').trigger('focus');
-          self.bindEnterKey($imageUrl, $imageBtn);
+          self.bindEnterKey($image_url, $imageBtn);
         });
 
         ui.onDialogHidden(self.$dialog, function () {
           $imageInput.off('change');
-          $imageUrl.off('keyup paste keypress');
+          $image_url.off('keyup paste keypress');
           $imageBtn.off('click');
 
           if (deferred.state() === 'pending') {

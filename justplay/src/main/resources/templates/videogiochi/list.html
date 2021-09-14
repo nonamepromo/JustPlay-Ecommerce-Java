@@ -194,7 +194,8 @@
 										aria-hidden="true"><i class="fa fa-angle-left"></i></span></a></li>
 							<li th:each="i: ${#numbers.sequence(1, videogiochiCount)}" class=""
 								th:class="${param.index != null} ? (${param.index[0] == i} ? 'page-item active' : 'page-item') : 'page-item active'">
-								<a th:text="${i}" class="page-link" th:data-parameter1="${param.platform[0]}" th:onclick="|listWithPlatform(this.getAttribute('data-parameter1'), ${i})|"></a>
+								<!-- <a th:text="${i}" class="page-link" th:data-parameter1="${param.platform[0]}" th:onclick="|listWithPlatform(this.getAttribute('data-parameter1'), ${i})|"></a> -->
+								<a th:text="${i}" class="page-link" th:data-parameter1="${platform}" th:onclick="|listWithPlatform(this.getAttribute('data-parameter1'), ${i})|"></a>
 							</li>
 							<!-- <li th:with="someVariable=${param.platform[0]}" th:text="${someVariable}"></li> -->
 							<!-- <li class=""
