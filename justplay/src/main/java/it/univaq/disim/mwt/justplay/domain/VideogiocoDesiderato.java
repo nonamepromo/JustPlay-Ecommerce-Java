@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class VideogiocoDesiderato {
 
-	private Long fk_utente;
+	private Long fkUtente;
 
-	private Long fk_videogioco;
+	private Long fkVideogioco;
 }
