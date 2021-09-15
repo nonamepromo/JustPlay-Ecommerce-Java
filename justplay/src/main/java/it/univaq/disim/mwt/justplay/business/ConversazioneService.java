@@ -7,14 +7,18 @@ import it.univaq.disim.mwt.justplay.domain.Messaggio;
 
 public interface ConversazioneService {
 
-	List<Conversazione> findAllByFkUtente(Long fk_utente) throws BusinessException;
+	List<Conversazione> findAllByFkUtente(Long idUtente) throws BusinessException;
 
-	List<Messaggio> findMessaggiByFkConversazione(Long idConversazione) throws BusinessException;	
+	List<Messaggio> findMessaggiById(Long idConversazione) throws BusinessException;
 
-	void createMessaggio(Long fk_mittente, Long fk_conversazione, String contenuto) throws BusinessException;
+	String findNameById(Long idConversazione, Long idUtente) throws BusinessException;
 
-	String findNameByIdConversazione(Long idConversazione, Long idUtente) throws BusinessException;
+	void createMessaggio(Long idMittente, Long idConversazione, String contenuto) throws BusinessException;
+
+	void updateConversazione(Long fkUtente1, Long fkUtente2) throws BusinessException;
 	
-	void updateConversazione(Long fk_utente1, Long fk_utente2) throws BusinessException;
+	void nuovoMetodo() throws BusinessException;
+	
+	void nuovoMetodoPerConversazione() throws BusinessException;
 
 }

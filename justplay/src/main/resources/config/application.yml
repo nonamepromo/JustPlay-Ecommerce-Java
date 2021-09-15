@@ -18,7 +18,7 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: ${HIBERNATE_DIALECT}
+        dialect: org.hibernate.dialect.MySQL5Dialect
         hbm2ddl.auto: update
         #format_sql: true
         #show_sql: true

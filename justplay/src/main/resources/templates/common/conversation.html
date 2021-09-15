@@ -8,11 +8,11 @@
   <div layout:fragment="content">
 
     <script>
-      function openChat(fk_utente1, fk_utente2) {
+      function openChat(fkUtente1, fkUtente2) {
         $.ajax({
           url: '[(@{/common/conversations-list/conversation})]',
           type: "GET",
-          data: "fk_utente1=" + fk_utente1 + "&fk_utente2=" + fk_utente2,
+          data: "fkUtente1=" + fkUtente1 + "&fkUtente2=" + fkUtente2,
           success: function (response) {
 
           }
