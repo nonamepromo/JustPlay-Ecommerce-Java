@@ -4512,14 +4512,35 @@ input[type="file"] {
   color: #fff;
 }
 
+.card .card-img .card-plays {
+  position: absolute;
+  bottom: 23px;
+  right: 30px;
+  font-size: 17px;
+}
+
+.card .card-img .card-plays a {
+  color: #fff;
+}
+
 .card .card-img .card-likes a:before {
   content: "\f08a";
   font-family: "FontAwesome";
   margin-right: 6px;
 }
 
+.card .card-img .card-plays a:before {
+  content: "\f11b";
+  font-family: "FontAwesome";
+  margin-right: 6px;
+}
+
 .card .card-img .card-likes a:hover:before {
   content: "\f004";
+}
+
+.card .card-img .card-plays a:hover:before {
+  content: "\f11b";
 }
 
 .card .card-img-top {

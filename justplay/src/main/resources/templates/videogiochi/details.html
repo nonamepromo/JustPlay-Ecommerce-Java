@@ -13,9 +13,10 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						window.open("details?idVideogioco=" + urlParams.get('index'), "_self")
+						// const queryString = window.location.search
+						// const urlParams = new URLSearchParams(queryString);
+						// window.open("details?idVideogioco=" + urlParams.get('index'), "_self")
+						window.open('details?idVideogioco=0', "_self")
 					}
 				});
 			}
@@ -93,7 +94,7 @@
 									<div class="form-group input-icon-left m-b-10">
 										<i class="fa fa-plane"></i>
 										<input type="number" class="form-control form-control-secondary"
-											th:field="*{prezzo_spedizione}" placeholder="Prezzo di spedizione">
+											th:field="*{prezzoSpedizione}" placeholder="Prezzo di spedizione">
 									</div>
 									<div class="form-group input-icon-left m-b-15">
 										<i class="fa fa-map-signs"></i>
@@ -289,17 +290,17 @@
 									</thead>
 									<tbody>
 										<tr th:each=" videogioco_in_vendita : ${videogiochi_in_vendita}">
-											<td th:text="${videogioco_in_vendita.fk_utente}"></td>
+											<td th:text="${videogioco_in_vendita.fkUtente}"></td>
 											<td th:text="${videogioco_in_vendita.prezzo}+ '€'"></td>
-											<td th:text="${videogioco_in_vendita.prezzo_spedizione}+ '€'"></td>
+											<td th:text="${videogioco_in_vendita.prezzoSpedizione}+ '€'"></td>
 											<td th:text="${videogioco_in_vendita.provincia}"></td>
 											<td th:text="${videogioco_in_vendita.piattaforma}"></td>
-											<td th:if="${videogioco_in_vendita.fk_utente == idUtente}">
+											<td th:if="${videogioco_in_vendita.fkUtente == idUtente}">
 												<a class="btn btn-link p-a-5"
 													th:onclick="|removeGameFromSellinglist('${idVideogioco}')|"><i
 														class="fa fa-trash-o"></i></a>
 											</td>
-											<td th:if="${videogioco_in_vendita.fk_utente != idUtente}">
+											<td th:if="${videogioco_in_vendita.fkUtente != idUtente}">
 												<a class="btn btn-link p-a-5"
 													th:onclick=""><i
 														class="fa fa-wechat"></i></a>

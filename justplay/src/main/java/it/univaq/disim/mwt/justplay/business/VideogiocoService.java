@@ -29,6 +29,8 @@ public interface VideogiocoService {
 
 	List<Long> getSellinglist(Long idVideogioco) throws BusinessException;
 
+	List<Long> getUtenteSellinglist(Long idUtente) throws BusinessException;
+
 	// ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws BusinessException;
 
 	Videogioco findVideogiocoByID(Long id) throws BusinessException;

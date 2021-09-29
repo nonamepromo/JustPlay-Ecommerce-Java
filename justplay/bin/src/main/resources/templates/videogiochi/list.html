@@ -28,12 +28,14 @@
     </script>
 
     <script>
+      debugger
       function addGameToWishlist(idVideogioco) {
         $.ajax({
           url: '[(@{/videogiochi/addGameToWishlist})]',
           type: "POST",
           data: 'idVideogioco=' + idVideogioco,
           success: function (response) {
+						debugger
 
           }
         });

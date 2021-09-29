@@ -2,6 +2,7 @@ package it.univaq.disim.mwt.justplay.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.validation.groups.Default;
 
@@ -22,24 +23,24 @@ import lombok.ToString;
 public class VideogiocoInVendita extends AbstractPersistableEntity {
 
 	@Column(name = "fk_utente")
-	@NotEmpty(groups = { OnCreate.class, Default.class })
+	@NotNull(groups = { OnCreate.class, Default.class })
 	private Long fkUtente;
 
 	@Column(name = "fk_videogioco")
-	@NotEmpty(groups = { OnCreate.class, Default.class })
+	@NotNull(groups = { OnCreate.class, Default.class })
 	private Long fkVideogioco;
-	
-	@NotEmpty(groups = { OnCreate.class, Default.class })
+
+	@NotNull(groups = { OnCreate.class, Default.class })
 	public int prezzo;
-	
+
 	@Column(name = "prezzo_spedizione")
-	@NotEmpty(groups = { OnCreate.class, Default.class })
-	public int prezzo_spedizione;
+	@NotNull(groups = { OnCreate.class, Default.class })
+	public int prezzoSpedizione;
 
 	@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	public String provincia;
-	
+
 	@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	public String piattaforma;

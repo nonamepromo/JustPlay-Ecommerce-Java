@@ -3542,6 +3542,26 @@ input[type="file"] {
     font-family: "FontAwesome";
     margin-right: 6px;
 }
+.card .card-img .card-plays {
+    position: absolute;
+    bottom: 23px;
+    right: 30px;
+    font-size: 17px;
+}
+.card .card-img .card-played {
+    position: absolute;
+    bottom: 23px;
+    right: 30px;
+    font-size: 17px;
+}
+.card .card-img .card-plays a {
+    color:  light-grey;
+}
+.card .card-img .card-plays a:before {
+    content: "\f11b";
+    font-family: "FontAwesome";
+    margin-right: 6px;
+}
 .card .card-img .card-liked a:before {
     content: "\f004";
     font-family: "FontAwesome";
@@ -3551,6 +3571,17 @@ input[type="file"] {
     content: "\f004";
     color: red;
 }
+
+.card .card-img .card-played a:before {
+    content: "\f11b";
+    font-family: "FontAwesome";
+    margin-right: 6px;
+}
+.card .card-img .card-plays a:hover:before {
+    content: "\f11b";
+    color: red;
+}
+
 .card .card-img-top {
     width: 100%;
     max-width: 100%;

@@ -10,20 +10,19 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
+import it.univaq.disim.mwt.justplay.domain.VideogiocoDesiderato;
+import it.univaq.disim.mwt.justplay.domain.VideogiocoGiocato;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 
 @Repository
-public interface VideogiocoInVenditaRepository extends JpaRepository<VideogiocoInVendita, Long> {
+public interface VideogiocoGiocatoRepository extends JpaRepository<VideogiocoGiocato, Long> {
 
-	@Query("SELECT fkVideogioco FROM VideogiocoInVendita vv where fk_videogioco = :idVideogioco")
-    List<Long> findFksVideogiocoByFkVideogioco(@Param("idVideogioco") Long idVideogioco);
-
-	@Query("SELECT fkVideogioco FROM VideogiocoInVendita vv where fk_utente = :idUtente")
+	@Query("SELECT fkVideogioco FROM VideogiocoGiocato vv where fk_utente = :idUtente")
     List<Long> findFksVideogiocoByFkUtente(@Param("idUtente") Long idUtente);
 
 	void deleteByFkVideogiocoAndFkUtente(Long fkVideogioco, Long fkUtente);
-
-	List<VideogiocoInVendita> findAllByFkVideogioco(Long fkVideogioco);
+	
+	// boolean existsByUsername(String username);
 
 	// boolean existsByEmail(String email);
 

@@ -31,9 +31,14 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						window.open("list?index=" + urlParams.get('index'), "_self")
+						// console.log( "ciao")
+						// const queryString = window.location.search
+						// const urlParams = new URLSearchParams(queryString);
+						// window.open("list?index=" + urlParams.get('index'), "_self")
+						window.open('list?platform=all&index=1', "_self")
+					},
+					error: function (response) {
+						console.log( "errore")
 					}
 				});
 			}
@@ -46,9 +51,10 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						window.open("list?index=" + urlParams.get('index'), "_self")
+						// const queryString = window.location.search
+						// const urlParams = new URLSearchParams(queryString);
+						// window.open("list?index=" + urlParams.get('index'), "_self")
+						window.open('list?platform=all&index=1', "_self")
 					}
 				});
 			}
@@ -61,9 +67,10 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						window.open("list?index=" + urlParams.get('index'), "_self")
+						// const queryString = window.location.search
+						// const urlParams = new URLSearchParams(queryString);
+						// window.open("list?index=" + urlParams.get('index'), "_self")
+						window.open('list?platform=all&index=1', "_self")
 					}
 				});
 			}
@@ -76,9 +83,10 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						window.open("list?index=" + urlParams.get('index'), "_self")
+						// const queryString = window.location.search
+						// const urlParams = new URLSearchParams(queryString);
+						// window.open("list?index=" + urlParams.get('index'), "_self")
+						window.open('list?platform=all&index=1', "_self")
 					}
 				});
 			}
@@ -155,12 +163,12 @@
 										class="card-img-top">
 								</a>
 								<div th:classappend="${wishList != null} ? (${wishList.contains(videogioco.id)} ? 'card-liked' : 'card-likes') : 'card-likes'"
-									style="bottom: -43px;">
-									<a th:onclick="${wishList != null} ? (${wishList.contains(videogioco.id)} ? |removeGameFromWishlist('${videogioco.id}')| : |addGameToWishlist('${videogioco.id}')|) : |javascript:location.href='@{/common/login}'|"
+									style="bottom: -43px; right: 60px">
+									<a th:onclick="${wishList != null} ? (${wishList.contains(videogioco.id)} ? |removeGameFromWishlist('${videogioco.id}')| : |addGameToWishlist(${videogioco.id})|) : |javascript:location.href='@{/common/login}'|"
 										th:style="${wishList != null} ? (${wishList.contains(videogioco.id)} ? 'color: red' : 'color: light-grey') : 'color: light-grey'"></a>
 								</div>
-								<div th:classappend="${playedList != null} ? (${playedList.contains(videogioco.id)} ? 'card-liked' : 'card-likes') : 'card-likes'"
-									style="bottom: -43px; right: 60px;">
+								<div th:classappend="${playedList != null} ? (${playedList.contains(videogioco.id)} ? 'card-played' : 'card-plays') : 'card-plays'"
+									style="bottom: -43px;">
 									<a th:onclick="${playedList != null} ? (${playedList.contains(videogioco.id)} ? |removeGameFromPlayedlist('${videogioco.id}')| : |addGameToPlayedlist('${videogioco.id}')|) : |javascript:location.href='@{/common/login}'|"
 										th:style="${playedList != null} ? (${playedList.contains(videogioco.id)} ? 'color: red' : 'color: light-grey') : 'color: light-grey'"></a>
 								</div>
@@ -178,6 +186,7 @@
 								</h4>
 								<div class="card-meta">
 									<span th:text="${videogioco.annoDiUscita}"> </span>
+									<!-- <a th:with="fullQueryString=${#request.queryString}+'&lang=it'" th:href="${fullQueryString}">ciaooo</a> -->
 								</div>
 								<!-- <p th:text="${videogioco.descrizione}" class="card-text" style="overflow: hidden; text-overflow: ellipsis;
    		 			white-space: nowrap;"></p> -->
