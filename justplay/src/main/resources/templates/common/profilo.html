@@ -13,7 +13,7 @@
 		<script>
 			function removeGameFromWishlist(idVideogioco) {
 				$.ajax({
-					url: '[(@{/common/profilo/removeGameFromWishlist})]',
+					url: '[(@{/videogiochi/removeGameFromWishlist})]',
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
@@ -28,7 +28,7 @@
 		<script>
 			function removeGameFromPlayedlist(idVideogioco) {
 				$.ajax({
-					url: '[(@{/common/profilo/removeGameFromPlayedlist})]',
+					url: '[(@{/videogiochi/removeGameFromPlayedlist})]',
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
