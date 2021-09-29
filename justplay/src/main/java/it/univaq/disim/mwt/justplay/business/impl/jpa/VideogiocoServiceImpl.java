@@ -15,8 +15,12 @@ import lombok.extern.slf4j.Slf4j;
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoRepository;
+import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoDesideratoRepository;
+import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoGiocatoRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoInVenditaRepository;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
+import it.univaq.disim.mwt.justplay.domain.VideogiocoDesiderato;
+import it.univaq.disim.mwt.justplay.domain.VideogiocoGiocato;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 
 @Service
@@ -29,6 +33,12 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 
 	@Autowired
 	private VideogiocoInVenditaRepository videogiocoInVenditaRepository;
+	
+	@Autowired
+	private VideogiocoGiocatoRepository videogiocoGiocatoRepository;
+	
+	@Autowired
+	private VideogiocoDesideratoRepository videogiocoDesideratoRepository;
 
 	@Override
 	public int getVideogiochiCount(String platform) throws BusinessException {
@@ -55,15 +65,15 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	@Override
 	public List<Videogioco> findByPlatform(String platform, int index) throws BusinessException {
 		List<Videogioco> videogiochi = new ArrayList<>();
-		Pageable firstPageWithTwoElements = PageRequest.of(index - 1, 3);
+		Pageable pageWithThreeElements = PageRequest.of(index - 1, 3);
 		switch(platform) {
-			case "all": videogiochi = videogiocoRepository.findBy(firstPageWithTwoElements);
+			case "all": videogiochi = videogiocoRepository.findBy(pageWithThreeElements);
 			break;
-			case "ps4": videogiochi = videogiocoRepository.findAllByPs4UrlNotNull(firstPageWithTwoElements);
+			case "ps4": videogiochi = videogiocoRepository.findAllByPs4UrlNotNull(pageWithThreeElements);
 			break;
-			case "xbox": videogiochi = videogiocoRepository.findAllByXboxUrlNotNull(firstPageWithTwoElements);
+			case "xbox": videogiochi = videogiocoRepository.findAllByXboxUrlNotNull(pageWithThreeElements);
 			break;
-			case "pc": videogiochi = videogiocoRepository.findAllByPcUrlNotNull(firstPageWithTwoElements);
+			case "pc": videogiochi = videogiocoRepository.findAllByPcUrlNotNull(pageWithThreeElements);
 			break;
 		}
 		return videogiochi;
@@ -71,31 +81,39 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 
 	@Override
 	public List<Videogioco> findAllProfile() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Videogioco> videogiochi = new ArrayList<>();
+		videogiochi = videogiocoRepository.findAll();
+		return videogiochi;
 	}
 
 	@Override
 	public List<VideogiocoInVendita> findAllVendita(Long idVideogioco) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		List<VideogiocoInVendita> videogiochiInVendita = new ArrayList<>();
+		videogiochiInVendita = videogiocoInVenditaRepository.findAllByFkVideogioco(idVideogioco);
+		return videogiochiInVendita;
 	}
 
 	@Override
-	public List<Long> getWishlist(Long idUtente) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Long> getWishlist(Long idUtente) throws BusinessException {		
+		List<Long> videogiochiDesideratiIds = videogiocoDesideratoRepository.findFksVideogiocoByFkUtente(idUtente);		
+		return videogiochiDesideratiIds;		
 	}
 
 	@Override
-	public List<Long> getPlayedlist(Long idUtente) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Long> getPlayedlist(Long idUtente) throws BusinessException {		
+		List<Long> videogiochiGiocatiIds = videogiocoGiocatoRepository.findFksVideogiocoByFkUtente(idUtente);		
+		return videogiochiGiocatiIds;		
 	}
 
 	@Override
 	public List<Long> getSellinglist(Long idVideogioco) throws BusinessException {
-		List<Long> videogiochiInVendita = videogiocoInVenditaRepository.findIdsByFkVideogioco(idVideogioco);
+		List<Long> videogiochiInVendita = videogiocoInVenditaRepository.findFksVideogiocoByFkVideogioco(idVideogioco);
+		return videogiochiInVendita;
+	}
+
+	@Override
+	public List<Long> getUtenteSellinglist(Long idUtente) throws BusinessException {
+		List<Long> videogiochiInVendita = videogiocoInVenditaRepository.findFksVideogiocoByFkUtente(idUtente);
 		return videogiochiInVendita;
 	}
 
@@ -107,38 +125,58 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 
 	@Override
 	public void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
-		// TODO Auto-generated method stub
-		
+		try {
+			VideogiocoDesiderato videogiocoDesiderato = new VideogiocoDesiderato();
+			videogiocoDesiderato.setFkUtente(idUtente);
+			videogiocoDesiderato.setFkVideogioco(idVideogioco);
+			videogiocoDesideratoRepository.save(videogiocoDesiderato);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
 	}
 
 	@Override
 	public void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
-		// TODO Auto-generated method stub
-		
+		try {
+			VideogiocoGiocato videogiocoGiocato = new VideogiocoGiocato();
+			videogiocoGiocato.setFkUtente(idUtente);
+			videogiocoGiocato.setFkVideogioco(idVideogioco);
+			videogiocoGiocatoRepository.save(videogiocoGiocato);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
 	}
 
 	@Override
 	public void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Long idVideogioco, Long idUtente)
 			throws BusinessException {
-		// TODO Auto-generated method stub
-		
+				try {
+					VideogiocoInVendita newVideogiocoInVendita = new VideogiocoInVendita();
+					newVideogiocoInVendita.setFkUtente(idUtente);
+					newVideogiocoInVendita.setFkVideogioco(idVideogioco);
+					newVideogiocoInVendita.setPrezzo(videogiocoInVendita.getPrezzo());
+					newVideogiocoInVendita.setPrezzoSpedizione(videogiocoInVendita.getPrezzoSpedizione());
+					newVideogiocoInVendita.setProvincia(videogiocoInVendita.getProvincia());
+					newVideogiocoInVendita.setPiattaforma(videogiocoInVendita.getPiattaforma());
+					videogiocoInVenditaRepository.save(newVideogiocoInVendita);
+				} catch (Exception e) {
+					throw new BusinessException(e);
+				}
 	}
 
 	@Override
 	public void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
-		// TODO Auto-generated method stub
-		
+		videogiocoDesideratoRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
 	}
 
 	@Override
 	public void removeGameFromPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
-		// TODO Auto-generated method stub
-		
+		videogiocoGiocatoRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco, idUtente);		
 	}
 
 	@Override
 	public void removeGameFromSellinglist(Long idVideogioco, Long idUtente) throws BusinessException {
-		// TODO Auto-generated method stub
+		videogiocoInVenditaRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
 		
 	}
 

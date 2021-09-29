@@ -17,9 +17,10 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						window.open("profilo?index=" + urlParams.get('index'), "_self")
+						// const queryString = window.location.search
+						// const urlParams = new URLSearchParams(queryString);
+						// window.open("profilo?index=" + urlParams.get('index'), "_self")
+						window.open('profilo?index=2', "_self")
 					}
 				});
 			}
@@ -31,14 +32,29 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						window.open("profilo?index=" + urlParams.get('index'), "_self")
+						// const queryString = window.location.search
+						// const urlParams = new URLSearchParams(queryString);
+						//window.open("profilo?index=" + urlParams.get('index'), "_self")
+						window.open('profilo?index=3', "_self")
 					}
 				});
 			}
 		</script>
-
+		<script>
+			function removeGameFromSellinglist(idVideogioco) {
+				$.ajax({
+					url: '[(@{/videogiochi/removeGameFromSellinglist})]',
+					type: "POST",
+					data: 'idVideogioco=' + idVideogioco,
+					success: function (response) {
+						// const queryString = window.location.search
+						// const urlParams = new URLSearchParams(queryString);
+						// window.open("details?idVideogioco=" + urlParams.get('index'), "_self")
+						window.open('profilo?index=4', "_self")
+					}
+				});
+			}
+		</script>
 		<section th:object="${profilo}" method="get" class="hero hero-game"
 			style="background-image: url('https://img.youtube.com/vi/D3pYbbA1kfk/maxresdefault.jpg');">
 			<div class="overlay"></div>
@@ -55,20 +71,24 @@
 						<li class=""
 							th:class="${param.index != null} ? (${param.index[0] == '1'} ? 'nav-item active' : 'nav-item') : 'nav-item'">
 							<a class="nav-link" href="#account" th:onclick="|listWithIndex(1)|" role="tab"
-								data-toggle="tab"><i class="fa fa-user"></i> [[#{common.profile}]]</a></li>
+								data-toggle="tab"><i class="fa fa-user"></i> [[#{common.profile}]]</a>
+						</li>
 						<li class=""
 							th:class="${param.index != null} ? (${param.index[0] == '2'} ? 'nav-item active' : 'nav-item') : 'nav-item'">
 							<a class="nav-link" href="#wishlist" th:onclick="|listWithIndex(2)|" role="tab"
-								data-toggle="tab"><i class="fa fa-heart"></i> Videogiochi Desiderati</a></li>
+								data-toggle="tab"><i class="fa fa-heart"></i> Videogiochi Desiderati</a>
+						</li>
 						<li class=""
 							th:class="${param.index != null} ? (${param.index[0] == '3'} ? 'nav-item active' : 'nav-item') : 'nav-item'">
 							<a class="nav-link" href="#playedlist" th:onclick="|listWithIndex(3)|" role="tab"
-								data-toggle="tab"><i class="fa fa-gamepad"></i> Videogiochi Giocati</a></li>
+								data-toggle="tab"><i class="fa fa-gamepad"></i> Videogiochi Giocati</a>
+						</li>
 						<li class=""
 							th:class="${param.index != null} ? (${param.index[0] == '4'} ? 'nav-item active' : 'nav-item') : 'nav-item'">
 							<a class="nav-link" href="#sellinglist" th:onclick="|listWithIndex(4)|" role="tab"
 								data-toggle="tab"><i class="fa fa-shopping-cart"></i> Videogiochi in
-								Vendita</a></li>
+								Vendita</a>
+						</li>
 					</ul>
 				</div>
 		</section>
@@ -181,6 +201,23 @@
 												<th>Azioni</th>
 											</tr>
 										</thead>
+										<tbody th:each="videogioco : ${videogiochi}">
+											<tr th:if="${sellingList.contains(videogioco.id)}">
+												<td th:text="${videogioco.titolo}"></td>
+												<td th:if="${videogioco.xboxUrl != null}" class="badge badge-xbox-one"
+													style="position: relative; bottom: -8px; margin-right: 5px">Xbox One
+												</td>
+												<td th:if="${videogioco.ps4Url != null}" class="badge badge-ps4"
+													style="position: relative; bottom: -8px; margin-right: 5px">PS4</td>
+												<td th:if="${videogioco.pcUrl != null}" class="badge badge-steam"
+													style="position: relative; bottom: -8px; margin-right: 5px">PC</td>
+												<td>
+													<a class="btn btn-link p-a-5"
+														th:onclick="|removeGameFromSellinglist('${videogioco.id}')|"><i
+															class="fa fa-trash-o"></i></a>
+												</td>
+											</tr>
+										</tbody>
 									</table>
 								</div>
 							</div>
