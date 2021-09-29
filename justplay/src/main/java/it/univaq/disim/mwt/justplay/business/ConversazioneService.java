@@ -9,12 +9,12 @@ public interface ConversazioneService {
 
 	List<Conversazione> findAllByFkUtente(Long idUtente) throws BusinessException;
 
-	List<Messaggio> findMessaggiById(Long idConversazione) throws BusinessException;
+	//List<Messaggio> findAllByIdConversazione(Long idConversazione) throws BusinessException;
 
-	String findNameById(Long idConversazione, Long idUtente) throws BusinessException;
-
+	Conversazione findNameById(Long idConversazione, Long idUtente) throws BusinessException;
+		
 	void createMessaggio(Long idMittente, Long idConversazione, String contenuto) throws BusinessException;
-
+	
 	void updateConversazione(Long fkUtente1, Long fkUtente2) throws BusinessException;
 	
 	void nuovoMetodo() throws BusinessException;

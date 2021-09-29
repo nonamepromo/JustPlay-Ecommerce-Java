@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import it.univaq.disim.mwt.justplay.business.BusinessException;
@@ -18,14 +19,8 @@ public interface ConversazioneRepository extends MongoRepository<Conversazione, 
 	
 	List<Conversazione> findAllByFkUtente2(Long fkUtente2) throws BusinessException;
 
-	List<Messaggio> findMessaggiById(Long id) throws BusinessException;
+	//List<Messaggio> findAllByIdConversazione(Long idConversazione) throws BusinessException;
 	
-	String findNameById(Long idConversazione, Long idUtente) throws BusinessException;
-	
-	//List<Conversazione> findAllByFkUtente(Long idUtente) throws BusinessException;
-
-	//List<Messaggio> findMessaggiByFkConversazione(Long idConversazione) throws BusinessException;
-
-	//String findNameByIdConversazione(Long idConversazione, Long idUtente) throws BusinessException;
+	Conversazione findNameById(Long idConversazione, Long idUtente) throws BusinessException;
 	
 }

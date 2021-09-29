@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}	
+	}
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -38,7 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.accessDeniedPage("/common/accessdenied").and().authorizeRequests()
 				// Specificare le url che sono soggette ad autenticazione ed autorizzazione
 				.antMatchers("/", "/static/**", "/favicon.ico").permitAll().antMatchers("/common/profilo")
-				.authenticated().antMatchers("/videogiochi/addGameToSellinglistProva").authenticated();
+				.authenticated().antMatchers("/videogiochi/addGameToSellinglistProva").authenticated()
+				.antMatchers("/common/conversations-list").authenticated();
 		// .antMatchers("/areessd/**", "/ssds/**").hasAnyRole("amministratore")
 		// .antMatchers("/insegnamenti/**", "/appelli/**").hasAnyRole("docente");
 	}
