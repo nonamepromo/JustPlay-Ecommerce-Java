@@ -132,7 +132,7 @@
 
 					<div class="btn-group float-right m-l-5 hidden-sm-down" role="group">
 						<a class="btn btn-default btn-icon" th:classappend="${param.platform != null} ? (${param.platform[0] == 'all'} ? 'active' : '') : ''"
-							href="#" role="button" th:onclick="|listWithPlatform('all', 1)|">Tutte le piattaforme</a>
+							href="#" role="button" th:onclick="|listWithPlatform('all', 1)|">[[#{videogioco.filtroAll}]]</a>
 						<a class="btn btn-default btn-icon" th:classappend="${param.platform != null} ? (${param.platform[0] == 'ps4'} ? 'active' : '') : ''"
 							href="#" role="button" th:onclick="|listWithPlatform('ps4', 1)|">Playstation 4</a>
 						<a class="btn btn-default btn-icon" th:classappend="${param.platform != null} ? (${param.platform[0] == 'xbox'} ? 'active' : '') : ''"

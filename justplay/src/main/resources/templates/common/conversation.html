@@ -27,10 +27,10 @@
           <div class="card-body" style="height: 600px; overflow: auto; text-align:justify; transform: rotateX(180deg);">
             <div class="row" style="transform: rotateX(180deg);">
               <div th:each="messaggio : ${messaggi}" class="col-8 col-sm-8 col-md-8"
-                th:classappend="${messaggio.fk_mittente} == ${idUtente} ? 'ml-auto': ''">
+                th:classappend="${messaggio.idMittente} == ${idUtente} ? 'ml-auto': ''">
                 <div>
                   <div class="card card-lg">
-                    <div th:style="${messaggio.fk_mittente} == ${idUtente} ? 'background-color:lightskyblue': ''"
+                    <div th:style="${messaggio.idMittente} == ${idUtente} ? 'background-color:lightskyblue': ''"
                       class="card-block">
                       <div th:text="${messaggio.contenuto}"></div>
                     </div>

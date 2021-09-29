@@ -76,19 +76,15 @@
 						<li class=""
 							th:class="${param.index != null} ? (${param.index[0] == '2'} ? 'nav-item active' : 'nav-item') : 'nav-item'">
 							<a class="nav-link" href="#wishlist" th:onclick="|listWithIndex(2)|" role="tab"
-								data-toggle="tab"><i class="fa fa-heart"></i> Videogiochi Desiderati</a>
-						</li>
+					data-toggle="tab"><i class="fa fa-heart"></i> [[#{profilo.wishlist}]]</a></li>
 						<li class=""
 							th:class="${param.index != null} ? (${param.index[0] == '3'} ? 'nav-item active' : 'nav-item') : 'nav-item'">
 							<a class="nav-link" href="#playedlist" th:onclick="|listWithIndex(3)|" role="tab"
-								data-toggle="tab"><i class="fa fa-gamepad"></i> Videogiochi Giocati</a>
-						</li>
+								data-toggle="tab"><i class="fa fa-gamepad"></i> [[#{profilo.giocati}]]</a></li>
 						<li class=""
 							th:class="${param.index != null} ? (${param.index[0] == '4'} ? 'nav-item active' : 'nav-item') : 'nav-item'">
 							<a class="nav-link" href="#sellinglist" th:onclick="|listWithIndex(4)|" role="tab"
-								data-toggle="tab"><i class="fa fa-shopping-cart"></i> Videogiochi in
-								Vendita</a>
-						</li>
+								data-toggle="tab"><i class="fa fa-shopping-cart"></i>[[#{profilo.venduti}]]</a></li>
 					</ul>
 				</div>
 		</section>
@@ -112,13 +108,13 @@
 										<div class="form-group input-icon-left m-b-10">
 											<i class="fa fa-user"></i>
 											<input type="text" th:field="*{nome}"
-												class="form-control form-control-secondary" placeholder="Nome" required
+												class="form-control form-control-secondary" th:placeholder="#{profilo.nome}" required
 												maxlength="100">
 										</div>
 										<div class="form-group input-icon-left m-b-10">
 											<i class="fa fa-user"></i>
 											<input type="text" th:field="*{cognome}"
-												class="form-control form-control-secondary" placeholder="Cognome"
+												class="form-control form-control-secondary" th:placeholder="#{profilo.cognome}"
 												required maxlength="100">
 										</div>
 										<div class="form-group input-icon-left m-b-10">
@@ -136,9 +132,9 @@
 									<table class="table table-hover">
 										<thead>
 											<tr>
-												<th>Nome Gioco</th>
-												<th>Piattaforma</th>
-												<th>Azioni</th>
+												<th>[[#{profilo.nomegioco}]]</th>
+												<th>[[#{profilo.piattaformagioco}]]</th>
+												<th>[[#{profilo.azioni}]]</th>
 											</tr>
 										</thead>
 										<tbody th:each="videogioco : ${videogiochi}">
@@ -166,9 +162,9 @@
 									<table class="table table-hover">
 										<thead>
 											<tr>
-												<th>Nome Gioco</th>
-												<th>Piattaforma</th>
-												<th>Azioni</th>
+												<th>[[#{profilo.nomegioco}]]</th>
+												<th>[[#{profilo.piattaformagioco}]]</th>
+												<th>[[#{profilo.azioni}]]</th>
 											</tr>
 										</thead>
 										<tbody th:each="videogioco : ${videogiochi}">
@@ -196,9 +192,9 @@
 									<table class="table table-hover">
 										<thead>
 											<tr>
-												<th>Nome Gioco</th>
-												<th>Piattaforma</th>
-												<th>Azioni</th>
+												<th>[[#{profilo.nomegioco}]]</th>
+												<th>[[#{profilo.piattaformagioco}]]</th>
+												<th>[[#{profilo.azioni}]]</th>
 											</tr>
 										</thead>
 										<tbody th:each="videogioco : ${videogiochi}">

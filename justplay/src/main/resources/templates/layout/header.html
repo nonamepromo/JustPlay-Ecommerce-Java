@@ -171,6 +171,17 @@
 					</div>
 					<div class="nav navbar-right">
 						<ul>
+							<!-- Language Dropdown Menu -->
+
+
+							<li class="has-dropdown">
+								<a disabled>[[#{common.lingua}]]
+									<i th:classappend="'flag-icon flag-icon-'+ (${#locale.language}=='en' ? 'gb' : ${#locale.language})"></i></a>
+								<ul>
+									<li><a href="#" th:href="@{/videogiochi/list?platform=all&index=1&lang=en}">[[#{common.english}]]</a></li>
+								<li><a href="#" th:href="@{/videogiochi/list?platform=all&index=1&lang=it}">[[#{common.italian}]]</a></li>
+									</ul>
+								</li>
 							<li sec:authorize="!isAuthenticated()" class="hidden-xs-down"><a href="#"
 									th:href="@{/common/login}">[[#{common.login}]]</a></li>
 							<li sec:authorize="!isAuthenticated()" class="hidden-xs-down"><a href="#"
@@ -179,9 +190,9 @@
 									onclick="return false">Account</a>
 								<ul>
 									<li><a th:href="@{/common/profilo?index=1}">[[#{common.profile}]]</a></li>
-									<li><a th:href="@{/common/profilo?index=2}">Videogiochi Desiderati</a></li>
-									<li><a th:href="@{/common/profilo?index=3}">Videogiochi Giocati</a></li>
-									<li><a th:href="@{/common/profilo?index=4}">Videogiochi in Vendita</a></li>
+									<li><a th:href="@{/common/profilo?index=2}">[[#{profilo.wishlist}]]</a></li>
+									<li><a th:href="@{/common/profilo?index=3}">[[#{profilo.giocati}]]</a></li>
+									<li><a th:href="@{/common/profilo?index=4}">[[#{profilo.venduti}]]</a></li>
 									<li><a th:href="@{/common/conversations-list}">Chat</a></li>
 								</ul>
 							</li>
