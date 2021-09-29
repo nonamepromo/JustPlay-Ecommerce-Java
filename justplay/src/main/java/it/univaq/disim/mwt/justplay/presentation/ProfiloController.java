@@ -35,7 +35,6 @@ public class ProfiloController {
 		Long idUtente = utente.getId();
 		getWishlist(model, idUtente);
 		getPlayedlist(model, idUtente);
-		getSellinglist(model, idUtente);
 		model.addAttribute("profilo", newUtente);
 		return "/common/profilo";
 	}
@@ -46,10 +45,6 @@ public class ProfiloController {
 
 	public void getPlayedlist(Model model, Long idUtente) throws BusinessException {
 		model.addAttribute("playedList", gameService.getPlayedlist(idUtente));
-	}
-
-	public void getSellinglist(Model model, Long idUtente) throws BusinessException {
-		model.addAttribute("sellingList", gameService.getUtenteSellinglist(idUtente));
 	}
 
 	@PostMapping("/removeGameFromWishlist")

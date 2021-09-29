@@ -1,7 +1,5 @@
 package it.univaq.disim.mwt.justplay.presentation;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +20,7 @@ import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 
 @Controller
-@RequestMapping(value = "/videogiochi", method = RequestMethod.POST)
+@RequestMapping(value = "videogiochi", method = RequestMethod.POST)
 public class VideogiocoController {
 
 	@Autowired
@@ -162,7 +160,7 @@ public class VideogiocoController {
 
 	@PostMapping("/addGameToWishlist")
 	public String addGameToWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco,
-			RedirectAttributes redirAttrs, Model model) throws BusinessException {
+			RedirectAttributes redirAttrs) throws BusinessException {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
@@ -170,15 +168,13 @@ public class VideogiocoController {
 		Long idUtente = Long.parseLong(id);
 
 		service.addGameToWishlist(idVideogioco, idUtente);
-		List<Long> wishList = service.getWishlist(idUtente);
-		model.addAttribute("wishList", wishList);
 		redirAttrs.addFlashAttribute("success", "");
 		return "videogiochi/list";
 	}
 
 	@PostMapping("/addGameToPlayedlist")
 	public String addGameToPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco,
-			RedirectAttributes redirAttrs, Model model) throws BusinessException {
+			RedirectAttributes redirAttrs) throws BusinessException {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
@@ -186,8 +182,6 @@ public class VideogiocoController {
 		Long idUtente = Long.parseLong(id);
 
 		service.addGameToPlayedlist(idVideogioco, idUtente);
-		List<Long> playedList = service.getPlayedlist(idUtente);
-		model.addAttribute("playedList", playedList);
 		redirAttrs.addFlashAttribute("success", "");
 		return "videogiochi/list";
 	}
@@ -241,7 +235,7 @@ public class VideogiocoController {
 		Long idUtente = Long.parseLong(id);
 
 		service.removeGameFromSellinglist(idVideogioco, idUtente);
-		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
+		return "videogiochi/details";
 	}
 
 	// @GetMapping("/checkIfGameIsDesidered")

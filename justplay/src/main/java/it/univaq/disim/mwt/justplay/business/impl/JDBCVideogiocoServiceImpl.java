@@ -340,74 +340,74 @@ public class JDBCVideogiocoServiceImpl {
 	}
 
 	
-	// public void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
-	// 	try (Connection con = dataSource.getConnection();
-	// 			PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_DESIDERATO);) {
-	// 		st.setLong(1, idVideogioco);
-	// 		st.setLong(2, idUtente);
-	// 		st.executeUpdate();
-	// 	} catch (SQLException e) {
-	// 		log.error("addGameToWishlist", e);
-	// 		throw new BusinessException("addGameToWishlist", e);
-	// 	}
-	// }
+	public void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
+		try (Connection con = dataSource.getConnection();
+				PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_DESIDERATO);) {
+			st.setLong(1, idVideogioco);
+			st.setLong(2, idUtente);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			log.error("addGameToWishlist", e);
+			throw new BusinessException("addGameToWishlist", e);
+		}
+	}
 
 	
-	// public void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
-	// 	try (Connection con = dataSource.getConnection();
-	// 			PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_GIOCATO);) {
-	// 		st.setLong(1, idVideogioco);
-	// 		st.setLong(2, idUtente);
-	// 		st.executeUpdate();
-	// 	} catch (SQLException e) {
-	// 		log.error("addGameToPlayedlist", e);
-	// 		throw new BusinessException("addGameToPlayedlist", e);
-	// 	}
-	// }
+	public void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
+		try (Connection con = dataSource.getConnection();
+				PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_GIOCATO);) {
+			st.setLong(1, idVideogioco);
+			st.setLong(2, idUtente);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			log.error("addGameToPlayedlist", e);
+			throw new BusinessException("addGameToPlayedlist", e);
+		}
+	}
 
 	
-	// public void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Long idVideogioco, Long idUtente)
-	// 		throws BusinessException {
-	// 	try (Connection con = dataSource.getConnection();
-	// 			PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_IN_VENDITA);) {
-	// 		st.setLong(1, idVideogioco);
-	// 		st.setLong(2, idUtente);
-	// 		st.setInt(3, videogiocoInVendita.getPrezzo());
-	// 		st.setInt(4, videogiocoInVendita.getPrezzoSpedizione());
-	// 		st.setString(5, videogiocoInVendita.getProvincia());
-	// 		st.setString(6, videogiocoInVendita.getPiattaforma());
-	// 		st.executeUpdate();
-	// 	} catch (SQLException e) {
-	// 		log.error("addGameToSellinglistProva", e);
-	// 		throw new BusinessException("addGameToSellinglistProva", e);
-	// 	}
-	// }
+	public void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Long idVideogioco, Long idUtente)
+			throws BusinessException {
+		try (Connection con = dataSource.getConnection();
+				PreparedStatement st = con.prepareStatement(INSERT_VIDEOGIOCO_IN_VENDITA);) {
+			st.setLong(1, idVideogioco);
+			st.setLong(2, idUtente);
+			st.setInt(3, videogiocoInVendita.getPrezzo());
+			st.setInt(4, videogiocoInVendita.getPrezzo_spedizione());
+			st.setString(5, videogiocoInVendita.getProvincia());
+			st.setString(6, videogiocoInVendita.getPiattaforma());
+			st.executeUpdate();
+		} catch (SQLException e) {
+			log.error("addGameToSellinglistProva", e);
+			throw new BusinessException("addGameToSellinglistProva", e);
+		}
+	}
 
 	
-	// public void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
-	// 	try (Connection con = dataSource.getConnection();
-	// 			PreparedStatement st = con.prepareStatement(DELETE_VIDEOGIOCO_DESIDERATO);) {
-	// 		st.setLong(1, idVideogioco);
-	// 		st.setLong(2, idUtente);
-	// 		st.executeUpdate();
-	// 	} catch (SQLException e) {
-	// 		log.error("deleteVideogiocoDesiderato", e);
-	// 		throw new BusinessException("deleteVideogiocoDesiderato", e);
-	// 	}
-	// }
+	public void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
+		try (Connection con = dataSource.getConnection();
+				PreparedStatement st = con.prepareStatement(DELETE_VIDEOGIOCO_DESIDERATO);) {
+			st.setLong(1, idVideogioco);
+			st.setLong(2, idUtente);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			log.error("deleteVideogiocoDesiderato", e);
+			throw new BusinessException("deleteVideogiocoDesiderato", e);
+		}
+	}
 
 	
-	// public void removeGameFromPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
-	// 	try (Connection con = dataSource.getConnection();
-	// 			PreparedStatement st = con.prepareStatement(DELETE_VIDEOGIOCO_GIOCATO);) {
-	// 		st.setLong(1, idVideogioco);
-	// 		st.setLong(2, idUtente);
-	// 		st.executeUpdate();
-	// 	} catch (SQLException e) {
-	// 		log.error("deleteVideogiocoGiocato", e);
-	// 		throw new BusinessException("deleteVideogiocoGiocato", e);
-	// 	}
-	// }
+	public void removeGameFromPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
+		try (Connection con = dataSource.getConnection();
+				PreparedStatement st = con.prepareStatement(DELETE_VIDEOGIOCO_GIOCATO);) {
+			st.setLong(1, idVideogioco);
+			st.setLong(2, idUtente);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			log.error("deleteVideogiocoGiocato", e);
+			throw new BusinessException("deleteVideogiocoGiocato", e);
+		}
+	}
 
 	
 	public void removeGameFromSellinglist(Long idVideogioco, Long idUtente) throws BusinessException {
