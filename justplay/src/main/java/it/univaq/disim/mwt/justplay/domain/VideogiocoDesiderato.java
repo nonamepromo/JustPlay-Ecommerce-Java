@@ -22,11 +22,11 @@ import lombok.ToString;
 @ToString
 public class VideogiocoDesiderato extends AbstractPersistableEntity {
 
-  @Column(name = "fk_utente")
-  @NotNull(groups = { OnCreate.class, Default.class })
-  private Long fkUtente;
+	@Column(name = "fk_utente")
+	@NotNull(groups = { OnCreate.class, Default.class })
+	private Long fkUtente;
 
-  @Column(name = "fk_videogioco")
-  @NotNull(groups = { OnCreate.class, Default.class })
-  private Long fkVideogioco;
+	@Column(name = "fk_videogioco")
+	@NotNull(groups = { OnCreate.class, Default.class })
+	private Long fkVideogioco;
 }

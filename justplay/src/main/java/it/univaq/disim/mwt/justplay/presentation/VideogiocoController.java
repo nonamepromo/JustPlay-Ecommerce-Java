@@ -61,7 +61,6 @@ public class VideogiocoController {
 		model.addAttribute("videogiochi", service.findByPlatform(platform, index));
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication.getPrincipal() != "anonymousUser") {
-
 			Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
 			getWishlist(model, idUtente);
 			getPlayedlist(model, idUtente);
