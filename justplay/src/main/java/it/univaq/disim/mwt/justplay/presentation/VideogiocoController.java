@@ -149,6 +149,14 @@ public class VideogiocoController {
 			model.addAttribute("idUtente", idUtente);
 		}
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
+		
+		/*
+		model.addAllAttributes("amazonUrl", mongoService.getUrlAmaz(idVideogioco));
+		model.addAllAttributes("ebayUrl", mongoService.getUrlEbay(idVideogioco));
+		model.addAllAttributes("prezzoAmaz", mongoService.getPrezzoAmaz(idVideogioco));
+		model.addAllAttributes("prezzoEbay", mongoService.getPrezzoEbay(idVideogioco));
+		*/
+		
 		model.addAttribute("videogioco", videogioco);
 		model.addAttribute("idVideogioco", idVideogioco);
 		VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
