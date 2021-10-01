@@ -6,6 +6,6 @@ import it.univaq.disim.mwt.justplay.domain.Amazon;
 
 public interface AmazonService{
 
-    Amazon findByfkVideogioco(Long idVideogioco) throws BusinessException;
+    Amazon findByidVideogioco(Long idVideogioco) throws BusinessException;
 
 }

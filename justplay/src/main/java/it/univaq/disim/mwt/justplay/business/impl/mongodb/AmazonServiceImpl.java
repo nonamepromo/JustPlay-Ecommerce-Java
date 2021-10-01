@@ -15,9 +15,11 @@ public class AmazonServiceImpl implements AmazonService {
     private AmazonRepository amazonRepository;
 
     @Override
-    public Amazon findByfkVideogioco(Long idVideogioco) throws BusinessException{
+    public Amazon findByidVideogioco(Long idVideogioco) throws BusinessException{
         try {
             
+        }catch (Exception e) {
+            throw new BusinessException(e);
         }
     }
 
