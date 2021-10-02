@@ -98,6 +98,7 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 		}
 	}
 
+	//QUESTI LI USAVO SOLO PER RIEMPIRMI LE TABELLE SU MONGO DB, ANDRANNO TOLTE
 	@Override
 	public void nuovoMetodo() throws BusinessException {
 		Messaggio messaggio = new Messaggio();

@@ -6,7 +6,7 @@
 
 	<!-- main -->
 	<div layout:fragment="content">
-	<script>
+		<script>
 			function removeGameFromSellinglist(idVideogioco) {
 				$.ajax({
 					url: '[(@{/videogiochi/removeGameFromSellinglist})]',
@@ -68,7 +68,8 @@
 					<div class="modal-dialog modal-sm" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title"><i class="fa fa-shopping-cart"></i> [[#{videogioco.venditaPrivata}]]</h5>
+								<h5 class="modal-title"><i class="fa fa-shopping-cart"></i>
+									[[#{videogioco.venditaPrivata}]]</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -82,6 +83,7 @@
 											class="form-control">
 										<input type="hidden" th:value="${idUtente}" th:name="idUtente"
 											class="form-control">
+										<input type="hidden" th:value="${amazon}" th:name="amazon" class="form-control">
 									</div>
 
 									<h4 th:text="${videogioco.titolo}"></h4>
@@ -94,17 +96,20 @@
 									<div class="form-group input-icon-left m-b-10">
 										<i class="fa fa-plane"></i>
 										<input type="number" class="form-control form-control-secondary"
-											th:field="*{prezzoSpedizione}" th:placeholder="#{videogioco.venditaSpedizione}">
+											th:field="*{prezzoSpedizione}"
+											th:placeholder="#{videogioco.venditaSpedizione}">
 									</div>
 									<div class="form-group input-icon-left m-b-15">
 										<i class="fa fa-map-signs"></i>
 										<input type="text" class="form-control form-control-secondary"
-											th:field="*{provincia}" th:placeholder="#{videogioco.venditaLuogo}" required>
+											th:field="*{provincia}" th:placeholder="#{videogioco.venditaLuogo}"
+											required>
 									</div>
 									<div class="dropdown float-left">
 										<select class="form-control" name="piattaforma" required>
 											<div class="dropdown-menu dropdown-menu-right">
-												<option selected disabled hidden>[[#{videogioco.venditaPiattaforma}]]</option>
+												<option selected disabled hidden>[[#{videogioco.venditaPiattaforma}]]
+												</option>
 												<option value="PS4" th:if="${videogioco.ps4Url != null}" th:value="PS4"
 													class="dropdown-item">PS4
 												</option>
@@ -187,8 +192,18 @@
 							<!-- <p th:text="${videogioco.descrizione}"></p> -->
 							<h4>STORE IN CUI E' DISPONIBILE</h4>
 						</div>
-
-
+						<div th:if="${amazon.amazonUrl} != null" class="mt-4 mb-4">
+							<div class="post">
+								<a class="col-md-4" th:href="${amazon.amazonUrl}" target="_blank">
+									<img class="mt-3"
+										src="https://www.kanguru.it/wp-content/uploads/2017/09/amazon-logo.png"
+										style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
+								</a>
+								<a class="col-md-2 mt-3" th:href="${amazon.amazonUrl}" target="_blank">
+									<h4 th:text="${amazon.prezzoAmazon}"></h4>
+								</a>
+							</div>
+						</div>
 						<!-- <div class="post-meta">
                     <span><i class="fa fa-clock-o"></i> June 16, 2017 by <a href="profile.html">Trevor</a></span>
                     <span><a href="#">PS4</a></span>
@@ -301,8 +316,7 @@
 														class="fa fa-trash-o"></i></a>
 											</td>
 											<td th:if="${videogioco_in_vendita.fkUtente != idUtente}">
-												<a class="btn btn-link p-a-5"
-													th:onclick=""><i
+												<a class="btn btn-link p-a-5" th:onclick=""><i
 														class="fa fa-wechat"></i></a>
 											</td>
 										</tr>
@@ -313,14 +327,16 @@
 						<!-- post -->
 						<div class="post">
 							<h2 class="post-title">
-								<a href="blog-post-carousel.html">The Witcher 3: Game of the Year Edition Release Date
+								<a href="blog-post-carousel.html">The Witcher 3: Game of the Year Edition
+									Release Date
 									Announced</a>
 							</h2>
 							<div class="post-meta">
 								<span><i class="fa fa-clock-o"></i> June 19, 2017 by <a
 										href="profile.html">Elizabeth</a></span>
 								<span><a href="#">Xbox One</a></span>
-								<span><a href="blog-post-carousel.html#comments"><i class="fa fa-comment-o"></i> 6
+								<span><a href="blog-post-carousel.html#comments"><i class="fa fa-comment-o"></i>
+										6
 										comments</a></span>
 							</div>
 							<div class="post-thumbnail">
@@ -331,7 +347,8 @@
 									</ol>
 									<div class="carousel-inner" role="listbox">
 										<div class="carousel-item active"><img
-												src="https://img.youtube.com/vi/kZb9gnrnxS0/maxresdefault.jpg"></div>
+												src="https://img.youtube.com/vi/kZb9gnrnxS0/maxresdefault.jpg">
+										</div>
 										<div class="carousel-item"><img
 												src="https://img.youtube.com/vi/dPCPRtEf5IU/maxresdefault.jpg">
 										</div>
@@ -346,9 +363,11 @@
 									</a>
 								</div>
 							</div>
-							<p>The game plays much like the previous installment, <b>The Witcher 3</b>, with minor
+							<p>The game plays much like the previous installment, <b>The Witcher 3</b>, with
+								minor
 								refinements made.
-								The game will track both player choice and actions which ultimately affect how the game
+								The game will track both player choice and actions which ultimately affect how
+								the game
 								will end. The
 								developers say that these choices can
 								either be very tiny or absolutely major. </p>
@@ -357,7 +376,8 @@
 						<!-- post -->
 						<div class="post">
 							<h2 class="post-title">
-								<a href="blog-post-video.html">The Witcher 3: Wild Hunt 35 Minutes of Gameplay</a>
+								<a href="blog-post-video.html">The Witcher 3: Wild Hunt 35 Minutes of
+									Gameplay</a>
 							</h2>
 							<div class="post-meta">
 								<span><i class="fa fa-clock-o"></i> June 16, 2017 by <a
@@ -378,12 +398,15 @@
 									</div>
 								</div>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas elit ante, congue
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas elit ante,
+								congue
 								sodales orci ac,
-								ultrices pretium lectus. Maecenas lorem enim, dignissim sed lacus non, feugiat iaculis
+								ultrices pretium lectus. Maecenas lorem enim, dignissim sed lacus non, feugiat
+								iaculis
 								lorem. Integer eu
 								aliquet diam. Suspendisse fringilla
-								porta justo, vel tempus risus. Ut et enim sit amet libero fermentum aliquam et ut sem.
+								porta justo, vel tempus risus. Ut et enim sit amet libero fermentum aliquam et
+								ut sem.
 							</p>
 						</div>
 
@@ -403,9 +426,11 @@
 								<p>“This allows players to read up on characters, bestiary, crafting and game
 									mechanics.”</p>
 							</blockquote>
-							<p>The tutorial tab allows for a deeper explanation on the game's mechanics. The character
+							<p>The tutorial tab allows for a deeper explanation on the game's mechanics. The
+								character
 								tab will give a
-								condensed biography on the game's characters. The crafting tab gives player access to
+								condensed biography on the game's characters. The crafting tab gives player
+								access to
 								the required
 								ingredients for an item, though only
 								blacksmiths can forge weapons and only armorers can craft armor.</p>
@@ -452,10 +477,12 @@
 									<img src="https://i1.ytimg.com/vi/2fgU8cYrANs/mqdefault.jpg" alt="">
 								</a>
 								<h4>
-									<a href="blog-post.html">The Witcher Book Author Doesn't Profit From the Games</a>
+									<a href="blog-post.html">The Witcher Book Author Doesn't Profit From the
+										Games</a>
 								</h4>
 								<span><i class="fa fa-clock-o"></i> November 16, 2017</span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel neque sed ante
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel neque
+									sed ante
 									facilisis
 									efficitur.</p>
 								<ul class="widget-list">
@@ -467,7 +494,8 @@
 										</div>
 										<div>
 											<h4>
-												<a href="blog-post.html">Dead Island 2 and Escape Impressions</a>
+												<a href="blog-post.html">Dead Island 2 and Escape
+													Impressions</a>
 											</h4>
 											<span>June 16, 2017</span>
 										</div>
@@ -494,7 +522,8 @@
 										</div>
 										<div>
 											<h4>
-												<a href="blog-post.html">Spider-Man Spin-Off, Venom, Gets Release
+												<a href="blog-post.html">Spider-Man Spin-Off, Venom, Gets
+													Release
 													Date</a>
 											</h4>
 											<span>June 10, 2017</span>
@@ -508,7 +537,8 @@
 										</div>
 										<div>
 											<h4>
-												<a href="blog-post.html">Is Ghost Recon: Wildlands Worth Your Time?</a>
+												<a href="blog-post.html">Is Ghost Recon: Wildlands Worth Your
+													Time?</a>
 											</h4>
 											<span>June 16, 2017</span>
 										</div>

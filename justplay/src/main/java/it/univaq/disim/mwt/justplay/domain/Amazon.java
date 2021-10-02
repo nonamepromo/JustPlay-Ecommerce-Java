@@ -19,12 +19,15 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Amazon{
-    @id
+	
+    @Id
     private Long id;
 
-    private Long idVideogioco;
+    private Long fkVideogioco;
 
     private String amazonUrl;
+    
+    private double prezzoAmazon;
 
     @Override
     public boolean equals(Object o){
@@ -32,13 +35,14 @@ public class Amazon{
         if(o == null || getClass() != o.getClass()) return false;
         Amazon amazon = (Amazon) o;
         return Objects.equals(id, amazon.id) &&
-                Objects.equals(idVideogioco, amazon.idVideogioco) &&
-                Objects.equals(amazonUrl, amazon.amazonUrl);
+                Objects.equals(fkVideogioco, amazon.fkVideogioco) &&
+                Objects.equals(amazonUrl, amazon.amazonUrl) &&
+        		Objects.equals(prezzoAmazon, amazon.prezzoAmazon);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idVideogioco, amazonUrl);
+        return Objects.hash(id, fkVideogioco, amazonUrl, prezzoAmazon);
     }
     
 }

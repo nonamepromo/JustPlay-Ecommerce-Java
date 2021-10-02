@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import it.univaq.disim.mwt.justplay.business.AmazonService;
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.domain.Utente;
@@ -27,6 +28,9 @@ public class VideogiocoController {
 
 	@Autowired
 	private VideogiocoService service;
+
+	@Autowired
+	private AmazonService amazonService;
 
 	// DEVE RIMANERE COMMENTATO OPPURE NO?
 	// @GetMapping(value = "/list", params = "index")
@@ -149,14 +153,11 @@ public class VideogiocoController {
 			model.addAttribute("idUtente", idUtente);
 		}
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
-		
-		/*
-		model.addAllAttributes("amazonUrl", mongoService.getUrlAmaz(idVideogioco));
-		model.addAllAttributes("ebayUrl", mongoService.getUrlEbay(idVideogioco));
-		model.addAllAttributes("prezzoAmaz", mongoService.getPrezzoAmaz(idVideogioco));
-		model.addAllAttributes("prezzoEbay", mongoService.getPrezzoEbay(idVideogioco));
-		*/
-		
+
+		//amazonService.popolazione();
+		//VEDERE DA RIGA 195 DI DETAILS.HTML
+		model.addAttribute("amazon", amazonService.findAllByFkVideogioco(idVideogioco));
+
 		model.addAttribute("videogioco", videogioco);
 		model.addAttribute("idVideogioco", idVideogioco);
 		VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();

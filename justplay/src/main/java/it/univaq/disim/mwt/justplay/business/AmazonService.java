@@ -4,8 +4,11 @@ import java.util.List;
 
 import it.univaq.disim.mwt.justplay.domain.Amazon;
 
-public interface AmazonService{
+public interface AmazonService {
 
-    Amazon findByidVideogioco(Long idVideogioco) throws BusinessException;
+	Amazon findAllByFkVideogioco(Long idVideogioco) throws BusinessException;
 
+	//MI SERVIVA SOLO PER POPOLARE DB MONGO CHE NON MI ANDAVA DI FARLO A MANO
+	void popolazione() throws BusinessException;
+	
 }
