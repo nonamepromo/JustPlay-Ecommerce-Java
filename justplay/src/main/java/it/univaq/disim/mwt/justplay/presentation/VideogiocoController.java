@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.univaq.disim.mwt.justplay.business.AmazonService;
 import it.univaq.disim.mwt.justplay.business.BusinessException;
+import it.univaq.disim.mwt.justplay.business.GamestopService;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
@@ -31,27 +32,9 @@ public class VideogiocoController {
 
 	@Autowired
 	private AmazonService amazonService;
-
-	// DEVE RIMANERE COMMENTATO OPPURE NO?
-	// @GetMapping(value = "/list", params = "index")
-	// public String showAll(@RequestParam(value = "index", defaultValue = "1") int
-	// index, Model model)
-	// throws BusinessException {
-	// int numberOfIndexes = service.getVideogiochiCount() / 3 +
-	// ((service.getVideogiochiCount() % 3 == 0) ? 0 : 1);
-	// model.addAttribute("videogiochiCount", numberOfIndexes);
-	// model.addAttribute("videogiochi", service.findAll(3 * index));
-	// Authentication authentication =
-	// SecurityContextHolder.getContext().getAuthentication();
-	// if (authentication.getPrincipal() != "anonymousUser") {
-
-	// Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
-	// getWishlist(model, idUtente);
-	// getPlayedlist(model, idUtente);
-	// }
-	// return "videogiochi/list";
-
-	// }
+	
+	@Autowired
+	private GamestopService gamestopService;
 
 	@GetMapping(value = "/list", params = { "platform", "index" })
 	public String listWithPlatform(@RequestParam(value = "platform") String platform,
@@ -157,6 +140,7 @@ public class VideogiocoController {
 		//amazonService.popolazione();
 		//VEDERE DA RIGA 195 DI DETAILS.HTML
 		model.addAttribute("amazon", amazonService.findAllByFkVideogioco(idVideogioco));
+		model.addAttribute("gamestop", gamestopService.findAllByFkVideogioco(idVideogioco));
 
 		model.addAttribute("videogioco", videogioco);
 		model.addAttribute("idVideogioco", idVideogioco);
