@@ -35,7 +35,6 @@ public class GamestopServiceImpl implements GamestopService {
 	@Override
 	public void popolazione() throws BusinessException {
 		Gamestop gamestop = new Gamestop();
-		gamestop.setId((long) 2);
 		gamestop.setFkVideogioco((long) 1);
 		gamestop.setPrezzo(22.99);
 		gamestop.setUrl("https://www.gamestop.it/XboxONE/Games/113081/gears-5?group=layout&utm_source=3169789&utm_medium=banner&utm_campaign=TradeDoubler");

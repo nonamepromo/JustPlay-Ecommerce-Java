@@ -16,9 +16,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Gamestop {
-	
-    @Id
-    private Long id;
 
     private Long fkVideogioco;
 
@@ -31,15 +28,14 @@ public class Gamestop {
         if(this == o) return true;
         if(o == null || getClass() != o.getClass()) return false;
         Gamestop gamestop = (Gamestop) o;
-        return Objects.equals(id, gamestop.id) &&
-                Objects.equals(fkVideogioco, gamestop.fkVideogioco) &&
+        return  Objects.equals(fkVideogioco, gamestop.fkVideogioco) &&
                 Objects.equals(url, gamestop.url) &&
         		Objects.equals(prezzo, gamestop.prezzo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fkVideogioco, url, prezzo);
+        return Objects.hash(fkVideogioco, url, prezzo);
     }
     
 }

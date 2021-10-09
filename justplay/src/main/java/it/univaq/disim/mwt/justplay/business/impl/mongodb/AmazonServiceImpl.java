@@ -32,8 +32,7 @@ public class AmazonServiceImpl implements AmazonService {
 	@Override
 	public void popolazione() throws BusinessException {
 		Amazon amazon = new Amazon();
-		amazon.setId((long) 2);
-		amazon.setFkVideogioco((long) 1);
+		amazon.setFkVideogioco((long) 3);
 		amazon.setPrezzoAmazon(22.99);
 		amazon.setAmazonUrl("https://www.amazon.it/Witcher-III-Game-Year-PlayStation/dp/B01KJZYXW6/ref=sr_1_4?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=the+witcher&qid=1633204503&qsid=262-1433747-3953066&sr=8-4&sres=8842932418%2C8842932426%2C8842932434%2CB01KJZYXW6%2C8842932795%2C8842932779%2C8842932787%2C8842932752%2C8842932760%2C8891246816%2C1473232279%2CB08PTZQGHN%2C8891249106%2C0316029181%2CB07WDZ6LD5%2CB07WFLGNQX%2CB07JZFYR4Y%2C031670329X%2CB07WH4GGKL%2C1506713947&srpt=ABIS_BOOK");
 		amazonRepository.save(amazon);

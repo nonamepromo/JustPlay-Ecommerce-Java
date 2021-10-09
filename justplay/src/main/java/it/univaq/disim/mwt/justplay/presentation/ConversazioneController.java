@@ -54,12 +54,12 @@ public class ConversazioneController {
 	public String findConversazione(Model model, @RequestParam(value = "idConversazione") Long idConversazione)
 			throws BusinessException {
 		Long idUtente = Utility.getUtente().getId();
-		if (idUtente == conversazioneService.findNameById(idConversazione, idUtente).getFkUtente1()) {
+		if (idUtente == conversazioneService.findNameByIdConversazione(idConversazione, idUtente).getFkUtente1()) {
 			model.addAttribute("nomeUtente",
-					conversazioneService.findNameById(idConversazione, idUtente).getNomeUtente2());
+					conversazioneService.findNameByIdConversazione(idConversazione, idUtente).getNomeUtente2());
 		} else {
 			model.addAttribute("nomeUtente",
-					conversazioneService.findNameById(idConversazione, idUtente).getNomeUtente1());
+					conversazioneService.findNameByIdConversazione(idConversazione, idUtente).getNomeUtente1());
 		}
 		model.addAttribute("messaggi", messaggioService.findAllByIdConversazione(idConversazione));
 		Messaggio messaggio = new Messaggio();
@@ -75,8 +75,8 @@ public class ConversazioneController {
 		conversazioneService.createMessaggio(idUtente, idConversazione, messaggio.getContenuto());
 		String nome = (utenteService.findById(idUtente)).get().getNome();
 		
-		model.addAttribute("nomeUtente", conversazioneService.findNameById(idConversazione, idUtente).getNomeUtente1());
-		return "redirect:/common/conversation?idConversazione=" + idConversazione + "&nomeUtente=" + conversazioneService.findNameById(idConversazione, idUtente).getNomeUtente2();
+		model.addAttribute("nomeUtente", conversazioneService.findNameByIdConversazione(idConversazione, idUtente).getNomeUtente1());
+		return "redirect:/common/conversation?idConversazione=" + idConversazione + "&nomeUtente=" + conversazioneService.findNameByIdConversazione(idConversazione, idUtente).getNomeUtente2();
 	}
 
 	@PostMapping("/createConversazione")

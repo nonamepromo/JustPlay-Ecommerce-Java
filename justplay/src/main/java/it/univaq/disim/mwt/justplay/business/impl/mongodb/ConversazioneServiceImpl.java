@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 @Slf4j
 public class ConversazioneServiceImpl implements ConversazioneService {
-	
+
 	@Autowired
 	private ConversazioneRepository conversazioneRepository;
 
@@ -53,56 +53,72 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 	}
 
 	@Override
-	public Conversazione findNameById(Long idConversazione, Long idUtente) throws BusinessException {
+	public Conversazione findNameByIdConversazione(Long idConversazione, Long idUtente) throws BusinessException {
 		try {
-			return conversazioneRepository.findNameById(idConversazione, idUtente);
+			return conversazioneRepository.findNameByIdConversazione(idConversazione, idUtente);
 		} catch (Exception e) {
 			throw new BusinessException(e);
 		}
+	}
+
+	@Override
+	public void createConversazione(Long fkUtente1, Long fkUtente2) throws BusinessException {
+		try {
+			Date dNow = new Date();
+			Conversazione conversazione = new Conversazione();
+			conversazione.setData(dNow);
+			conversazione.setFkUtente1(fkUtente1);
+			conversazione.setFkUtente2(fkUtente2);
+			conversazioneRepository.save(conversazione);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
+
 	}
 
 	@Override
 	public void createMessaggio(Long idMittente, Long idConversazione, String contenuto) throws BusinessException {
 		try {
 			Messaggio messaggio = new Messaggio();
-			messaggio.setId(new Random().nextLong()); //MIO DIO CHE SCHIFO
+			// messaggio.setId(new Random().nextLong()); //MIO DIO CHE SCHIFO
 			messaggio.setIdMittente(idMittente);
 			messaggio.setIdConversazione(idConversazione);
 			messaggio.setContenuto(contenuto);
-			messaggioService.insert(messaggio);			
-			
+			messaggioService.insert(messaggio);
+
 		} catch (Exception e) {
 			log.error("createMessaggio", e);
 			throw new BusinessException("createMessaggio", e);
 		}
 	}
-	
+
 	@Override
 	public void updateConversazione(Long fkUtente1, Long fkUtente2) throws BusinessException {
 		try {
 			Date dNow = new Date();
-	    	Conversazione conversazione = (Conversazione) conversazioneRepository.findAll();
-	    	if(conversazione.getFkUtente1().equals(fkUtente1)&&conversazione.getFkUtente2().equals(fkUtente2)){
-	    		conversazione.setData(dNow);
-		    	conversazione.setFkUtente1(fkUtente1);
-		    	conversazione.setFkUtente2(fkUtente2);
-		    	conversazioneRepository.save(conversazione);
-	    	}else if(conversazione.getFkUtente1().equals(fkUtente2)&&conversazione.getFkUtente2().equals(fkUtente1)) {
-	    		conversazione.setData(dNow);
-		    	conversazione.setFkUtente1(fkUtente2);
-		    	conversazione.setFkUtente2(fkUtente1);
-		    	conversazioneRepository.save(conversazione);
-	    	}
+			Conversazione conversazione = (Conversazione) conversazioneRepository.findAll();
+			if (conversazione.getFkUtente1().equals(fkUtente1) && conversazione.getFkUtente2().equals(fkUtente2)) {
+				conversazione.setData(dNow);
+				conversazione.setFkUtente1(fkUtente1);
+				conversazione.setFkUtente2(fkUtente2);
+				conversazioneRepository.save(conversazione);
+			} else if (conversazione.getFkUtente1().equals(fkUtente2)
+					&& conversazione.getFkUtente2().equals(fkUtente1)) {
+				conversazione.setData(dNow);
+				conversazione.setFkUtente1(fkUtente2);
+				conversazione.setFkUtente2(fkUtente1);
+				conversazioneRepository.save(conversazione);
+			}
 		} catch (Exception e) {
 			throw new BusinessException(e);
 		}
 	}
 
-	//QUESTI LI USAVO SOLO PER RIEMPIRMI LE TABELLE SU MONGO DB, ANDRANNO TOLTE
+	// QUESTI LI USAVO SOLO PER RIEMPIRMI LE TABELLE SU MONGO DB, ANDRANNO TOLTE
 	@Override
 	public void nuovoMetodo() throws BusinessException {
 		Messaggio messaggio = new Messaggio();
-		messaggio.setId((long) 1);
+		// messaggio.setId((long) 1);
 		messaggio.setIdMittente((long) 1);
 		messaggio.setIdConversazione((long) 1);
 		messaggio.setContenuto("contenuto di prova");
@@ -114,7 +130,7 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 	public void nuovoMetodoPerConversazione() throws BusinessException {
 		Date dNow = new Date();
 		Conversazione conversazione = new Conversazione();
-		conversazione.setId((long) 2);
+		// conversazione.setId((long) 2);
 		conversazione.setFkUtente1((long) 1);
 		conversazione.setFkUtente2((long) 3);
 		conversazione.setNomeUtente1("Admin");
@@ -122,8 +138,6 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 		conversazione.setData(dNow);
 		conversazioneRepository.save(conversazione);
 	}
-
-
 
 	/*
 	 * @Override public List<Messaggio> findAllByIdConversazione(Long

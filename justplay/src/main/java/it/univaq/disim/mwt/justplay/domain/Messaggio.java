@@ -21,9 +21,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Messaggio {
-    
-	@Id
-	private long id;
 
 	private Long idMittente;
 
@@ -36,15 +33,14 @@ public class Messaggio {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Messaggio messaggio = (Messaggio) o;
-        return Objects.equals(id, messaggio.id) &&
-                Objects.equals(idMittente, messaggio.idMittente) &&
+        return  Objects.equals(idMittente, messaggio.idMittente) &&
                 Objects.equals(idConversazione, messaggio.idConversazione) &&
                 Objects.equals(contenuto, messaggio.contenuto);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idMittente, idConversazione, contenuto);
+        return Objects.hash(idMittente, idConversazione, contenuto);
     }
 
 }

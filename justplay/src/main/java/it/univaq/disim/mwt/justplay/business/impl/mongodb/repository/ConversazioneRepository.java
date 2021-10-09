@@ -21,6 +21,6 @@ public interface ConversazioneRepository extends MongoRepository<Conversazione, 
 
 	//List<Messaggio> findAllByIdConversazione(Long idConversazione) throws BusinessException;
 	
-	Conversazione findNameById(Long idConversazione, Long idUtente) throws BusinessException;
+	Conversazione findNameByIdConversazione(Long idConversazione, Long idUtente) throws BusinessException;
 	
 }

@@ -19,9 +19,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Conversazione {
-
-	@Id
-	private Long id;
+	
+	private Long idConversazione;
 
 	private Long fkUtente1;
 
@@ -38,8 +37,8 @@ public class Conversazione {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Conversazione conversazione = (Conversazione) o;
-        return Objects.equals(id, conversazione.id) &&
-                Objects.equals(fkUtente1, conversazione.fkUtente1) &&
+        return  Objects.equals(idConversazione, conversazione.idConversazione) &&
+        		Objects.equals(fkUtente1, conversazione.fkUtente1) &&
                 Objects.equals(fkUtente2, conversazione.fkUtente2) &&
                 Objects.equals(nomeUtente1, conversazione.nomeUtente1) &&
                 Objects.equals(nomeUtente2, conversazione.nomeUtente2) &&
@@ -48,7 +47,7 @@ public class Conversazione {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fkUtente1, fkUtente2, nomeUtente1, nomeUtente2, data);
+        return Objects.hash(idConversazione, fkUtente1, fkUtente2, nomeUtente1, nomeUtente2, data);
     }
 	
 }

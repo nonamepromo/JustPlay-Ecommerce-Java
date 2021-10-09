@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.univaq.disim.mwt.justplay.business.AmazonService;
 import it.univaq.disim.mwt.justplay.business.BusinessException;
+import it.univaq.disim.mwt.justplay.business.ConversazioneService;
 import it.univaq.disim.mwt.justplay.business.GamestopService;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.domain.Utente;
@@ -35,6 +36,9 @@ public class VideogiocoController {
 	
 	@Autowired
 	private GamestopService gamestopService;
+	
+	@Autowired
+	private ConversazioneService conversazinoeService;
 
 	@GetMapping(value = "/list", params = { "platform", "index" })
 	public String listWithPlatform(@RequestParam(value = "platform") String platform,
@@ -136,12 +140,10 @@ public class VideogiocoController {
 			model.addAttribute("idUtente", idUtente);
 		}
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
-
 		//amazonService.popolazione();
 		//VEDERE DA RIGA 195 DI DETAILS.HTML
 		model.addAttribute("amazon", amazonService.findAllByFkVideogioco(idVideogioco));
 		model.addAttribute("gamestop", gamestopService.findAllByFkVideogioco(idVideogioco));
-
 		model.addAttribute("videogioco", videogioco);
 		model.addAttribute("idVideogioco", idVideogioco);
 		VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
@@ -151,7 +153,13 @@ public class VideogiocoController {
 		platform(idVideogioco, model, null, null, null);
 		return "videogiochi/details";
 	}
-
+	
+	@PostMapping("/createConversazione")
+	public String createConversazione(@RequestParam(value = "idUtente") Long idUtente, @RequestParam(value = "fkUtente") Long fkUtente, Model model) throws BusinessException {
+		conversazinoeService.createConversazione(idUtente, fkUtente);
+		return "videogiochi/list";
+	}
+	
 	@PostMapping("/addGameToWishlist")
 	public String addGameToWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco,
 			RedirectAttributes redirAttrs, Model model) throws BusinessException {

@@ -313,7 +313,7 @@
 								<table class="table table-hover">
 									<thead>
 										<tr>
-											<th>Utente</th>
+											<!-- <th>Utente</th> -->
 											<th>Prezzo</th>
 											<th>Prezzo
 												Spedizione</th>
@@ -324,7 +324,7 @@
 									</thead>
 									<tbody>
 										<tr th:each=" videogioco_in_vendita : ${videogiochi_in_vendita}">
-											<td th:text="${videogioco_in_vendita.fkUtente}"></td>
+											<!-- <td th:text="${videogioco_in_vendita.fkUtente}"></td> -->
 											<td th:text="${videogioco_in_vendita.prezzo}+ '€'"></td>
 											<td th:text="${videogioco_in_vendita.prezzoSpedizione}+ '€'"></td>
 											<td th:text="${videogioco_in_vendita.provincia}"></td>
@@ -334,6 +334,8 @@
 													th:onclick="|removeGameFromSellinglist('${idVideogioco}')|"><i
 														class="fa fa-trash-o"></i></a>
 											</td>
+											<input type="hidden" th:value="${fkUtente}" th:name="fkUtente"
+											class="form-control">
 											<td th:if="${videogioco_in_vendita.fkUtente != idUtente}">
 												<a class="btn btn-link p-a-5" th:onclick=""><i
 														class="fa fa-wechat"></i></a>

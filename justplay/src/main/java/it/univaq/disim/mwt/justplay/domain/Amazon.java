@@ -20,9 +20,6 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Amazon{
 	
-    @Id
-    private Long id;
-
     private Long fkVideogioco;
 
     private String amazonUrl;
@@ -34,15 +31,14 @@ public class Amazon{
         if(this == o) return true;
         if(o == null || getClass() != o.getClass()) return false;
         Amazon amazon = (Amazon) o;
-        return Objects.equals(id, amazon.id) &&
-                Objects.equals(fkVideogioco, amazon.fkVideogioco) &&
+        return  Objects.equals(fkVideogioco, amazon.fkVideogioco) &&
                 Objects.equals(amazonUrl, amazon.amazonUrl) &&
         		Objects.equals(prezzoAmazon, amazon.prezzoAmazon);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fkVideogioco, amazonUrl, prezzoAmazon);
+        return Objects.hash(fkVideogioco, amazonUrl, prezzoAmazon);
     }
     
 }
