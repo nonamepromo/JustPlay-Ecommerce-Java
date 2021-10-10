@@ -13,10 +13,6 @@ import it.univaq.disim.mwt.justplay.domain.Videogioco;
 @Repository
 public interface VideogiocoRepository extends JpaRepository<Videogioco, Long> {
 
-	// boolean existsByUsername(String username);
-
-	// boolean existsByEmail(String email);
-
 	List<Videogioco> findBy(Pageable pageable);
 
 	List<Videogioco> findAllByPs4UrlNotNull(Pageable pageable);

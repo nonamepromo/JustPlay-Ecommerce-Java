@@ -38,7 +38,7 @@ public class VideogiocoController {
 	private GamestopService gamestopService;
 	
 	@Autowired
-	private ConversazioneService conversazinoeService;
+	private ConversazioneService conversazioneService;
 
 	@GetMapping(value = "/list", params = { "platform", "index" })
 	public String listWithPlatform(@RequestParam(value = "platform") String platform,
@@ -141,6 +141,7 @@ public class VideogiocoController {
 		}
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		//amazonService.popolazione();
+		//gamestopService.popolazione();
 		//VEDERE DA RIGA 195 DI DETAILS.HTML
 		model.addAttribute("amazon", amazonService.findAllByFkVideogioco(idVideogioco));
 		model.addAttribute("gamestop", gamestopService.findAllByFkVideogioco(idVideogioco));
@@ -156,7 +157,7 @@ public class VideogiocoController {
 	
 	@PostMapping("/createConversazione")
 	public String createConversazione(@RequestParam(value = "idUtente") Long idUtente, @RequestParam(value = "fkUtente") Long fkUtente, Model model) throws BusinessException {
-		conversazinoeService.createConversazione(idUtente, fkUtente);
+		conversazioneService.createConversazione(idUtente, fkUtente);
 		return "videogiochi/list";
 	}
 	

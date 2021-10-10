@@ -69,6 +69,8 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 			conversazione.setData(dNow);
 			conversazione.setFkUtente1(fkUtente1);
 			conversazione.setFkUtente2(fkUtente2);
+			conversazione.setNomeUtente1("Admin");
+			conversazione.setNomeUtente2("Muccini");
 			conversazioneRepository.save(conversazione);
 		} catch (Exception e) {
 			throw new BusinessException(e);

@@ -24,7 +24,5 @@ public interface VideogiocoInVenditaRepository extends JpaRepository<VideogiocoI
 	void deleteByFkVideogiocoAndFkUtente(Long fkVideogioco, Long fkUtente);
 
 	List<VideogiocoInVendita> findAllByFkVideogioco(Long fkVideogioco);
-
-	// boolean existsByEmail(String email);
-
+	
 }
