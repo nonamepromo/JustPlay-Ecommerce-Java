@@ -13,18 +13,16 @@ import it.univaq.disim.mwt.justplay.domain.Ruolo;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 
 public class UserDetailsImpl implements UserDetails {
-	
+
 	private static final String ROLE_PREFIX = "ROLE_";
 	private static final SimpleGrantedAuthority ROLE_ADMIN = new SimpleGrantedAuthority(ROLE_PREFIX + "admin");
 
-	
 	private Utente utente;
 
 	public UserDetailsImpl(Utente utente) {
 		super();
 		this.utente = utente;
 	}
-
 
 	@Override
 	public String getPassword() {
@@ -65,18 +63,16 @@ public class UserDetailsImpl implements UserDetails {
 		return utente;
 	}
 
-	
-	//CAPIRE BENE COSA FARE CON I RUOLI@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	// CAPIRE BENE COSA FARE CON I RUOLI@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
-		/*List<GrantedAuthority> result = new ArrayList<GrantedAuthority>();
-		
-		for (Ruolo ruolo : utente.getRuoli()) {
-			result.add(new SimpleGrantedAuthority(ROLE_PREFIX + ruolo.getNome()));
-		}
-		if (utente instanceof Admin) {
-			result.add(ROLE_ADMIN);
-		}*/
+		/*
+		 * List<GrantedAuthority> result = new ArrayList<GrantedAuthority>();
+		 * 
+		 * for (Ruolo ruolo : utente.getRuoli()) { result.add(new
+		 * SimpleGrantedAuthority(ROLE_PREFIX + ruolo.getNome())); } if (utente
+		 * instanceof Admin) { result.add(ROLE_ADMIN); }
+		 */
 		return null;
 	}
 }

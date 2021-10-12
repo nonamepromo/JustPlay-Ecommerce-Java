@@ -13,9 +13,8 @@ import it.univaq.disim.mwt.justplay.domain.Conversazione;
 import it.univaq.disim.mwt.justplay.domain.Messaggio;
 
 @Repository
-public interface MessaggioRepository extends MongoRepository<Messaggio, String> {	
-	
+public interface MessaggioRepository extends MongoRepository<Messaggio, String> {
+
 	List<Messaggio> findAllByIdConversazione(Long idConversazione) throws BusinessException;
-	
+
 }
-	

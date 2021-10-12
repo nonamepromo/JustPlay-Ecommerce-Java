@@ -18,9 +18,5 @@ public interface ConversazioneService {
 	void createMessaggio(Long idMittente, Long idConversazione, String contenuto) throws BusinessException;
 	
 	void updateConversazione(Long fkUtente1, Long fkUtente2) throws BusinessException;
-	
-	void nuovoMetodo() throws BusinessException;
-	
-	void nuovoMetodoPerConversazione() throws BusinessException;
 
 }

@@ -48,8 +48,6 @@ public class Utente extends AbstractPersistableEntity {
 	@Column(unique = true)
 	private String email;
 
-	//@DateTimeFormat(pattern = "dd/MM/yyyy") private LocalDate dataNascita;	
-
 	@UsernameUnique(groups = { OnCreate.class })
 	@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 25, groups = { OnCreate.class, OnUpdate.class, Default.class })

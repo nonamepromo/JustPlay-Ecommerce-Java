@@ -12,17 +12,18 @@ import javax.validation.ConstraintValidatorContext;
 @Slf4j
 public class UsernameUniqueValidator implements ConstraintValidator<UsernameUnique, String> {
 
-    @Autowired
-    private UtenteService utenteService;
+	@Autowired
+	private UtenteService utenteService;
 
-    @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
-        if (value == null) return true;
-        try {
-            return !utenteService.existsByUsername(value);
-        } catch (BusinessException e) {
-            log.error(e.getMessage());
-            throw new RuntimeException();
-        }
-    }
+	@Override
+	public boolean isValid(String value, ConstraintValidatorContext context) {
+		if (value == null)
+			return true;
+		try {
+			return !utenteService.existsByUsername(value);
+		} catch (BusinessException e) {
+			log.error(e.getMessage());
+			throw new RuntimeException();
+		}
+	}
 }

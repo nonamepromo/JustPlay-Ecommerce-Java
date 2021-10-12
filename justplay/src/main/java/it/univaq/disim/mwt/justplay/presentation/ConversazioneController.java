@@ -27,7 +27,7 @@ public class ConversazioneController {
 
 	@Autowired
 	private ConversazioneService conversazioneService;
-	
+
 	@Autowired
 	private UtenteService utenteService;
 
@@ -39,12 +39,8 @@ public class ConversazioneController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication.getPrincipal() != "anonymousUser") {
 			model.addAttribute("idUtente", Utility.getUtente().getId());
-
 			Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
 			model.addAttribute("conversazioni", conversazioneService.findAllByFkUtente(idUtente));
-			
-			//conversazioneService.nuovoMetodo();
-			//conversazioneService.nuovoMetodoPerConversazione();
 		}
 		return "common/conversations-list";
 
@@ -71,12 +67,16 @@ public class ConversazioneController {
 	}
 
 	@PostMapping("/createMessaggio")
-	public String createMessaggio(Model model, @ModelAttribute Messaggio messaggio, Conversazione conversazione, @RequestParam(value = "idUtente") Long idUtente, @RequestParam(value = "idConversazione") Long idConversazione) throws BusinessException {
+	public String createMessaggio(Model model, @ModelAttribute Messaggio messaggio, Conversazione conversazione,
+			@RequestParam(value = "idUtente") Long idUtente,
+			@RequestParam(value = "idConversazione") Long idConversazione) throws BusinessException {
 		conversazioneService.createMessaggio(idUtente, idConversazione, messaggio.getContenuto());
 		String nome = (utenteService.findById(idUtente)).get().getNome();
-		
-		model.addAttribute("nomeUtente", conversazioneService.findNameByIdConversazione(idConversazione, idUtente).getNomeUtente1());
-		return "redirect:/common/conversation?idConversazione=" + idConversazione + "&nomeUtente=" + conversazioneService.findNameByIdConversazione(idConversazione, idUtente).getNomeUtente2();
+
+		model.addAttribute("nomeUtente",
+				conversazioneService.findNameByIdConversazione(idConversazione, idUtente).getNomeUtente1());
+		return "redirect:/common/conversation?idConversazione=" + idConversazione + "&nomeUtente="
+				+ conversazioneService.findNameByIdConversazione(idConversazione, idUtente).getNomeUtente2();
 	}
 
 	@PostMapping("/createConversazione")
@@ -103,16 +103,5 @@ public class ConversazioneController {
 		conversazioneService.updateConversazione(idUtente, idUtenteContattato);
 		return "common/conversations-list";
 	}
-
-	// INTERESSANTE
-	// @GetMapping("/conversation")
-	// public String findConversazione(Model model, @RequestParam(value =
-	// "idConversazione") Long idConversazione) throws BusinessException {
-	// model.addAttribute("fk_conversazione", idConversazione);
-	// model.addAttribute("messaggi",
-	// service.findMessaggiByFkUtenti(idConversazione));
-	// return "common/conversations-list";
-
-	// }
 
 }

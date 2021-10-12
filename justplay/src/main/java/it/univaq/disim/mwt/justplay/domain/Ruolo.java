@@ -12,5 +12,5 @@ public class Ruolo {
 	private Long id;
 	private String nome;
 	private String descrizione;
-	
+
 }

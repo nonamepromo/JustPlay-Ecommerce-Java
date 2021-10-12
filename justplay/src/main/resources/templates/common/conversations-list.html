@@ -6,8 +6,7 @@
 
 	<!-- main -->
 	<div layout:fragment="content">
-
-
+	
 		<script>
 			function openChat(idConversazione, nomeUtente) {
 				window.location.href = "conversation?idConversazione=" + idConversazione + "&nomeUtente=" + nomeUtente;
@@ -27,46 +26,14 @@
 									<div
 										th:text="${conversazione.fkUtente1} == ${idUtente} ? ${conversazione.nomeUtente2} :  ${conversazione.nomeUtente1}">
 									</div>
-									<!-- <h4 class="card-title">
-                    <a th:onclick="|openDetails('${videogioco.id}')|" th:text="${videogioco.titolo}"> </a>
-                  </h4>
-                  <div class="card-meta">
-                    <span th:text="${videogioco.annoDiUscita}"> </span>
-                  </div>
-                  <p th:text="${videogioco.descrizione}" class="card-text"></p> -->
 								</div>
 							</div>
 						</a>
 					</div>
-					<!-- <div class="col-12 col-sm-3 col-md-3">
-            <div th:each="messaggio : ${messaggi}">
-              <div class="card card-lg">
-                <div class="card-block">
-                  <div th:text="${messaggio.contenuto}"></div>
-                </div>
-              </div>
-            </div>
-          </div> -->
-					<!-- <form class="form-horizontal" th:action="@{/common/conversation}" th:object="${messaggio}" method="post">
-            <div class="card-body">
-                <div class="input-group mb-3">
-                       <div class="input-group-prepend">
-                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                       </div>
-                       <input th:field="*{contenuto}" class="form-control" required maxlength="100">
-                  </div>        
-            </div>
-            <div class="card-footer">
-            <button type="submit" class="btn btn-info" th:text="#{common.submit}"></button>
-            </div>
-          </form> -->
 				</div>
-
 			</div>
 		</section>
 	</div>
-
-
 </body>
 
 </html>

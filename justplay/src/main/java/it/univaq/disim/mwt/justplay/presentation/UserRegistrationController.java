@@ -40,17 +40,6 @@ public class UserRegistrationController {
 
 	@PostMapping
 	public String SignUp(@ModelAttribute Utente nuovoUtente, Errors errors) throws BusinessException {
-		//nuovoUtente.setNome("nome");
-		//nuovoUtente.setCognome("cognome");
-		//nuovoUtente.setPassword(passwordEncoder.encode(nuovoUtente.getPassword()));
-        //nuovoUtente.setPassword(passwordEncoder.encode(nuovoUtente.getPassword()));
-		//nuovoUtente.setDataNascita(LocalDate.of(2020, 1, 1));
-		// Ruolo ruolo = new Ruolo();
-		// ruolo.setId((long) 2);
-		// ruolo.setNome("Amministratore");
-		// ruolo.setDescrizione("Amministratore");
-		// Set<Ruolo> ruoli = new Set<Ruolo>();
-		// nuovoUtente.setRuoli("cognome");
 		if (errors.hasErrors()) {
 			return "/common/register";
 		}

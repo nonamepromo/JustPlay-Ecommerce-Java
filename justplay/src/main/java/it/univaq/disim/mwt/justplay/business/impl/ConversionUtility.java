@@ -12,7 +12,7 @@ public class ConversionUtility {
 		}
 		return s + "%";
 	}
-	
+
 	public static Date string2Date(String date, String dateFormat) {
 		DateFormat df = new SimpleDateFormat(dateFormat);
 		try {

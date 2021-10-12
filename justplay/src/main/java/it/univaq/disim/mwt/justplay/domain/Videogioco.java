@@ -28,15 +28,14 @@ import lombok.ToString;
 @ToString
 public class Videogioco extends AbstractPersistableEntity {
 
-	
 	@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 25, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String titolo;
 
 	@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
-	private String piattaforma;	
-	
+	private String piattaforma;
+
 	@Column(name = "anno_di_uscita")
 	@NotEmpty(groups = { OnCreate.class, Default.class })
 	private int annoDiUscita;
@@ -48,7 +47,7 @@ public class Videogioco extends AbstractPersistableEntity {
 	@Column(name = "ps4_url")
 	@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
-	private String ps4Url;	
+	private String ps4Url;
 
 	@Column(name = "xbox_url")
 	@NotEmpty(groups = { OnCreate.class, Default.class })

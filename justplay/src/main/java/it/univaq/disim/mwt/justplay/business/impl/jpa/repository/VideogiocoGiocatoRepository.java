@@ -18,8 +18,8 @@ import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 public interface VideogiocoGiocatoRepository extends JpaRepository<VideogiocoGiocato, Long> {
 
 	@Query("SELECT fkVideogioco FROM VideogiocoGiocato vv where fk_utente = :idUtente")
-    List<Long> findFksVideogiocoByFkUtente(@Param("idUtente") Long idUtente);
+	List<Long> findFksVideogiocoByFkUtente(@Param("idUtente") Long idUtente);
 
 	void deleteByFkVideogiocoAndFkUtente(Long fkVideogioco, Long fkUtente);
-	
+
 }

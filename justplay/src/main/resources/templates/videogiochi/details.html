@@ -29,7 +29,7 @@
 					type: "POST",
 					data: 'idUtente=' + idUtente + '&fkUtente=' + fkUtente,
 					success: function (response) {
-						window.open('details?idVideogioco=' + idVideogioco, "_self")
+						window.open('/justplay/common/conversation?idConversazione=1&nomeUtente=Alessandro', "_self")
 					},
 					error: function (response) {
 						console.log("errore")
@@ -146,27 +146,6 @@
 						</div>
 					</div>
 				</div>
-
-				<!-- <div class="dropdown float-right">
-          <a class="btn btn-secondary btn-icon float-right" href="#" data-toggle="dropdown" role="button"><i
-              class="fa fa-cog"></i></a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item active" href="#">All Platform</a>
-            <a class="dropdown-item" href="#">Playstation 4</a>
-            <a class="dropdown-item" href="#">Xbox One</a>
-            <a class="dropdown-item" href="#">Origin</a>
-            <a class="dropdown-item" href="#">Steam</a>
-          </div>
-        </div>
-         <ul class="toolbar-nav m-r-25 hidden-md-down">
-          <li class="active"><a href="game-post.html">Articles</a></li>
-          <li><a href="reviews.html">Reviews</a></li>
-          <li><a href="gallery.html">Images</a></li>
-          <li><a href="#">Videos</a></li>
-          <li><a href="#">Streams</a></li>
-          <li><a href="#">Cheats &amp; Guides</a></li>
-          <li><a href="#">Forum</a></li>
-        </ul> -->
 			</div>
 		</section>
 
@@ -174,44 +153,11 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8">
-						<!-- <div class="toolbar-custom">
-              <a class="btn btn-default btn-icon m-r-10 float-left hidden-xs-down" href="#" data-toggle="tooltip"
-                title="refresh" data-placement="bottom" role="button"><i class="fa fa-refresh"></i></a>
-              <div class="dropdown float-left">
-                <button class="btn btn-default" type="button" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="true">All Platform <i class="fa fa-caret-down"></i></button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item active" href="#">All Platform</a>
-                  <a class="dropdown-item" href="#">Playstation 4</a>
-                  <a class="dropdown-item" href="#">Xbox One</a>
-                  <a class="dropdown-item" href="#">Origin</a>
-                  <a class="dropdown-item" href="#">Steam</a>
-                </div>
-              </div>
-
-              <a class="btn btn-default btn-icon m-l-10 float-right hidden-xs-down" href="#" data-toggle="tooltip"
-                title="list" data-placement="bottom" role="button"><i class="fa fa-bars"></i></a>
-              <div class="dropdown float-right">
-                <button class="btn btn-default" type="button" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="true">Date Added <i class="fa fa-caret-down"></i></button>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item active" href="#">Date Added</a>
-                  <a class="dropdown-item" href="#">Popular</a>
-                  <a class="dropdown-item" href="#">Newest</a>
-                  <a class="dropdown-item" href="#">Oldest</a>
-                </div>
-              </div>
-            </div> -->
-
 						<!-- post -->
 						<div class="mb-5" th:if="${amazon == null && gamestop == null}">
-							<!-- <h2 th:text="${videogioco.titolo}"></h2> -->
-							<!-- <p th:text="${videogioco.descrizione}"></p> -->
 							<h4>VIDEOGIOCO NON DISPONIBILE IN NESSUNO STORE</h4>
 						</div>
 						<div th:if="${amazon != null || gamestop != null}">
-							<!-- <h2 th:text="${videogioco.titolo}"></h2> -->
-							<!-- <p th:text="${videogioco.descrizione}"></p> -->
 							<h4>STORE IN CUI E' DISPONIBILE</h4>
 						</div>
 						<div th:if="${amazon} != null" class="mt-4 mb-4">
@@ -238,11 +184,6 @@
 								</a>
 							</div>
 						</div>
-						<!-- <div class="post-meta">
-                    <span><i class="fa fa-clock-o"></i> June 16, 2017 by <a href="profile.html">Trevor</a></span>
-                    <span><a href="#">PS4</a></span>
-                    <span><a href="blog-post-video.html#comments"><i class="fa fa-comment-o"></i> 33 comments</a></span>
-                  </div> -->
 						<div th:if="${ps4Urls} != null" class="mt-4 mb-4">
 							<div class="post">
 								<span class="badge badge-ps4">Ps4</span>
@@ -264,12 +205,6 @@
 								</div>
 							</div>
 						</div>
-						<!-- <div class="post-meta">
-                    <span><i class="fa fa-clock-o"></i> June 16, 2017 by <a href="profile.html">Trevor</a></span>
-                    <span><a href="#">PS4</a></span>
-                    <span><a href="blog-post-video.html#comments"><i class="fa fa-comment-o"></i> 33 comments</a></span>
-                  </div> -->
-
 						<div th:if="${xboxUrls} != null" class="mt-4 mb-4">
 							<div class="post">
 								<span class="badge badge-xbox">Xbox One</span>
@@ -291,13 +226,6 @@
 								</div>
 							</div>
 						</div>
-
-						<!-- <div class="post-meta">
-                    <span><i class="fa fa-clock-o"></i> June 16, 2017 by <a href="profile.html">Trevor</a></span>
-                    <span><a href="#">PS4</a></span>
-                    <span><a href="blog-post-video.html#comments"><i class="fa fa-comment-o"></i> 33 comments</a></span>
-                  </div> -->
-
 						<div th:if="${pcUrls} != null" class="mt-4 mb-4">
 							<div class="post">
 								<span class="badge badge-steam">Pc</span>
@@ -338,15 +266,7 @@
 										</tr>
 									</thead>
 									<tbody>
-									
-									<!--
-										<input type="hidden" th:value="${fkUtente}" th:name="fkUtente"
-											class="form-control">
-										<input type="hidden" th:value="${idUtente}" th:name="idUtente"
-											class="form-control">
-									-->		
 										<tr th:each=" videogioco_in_vendita : ${videogiochi_in_vendita}">
-											<!-- <td th:text="${videogioco_in_vendita.fkUtente}"></td> -->
 											<td th:text="${videogioco_in_vendita.prezzo}+ '€'"></td>
 											<td th:text="${videogioco_in_vendita.prezzoSpedizione}+ '€'"></td>
 											<td th:text="${videogioco_in_vendita.provincia}"></td>

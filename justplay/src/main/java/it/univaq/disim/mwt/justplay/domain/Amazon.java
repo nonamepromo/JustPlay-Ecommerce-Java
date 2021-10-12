@@ -18,27 +18,28 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Amazon{
-	
-    private Long fkVideogioco;
+public class Amazon {
 
-    private String amazonUrl;
-    
-    private double prezzoAmazon;
+	private Long fkVideogioco;
 
-    @Override
-    public boolean equals(Object o){
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
-        Amazon amazon = (Amazon) o;
-        return  Objects.equals(fkVideogioco, amazon.fkVideogioco) &&
-                Objects.equals(amazonUrl, amazon.amazonUrl) &&
-        		Objects.equals(prezzoAmazon, amazon.prezzoAmazon);
-    }
+	private String amazonUrl;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(fkVideogioco, amazonUrl, prezzoAmazon);
-    }
-    
+	private double prezzoAmazon;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Amazon amazon = (Amazon) o;
+		return Objects.equals(fkVideogioco, amazon.fkVideogioco) && Objects.equals(amazonUrl, amazon.amazonUrl)
+				&& Objects.equals(prezzoAmazon, amazon.prezzoAmazon);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(fkVideogioco, amazonUrl, prezzoAmazon);
+	}
+
 }

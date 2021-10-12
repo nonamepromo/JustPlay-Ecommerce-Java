@@ -40,7 +40,7 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 
 	@Autowired
 	private MessaggioRepository messaggioRepository;
-	
+
 	@Autowired
 	private UtenteRepository utenteRepository;
 
@@ -119,38 +119,4 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 			throw new BusinessException(e);
 		}
 	}
-
-	// QUESTI LI USAVO SOLO PER RIEMPIRMI LE TABELLE SU MONGO DB, ANDRANNO TOLTE
-	@Override
-	public void nuovoMetodo() throws BusinessException {
-		Messaggio messaggio = new Messaggio();
-		// messaggio.setId((long) 1);
-		messaggio.setIdMittente((long) 1);
-		messaggio.setIdConversazione((long) 1);
-		messaggio.setContenuto("contenuto di prova");
-		messaggioRepository.save(messaggio);
-		// System.out.println(messaggioRepository.findAll().toString());
-	}
-
-	@Override
-	public void nuovoMetodoPerConversazione() throws BusinessException {
-		Date dNow = new Date();
-		Conversazione conversazione = new Conversazione();
-		// conversazione.setId((long) 2);
-		conversazione.setFkUtente1((long) 1);
-		conversazione.setFkUtente2((long) 3);
-		conversazione.setNomeUtente1("Admin");
-		conversazione.setNomeUtente2("Alessandro");
-		conversazione.setData(dNow);
-		conversazioneRepository.save(conversazione);
-	}
-
-	/*
-	 * @Override public List<Messaggio> findAllByIdConversazione(Long
-	 * idConversazione) throws BusinessException { try { List<Messaggio> messaggi =
-	 * new
-	 * ArrayList<>(conversazioneRepository.findAllByIdConversazione(idConversazione)
-	 * ); messaggi.addAll(messaggi); return messaggi; } catch (Exception e) { throw
-	 * new BusinessException(e); } }
-	 */
 }

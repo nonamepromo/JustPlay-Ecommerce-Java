@@ -26,21 +26,23 @@ public class Messaggio {
 
 	private Long idConversazione;
 
-    private String contenuto;
-    
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Messaggio messaggio = (Messaggio) o;
-        return  Objects.equals(idMittente, messaggio.idMittente) &&
-                Objects.equals(idConversazione, messaggio.idConversazione) &&
-                Objects.equals(contenuto, messaggio.contenuto);
-    }
+	private String contenuto;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idMittente, idConversazione, contenuto);
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Messaggio messaggio = (Messaggio) o;
+		return Objects.equals(idMittente, messaggio.idMittente)
+				&& Objects.equals(idConversazione, messaggio.idConversazione)
+				&& Objects.equals(contenuto, messaggio.contenuto);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idMittente, idConversazione, contenuto);
+	}
 
 }

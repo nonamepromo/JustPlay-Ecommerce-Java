@@ -41,8 +41,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authenticated().antMatchers("/videogiochi/addGameToSellinglistProva").authenticated()
 				.antMatchers("/videogiochi/createConversazione").authenticated()
 				.antMatchers("/common/conversations-list").authenticated();
-		// .antMatchers("/areessd/**", "/ssds/**").hasAnyRole("amministratore")
-		// .antMatchers("/insegnamenti/**", "/appelli/**").hasAnyRole("docente");
 	}
-
 }

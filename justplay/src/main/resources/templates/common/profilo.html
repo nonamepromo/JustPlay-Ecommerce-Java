@@ -17,9 +17,6 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						// const queryString = window.location.search
-						// const urlParams = new URLSearchParams(queryString);
-						// window.open("profilo?index=" + urlParams.get('index'), "_self")
 						window.open('profilo?index=2', "_self")
 					}
 				});
@@ -32,9 +29,6 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						// const queryString = window.location.search
-						// const urlParams = new URLSearchParams(queryString);
-						//window.open("profilo?index=" + urlParams.get('index'), "_self")
 						window.open('profilo?index=3', "_self")
 					}
 				});
@@ -47,9 +41,6 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						// const queryString = window.location.search
-						// const urlParams = new URLSearchParams(queryString);
-						// window.open("details?idVideogioco=" + urlParams.get('index'), "_self")
 						window.open('profilo?index=4', "_self")
 					}
 				});
@@ -76,7 +67,7 @@
 						<li class=""
 							th:class="${param.index != null} ? (${param.index[0] == '2'} ? 'nav-item active' : 'nav-item') : 'nav-item'">
 							<a class="nav-link" href="#wishlist" th:onclick="|listWithIndex(2)|" role="tab"
-					data-toggle="tab"><i class="fa fa-heart"></i> [[#{profilo.wishlist}]]</a></li>
+								data-toggle="tab"><i class="fa fa-heart"></i> [[#{profilo.wishlist}]]</a></li>
 						<li class=""
 							th:class="${param.index != null} ? (${param.index[0] == '3'} ? 'nav-item active' : 'nav-item') : 'nav-item'">
 							<a class="nav-link" href="#playedlist" th:onclick="|listWithIndex(3)|" role="tab"
@@ -108,14 +99,14 @@
 										<div class="form-group input-icon-left m-b-10">
 											<i class="fa fa-user"></i>
 											<input type="text" th:field="*{nome}"
-												class="form-control form-control-secondary" th:placeholder="#{profilo.nome}" required
-												maxlength="100">
+												class="form-control form-control-secondary"
+												th:placeholder="#{profilo.nome}" required maxlength="100">
 										</div>
 										<div class="form-group input-icon-left m-b-10">
 											<i class="fa fa-user"></i>
 											<input type="text" th:field="*{cognome}"
-												class="form-control form-control-secondary" th:placeholder="#{profilo.cognome}"
-												required maxlength="100">
+												class="form-control form-control-secondary"
+												th:placeholder="#{profilo.cognome}" required maxlength="100">
 										</div>
 										<div class="form-group input-icon-left m-b-10">
 											<i class="fa fa-envelope"></i>

@@ -9,15 +9,15 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Target({FIELD})
+@Target({ FIELD })
 @Retention(RUNTIME)
-@Constraint(validatedBy = {EmailValidator.class})
+@Constraint(validatedBy = { EmailValidator.class })
 @Documented
 public @interface ValidEmail {
 
-    String message() default "{validation.exists}";
+	String message() default "{validation.exists}";
 
-    Class<?>[] groups() default {};
+	Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+	Class<? extends Payload>[] payload() default {};
 }

@@ -8,7 +8,7 @@ import it.univaq.disim.mwt.justplay.domain.Gamestop;
 
 @Repository
 public interface GamestopRepository extends MongoRepository<Gamestop, String> {
-			
+
 	Gamestop findAllByFkVideogioco(Long idVideogioco) throws BusinessException;
-	
+
 }

@@ -13,7 +13,7 @@ import it.univaq.disim.mwt.justplay.domain.Amazon;
 
 @Repository
 public interface AmazonRepository extends MongoRepository<Amazon, String> {
-			
+
 	Amazon findAllByFkVideogioco(Long idVideogioco) throws BusinessException;
-	
+
 }

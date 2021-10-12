@@ -24,31 +24,30 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 public class WebConfig implements WebMvcConfigurer {
 
 	private static final String dateFormat = "dd-MM-yyyy";
-    private static final String dateTimeFormat = "dd-MM HH:mm";
-	
+	private static final String dateTimeFormat = "dd-MM HH:mm";
+
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/common/welcome").setViewName("/common/welcome");
 		registry.addViewController("/common/login").setViewName("/common/login");
-		// registry.addViewController("/common/register").setViewName("/common/register");
 		registry.addViewController("/common/operazioneok").setViewName("/common/operazioneok");
 		registry.addViewController("/common/accessdenied").setViewName("/common/accessdenied");
 	}
-	
-	  @Bean
-	    public MessageSource messageSource() {
-	        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-	        messageSource.setBasenames("classpath:i18n/justplay", "classpath:i18n/common");
-	        messageSource.setDefaultEncoding("UTF-8");
-	        return messageSource;
-	    }
-	  
-	  @Bean
-	    public LocalValidatorFactoryBean validator(MessageSource messageSource) {
-	        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-	        bean.setValidationMessageSource(messageSource);
-	        return bean;
-	    }
+
+	@Bean
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasenames("classpath:i18n/justplay", "classpath:i18n/common");
+		messageSource.setDefaultEncoding("UTF-8");
+		return messageSource;
+	}
+
+	@Bean
+	public LocalValidatorFactoryBean validator(MessageSource messageSource) {
+		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+		bean.setValidationMessageSource(messageSource);
+		return bean;
+	}
 
 	@Bean
 	public LocaleResolver localeResolver() {
@@ -63,26 +62,26 @@ public class WebConfig implements WebMvcConfigurer {
 		lci.setParamName("lang");
 		return lci;
 	}
-	
+
 	@Override
-    public void addFormatters(FormatterRegistry registry) {
-        DateTimeFormatterRegistrar registrar = new DateTimeFormatterRegistrar();
-        registrar.setUseIsoFormat(true);
-        registrar.registerFormatters(registry);
-    }
+	public void addFormatters(FormatterRegistry registry) {
+		DateTimeFormatterRegistrar registrar = new DateTimeFormatterRegistrar();
+		registrar.setUseIsoFormat(true);
+		registrar.registerFormatters(registry);
+	}
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeChangeInterceptor());
 	}
-	
-	 @Bean
-	    public Jackson2ObjectMapperBuilderCustomizer jsonCustomizer() {
-	        return builder -> {
-	            builder.simpleDateFormat(dateTimeFormat);
-	            builder.serializers(new LocalDateSerializer(DateTimeFormatter.ofPattern(dateFormat)));
-	            builder.serializers(new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(dateTimeFormat)));
-	        };
-	    }
+
+	@Bean
+	public Jackson2ObjectMapperBuilderCustomizer jsonCustomizer() {
+		return builder -> {
+			builder.simpleDateFormat(dateTimeFormat);
+			builder.serializers(new LocalDateSerializer(DateTimeFormatter.ofPattern(dateFormat)));
+			builder.serializers(new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(dateTimeFormat)));
+		};
+	}
 
 }

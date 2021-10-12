@@ -34,10 +34,10 @@ public class VideogiocoController {
 
 	@Autowired
 	private AmazonService amazonService;
-	
+
 	@Autowired
 	private GamestopService gamestopService;
-	
+
 	@Autowired
 	private ConversazioneService conversazioneService;
 
@@ -65,26 +65,21 @@ public class VideogiocoController {
 	public String listWithPlatformResearched(@RequestParam(value = "platform", defaultValue = "all") String platform,
 			@RequestParam(value = "index", defaultValue = "1") int index,
 			@RequestParam(value = "searchString") String searchString, Model model) throws BusinessException {
-		
-		// model.addAttribute("videogiochi", service.findByPlatform(platform, 3 *
-		// index));
 		List<Videogioco> videogiochi = new ArrayList<Videogioco>();
 		int numberOfIndexes = 0;
-		if(searchString == "") {
+		if (searchString == "") {
 			videogiochi = service.findByPlatform(platform, index);
 			model.addAttribute("videogiochi", videogiochi);
 			numberOfIndexes = service.getVideogiochiCount(platform) / 3
 					+ ((service.getVideogiochiCount(platform) % 3 == 0) ? 0 : 1);
-		}
-		else {
+		} else {
 			model.addAttribute("isResearch", true);
 			model.addAttribute("searchString", searchString);
 			videogiochi = service.findByPlatformResearched(platform, index, searchString);
 			model.addAttribute("videogiochi", videogiochi);
-			numberOfIndexes = videogiochi.size() / 3
-			+ ((videogiochi.size() % 3 == 0) ? 0 : 1);
+			numberOfIndexes = videogiochi.size() / 3 + ((videogiochi.size() % 3 == 0) ? 0 : 1);
 		}
-		
+
 		model.addAttribute("videogiochiCount", numberOfIndexes);
 		model.addAttribute("platform", platform);
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -119,17 +114,6 @@ public class VideogiocoController {
 	public void platform(@RequestParam("idVideogioco") Long idVideogioco, Model model, String[] ps4Urls,
 			String[] xboxUrls, String[] pcUrls) throws BusinessException {
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
-		// if (videogioco.getPs4Url() != null) {
-		// ps4Urls = videogioco.getPs4Url().split(";");
-		// }
-		// ;
-		// if (videogioco.getXboxUrl() != null) {
-		// xboxUrls = videogioco.getXboxUrl().split(";");
-		// }
-		// ;
-		// if (videogioco.getPcUrl() != null) {
-		// pcUrls = videogioco.getPcUrl().split(";");
-		// }
 		model.addAttribute("ps4Urls", ps4Urls);
 		model.addAttribute("xboxUrls", xboxUrls);
 		model.addAttribute("pcUrls", pcUrls);
@@ -143,9 +127,9 @@ public class VideogiocoController {
 			model.addAttribute("idUtente", idUtente);
 		}
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
-		//amazonService.popolazione();
-		//gamestopService.popolazione();
-		//VEDERE DA RIGA 195 DI DETAILS.HTML
+		// amazonService.popolazione();
+		// gamestopService.popolazione();
+		// VEDERE DA RIGA 195 DI DETAILS.HTML
 		model.addAttribute("amazon", amazonService.findAllByFkVideogioco(idVideogioco));
 		model.addAttribute("gamestop", gamestopService.findAllByFkVideogioco(idVideogioco));
 		model.addAttribute("videogioco", videogioco);
@@ -157,22 +141,21 @@ public class VideogiocoController {
 		platform(idVideogioco, model, null, null, null);
 		return "videogiochi/details";
 	}
-	
+
 	@PostMapping("/createConversazione")
-	public String createConversazione(@RequestParam("idUtente") Long idUtente, @RequestParam("fkUtente") Long fkUtente, Model model) throws BusinessException {
+	public String createConversazione(@RequestParam("idUtente") Long idUtente, @RequestParam("fkUtente") Long fkUtente,
+			Model model) throws BusinessException {
 		conversazioneService.createConversazione(idUtente, fkUtente);
-		return "videogiochi/list";
+		return "redirect:/common/conversation?idConversazione=1&nomeUtente=Alessandro";
 	}
-	
+
 	@PostMapping("/addGameToWishlist")
 	public String addGameToWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco,
 			RedirectAttributes redirAttrs, Model model) throws BusinessException {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
-
 		Long idUtente = Long.parseLong(id);
-
 		service.addGameToWishlist(idVideogioco, idUtente);
 		List<Long> wishList = service.getWishlist(idUtente);
 		model.addAttribute("wishList", wishList);
@@ -183,12 +166,9 @@ public class VideogiocoController {
 	@PostMapping("/addGameToPlayedlist")
 	public String addGameToPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco,
 			RedirectAttributes redirAttrs, Model model) throws BusinessException {
-
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
-
 		Long idUtente = Long.parseLong(id);
-
 		service.addGameToPlayedlist(idVideogioco, idUtente);
 		List<Long> playedList = service.getPlayedlist(idUtente);
 		model.addAttribute("playedList", playedList);
@@ -211,26 +191,19 @@ public class VideogiocoController {
 	@PostMapping("/removeGameFromWishlist")
 	public String removeGameFromWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {
-
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
-
 		Long idUtente = Long.parseLong(id);
-
 		service.removeGameFromWishlist(idVideogioco, idUtente);
-
 		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
 
 	@PostMapping("/removeGameFromPlayedlist")
 	public String removeGameFromPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {
-
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
-
 		Long idUtente = Long.parseLong(id);
-
 		service.removeGameFromPlayedlist(idVideogioco, idUtente);
 		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
@@ -238,49 +211,11 @@ public class VideogiocoController {
 	@PostMapping("/removeGameFromSellinglist")
 	public String removeGameFromSellinglist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {
-
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getPrincipal().toString();
-
 		Long idUtente = Long.parseLong(id);
-
 		service.removeGameFromSellinglist(idVideogioco, idUtente);
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
-	}
-
-	// @GetMapping("/checkIfGameIsDesidered")
-	// public ResponseEntity<String>
-	// checkIfGameIsDesidered(@RequestParam("idUtente") Long idUtente,
-	// @RequestParam("idVideogioco") Long idVideogioco) throws BusinessException {
-	// boolean exist = service.checkIfGameIsDesidered(idUtente, idVideogioco);
-	// String result = null;
-	// if(exist) {
-	// result = "SUCCESS";
-	// }
-	// else {
-	// result = "FAIL";
-	// }
-	// return ResponseEntity.ok(result);
-
-	// }
-
-	@GetMapping("/create")
-	public String createStart(Model model) {
-		model.addAttribute("videogioco", new Videogioco());
-		return "videogiochi/form";
-	}
-
-	@GetMapping("/delete")
-	public String deleteStart(@RequestParam("id") Long id, Model model) throws BusinessException {
-		// Videogioco videogioco = service.findVideogiocoByID(id);
-		// model.addAttribute("videogioco", videogioco);
-		return "videogiochi/form";
-	}
-
-	@PostMapping("/delete")
-	public String delete(@ModelAttribute("videogioco") Videogioco videogioco) throws BusinessException {
-		// service.deleteVideogioco(videogioco);
-		return "redirect:/videogiochi/list";
 	}
 
 }
