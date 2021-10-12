@@ -21,6 +21,23 @@
 				});
 			}
 		</script>
+
+		<script>
+			function createConversazione(idUtente, fkUtente) {
+				$.ajax({
+					url: '[(@{/videogiochi/createConversazione})]',
+					type: "POST",
+					data: 'idUtente=' + idUtente + '&fkUtente=' + fkUtente,
+					success: function (response) {
+						window.open('details?idVideogioco=' + idVideogioco, "_self")
+					},
+					error: function (response) {
+						console.log("errore")
+					}
+				});
+			}
+		</script>
+
 		<section class="hero hero-game"
 			th:style="'background:url('+ ${videogioco.imageUrl} +'); background-size: 1262px;'">
 			<div class="overlay"></div>
@@ -113,13 +130,11 @@
 												<option selected disabled hidden>[[#{videogioco.venditaPiattaforma}]]
 												</option>
 												<option value="PS4" th:if="${videogioco.ps4Url != null}" th:value="PS4"
-													class="dropdown-item">PS4
-												</option>
+													class="dropdown-item">PS4</option>
 												<option value="Xbox" th:if="${videogioco.xboxUrl != null}"
 													th:value="Xbox" class="dropdown-item">Xbox</option>
 												<option value="Pc" th:if="${videogioco.pcUrl != null}" th:value="Pc"
-													class="dropdown-item">Pc
-												</option>
+													class="dropdown-item">Pc</option>
 											</div>
 										</select>
 										<div class="divider"></div>
@@ -323,6 +338,13 @@
 										</tr>
 									</thead>
 									<tbody>
+									
+									<!--
+										<input type="hidden" th:value="${fkUtente}" th:name="fkUtente"
+											class="form-control">
+										<input type="hidden" th:value="${idUtente}" th:name="idUtente"
+											class="form-control">
+									-->		
 										<tr th:each=" videogioco_in_vendita : ${videogiochi_in_vendita}">
 											<!-- <td th:text="${videogioco_in_vendita.fkUtente}"></td> -->
 											<td th:text="${videogioco_in_vendita.prezzo}+ '€'"></td>
@@ -334,10 +356,9 @@
 													th:onclick="|removeGameFromSellinglist('${idVideogioco}')|"><i
 														class="fa fa-trash-o"></i></a>
 											</td>
-											<input type="hidden" th:value="${fkUtente}" th:name="fkUtente"
-												class="form-control">
 											<td th:if="${videogioco_in_vendita.fkUtente != idUtente}">
-												<a class="btn btn-link p-a-5" th:onclick=""><i
+												<a class="btn btn-link p-a-5"
+													th:onclick="${idUtente != null} ? (|createConversazione('${idUtente}', '${videogioco_in_vendita.fkUtente}')|) : |javascript:location.href='@{/common/login}'|"><i
 														class="fa fa-wechat"></i></a>
 											</td>
 										</tr>

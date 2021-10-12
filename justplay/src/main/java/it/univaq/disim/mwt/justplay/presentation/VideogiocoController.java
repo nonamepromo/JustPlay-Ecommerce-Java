@@ -160,9 +160,9 @@ public class VideogiocoController {
 	
 	@PostMapping("/createConversazione")
 	public String createConversazione(@RequestParam("idUtente") Long idUtente, @RequestParam("fkUtente") Long fkUtente, Model model) throws BusinessException {
-        conversazioneService.createConversazione(idUtente, fkUtente);
-        return "videogiochi/list";
-    }
+		conversazioneService.createConversazione(idUtente, fkUtente);
+		return "videogiochi/list";
+	}
 	
 	@PostMapping("/addGameToWishlist")
 	public String addGameToWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco,
