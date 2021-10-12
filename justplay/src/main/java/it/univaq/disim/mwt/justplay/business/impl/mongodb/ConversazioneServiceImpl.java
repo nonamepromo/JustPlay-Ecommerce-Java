@@ -18,6 +18,7 @@ import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.ConversazioneService;
 import it.univaq.disim.mwt.justplay.business.MessaggioService;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.UtenteServiceImpl;
+import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.UtenteRepository;
 import it.univaq.disim.mwt.justplay.business.impl.mongodb.repository.ConversazioneRepository;
 import it.univaq.disim.mwt.justplay.business.impl.mongodb.repository.MessaggioRepository;
 import it.univaq.disim.mwt.justplay.domain.Conversazione;
@@ -39,6 +40,9 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 
 	@Autowired
 	private MessaggioRepository messaggioRepository;
+	
+	@Autowired
+	private UtenteRepository utenteRepository;
 
 	@Override
 	public List<Conversazione> findAllByFkUtente(Long idUtente) throws BusinessException {
@@ -69,8 +73,8 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 			conversazione.setData(dNow);
 			conversazione.setFkUtente1(fkUtente1);
 			conversazione.setFkUtente2(fkUtente2);
-			conversazione.setNomeUtente1("Admin");
-			conversazione.setNomeUtente2("Muccini");
+			conversazione.setNomeUtente1(utenteRepository.findById(fkUtente1).get().getUsername());
+			conversazione.setNomeUtente2(utenteRepository.findById(fkUtente2).get().getUsername());
 			conversazioneRepository.save(conversazione);
 		} catch (Exception e) {
 			throw new BusinessException(e);
