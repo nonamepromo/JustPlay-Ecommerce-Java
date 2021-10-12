@@ -31,11 +31,12 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						// console.log( "ciao")
-						// const queryString = window.location.search
-						// const urlParams = new URLSearchParams(queryString);
+						console.log("urlParams")
+						const queryString = window.location.search
+						const urlParams = new URLSearchParams(queryString);
+						console.log(urlParams)
 						// window.open("list?index=" + urlParams.get('index'), "_self")
-						window.open('list?platform=all&index=1', "_self")
+						window.open("list?platform=" + urlParams.get('platform') +"&index=" + urlParams.get('index'), "_self")
 					},
 					error: function (response) {
 						console.log( "errore")
@@ -51,10 +52,11 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						// const queryString = window.location.search
-						// const urlParams = new URLSearchParams(queryString);
+						console.log("urlParams")
+						const queryString = window.location.search
+						const urlParams = new URLSearchParams(queryString);
 						// window.open("list?index=" + urlParams.get('index'), "_self")
-						window.open('list?platform=all&index=1', "_self")
+						window.open("list?platform=" + urlParams.get('platform') +"&index=" + urlParams.get('index'), "_self")
 					}
 				});
 			}
@@ -67,10 +69,11 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						// const queryString = window.location.search
-						// const urlParams = new URLSearchParams(queryString);
+						console.log("urlParams")
+						const queryString = window.location.search
+						const urlParams = new URLSearchParams(queryString);
 						// window.open("list?index=" + urlParams.get('index'), "_self")
-						window.open('list?platform=all&index=1', "_self")
+						window.open("list?platform=" + urlParams.get('platform') +"&index=" + urlParams.get('index'), "_self")
 					}
 				});
 			}
@@ -83,10 +86,10 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						// const queryString = window.location.search
-						// const urlParams = new URLSearchParams(queryString);
-						// window.open("list?index=" + urlParams.get('index'), "_self")
-						window.open('list?platform=all&index=1', "_self")
+						const queryString = window.location.search
+						const urlParams = new URLSearchParams(queryString);
+						window.open("list?platform=" + urlParams.get('platform') +"&index=" + urlParams.get('index'), "_self")
+						//window.open('list?platform=all&index=2', "_self")
 					}
 				});
 			}
@@ -111,24 +114,20 @@
 		<section class="p-t-30">
 			<div class="container">
 				<div class="toolbar-custom">
-					<form method="post" class="float-left cold-12 col-sm-6 p-l-0 p-r-10">
-						<div class="form-group input-icon-right">
+					<form th:action="@{/videogiochi/list?platform=all&index=2}" method="post" class="float-left cold-12 col-sm-6 p-l-0 p-r-10">
+						<!-- <div class="form-group input-icon-right">
 							<i class="fa fa-search"></i>
 							<input type="text" class="form-control search-game" placeholder="Cerca videogioco...">
-						</div>
-					</form>
-					<div class="dropdown float-left">
-						<!-- <select th:onchange="|listWithPlatform(this.value, 1)|" class="form-control">
-							<div class="dropdown-menu dropdown-menu-right">
-								<option class="dropdown-item" th:onclick="|listWithIndex(1)|">Tutte le piattaforme
-								</option>
-								<option class="dropdown-item" th:value="ps4">Playstation 4</option>
-								<option class="dropdown-item" th:value="xbox">Xbox One</option>
-								<option class="dropdown-item" th:value="pc">Pc</option>
+						</div> -->
+						<div class="input-group mb-3">
+							<input th:value="${searchString}" name="searchString" placeholder="Cerca videogioco..." class="form-control"
+							  maxlength="100" style="border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
+							<div class="input-group-append">
+							  <button class="btn btn-light" type="submit"
+								style="border-top-left-radius: 0px; border-bottom-left-radius: 0px;"><i class="fa fa-search"></i></button>
 							</div>
-						</select> -->
-
-					</div>
+						  </div>
+					</form>
 
 					<div class="btn-group float-right m-l-5 hidden-sm-down" role="group">
 						<a class="btn btn-default btn-icon" th:classappend="${param.platform != null} ? (${param.platform[0] == 'all'} ? 'active' : '') : ''"
@@ -141,17 +140,8 @@
 							href="#" role="button" th:onclick="|listWithPlatform('pc', 1)|">Pc</a>
 					</div>
 
-					<div class="dropdown float-right">
-						<!-- <button class="btn btn-default" type="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="true">Date Added <i class="fa fa-caret-down"></i></button>
-						<div class="dropdown-menu dropdown-menu-right">
-							<a class="dropdown-item active" href="#">Date Added</a>
-							<a class="dropdown-item" href="#">Popular</a>
-							<a class="dropdown-item" href="#">Newest</a>
-							<a class="dropdown-item" href="#">Oldest</a>
-						</div> -->
-					</div>
 				</div>
+				<div class="row mb-3" th:if="${isResearch}" th:text="${isResearch} ? 'Risultati per: ' +  ${searchString} : ''"></div>
 				<div class="row">
 					<div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}">
 					</div>

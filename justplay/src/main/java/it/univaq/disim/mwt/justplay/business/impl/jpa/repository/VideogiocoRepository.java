@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
@@ -20,6 +21,11 @@ public interface VideogiocoRepository extends JpaRepository<Videogioco, Long> {
 	List<Videogioco> findAllByXboxUrlNotNull(Pageable pageable);
 
 	List<Videogioco> findAllByPcUrlNotNull(Pageable pageable);
+
+	@Query("SELECT v FROM Videogioco v WHERE v.titolo LIKE %:searchString%")
+	List<Videogioco> findResearchedBy(@Param("searchString") String searchString, Pageable pageable);
+
+	List<Videogioco> findByTitoloContaining(String searchString);
 
 	int countByPs4UrlNotNull();
 

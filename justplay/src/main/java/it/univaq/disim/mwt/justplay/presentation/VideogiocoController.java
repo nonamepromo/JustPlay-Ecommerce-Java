@@ -1,5 +1,6 @@
 package it.univaq.disim.mwt.justplay.presentation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class VideogiocoController {
 	private ConversazioneService conversazioneService;
 
 	@GetMapping(value = "/list", params = { "platform", "index" })
-	public String listWithPlatform(@RequestParam(value = "platform") String platform,
+	public String listWithPlatform(@RequestParam(value = "platform", defaultValue = "all") String platform,
 			@RequestParam(value = "index", defaultValue = "1") int index, Model model) throws BusinessException {
 		int numberOfIndexes = service.getVideogiochiCount(platform) / 3
 				+ ((service.getVideogiochiCount(platform) % 3 == 0) ? 0 : 1);
@@ -50,6 +51,42 @@ public class VideogiocoController {
 		// model.addAttribute("videogiochi", service.findByPlatform(platform, 3 *
 		// index));
 		model.addAttribute("videogiochi", service.findByPlatform(platform, index));
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication.getPrincipal() != "anonymousUser") {
+			Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
+			getWishlist(model, idUtente);
+			getPlayedlist(model, idUtente);
+		}
+		return "videogiochi/list";
+
+	}
+
+	@GetMapping(value = "/list", params = { "platform", "index", "searchString" })
+	public String listWithPlatformResearched(@RequestParam(value = "platform", defaultValue = "all") String platform,
+			@RequestParam(value = "index", defaultValue = "1") int index,
+			@RequestParam(value = "searchString") String searchString, Model model) throws BusinessException {
+		
+		// model.addAttribute("videogiochi", service.findByPlatform(platform, 3 *
+		// index));
+		List<Videogioco> videogiochi = new ArrayList<Videogioco>();
+		int numberOfIndexes = 0;
+		if(searchString == "") {
+			videogiochi = service.findByPlatform(platform, index);
+			model.addAttribute("videogiochi", videogiochi);
+			numberOfIndexes = service.getVideogiochiCount(platform) / 3
+					+ ((service.getVideogiochiCount(platform) % 3 == 0) ? 0 : 1);
+		}
+		else {
+			model.addAttribute("isResearch", true);
+			model.addAttribute("searchString", searchString);
+			videogiochi = service.findByPlatformResearched(platform, index, searchString);
+			model.addAttribute("videogiochi", videogiochi);
+			numberOfIndexes = videogiochi.size() / 3
+			+ ((videogiochi.size() % 3 == 0) ? 0 : 1);
+		}
+		
+		model.addAttribute("videogiochiCount", numberOfIndexes);
+		model.addAttribute("platform", platform);
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication.getPrincipal() != "anonymousUser") {
 			Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
@@ -79,23 +116,6 @@ public class VideogiocoController {
 		model.addAttribute("sellingList", service.getSellinglist(idVideogioco));
 	}
 
-	// @GetMapping("/list")
-	// public String getWishList(Model model) throws BusinessException {
-	// Authentication authentication =
-	// SecurityContextHolder.getContext().getAuthentication();
-	// String id = authentication.getPrincipal().toString();
-	//
-	// Long idUtente = Long.parseLong(id);
-	// model.addAttribute("wishList", service.getWishlist(idUtente));
-	// return "videogiochi/list";
-	// }
-
-	// @GetMapping("/findallpaginated")
-	// public ResponseEntity<List<Videogioco>> findAllPaginated()
-	// throws BusinessException {
-	// return service.findAllVideogiochiPaginated();
-	// }
-
 	public void platform(@RequestParam("idVideogioco") Long idVideogioco, Model model, String[] ps4Urls,
 			String[] xboxUrls, String[] pcUrls) throws BusinessException {
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
@@ -114,23 +134,6 @@ public class VideogiocoController {
 		model.addAttribute("xboxUrls", xboxUrls);
 		model.addAttribute("pcUrls", pcUrls);
 	}
-
-	// @GetMapping("/list")
-	// public String getWishList(Model model) throws BusinessException {
-	// Authentication authentication =
-	// SecurityContextHolder.getContext().getAuthentication();
-	// String id = authentication.getPrincipal().toString();
-	//
-	// Long idUtente = Long.parseLong(id);
-	// model.addAttribute("wishList", service.getWishlist(idUtente));
-	// return "videogiochi/list";
-	// }
-
-	// @GetMapping("/findallpaginated")
-	// public ResponseEntity<List<Videogioco>> findAllPaginated()
-	// throws BusinessException {
-	// return service.findAllVideogiochiPaginated();
-	// }
 
 	@GetMapping("/details")
 	public String details(@RequestParam("idVideogioco") Long idVideogioco, Model model) throws BusinessException {
@@ -156,10 +159,10 @@ public class VideogiocoController {
 	}
 	
 	@PostMapping("/createConversazione")
-	public String createConversazione(@RequestParam(value = "idUtente") Long idUtente, @RequestParam(value = "fkUtente") Long fkUtente, Model model) throws BusinessException {
-		conversazioneService.createConversazione(idUtente, fkUtente);
-		return "videogiochi/list";
-	}
+	public String createConversazione(@RequestParam("idUtente") Long idUtente, @RequestParam("fkUtente") Long fkUtente, Model model) throws BusinessException {
+        conversazioneService.createConversazione(idUtente, fkUtente);
+        return "videogiochi/list";
+    }
 	
 	@PostMapping("/addGameToWishlist")
 	public String addGameToWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco,
@@ -174,7 +177,7 @@ public class VideogiocoController {
 		List<Long> wishList = service.getWishlist(idUtente);
 		model.addAttribute("wishList", wishList);
 		redirAttrs.addFlashAttribute("success", "");
-		return "videogiochi/list";
+		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
 
 	@PostMapping("/addGameToPlayedlist")
@@ -190,7 +193,7 @@ public class VideogiocoController {
 		List<Long> playedList = service.getPlayedlist(idUtente);
 		model.addAttribute("playedList", playedList);
 		redirAttrs.addFlashAttribute("success", "");
-		return "videogiochi/list";
+		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
 
 	@PostMapping("/addGameToSellinglistProva")
@@ -216,7 +219,7 @@ public class VideogiocoController {
 
 		service.removeGameFromWishlist(idVideogioco, idUtente);
 
-		return "videogiochi/list";
+		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
 
 	@PostMapping("/removeGameFromPlayedlist")
@@ -229,7 +232,7 @@ public class VideogiocoController {
 		Long idUtente = Long.parseLong(id);
 
 		service.removeGameFromPlayedlist(idVideogioco, idUtente);
-		return "videogiochi/list";
+		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
 
 	@PostMapping("/removeGameFromSellinglist")

@@ -80,6 +80,23 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
+	public List<Videogioco> findByPlatformResearched(String platform, int index, String searchString) throws BusinessException {
+		List<Videogioco> videogiochi = new ArrayList<>();
+		Pageable pageWithThreeElements = PageRequest.of(index - 1, 3);
+		switch(platform) {
+			case "all": videogiochi = videogiocoRepository.findByTitoloContaining(searchString);
+			break;
+			case "ps4": videogiochi = videogiocoRepository.findAllByPs4UrlNotNull(pageWithThreeElements);
+			break;
+			case "xbox": videogiochi = videogiocoRepository.findAllByXboxUrlNotNull(pageWithThreeElements);
+			break;
+			case "pc": videogiochi = videogiocoRepository.findAllByPcUrlNotNull(pageWithThreeElements);
+			break;
+		}
+		return videogiochi;
+	}
+
+	@Override
 	public List<Videogioco> findAllProfile() throws BusinessException {
 		List<Videogioco> videogiochi = new ArrayList<>();
 		videogiochi = videogiocoRepository.findAll();

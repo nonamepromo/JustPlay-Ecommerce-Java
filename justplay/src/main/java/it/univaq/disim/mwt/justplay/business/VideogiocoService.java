@@ -19,6 +19,8 @@ public interface VideogiocoService {
 
 	List<Videogioco> findByPlatform(String platform, int index) throws BusinessException;
 
+	List<Videogioco> findByPlatformResearched(String platform, int index, String searchString) throws BusinessException;
+
 	List<Videogioco> findAllProfile() throws BusinessException; //Serve per il profilo utente con i giochi da mostrare nell'area personale
 	
 	List<VideogiocoInVendita> findAllVendita(Long idVideogioco) throws BusinessException; //Serve per i giochi in vendit da mostrare in details
