@@ -110,7 +110,10 @@
 							</div>
 						</div>
 					</form>
-
+					</div>
+					<div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}">
+					</div>
+					<div class="alert alert-danger" role="alert" th:text="#{common.errore.title}" th:if="${error}">
 					<div class="btn-group float-right m-l-5 hidden-sm-down" role="group">
 						<a class="btn btn-default btn-icon"
 							th:classappend="${param.platform != null} ? (${param.platform[0] == 'all'} ? 'active' : '') : ''"
@@ -131,8 +134,6 @@
 				<div class="row mb-3" th:if="${isResearch}"
 					th:text="${isResearch} ? 'Risultati per: ' +  ${searchString} : ''"></div>
 				<div class="row">
-					<div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}">
-					</div>
 					<div th:each="videogioco : ${videogiochi}" class="col-12 col-sm-6 col-md-4">
 						<div class="card card-lg">
 							<div class="card-img">

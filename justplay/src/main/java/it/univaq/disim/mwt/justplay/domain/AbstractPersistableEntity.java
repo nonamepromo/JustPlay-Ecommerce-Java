@@ -21,10 +21,6 @@ public class AbstractPersistableEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Version
-	@JsonIgnore
-	private Long version;
-
 	@CreationTimestamp
 	private LocalDateTime createDateTime;
 

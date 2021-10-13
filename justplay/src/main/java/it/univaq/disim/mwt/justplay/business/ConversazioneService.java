@@ -13,6 +13,8 @@ public interface ConversazioneService {
 
 	Conversazione findNameByIdConversazione(Long idConversazione, Long idUtente) throws BusinessException;
 	
+	Conversazione findIdConversazionByFkUtente1AndFkUtente2(Long fkUtente1, Long fkUtente2) throws BusinessException;
+	
 	void createConversazione(Long fkUtente1, Long fkUtente2) throws BusinessException;
 		
 	void createMessaggio(Long idMittente, Long idConversazione, String contenuto) throws BusinessException;

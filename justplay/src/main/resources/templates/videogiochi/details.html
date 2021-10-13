@@ -21,7 +21,7 @@
 				});
 			}
 		</script>
-
+<!--
 		<script>
 			function createConversazione(idUtente, fkUtente) {
 				$.ajax({
@@ -37,6 +37,7 @@
 				});
 			}
 		</script>
+-->
 
 		<section class="hero hero-game"
 			th:style="'background:url('+ ${videogioco.imageUrl} +'); background-size: 1262px;'">
@@ -78,6 +79,7 @@
 		<section class="post">
 			<div class="container">
 				<div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}"></div>
+				<div class="alert alert-danger" role="alert" th:text="#{common.errore.title}" th:if="${error}"></div>
 				<!-- Button trigger modal -->
 				<button type="button" class="btn btn-primary btn-shadow btn-rounded" data-toggle="modal"
 					data-target="#modal-login">[[#{videogioco.vendita}]]<i class="fa fa-shopping-cart"></i></button>
@@ -277,9 +279,12 @@
 														class="fa fa-trash-o"></i></a>
 											</td>
 											<td th:if="${videogioco_in_vendita.fkUtente != idUtente}">
-												<a class="btn btn-link p-a-5"
-													th:onclick="${idUtente != null} ? (|createConversazione('${idUtente}', '${videogioco_in_vendita.fkUtente}')|) : |javascript:location.href='@{/common/login}'|"><i
-														class="fa fa-wechat"></i></a>
+												<form th:action="@{/videogiochi/createConversazione}">
+													<input type="hidden" th:value="${videogioco_in_vendita.fkUtente}"
+														th:name="fkUtente" class="form-control">
+													<button type="submit" class="btn btn-link p-a-5"><i
+															class="fa fa-wechat"></i></button>
+												</form>
 											</td>
 										</tr>
 									</tbody>

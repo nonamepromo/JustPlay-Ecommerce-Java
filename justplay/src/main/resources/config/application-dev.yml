@@ -9,7 +9,6 @@ spring:
     mongodb:
       uri: mongodb+srv://justplay:justplay@cluster0.8w8m4.mongodb.net/justplay
   
-
 ###############################################
 ########### JUSTPLAY PROPERTIES ###############
 ###############################################

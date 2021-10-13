@@ -57,6 +57,15 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 	}
 
 	@Override
+	public Conversazione findIdConversazionByFkUtente1AndFkUtente2(Long fkUtente1, Long fkUtente2) throws BusinessException{
+		try {
+			return conversazioneRepository.findByFkUtente1AndFkUtente2(fkUtente1, fkUtente2);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
+	}
+
+	@Override
 	public Conversazione findNameByIdConversazione(Long idConversazione, Long idUtente) throws BusinessException {
 		try {
 			return conversazioneRepository.findNameByIdConversazione(idConversazione, idUtente);
@@ -119,4 +128,5 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 			throw new BusinessException(e);
 		}
 	}
+
 }

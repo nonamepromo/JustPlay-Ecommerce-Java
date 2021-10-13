@@ -21,6 +21,7 @@ import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.ConversazioneService;
 import it.univaq.disim.mwt.justplay.business.GamestopService;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
+import it.univaq.disim.mwt.justplay.domain.Conversazione;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
@@ -142,11 +143,32 @@ public class VideogiocoController {
 		return "videogiochi/details";
 	}
 
-	@PostMapping("/createConversazione")
-	public String createConversazione(@RequestParam("idUtente") Long idUtente, @RequestParam("fkUtente") Long fkUtente,
-			Model model) throws BusinessException {
-		conversazioneService.createConversazione(idUtente, fkUtente);
-		return "redirect:/common/conversation?idConversazione=1&nomeUtente=Alessandro";
+	@RequestMapping(value = "/createConversazione", method = RequestMethod.GET)
+	public String createConversazione(@RequestParam("fkUtente") Long fkUtente, Long idUtente, Model model, RedirectAttributes redirAttrs)
+			throws BusinessException {
+		idUtente = Utility.getUtente().getId();
+		if(idUtente == fkUtente) {
+			redirAttrs.addFlashAttribute("error", "");
+			return "redirect:/videogiochi/list?platform=all&index=1";
+		}
+		Conversazione conversazione = conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(idUtente,
+				fkUtente);
+		if (conversazione != null) {
+			conversazione = conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(idUtente, fkUtente);
+		}
+		Conversazione conversazione2 = conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(fkUtente,
+				idUtente);
+		if (conversazione2 != null) {
+			conversazione = conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(fkUtente, idUtente);
+		}
+		if (conversazione == null && conversazione2 == null) {
+			conversazioneService.createConversazione(idUtente, fkUtente);
+			conversazione = conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(idUtente, fkUtente);
+			if (conversazione == null) {
+				conversazione = conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(fkUtente, idUtente);
+			}
+		}
+		return "redirect:/common/conversation?idConversazione=" + conversazione.getIdConversazione();
 	}
 
 	@PostMapping("/addGameToWishlist")
