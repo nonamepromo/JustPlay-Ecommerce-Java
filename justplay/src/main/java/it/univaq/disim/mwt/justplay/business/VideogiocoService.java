@@ -15,6 +15,8 @@ public interface VideogiocoService {
 
 	int getVideogiochiCount(String platform) throws BusinessException;
 
+	int getVideogiochiSearchedCount(String searchString) throws BusinessException;
+
 	List<Videogioco> findAll(int index) throws BusinessException;
 
 	List<Videogioco> findByPlatform(String platform, int index) throws BusinessException;

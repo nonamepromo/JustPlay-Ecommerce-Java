@@ -61,6 +61,13 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
+	public int getVideogiochiSearchedCount(String searchString) throws BusinessException {
+		int videogiochiCount = 0;
+		videogiochiCount = (int) videogiocoRepository.countByTitoloContaining(searchString);
+		return videogiochiCount;
+	}
+
+	@Override
 	public List<Videogioco> findAll(int index) throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
@@ -92,9 +99,10 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 			throws BusinessException {
 		List<Videogioco> videogiochi = new ArrayList<>();
 		Pageable pageWithThreeElements = PageRequest.of(index - 1, 3);
+		Pageable page = PageRequest.of(1, 3);
 		switch (platform) {
 		case "all":
-			videogiochi = videogiocoRepository.findByTitoloContaining(searchString);
+			videogiochi = videogiocoRepository.findByTitoloContaining(searchString, pageWithThreeElements);
 			break;
 		case "ps4":
 			videogiochi = videogiocoRepository.findAllByPs4UrlNotNull(pageWithThreeElements);

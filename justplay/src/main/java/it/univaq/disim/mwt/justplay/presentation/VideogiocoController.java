@@ -78,7 +78,8 @@ public class VideogiocoController {
 			model.addAttribute("searchString", searchString);
 			videogiochi = service.findByPlatformResearched(platform, index, searchString);
 			model.addAttribute("videogiochi", videogiochi);
-			numberOfIndexes = videogiochi.size() / 3 + ((videogiochi.size() % 3 == 0) ? 0 : 1);
+			numberOfIndexes = service.getVideogiochiSearchedCount(searchString) / 3
+			+ ((service.getVideogiochiSearchedCount(searchString) % 3 == 0) ? 0 : 1);
 		}
 
 		model.addAttribute("videogiochiCount", numberOfIndexes);
