@@ -18,10 +18,12 @@ import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoRepos
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoDesideratoRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoGiocatoRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoInVenditaRepository;
+import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoPiaciutoRepository;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoDesiderato;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoGiocato;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
+import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
 
 @Service
 @Transactional
@@ -39,6 +41,9 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 
 	@Autowired
 	private VideogiocoDesideratoRepository videogiocoDesideratoRepository;
+
+	@Autowired
+	private VideogiocoPiaciutoRepository videogiocoPiaciutoRepository;
 
 	@Override
 	public int getVideogiochiCount(String platform) throws BusinessException {
@@ -155,6 +160,21 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		return videogiochiInVendita;
 	}
 
+	/*
+	@Override
+	public List<Long> getLikedList(Long idUtente) throws BusinessException {
+		List<Long> videogiochiPiaciuti = videogiocoPiaciutoRepository.findFksVideogiocoByFkUtente(idUtente);
+		return videogiochiPiaciuti;
+	}
+    */
+
+	@Override
+	public VideogiocoPiaciuto findLikedGame(Long idUtente, Long fkVideogioco) throws BusinessException {
+		VideogiocoPiaciuto videogiocoPiaciuto = new VideogiocoPiaciuto();
+		videogiocoPiaciuto = videogiocoPiaciutoRepository.findByFkUtenteAndFkVideogioco(idUtente, fkVideogioco);
+		return videogiocoPiaciuto;
+	}
+
 	@Override
 	public Videogioco findVideogiocoByID(Long id) throws BusinessException {
 		Videogioco videogioco = videogiocoRepository.findById(id).get();
@@ -180,6 +200,19 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 			videogiocoGiocato.setFkUtente(idUtente);
 			videogiocoGiocato.setFkVideogioco(idVideogioco);
 			videogiocoGiocatoRepository.save(videogiocoGiocato);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
+	}
+
+	@Override
+	public void addGameToLikedlist(Long idVideogioco, Long idUtente, boolean piaciuto) throws BusinessException {
+		try {
+			VideogiocoPiaciuto videogiocoPiaciuto = new VideogiocoPiaciuto();
+			videogiocoPiaciuto.setFkUtente(idUtente);
+			videogiocoPiaciuto.setFkVideogioco(idVideogioco);
+			videogiocoPiaciuto.setPiaciuto(piaciuto);
+			videogiocoPiaciutoRepository.save(videogiocoPiaciuto);
 		} catch (Exception e) {
 			throw new BusinessException(e);
 		}
@@ -217,5 +250,4 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		videogiocoInVenditaRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
 
 	}
-
 }
