@@ -25,7 +25,6 @@ import it.univaq.disim.mwt.justplay.domain.Conversazione;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
-import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
 
 @Controller
 @RequestMapping(value = "/videogiochi", method = RequestMethod.POST)
@@ -113,10 +112,6 @@ public class VideogiocoController {
 	public void getSellinglist(Model model, Long idVideogioco) throws BusinessException {
 		model.addAttribute("sellingList", service.getSellinglist(idVideogioco));
 	}
-	
-	public void getLikedGame(Model model, Long idUtente, Long idVideogioco) throws BusinessException {
-		model.addAttribute("likedGame", service.findLikedGame(idUtente, idVideogioco));
-	}
 
 	public void platform(@RequestParam("idVideogioco") Long idVideogioco, Model model, String[] ps4Urls,
 			String[] xboxUrls, String[] pcUrls) throws BusinessException {
@@ -132,7 +127,6 @@ public class VideogiocoController {
 		if (authentication.getPrincipal() != "anonymousUser") {
 			Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
 			model.addAttribute("idUtente", idUtente);
-			getLikedGame(model, idUtente, idVideogioco);
 		}
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		// amazonService.popolazione();
@@ -146,7 +140,6 @@ public class VideogiocoController {
 		model.addAttribute("videogioco_in_vendita", videogiocoInVendita);
 		model.addAttribute("videogiochi_in_vendita", service.findAllVendita(idVideogioco));
 		getSellinglist(model, idVideogioco);
-		
 		platform(idVideogioco, model, null, null, null);
 		return "videogiochi/details";
 	}
@@ -217,16 +210,7 @@ public class VideogiocoController {
 		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
-	
-	@RequestMapping(value = "/addGameToLikedlist", method = RequestMethod.GET)
-	public String addGameToLikedlist(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model) throws BusinessException {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String id = authentication.getPrincipal().toString();
-		Long idUtente = Long.parseLong(id);
-		service.addGameToLikedlist(idVideogioco, idUtente, true);
-		return "videogiochi/details";
-	}
-			
+
 	@PostMapping("/removeGameFromWishlist")
 	public String removeGameFromWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {

@@ -10,7 +10,6 @@ import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoDesiderato;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
-import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
 
 public interface VideogiocoService {
 
@@ -35,10 +34,8 @@ public interface VideogiocoService {
 	List<Long> getSellinglist(Long idVideogioco) throws BusinessException;
 
 	List<Long> getUtenteSellinglist(Long idUtente) throws BusinessException;
-	
-	//List<Long> getLikedList(Long idUtente) throws BusinessException; //PER VIDEOGIOCHI PIACIUTI 163
-	
-	VideogiocoPiaciuto findLikedGame(Long idUtente, Long idVideogioco) throws BusinessException; //PER TROVARE UN SOLO VIDEOGIOCO
+
+	// ResponseEntity<List<Videogioco>> findAllVideogiochiPaginated() throws BusinessException;
 
 	Videogioco findVideogiocoByID(Long id) throws BusinessException;
 
@@ -47,16 +44,21 @@ public interface VideogiocoService {
 	void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
 	void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Long idVideogioco, Long idUtente) throws BusinessException;
-	
-	void addGameToLikedlist(Long idVideogioco, Long idUtente, boolean piaciuto) throws BusinessException; //PER VIDEOGIOCHI PIACIUTI 199
 
 	void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
 	void removeGameFromPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
 	void removeGameFromSellinglist(Long idVideogioco, Long idUtente) throws BusinessException;
-	
-	
-	
-	
+
+	// boolean checkIfGameIsDesidered(Long idVideogioco, Long idUtente) throws
+	// BusinessException;
+
+	//void deleteVideogioco(Videogioco videogioco) throws BusinessException;
+
+	//void addVideogiocoDesiderato(Videogioco videogioco, Long idUtente) throws BusinessException;
+
+	//void addVideogiocoGiocato(Videogioco videogioco, Long idUtente) throws BusinessException;
+
+	//void addVideogiocoInVendita(Videogioco videogioco, Long idUtente) throws BusinessException;
 }
