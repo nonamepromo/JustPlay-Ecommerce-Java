@@ -92,15 +92,15 @@
 
 		<section class="p-t-30">
 			<div class="container">
+				<div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}">
+				</div>
+				<div class="alert alert-danger" role="alert" th:text="#{common.errore.title}" th:if="${error}">
+				</div>
 				<div class="toolbar-custom">
 					<form th:action="@{/videogiochi/list?platform=all&index=2}" method="post"
 						class="float-left cold-12 col-sm-6 p-l-0 p-r-10">
-						<!-- <div class="form-group input-icon-right">
-							<i class="fa fa-search"></i>
-							<input type="text" class="form-control search-game" placeholder="Cerca videogioco...">
-						</div> -->
 						<div class="input-group mb-3">
-							<input th:value="${searchString}" name="searchString" placeholder="Cerca videogioco..."
+							<input th:value="${searchString}" name="searchString" th:placeholder="#{videogioco.ricerca}"
 								class="form-control" maxlength="100"
 								style="border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
 							<div class="input-group-append">
@@ -110,10 +110,6 @@
 							</div>
 						</div>
 					</form>
-					</div>
-					<div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}">
-					</div>
-					<div class="alert alert-danger" role="alert" th:text="#{common.errore.title}" th:if="${error}">
 					<div class="btn-group float-right m-l-5 hidden-sm-down" role="group">
 						<a class="btn btn-default btn-icon"
 							th:classappend="${param.platform != null} ? (${param.platform[0] == 'all'} ? 'active' : '') : ''"

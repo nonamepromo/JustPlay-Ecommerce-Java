@@ -21,15 +21,19 @@
 				});
 			}
 		</script>
-<!--
+
 		<script>
-			function createConversazione(idUtente, fkUtente) {
+			function addGameToLikedlist(idVideogioco) {
 				$.ajax({
-					url: '[(@{/videogiochi/createConversazione})]',
+					url: '[(@{/videogiochi/addGameToLikedlist})]',
 					type: "POST",
-					data: 'idUtente=' + idUtente + '&fkUtente=' + fkUtente,
+					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						window.open('/justplay/common/conversation?idConversazione=1&nomeUtente=Alessandro', "_self")
+						console.log("urlParams")
+						const queryString = window.location.search
+						const urlParams = new URLSearchParams(queryString);
+						console.log(urlParams)
+						window.open("details?idVideogioco=" + idVideogioco, "_self")
 					},
 					error: function (response) {
 						console.log("errore")
@@ -37,41 +41,26 @@
 				});
 			}
 		</script>
--->
 
 		<section class="hero hero-game"
 			th:style="'background:url('+ ${videogioco.imageUrl} +'); background-size: 1262px;'">
+			<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco" class="form-control">
+
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="hero-block">
 					<div class="hero-left">
 						<h2 th:text="${videogioco.titolo}" class="hero-title"></h2>
-						<p></p>
-						<a class="btn btn-outline-default btn-shadow btn-rounded btn-lg"
-							href="https://www.youtube.com/watch?v=c0i88t0Kacs" data-lightbox role="button">Aggiungi alla
-							wishlist <i class="fa fa-heart-o"></i></a>
-						<a class="btn btn-outline-default btn-shadow btn-rounded btn-lg"
-							href="https://www.youtube.com/watch?v=c0i88t0Kacs" data-lightbox role="button">Aggiungi alla
-							playedlist <i class="fa fa-gamepad"></i></a>
-						<a class="btn btn-outline-default btn-shadow btn-rounded btn-lg m-l-10"
-							href="https://themeforest.net/item/gameforest-responsive-gaming-html-theme/5007730"
-							target="_blank" role="button">Metti in vendita<i class="fa fa-shopping-cart"></i></a>
 					</div>
+					
+					<!-- LA FORM O SI USA JS, NEL DUBBIO LASCIO TUTTI E DUE -->
+					<form th:action="@{/videogiochi/addGameToLikedlist}">
+						<button type="submit">Prova Bottone</button>
+					</form>
 					<div class="hero-right">
-						<div class="hero-review">
-							<span>Gameforest</span>
-							<a href="review-post.html" class="chart easypiechart" data-percent="89"
-								data-scale-color="#e3e3e3"><span>89</span>%</a>
-						</div>
-						<div class="hero-review">
-							<span>MetaCritic</span>
-							<a href="review-post.html">93</a>
-						</div>
-						<div class="hero-review">
-							<span>Users</span>
-							<a href="review-post.html">9.1</a>
-						</div>
+						<a th:onclick="|addGameToLikedlist(${videogioco.id})|">Prova</a>
 					</div>
+					
 				</div>
 			</div>
 		</section>
@@ -157,10 +146,10 @@
 					<div class="col-lg-8">
 						<!-- post -->
 						<div class="mb-5" th:if="${amazon == null && gamestop == null}">
-							<h4>VIDEOGIOCO NON DISPONIBILE IN NESSUNO STORE</h4>
+							<h4 th:text="#{videogioco.storeNo}"></h4>
 						</div>
 						<div th:if="${amazon != null || gamestop != null}">
-							<h4>STORE IN CUI E' DISPONIBILE</h4>
+							<h4 th:text="#{videogioco.storeYes}"></h4>
 						</div>
 						<div th:if="${amazon} != null" class="mt-4 mb-4">
 							<div class="post">
@@ -252,19 +241,18 @@
 						<div th:if="${sellingList.contains(videogioco.id)}">
 							<!-- post -->
 							<div class="post">
-								<h4>VENDITE PRIVATE</h4>
+								<h4 th:text="#{videogioco.privata}"></h4>
 							</div>
 							<div class="post">
 								<table class="table table-hover">
 									<thead>
 										<tr>
 											<!-- <th>Utente</th> -->
-											<th>Prezzo</th>
-											<th>Prezzo
-												Spedizione</th>
-											<th>Provincia</th>
-											<th>Piattaforma</th>
-											<th>Azioni</th>
+											<th th:text="#{videogioco.prezzo}"></th>
+											<th th:text="#{videogioco.spedizione}"></th>
+											<th th:text="#{videogioco.provincia}"></th>
+											<th th:text="#{profilo.piattaformagioco}"></th>
+											<th th:text="#{profilo.azioni}"></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -291,118 +279,6 @@
 								</table>
 							</div>
 						</div>
-						<!-- post -->
-						<div class="post">
-							<h2 class="post-title">
-								<a href="blog-post-carousel.html">The Witcher 3: Game of the Year Edition
-									Release Date
-									Announced</a>
-							</h2>
-							<div class="post-meta">
-								<span><i class="fa fa-clock-o"></i> June 19, 2017 by <a
-										href="profile.html">Elizabeth</a></span>
-								<span><a href="#">Xbox One</a></span>
-								<span><a href="blog-post-carousel.html#comments"><i class="fa fa-comment-o"></i>
-										6
-										comments</a></span>
-							</div>
-							<div class="post-thumbnail">
-								<div id="carousel" class="carousel slide" data-ride="carousel">
-									<ol class="carousel-indicators">
-										<li data-target="#carousel" data-slide-to="0" class="active"></li>
-										<li data-target="#carousel" data-slide-to="1"></li>
-									</ol>
-									<div class="carousel-inner" role="listbox">
-										<div class="carousel-item active"><img
-												src="https://img.youtube.com/vi/kZb9gnrnxS0/maxresdefault.jpg">
-										</div>
-										<div class="carousel-item"><img
-												src="https://img.youtube.com/vi/dPCPRtEf5IU/maxresdefault.jpg">
-										</div>
-									</div>
-									<a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-										<span class="sr-only">Previous</span>
-									</a>
-									<a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-										<span class="carousel-control-next-icon" aria-hidden="true"></span>
-										<span class="sr-only">Next</span>
-									</a>
-								</div>
-							</div>
-							<p>The game plays much like the previous installment, <b>The Witcher 3</b>, with
-								minor
-								refinements made.
-								The game will track both player choice and actions which ultimately affect how
-								the game
-								will end. The
-								developers say that these choices can
-								either be very tiny or absolutely major. </p>
-						</div>
-
-						<!-- post -->
-						<div class="post">
-							<h2 class="post-title">
-								<a href="blog-post-video.html">The Witcher 3: Wild Hunt 35 Minutes of
-									Gameplay</a>
-							</h2>
-							<div class="post-meta">
-								<span><i class="fa fa-clock-o"></i> June 16, 2017 by <a
-										href="profile.html">Trevor</a></span>
-								<span><a href="#">PS4</a></span>
-								<span><a href="blog-post-video.html#comments"><i class="fa fa-comment-o"></i> 33
-										comments</a></span>
-							</div>
-							<div class="post-thumbnail">
-								<div class="video-play"
-									data-src="https://www.youtube.com/embed/N4ony2r0QFs?rel=0&amp;amp;autoplay=1&amp;amp;showinfo=0">
-									<div class="embed-responsive embed-responsive-16by9">
-										<img class="embed-responsive-item"
-											src="https://img.youtube.com/vi/-FAfCbkpicw/maxresdefault.jpg">
-										<div class="video-play-icon">
-											<i class="fa fa-play"></i>
-										</div>
-									</div>
-								</div>
-							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas elit ante,
-								congue
-								sodales orci ac,
-								ultrices pretium lectus. Maecenas lorem enim, dignissim sed lacus non, feugiat
-								iaculis
-								lorem. Integer eu
-								aliquet diam. Suspendisse fringilla
-								porta justo, vel tempus risus. Ut et enim sit amet libero fermentum aliquam et
-								ut sem.
-							</p>
-						</div>
-
-						<!-- post -->
-						<div class="post">
-							<h2 class="post-title">
-								<a href="review-post.html">The Witcher 3: Wild Hunt Blood and Wine Review</a>
-							</h2>
-							<div class="post-meta">
-								<span><i class="fa fa-clock-o"></i> June 05, 2017 by <a
-										href="profile.html">Clark</a></span>
-								<span><a href="#"><i class="fa fa-steam"></i> Steam</a></span>
-								<span><a href="review-post#comments"><i class="fa fa-comment-o"></i> 29
-										comments</a></span>
-							</div>
-							<blockquote class="blockquote">
-								<p>“This allows players to read up on characters, bestiary, crafting and game
-									mechanics.”</p>
-							</blockquote>
-							<p>The tutorial tab allows for a deeper explanation on the game's mechanics. The
-								character
-								tab will give a
-								condensed biography on the game's characters. The crafting tab gives player
-								access to
-								the required
-								ingredients for an item, though only
-								blacksmiths can forge weapons and only armorers can craft armor.</p>
-						</div>
-
 					</div>
 					<div class="col-lg-4">
 						<!-- sidebar -->
@@ -416,7 +292,7 @@
 										<h4 th:text="${videogioco.titolo}"></h4>
 										<span th:text="${videogioco.annoDiUscita}" class="meta"></span>
 
-										<h5>Piattaforme</h5>
+										<h5 th:text="#{profilo.piattaformagioco}"></h5>
 										<a th:if="${videogioco.ps4Url != null}" href="#"><span
 												class="badge badge-ps4">Ps4</span></a>
 										<a th:if="${videogioco.xboxUrl != null}" href="#"><span
@@ -435,102 +311,6 @@
 										<p th:text="${videogioco.descrizione}"></p>
 									</div>
 								</div>
-							</div>
-
-							<!-- widget post -->
-							<div class="widget widget-post">
-								<h5 class="widget-title">Recommended</h5>
-								<a href="blog-post.html">
-									<img src="https://i1.ytimg.com/vi/2fgU8cYrANs/mqdefault.jpg" alt="">
-								</a>
-								<h4>
-									<a href="blog-post.html">The Witcher Book Author Doesn't Profit From the
-										Games</a>
-								</h4>
-								<span><i class="fa fa-clock-o"></i> November 16, 2017</span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel neque
-									sed ante
-									facilisis
-									efficitur.</p>
-								<ul class="widget-list">
-									<li>
-										<div class="widget-img">
-											<a href="blog-post.html">
-												<img src="img/blog/blog-widget-1.jpg" alt="">
-											</a>
-										</div>
-										<div>
-											<h4>
-												<a href="blog-post.html">Dead Island 2 and Escape
-													Impressions</a>
-											</h4>
-											<span>June 16, 2017</span>
-										</div>
-									</li>
-									<li>
-										<div class="widget-img">
-											<a href="blog-post.html">
-												<img src="img/blog/blog-widget-2.jpg" alt="">
-											</a>
-										</div>
-										<div>
-											<h4>
-												<a href="blog-post.html">How to Finish Mafia 3 With All of Your
-													Underbosses</a>
-											</h4>
-											<span>May 30, 2017</span>
-										</div>
-									</li>
-									<li>
-										<div class="widget-img">
-											<a href="blog-post.html">
-												<img src="img/blog/blog-widget-3.jpg" alt="">
-											</a>
-										</div>
-										<div>
-											<h4>
-												<a href="blog-post.html">Spider-Man Spin-Off, Venom, Gets
-													Release
-													Date</a>
-											</h4>
-											<span>June 10, 2017</span>
-										</div>
-									</li>
-									<li>
-										<div class="widget-img">
-											<a href="blog-post.html">
-												<img src="img/blog/blog-widget-4.jpg" alt="">
-											</a>
-										</div>
-										<div>
-											<h4>
-												<a href="blog-post.html">Is Ghost Recon: Wildlands Worth Your
-													Time?</a>
-											</h4>
-											<span>June 16, 2017</span>
-										</div>
-									</li>
-								</ul>
-							</div>
-
-							<!-- widget video -->
-							<div class="widget widget-video">
-								<h5 class="widget-title">New Video</h5>
-								<div class="widget-img">
-									<a href="blog-post-video.html">
-										<img src="https://i1.ytimg.com/vi/neIfY3VoPXo/mqdefault.jpg" alt="">
-									</a>
-									<span>2:49</span>
-									<a class="video-play-icon" href="blog-post-video.html">
-										<i class="fa fa-play"></i>
-									</a>
-								</div>
-								<h4>
-									<a href="blog-post-video.html">The Witcher 3: Wild Hunt The Sword Of Destiny
-										Gameplay Trailer</a>
-								</h4>
-								<span><i class="fa fa-clock-o"></i> June 12, 2017</span>
-								<span><i class="fa fa-eye"></i> 723x</span>
 							</div>
 						</div>
 					</div>
