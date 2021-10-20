@@ -56,6 +56,8 @@ public interface VideogiocoService {
 
 	void removeGameFromSellinglist(Long idVideogioco, Long idUtente) throws BusinessException;
 	
+	void removeGameFromLikedlist(Long idVideogioco, Long idUtente) throws BusinessException;
+	
 	void popolamentazione() throws BusinessException;
 	
 	

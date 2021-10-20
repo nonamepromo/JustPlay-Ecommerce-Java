@@ -17,11 +17,8 @@ import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
 @Repository
 public interface VideogiocoPiaciutoRepository extends JpaRepository<VideogiocoPiaciuto, Long> {
 
-	/*
-	@Query("SELECT fkVideogioco FROM VideogiocoPiaciuto vv where fk_utente = :idUtente")
-	List<Long> findFksVideogiocoByFkUtente(@Param("idUtente") Long idUtente);
-	*/
-
 	VideogiocoPiaciuto findByFkUtenteAndFkVideogioco(Long idUtente, Long fkVideogioco);
+	
+	void deleteByFkVideogiocoAndFkUtente(Long fkVideogioco, Long fkUtente);
 	
 }

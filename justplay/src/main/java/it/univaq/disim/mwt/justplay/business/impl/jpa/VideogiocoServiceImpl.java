@@ -251,6 +251,11 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	}
 	
 	@Override
+	public void removeGameFromLikedlist(Long idVideogioco, Long idUtente) throws BusinessException {
+		videogiocoPiaciutoRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
+	}
+	
+	@Override
 	public void popolamentazione() throws BusinessException {
 		Videogioco videogioco = new Videogioco();
 		videogioco.setAnnoDiUscita(2019);
@@ -262,5 +267,4 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		videogioco.setXboxUrl("faaaaaaaaaaa");
 		videogiocoRepository.save(videogioco);
 	}
-	
 }

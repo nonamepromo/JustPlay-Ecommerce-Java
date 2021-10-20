@@ -132,7 +132,10 @@ public class VideogiocoController {
 		if (authentication.getPrincipal() != "anonymousUser") {
 			Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
 			model.addAttribute("idUtente", idUtente);
-			getLikedGame(model, idUtente, idVideogioco);
+			VideogiocoPiaciuto videogiocoPiaciuto = service.findLikedGame(idUtente, idVideogioco);
+			if(videogiocoPiaciuto != null) {
+				model.addAttribute("piaciuto", videogiocoPiaciuto.isPiaciuto());
+			};
 		}
 		//service.popolamentazione(); //Serve per sconfiggere il male
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
@@ -211,21 +214,27 @@ public class VideogiocoController {
 	public String addGameToSellinglistProva(@ModelAttribute VideogiocoInVendita nuovoVideogiocoInVendita,
 			@RequestParam(value = "idVideogioco") Long idVideogioco, RedirectAttributes redirAttrs)
 			throws BusinessException {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String id = authentication.getPrincipal().toString();
-		Long idUtente = Long.parseLong(id);
+		Long idUtente = Utility.getUtente().getId();
 		service.addGameToSellinglist(nuovoVideogiocoInVendita, idVideogioco, idUtente);
 		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
 	
 	@RequestMapping(value = "/addGameToLikedlist", method = RequestMethod.GET)
-	public String addGameToLikedlist(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model) throws BusinessException {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String id = authentication.getPrincipal().toString();
-		Long idUtente = Long.parseLong(id);
-		service.addGameToLikedlist(idVideogioco, idUtente, true);
-		return "videogiochi/details";
+	public String addGameToLikedlist(@RequestParam Long idVideogioco, @RequestParam boolean piaciuto) throws BusinessException {
+		Long idUtente = Utility.getUtente().getId();
+		VideogiocoPiaciuto videogiocoPiaciuto = service.findLikedGame(idUtente, idVideogioco);
+		if(videogiocoPiaciuto != null ) {
+			if(videogiocoPiaciuto.isPiaciuto() == piaciuto) {
+				service.removeGameFromLikedlist(idVideogioco, idUtente);
+			}else {
+				service.removeGameFromLikedlist(idVideogioco, idUtente);
+				service.addGameToLikedlist(idVideogioco, idUtente, piaciuto);
+			}
+		}else {
+			service.addGameToLikedlist(idVideogioco, idUtente, piaciuto);
+		}
+		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
 			
 	@PostMapping("/removeGameFromWishlist")
@@ -248,12 +257,10 @@ public class VideogiocoController {
 		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
 
-	@PostMapping("/removeGameFromSellinglist")
+	@RequestMapping(value = "/removeGameFromSellinglist", method = RequestMethod.GET)
 	public String removeGameFromSellinglist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String id = authentication.getPrincipal().toString();
-		Long idUtente = Long.parseLong(id);
+		Long idUtente = Utility.getUtente().getId();
 		service.removeGameFromSellinglist(idVideogioco, idUtente);
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}

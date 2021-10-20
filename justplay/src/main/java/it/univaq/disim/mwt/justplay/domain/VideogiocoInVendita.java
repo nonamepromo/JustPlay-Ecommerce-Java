@@ -42,6 +42,6 @@ public class VideogiocoInVendita extends AbstractPersistableEntity {
 	public String provincia;
 
 	@NotEmpty(groups = { OnCreate.class, Default.class })
-	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
+	@Size(min = 2, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	public String piattaforma;
 }

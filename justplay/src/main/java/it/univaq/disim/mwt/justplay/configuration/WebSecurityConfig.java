@@ -40,7 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/", "/static/**", "/favicon.ico").permitAll().antMatchers("/common/profilo")
 				.authenticated().antMatchers("/videogiochi/addGameToSellinglistProva").authenticated()
 				.antMatchers("/videogiochi/createConversazione").authenticated()
-				//.antMatchers("/videogiochi/addGameToLikedlist").authenticated()
+				.antMatchers("/videogiochi/addGameToLikedlist").authenticated()
+				.antMatchers("/videogiochi/removeGameFromSellinglist").authenticated()
 				.antMatchers("/common/conversations-list").authenticated();
 	}
 }

@@ -6,42 +6,6 @@
 
 	<!-- main -->
 	<div layout:fragment="content">
-		<script>
-			function removeGameFromSellinglist(idVideogioco) {
-				$.ajax({
-					url: '[(@{/videogiochi/removeGameFromSellinglist})]',
-					type: "POST",
-					data: 'idVideogioco=' + idVideogioco,
-					success: function (response) {
-						// const queryString = window.location.search
-						// const urlParams = new URLSearchParams(queryString);
-						// window.open("details?idVideogioco=" + urlParams.get('index'), "_self")
-						window.open('details?idVideogioco=' + idVideogioco, "_self")
-					}
-				});
-			}
-		</script>
-
-		<script>
-			function addGameToLikedlist(idVideogioco) {
-				$.ajax({
-					url: '[(@{/videogiochi/addGameToLikedlist})]',
-					type: "POST",
-					data: 'idVideogioco=' + idVideogioco,
-					success: function (response) {
-						console.log("urlParams")
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						console.log(urlParams)
-						window.open("details?idVideogioco=" + idVideogioco, "_self")
-					},
-					error: function (response) {
-						console.log("errore")
-					}
-				});
-			}
-		</script>
-
 		<section class="hero hero-game"
 			th:style="'background:url('+ ${videogioco.imageUrl} +'); background-size: 1262px;'">
 			<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco" class="form-control">
@@ -52,15 +16,6 @@
 					<div class="hero-left">
 						<h2 th:text="${videogioco.titolo}" class="hero-title"></h2>
 					</div>
-					
-					<!-- LA FORM O SI USA JS, NEL DUBBIO LASCIO TUTTI E DUE -->
-					<form th:action="@{/videogiochi/addGameToLikedlist}">
-						<button type="submit">Prova Bottone</button>
-					</form>
-					<div class="hero-right">
-						<a th:onclick="|addGameToLikedlist(${videogioco.id})|">Prova</a>
-					</div>
-					
 				</div>
 			</div>
 		</section>
@@ -70,8 +25,26 @@
 				<div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}"></div>
 				<div class="alert alert-danger" role="alert" th:text="#{common.errore.title}" th:if="${error}"></div>
 				<!-- Button trigger modal -->
-				<button type="button" class="btn btn-primary btn-shadow btn-rounded" data-toggle="modal"
-					data-target="#modal-login">[[#{videogioco.vendita}]]<i class="fa fa-shopping-cart"></i></button>
+				<div class="row">
+					<div class="col-2">
+						<button type="button" class="btn btn-dark btn-shadow btn-rounded" data-toggle="modal"
+							data-target="#modal-login">[[#{videogioco.vendita}]]<i
+								class="fa fa-shopping-cart"></i></button>
+					</div>
+					<div class="col-4">
+						<form th:action="@{/videogiochi/addGameToLikedlist}">
+							<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco" class="form-control">
+							<button class="btn btn-dark btn-shadow btn-rounded" th:value="true" th:name="piaciuto"
+								th:style="${piaciuto} ? 'color: CornflowerBlue' : 'color: light-grey'" type="submit"><i
+									class="fa fa-thumbs-up"></i></button>
+							<button class="btn btn-dark btn-shadow btn-rounded" th:value="false" th:name="piaciuto"
+								th:style="${piaciuto != null} ? (!(${piaciuto}) ? 'color: CornflowerBlue' : 'color: light-grey') : 'color: light-grey'"
+								type="submit"><i class="fa fa-thumbs-down"></i></button>
+
+						</form>
+					</div>
+				</div>
+
 				<div class="modal fade" id="modal-login">
 					<div class="modal-dialog modal-sm" role="document">
 						<div class="modal-content">
@@ -85,7 +58,6 @@
 							<div class="modal-body p-a-20">
 								<form th:action="@{/videogiochi/addGameToSellinglistProva}"
 									th:object="${videogioco_in_vendita}" method="post">
-
 									<div class="input-group mb-3">
 										<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco"
 											class="form-control">
@@ -139,7 +111,6 @@
 				</div>
 			</div>
 		</section>
-
 		<section class="p-t-10">
 			<div class="container">
 				<div class="row">
@@ -163,7 +134,6 @@
 								</a>
 							</div>
 						</div>
-
 						<div th:if="${gamestop} != null" class="mt-4 mb-4">
 							<div class="post">
 								<a class="col-md-4" th:href="${gamestop.url}" target="_blank">
@@ -173,69 +143,6 @@
 								<a class="col-md-2 mt-3" th:href="${gamestop.url}" target="_blank">
 									<h4 th:text="${gamestop.prezzo} + €"></h4>
 								</a>
-							</div>
-						</div>
-						<div th:if="${ps4Urls} != null" class="mt-4 mb-4">
-							<div class="post">
-								<span class="badge badge-ps4">Ps4</span>
-								<div th:each="ps4Url : ${ps4Urls}" class="row">
-									<a class="col-md-4" th:href="${ps4Url}" target="_blank">
-										<img class="mt-3" th:if="${ps4Url.contains('amazon')}"
-											src="https://www.kanguru.it/wp-content/uploads/2017/09/amazon-logo.png"
-											style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
-										<img class="mt-3" th:if="${ps4Url.contains('unieuro')}"
-											src="https://upload.wikimedia.org/wikipedia/it/thumb/b/b3/Unieuro_Logo_2015.png/1200px-Unieuro_Logo_2015.png"
-											style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
-										<img class="mt-3" th:if="${ps4Url.contains('mediaworld')}"
-											src="https://www.mediaworld.it/frontend/2018-11/MediaWorld_Logo_1.png"
-											style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
-									</a>
-									<a class="col-md-2 mt-3" th:href="${ps4Url}" target="_blank">
-										<h4>15,99 €</h4>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div th:if="${xboxUrls} != null" class="mt-4 mb-4">
-							<div class="post">
-								<span class="badge badge-xbox">Xbox One</span>
-								<div th:each="xboxUrl : ${xboxUrls}" class="row">
-									<a class="col-md-4" th:href="${xboxUrl}" target="_blank">
-										<img class="mt-3" th:if="${xboxUrl.contains('amazon')}"
-											src="https://www.kanguru.it/wp-content/uploads/2017/09/amazon-logo.png"
-											style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
-										<img class="mt-3" th:if="${xboxUrl.contains('unieuro')}"
-											src="https://upload.wikimedia.org/wikipedia/it/thumb/b/b3/Unieuro_Logo_2015.png/1200px-Unieuro_Logo_2015.png"
-											style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
-										<img class="mt-3" th:if="${xboxUrl.contains('mediaworld')}"
-											src="https://www.mediaworld.it/frontend/2018-11/MediaWorld_Logo_1.png"
-											style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
-									</a>
-									<a class="col-md-2 mt-3" th:href="${xboxUrl}" target="_blank">
-										<h4>15,99 €</h4>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div th:if="${pcUrls} != null" class="mt-4 mb-4">
-							<div class="post">
-								<span class="badge badge-steam">Pc</span>
-								<div th:each="pcUrl : ${pcUrls}" class="row">
-									<a class="col-md-4" th:href="${pcUrl}" target="_blank">
-										<img class="mt-3" th:if="${pcUrl.contains('amazon')}"
-											src="https://www.kanguru.it/wp-content/uploads/2017/09/amazon-logo.png"
-											style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
-										<img class="mt-3" th:if="${pcUrl.contains('unieuro')}"
-											src="https://upload.wikimedia.org/wikipedia/it/thumb/b/b3/Unieuro_Logo_2015.png/1200px-Unieuro_Logo_2015.png"
-											style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
-										<img class="mt-3" th:if="${pcUrl.contains('mediaworld')}"
-											src="https://www.mediaworld.it/frontend/2018-11/MediaWorld_Logo_1.png"
-											style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
-									</a>
-									<a class="col-md-2 mt-3" th:href="${pcUrl}" target="_blank">
-										<h4>15,99 €</h4>
-									</a>
-								</div>
 							</div>
 						</div>
 						<div th:if="${sellingList.contains(videogioco.id)}">
@@ -262,9 +169,12 @@
 											<td th:text="${videogioco_in_vendita.provincia}"></td>
 											<td th:text="${videogioco_in_vendita.piattaforma}"></td>
 											<td th:if="${videogioco_in_vendita.fkUtente == idUtente}">
-												<a class="btn btn-link p-a-5"
-													th:onclick="|removeGameFromSellinglist('${idVideogioco}')|"><i
-														class="fa fa-trash-o"></i></a>
+												<form th:action="@{/videogiochi/removeGameFromSellinglist}">
+													<input type="hidden" th:value="${idVideogioco}"
+														th:name="idVideogioco" class="form-control">
+													<button type="submit" class="btn btn-link p-a-5"><i
+															class="fa fa-trash-o"></i></button>
+												</form>
 											</td>
 											<td th:if="${videogioco_in_vendita.fkUtente != idUtente}">
 												<form th:action="@{/videogiochi/createConversazione}">
@@ -286,12 +196,11 @@
 							<!-- widget game -->
 							<div class="widget widget-game">
 								<div class="widget-block"
-									style="background-image: url('https://img.youtube.com/vi/U75Qkzc2tqA/maxresdefault.jpg')">
+									style="background-image: url('https://wallpapercave.com/wp/wp1978954.jpg')">
 									<div class="overlay"></div>
 									<div class="widget-item">
 										<h4 th:text="${videogioco.titolo}"></h4>
 										<span th:text="${videogioco.annoDiUscita}" class="meta"></span>
-
 										<h5 th:text="#{profilo.piattaformagioco}"></h5>
 										<a th:if="${videogioco.ps4Url != null}" href="#"><span
 												class="badge badge-ps4">Ps4</span></a>
@@ -300,13 +209,11 @@
 												One</span></a>
 										<a th:if="${videogioco.pcUrl != null}" href="#"><span
 												class="badge badge-steam">Pc</span></a>
-
 										<h5></h5>
 										<ul>
 											<li><a></a></li>
 											<li><a></a></li>
 										</ul>
-
 										<h5>Descrizione</h5>
 										<p th:text="${videogioco.descrizione}"></p>
 									</div>
