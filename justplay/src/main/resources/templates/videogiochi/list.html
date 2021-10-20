@@ -110,10 +110,6 @@
 							</div>
 						</div>
 					</form>
-				</div>
-				<div class="alert alert-success" role="alert" th:text="#{common.operazioneok}" th:if="${success}">
-				</div>
-				<div class="alert alert-danger" role="alert" th:text="#{common.errore.title}" th:if="${error}">
 					<div class="btn-group float-right m-l-5 hidden-sm-down" role="group">
 						<a class="btn btn-default btn-icon"
 							th:classappend="${param.platform != null} ? (${param.platform[0] == 'all'} ? 'active' : '') : ''"
@@ -129,7 +125,6 @@
 							th:classappend="${param.platform != null} ? (${param.platform[0] == 'pc'} ? 'active' : '') : ''"
 							href="#" role="button" th:onclick="|listWithPlatform('pc', 1)|">Pc</a>
 					</div>
-
 				</div>
 				<div class="row mb-3" th:if="${isResearch}"
 					th:text="${isResearch} ? 'Risultati per: ' +  ${searchString} : ''"></div>

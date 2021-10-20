@@ -248,6 +248,19 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	@Override
 	public void removeGameFromSellinglist(Long idVideogioco, Long idUtente) throws BusinessException {
 		videogiocoInVenditaRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
-
 	}
+	
+	@Override
+	public void popolamentazione() throws BusinessException {
+		Videogioco videogioco = new Videogioco();
+		videogioco.setAnnoDiUscita(2019);
+		videogioco.setDescrizione("aaaaaaaaaaa");
+		videogioco.setImageUrl("naaaaaaaaaa");
+		videogioco.setPcUrl("saaaaaaaaaaaa");
+		videogioco.setPs4Url("aaaaaaaaa");
+		videogioco.setTitolo("Gears 5");
+		videogioco.setXboxUrl("faaaaaaaaaaa");
+		videogiocoRepository.save(videogioco);
+	}
+	
 }

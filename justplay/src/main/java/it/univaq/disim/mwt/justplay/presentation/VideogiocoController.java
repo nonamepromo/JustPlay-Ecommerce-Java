@@ -134,6 +134,7 @@ public class VideogiocoController {
 			model.addAttribute("idUtente", idUtente);
 			getLikedGame(model, idUtente, idVideogioco);
 		}
+		//service.popolamentazione(); //Serve per sconfiggere il male
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		// amazonService.popolazione();
 		// gamestopService.popolazione();

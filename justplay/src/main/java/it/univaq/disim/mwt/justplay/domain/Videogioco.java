@@ -32,16 +32,11 @@ public class Videogioco extends AbstractPersistableEntity {
 	@Size(min = 3, max = 25, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String titolo;
 
-	@NotEmpty(groups = { OnCreate.class, Default.class })
-	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
-	private String piattaforma;
-
 	@Column(name = "anno_di_uscita")
-	@NotEmpty(groups = { OnCreate.class, Default.class })
 	private int annoDiUscita;
 
 	@NotEmpty(groups = { OnCreate.class, Default.class })
-	@Size(min = 3, max = 25, groups = { OnCreate.class, OnUpdate.class, Default.class })
+	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String descrizione;
 
 	@Column(name = "ps4_url")

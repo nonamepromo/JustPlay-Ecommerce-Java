@@ -128,7 +128,7 @@ public class JDBCVideogiocoServiceImpl {
 					videogioco.setTitolo(rs.getString("titolo"));
 					videogioco.setDescrizione(rs.getString("descrizione"));
 					videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
-					videogioco.setPiattaforma(rs.getString("piattaforma"));
+					//videogioco.setPiattaforma(rs.getString("piattaforma"));
 					// videogioco.setPs4Url(rs.getString("ps4_url"));
 					// videogioco.setXboxUrl(rs.getString("xbox_url"));
 					// videogioco.setPcUrl(rs.getString("pc_url"));
@@ -167,7 +167,7 @@ public class JDBCVideogiocoServiceImpl {
 					videogioco.setTitolo(rs.getString("titolo"));
 					videogioco.setDescrizione(rs.getString("descrizione"));
 					videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
-					videogioco.setPiattaforma(rs.getString("piattaforma"));
+					//videogioco.setPiattaforma(rs.getString("piattaforma"));
 					// videogioco.setPs4Url(rs.getString("ps4_url"));
 					// videogioco.setXboxUrl(rs.getString("xbox_url"));
 					// videogioco.setPcUrl(rs.getString("pc_url"));
@@ -194,7 +194,7 @@ public class JDBCVideogiocoServiceImpl {
 				videogioco.setTitolo(rs.getString("titolo"));
 				videogioco.setDescrizione(rs.getString("descrizione"));
 				videogioco.setAnnoDiUscita(rs.getInt("annoDiUscita"));
-				videogioco.setPiattaforma(rs.getString("piattaforma"));
+				//videogioco.setPiattaforma(rs.getString("piattaforma"));
 				// videogioco.setPs4Url(rs.getString("ps4_url"));
 				// videogioco.setXboxUrl(rs.getString("xbox_url"));
 				// videogioco.setPcUrl(rs.getString("pc_url"));
