@@ -74,10 +74,10 @@ public class UtenteServiceImpl implements UtenteService {
 
 	@Override
 	public void save(Utente utente) throws BusinessException {
-		if (!passwordEncoder.matches(utente.getPassword(), passwordEncoder.encode(utente.getMatchingPassword()))) {
-			throw new BusinessException("Le due password non coincidono");
-		}
 		try {
+			if (!passwordEncoder.matches(utente.getPassword(), passwordEncoder.encode(utente.getMatchingPassword()))) {
+				throw new BusinessException("Le password non coincidono");
+			}
 			utente.setPassword(passwordEncoder.encode(utente.getPassword()));
 			utenteRepository.save(utente);
 		} catch (Exception e) {
