@@ -1,8 +1,5 @@
 package it.univaq.disim.mwt.justplay.presentation;
 
-import java.util.Date;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -82,11 +79,7 @@ public class ConversazioneController {
 	@PostMapping("/createConversazione")
 	public String createConversazione(@RequestParam(value = "idConversazione") Long idConversazione,
 			@RequestParam(value = "contenuto") String contenuto) throws BusinessException {
-
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String id = authentication.getPrincipal().toString();
-
-		Long idUtente = Long.parseLong(id);
+		Long idUtente = Utility.getUtente().getId();
 
 		conversazioneService.createMessaggio(idUtente, idConversazione, contenuto);
 		return "common/conversations-list";

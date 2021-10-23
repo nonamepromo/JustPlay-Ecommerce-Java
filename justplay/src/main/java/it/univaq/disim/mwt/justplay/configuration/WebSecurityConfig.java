@@ -3,7 +3,6 @@ package it.univaq.disim.mwt.justplay.configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -40,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/", "/static/**", "/favicon.ico").permitAll().antMatchers("/common/profilo")
 				.authenticated().antMatchers("/videogiochi/addGameToSellinglistProva").authenticated()
 				.antMatchers("/videogiochi/createConversazione").authenticated()
+				.antMatchers("/videogiochi/addGameToWishlist").authenticated()
 				.antMatchers("/videogiochi/addGameToLikedlist").authenticated()
 				.antMatchers("/videogiochi/removeGameFromSellinglist").authenticated()
 				.antMatchers("/common/conversations-list").authenticated();

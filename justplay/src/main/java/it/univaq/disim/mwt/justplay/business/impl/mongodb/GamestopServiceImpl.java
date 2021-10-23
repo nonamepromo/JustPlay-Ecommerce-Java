@@ -5,18 +5,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.univaq.disim.mwt.justplay.business.AmazonService;
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.GamestopService;
-import it.univaq.disim.mwt.justplay.business.impl.mongodb.repository.AmazonRepository;
 import it.univaq.disim.mwt.justplay.business.impl.mongodb.repository.GamestopRepository;
-import it.univaq.disim.mwt.justplay.domain.Amazon;
 import it.univaq.disim.mwt.justplay.domain.Gamestop;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Transactional
-@Slf4j
 public class GamestopServiceImpl implements GamestopService {
 
 	@Autowired
@@ -25,7 +20,6 @@ public class GamestopServiceImpl implements GamestopService {
 	@Override
 	public Gamestop findAllByFkVideogioco(Long idVideogioco) throws BusinessException {
 		try {
-			Gamestop a = gamestopRepository.findAllByFkVideogioco(idVideogioco);
 			return gamestopRepository.findAllByFkVideogioco(idVideogioco);
 		} catch (Exception e) {
 			throw new BusinessException(e);

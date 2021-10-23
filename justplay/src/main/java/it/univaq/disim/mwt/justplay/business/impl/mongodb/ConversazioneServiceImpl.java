@@ -1,30 +1,19 @@
 package it.univaq.disim.mwt.justplay.business.impl.mongodb;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-import java.util.UUID;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.expression.Lists;
-
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.ConversazioneService;
 import it.univaq.disim.mwt.justplay.business.MessaggioService;
-import it.univaq.disim.mwt.justplay.business.impl.jpa.UtenteServiceImpl;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.UtenteRepository;
 import it.univaq.disim.mwt.justplay.business.impl.mongodb.repository.ConversazioneRepository;
-import it.univaq.disim.mwt.justplay.business.impl.mongodb.repository.MessaggioRepository;
 import it.univaq.disim.mwt.justplay.domain.Conversazione;
 import it.univaq.disim.mwt.justplay.domain.Messaggio;
-import it.univaq.disim.mwt.justplay.domain.Utente;
-import it.univaq.disim.mwt.justplay.presentation.Utility;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -37,9 +26,6 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 
 	@Autowired
 	private MessaggioService messaggioService;
-
-	@Autowired
-	private MessaggioRepository messaggioRepository;
 
 	@Autowired
 	private UtenteRepository utenteRepository;

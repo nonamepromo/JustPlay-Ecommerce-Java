@@ -1,19 +1,12 @@
 package it.univaq.disim.mwt.justplay.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.groups.Default;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import it.univaq.disim.mwt.justplay.presentation.validator.ValidEmail;
 import it.univaq.disim.mwt.justplay.presentation.validator.OnCreate;
 import it.univaq.disim.mwt.justplay.presentation.validator.OnUpdate;
-import it.univaq.disim.mwt.justplay.presentation.validator.UsernameUnique;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

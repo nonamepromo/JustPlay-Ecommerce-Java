@@ -48,17 +48,8 @@
 							</li>
 							<li sec:authorize="isAuthenticated()" class="hidden-xs-down"><a href="#"
 									th:href="@{/logout}">[[#{common.logout}]]</a></li>
-							<li><a data-toggle="search"><i class="fa fa-search"></i></a></li>
 						</ul>
 					</div>
-				</div>
-			</div>
-			<div class="navbar-search">
-				<div class="container">
-					<form method="post">
-						<input type="text" class="form-control" placeholder="Search...">
-						<i class="fa fa-times close"></i>
-					</form>
 				</div>
 			</div>
 		</div>

@@ -4,9 +4,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import it.univaq.disim.mwt.justplay.domain.Admin;
 import it.univaq.disim.mwt.justplay.domain.Utente;
-import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.security.UserDetailsImpl;
 
 public class Utility {
@@ -20,13 +18,4 @@ public class Utility {
 			throw new RuntimeException();
 		}
 	}
-	
-	public static Admin getAdmin()  {
-		Utente utente = getUtente();
-		if (utente instanceof Admin) {
-			return (Admin) utente;
-		} else {
-			return null;
-		}
-	}	
 }

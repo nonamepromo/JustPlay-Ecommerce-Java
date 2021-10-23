@@ -22,7 +22,6 @@ import it.univaq.disim.mwt.justplay.business.ConversazioneService;
 import it.univaq.disim.mwt.justplay.business.GamestopService;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.domain.Conversazione;
-import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
@@ -120,7 +119,6 @@ public class VideogiocoController {
 
 	public void platform(@RequestParam("idVideogioco") Long idVideogioco, Model model, String[] ps4Urls,
 			String[] xboxUrls, String[] pcUrls) throws BusinessException {
-		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		model.addAttribute("ps4Urls", ps4Urls);
 		model.addAttribute("xboxUrls", xboxUrls);
 		model.addAttribute("pcUrls", pcUrls);

@@ -1,22 +1,13 @@
 package it.univaq.disim.mwt.justplay.security;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import it.univaq.disim.mwt.justplay.domain.Admin;
-import it.univaq.disim.mwt.justplay.domain.Ruolo;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 
 public class UserDetailsImpl implements UserDetails {
-
-	private static final String ROLE_PREFIX = "ROLE_";
-	private static final SimpleGrantedAuthority ROLE_ADMIN = new SimpleGrantedAuthority(ROLE_PREFIX + "admin");
-
+	
 	private Utente utente;
 
 	public UserDetailsImpl(Utente utente) {
@@ -63,16 +54,10 @@ public class UserDetailsImpl implements UserDetails {
 		return utente;
 	}
 
-	// CAPIRE BENE COSA FARE CON I RUOLI@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	@Override
-	public Collection<GrantedAuthority> getAuthorities() {
-		/*
-		 * List<GrantedAuthority> result = new ArrayList<GrantedAuthority>();
-		 * 
-		 * for (Ruolo ruolo : utente.getRuoli()) { result.add(new
-		 * SimpleGrantedAuthority(ROLE_PREFIX + ruolo.getNome())); } if (utente
-		 * instanceof Admin) { result.add(ROLE_ADMIN); }
-		 */
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

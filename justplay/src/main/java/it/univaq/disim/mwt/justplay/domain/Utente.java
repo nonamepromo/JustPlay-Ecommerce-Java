@@ -1,18 +1,12 @@
 package it.univaq.disim.mwt.justplay.domain;
 
-import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.List;
-import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.validation.groups.Default;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,7 +17,6 @@ import it.univaq.disim.mwt.justplay.presentation.validator.UsernameUnique;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.LazyGroup;
 
 @Entity
 @Table(name = "utenti")

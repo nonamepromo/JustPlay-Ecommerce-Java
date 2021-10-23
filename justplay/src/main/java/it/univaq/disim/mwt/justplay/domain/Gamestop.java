@@ -1,6 +1,5 @@
 package it.univaq.disim.mwt.justplay.domain;
 
-import javax.persistence.Id;
 import java.util.Objects;
 
 import org.springframework.data.mongodb.core.mapping.Document;

@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
 	layout:decorate="~{layout/layout}">
-
 <body>
-
 	<!-- main -->
 	<div layout:fragment="content">
-
 		<section class="bg-image bg-image-sm"
 			style="background-image: url('https://img.youtube.com/vi/BhTkoDVgF6s/maxresdefault.jpg');">
 			<div class="overlay"></div>
@@ -16,7 +13,7 @@
 					<div class="col-12 col-sm-8 col-md-4 mx-auto">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title"><i class="fa fa-user-plus"></i> Register a new account</h4>
+								<h4 class="card-title"><i class="fa fa-user-plus"></i>[[#{common.registerNew}]]</h4>
 							</div>
 							<div class="card-block">
 								<form th:action="@{/common/register}" th:object="${utente}" method="post">
@@ -24,12 +21,12 @@
 									<div class="form-group input-icon-left m-b-10">
 										<i class="fa fa-envelope"></i>
 										<input type="text" class="form-control form-control-secondary"
-											th:field="*{nome}" placeholder="Name" required autofocus="autofocus">
+											th:field="*{nome}" th:placeholder="#{common.name}" required autofocus="autofocus">
 									</div>
 									<div class="form-group input-icon-left m-b-10">
 										<i class="fa fa-envelope"></i>
 										<input type="text" class="form-control form-control-secondary"
-											th:field="*{cognome}" placeholder="Surname" required autofocus="autofocus">
+											th:field="*{cognome}" th:placeholder="#{common.surname}"  required autofocus="autofocus">
 									</div>
 									<div class="form-group input-icon-left m-b-10">
 										<i class="fa fa-user"></i>
@@ -40,7 +37,7 @@
 									<div class="form-group input-icon-left m-b-10">
 										<i class="fa fa-envelope"></i>
 										<input type="email" class="form-control form-control-secondary"
-											th:field="*{email}" placeholder="Email Address" required
+											th:field="*{email}" placeholder="Email" required
 											autofocus="autofocus">
 									</div>
 									<div class="form-group input-icon-left m-b-10">
@@ -52,11 +49,10 @@
 									<div class="form-group input-icon-left m-b-10">
 										<i class="fa fa-lock"></i>
 										<input type="password" class="form-control form-control-secondary"
-											th:field="*{matchingPassword}" placeholder="Ripeti Password" required
+											th:field="*{matchingPassword}" th:placeholder="#{common.repeatPassword}"   required
 											autofocus="autofocus">
 									</div>
-									<button type="submit" class="btn btn-primary m-t-10 btn-block">Complete
-										Registration</button>
+									<button type="submit" class="btn btn-primary m-t-10 btn-block">[[#{common.complete}]]</button>
 								</form>
 							</div>
 						</div>

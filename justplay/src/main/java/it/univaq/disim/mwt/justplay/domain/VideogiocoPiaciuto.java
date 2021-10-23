@@ -4,8 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.groups.Default;
 
-import com.mongodb.lang.Nullable;
-
 import it.univaq.disim.mwt.justplay.presentation.validator.OnCreate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

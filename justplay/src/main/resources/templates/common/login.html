@@ -6,14 +6,6 @@
 
 	<!-- main -->
 	<div layout:fragment="content">
-
-		<script th:inline="javascript">
-			(function ($) {
-				"use strict";
-				$(".player").mb_YTPlayer();
-			})(jQuery);
-		</script>
-
 		<section class="bg-image player p-y-70"
 			style="background-image: url('https://img.youtube.com/vi/1GWRDuL04-Q/maxresdefault.jpg');"
 			data-property="{videoURL:'1GWRDuL04-Q',containment:'self', stopMovieOnBlur:false, showControls: false, realfullscreen: true, showYTLogo: false, quality: 'highres',autoPlay:true,loop:true,opacity:1}">
@@ -44,10 +36,10 @@
 										<button type="submit" class="btn btn-primary btn-block m-t-10">Login <i
 												class="fa fa-sign-in"></i></button>
 										<div class="divider">
-											<span>Don't have an account?</span>
+											<span>[[#{common.loginNew}]]</span>
 										</div>
 										<a class="btn btn-secondary btn-block" href="register"
-											role="button">Register</a>
+											role="button">[[#{common.register}]]</a>
 									</form>
 							</div>
 						</div>

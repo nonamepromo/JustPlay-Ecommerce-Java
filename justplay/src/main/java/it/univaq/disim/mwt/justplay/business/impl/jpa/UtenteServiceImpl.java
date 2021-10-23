@@ -6,7 +6,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import lombok.extern.slf4j.Slf4j;
 
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.UtenteService;
@@ -15,7 +14,6 @@ import it.univaq.disim.mwt.justplay.domain.Utente;
 
 @Service
 @Transactional
-@Slf4j
 public class UtenteServiceImpl implements UtenteService {
 
 	@Autowired

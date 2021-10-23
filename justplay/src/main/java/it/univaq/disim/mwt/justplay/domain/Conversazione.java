@@ -3,15 +3,12 @@ package it.univaq.disim.mwt.justplay.domain;
 import java.util.Date;
 import java.util.Objects;
 
-import javax.persistence.Id;
-
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Document(collection = "conversazioni")
 @Getter
