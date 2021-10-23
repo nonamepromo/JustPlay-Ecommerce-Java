@@ -27,12 +27,19 @@ public class UserRegistrationController {
 	}
 
 	@PostMapping
-	public String SignUp(@ModelAttribute Utente nuovoUtente, Errors errors) throws BusinessException {
-		if (errors.hasErrors()) {
-			return "/common/register";
+	public String SignUp(@ModelAttribute Utente nuovoUtente) throws BusinessException {
+		try {
+			if (service.existsByUsername(nuovoUtente.getUsername())) {
+				throw new BusinessException("L'username è già usato");
+			} else if (service.existsByEmail(nuovoUtente.getEmail())) {
+				throw new BusinessException("Email già in uso");
+			} else {
+				service.save(nuovoUtente);
+				return "/common/login";
+			}
+		} catch (Exception e) {
+			throw new BusinessException(e);
 		}
-		service.save(nuovoUtente);
-		return "/common/login";
 	}
 
 }

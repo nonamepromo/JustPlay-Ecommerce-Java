@@ -79,7 +79,7 @@ public class VideogiocoController {
 			videogiochi = service.findByPlatformResearched(platform, index, searchString);
 			model.addAttribute("videogiochi", videogiochi);
 			numberOfIndexes = service.getVideogiochiSearchedCount(searchString) / 3
-			+ ((service.getVideogiochiSearchedCount(searchString) % 3 == 0) ? 0 : 1);
+					+ ((service.getVideogiochiSearchedCount(searchString) % 3 == 0) ? 0 : 1);
 		}
 
 		model.addAttribute("videogiochiCount", numberOfIndexes);
@@ -112,7 +112,7 @@ public class VideogiocoController {
 	public void getSellinglist(Model model, Long idVideogioco) throws BusinessException {
 		model.addAttribute("sellingList", service.getSellinglist(idVideogioco));
 	}
-	
+
 	public void getLikedGame(Model model, Long idUtente, Long idVideogioco) throws BusinessException {
 		model.addAttribute("likedGame", service.findLikedGame(idUtente, idVideogioco));
 	}
@@ -131,11 +131,12 @@ public class VideogiocoController {
 			Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
 			model.addAttribute("idUtente", idUtente);
 			VideogiocoPiaciuto videogiocoPiaciuto = service.findLikedGame(idUtente, idVideogioco);
-			if(videogiocoPiaciuto != null) {
+			if (videogiocoPiaciuto != null) {
 				model.addAttribute("piaciuto", videogiocoPiaciuto.isPiaciuto());
-			};
+			}
+			;
 		}
-		//service.aggiuntaVideogiochi(); //Serve per sconfiggere il male
+		// service.aggiuntaVideogiochi(); //Serve per sconfiggere il male
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		// amazonService.mongoAmazon();
 		// gamestopService.mongoGamestop();
@@ -148,35 +149,29 @@ public class VideogiocoController {
 		model.addAttribute("videogioco_in_vendita", videogiocoInVendita);
 		model.addAttribute("videogiochi_in_vendita", service.findAllVendita(idVideogioco));
 		getSellinglist(model, idVideogioco);
-		
+
 		platform(idVideogioco, model, null, null, null);
 		return "videogiochi/details";
 	}
 
 	@RequestMapping(value = "/createConversazione", method = RequestMethod.GET)
-	public String createConversazione(@RequestParam("fkUtente") Long fkUtente, Long idUtente, Model model, RedirectAttributes redirAttrs)
-			throws BusinessException {
+	public String createConversazione(@RequestParam("fkUtente") Long fkUtente, Long idUtente, Model model,
+			RedirectAttributes redirAttrs) throws BusinessException {
 		idUtente = Utility.getUtente().getId();
-		if(idUtente == fkUtente) {
+		Conversazione conversazione = new Conversazione();
+		// Verifico se è lo stesso utente
+		if (idUtente == fkUtente) {
 			redirAttrs.addFlashAttribute("error", "");
 			return "redirect:/videogiochi/list?platform=all&index=1";
 		}
-		Conversazione conversazione = conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(idUtente,
-				fkUtente);
-		if (conversazione != null) {
+
+		if (conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(idUtente, fkUtente) != null) {
 			conversazione = conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(idUtente, fkUtente);
-		}
-		Conversazione conversazione2 = conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(fkUtente,
-				idUtente);
-		if (conversazione2 != null) {
+		} else if (conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(fkUtente, idUtente) != null) {
 			conversazione = conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(fkUtente, idUtente);
-		}
-		if (conversazione == null && conversazione2 == null) {
+		} else {
 			conversazioneService.createConversazione(idUtente, fkUtente);
 			conversazione = conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(idUtente, fkUtente);
-			if (conversazione == null) {
-				conversazione = conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(fkUtente, idUtente);
-			}
 		}
 		return "redirect:/common/conversation?idConversazione=" + conversazione.getIdConversazione();
 	}
@@ -217,24 +212,25 @@ public class VideogiocoController {
 		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
-	
+
 	@RequestMapping(value = "/addGameToLikedlist", method = RequestMethod.GET)
-	public String addGameToLikedlist(@RequestParam Long idVideogioco, @RequestParam boolean piaciuto) throws BusinessException {
+	public String addGameToLikedlist(@RequestParam Long idVideogioco, @RequestParam boolean piaciuto)
+			throws BusinessException {
 		Long idUtente = Utility.getUtente().getId();
 		VideogiocoPiaciuto videogiocoPiaciuto = service.findLikedGame(idUtente, idVideogioco);
-		if(videogiocoPiaciuto != null ) {
-			if(videogiocoPiaciuto.isPiaciuto() == piaciuto) {
+		if (videogiocoPiaciuto != null) {
+			if (videogiocoPiaciuto.isPiaciuto() == piaciuto) {
 				service.removeGameFromLikedlist(idVideogioco, idUtente);
-			}else {
+			} else {
 				service.removeGameFromLikedlist(idVideogioco, idUtente);
 				service.addGameToLikedlist(idVideogioco, idUtente, piaciuto);
 			}
-		}else {
+		} else {
 			service.addGameToLikedlist(idVideogioco, idUtente, piaciuto);
 		}
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
-			
+
 	@PostMapping("/removeGameFromWishlist")
 	public String removeGameFromWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {
