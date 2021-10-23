@@ -252,7 +252,7 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	}
 	
 	@Override
-	public void popolamentazione() throws BusinessException {
+	public void aggiuntaVideogiochi() throws BusinessException {
 		Videogioco videogioco = new Videogioco();
 		videogioco.setAnnoDiUscita(2019);
 		videogioco.setDescrizione("aaaaaaaaaaa");

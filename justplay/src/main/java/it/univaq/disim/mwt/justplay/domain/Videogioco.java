@@ -1,5 +1,7 @@
 package it.univaq.disim.mwt.justplay.domain;
 
+import java.util.Objects;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotEmpty;
@@ -51,4 +53,30 @@ public class Videogioco extends AbstractPersistableEntity {
 	@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String imageUrl;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Videogioco videogioco = (Videogioco) o;
+		return Objects.equals(titolo, videogioco.titolo) && Objects.equals(annoDiUscita, videogioco.annoDiUscita)
+				&& Objects.equals(descrizione, videogioco.descrizione) && Objects.equals(ps4Url, videogioco.ps4Url)
+				&& Objects.equals(xboxUrl, videogioco.xboxUrl) && Objects.equals(pcUrl, videogioco.pcUrl)
+				&& Objects.equals(imageUrl, videogioco.imageUrl);
+	}
+
+	@Override
+	public String toString() {
+		return "Videogioco{" + "titolo='" + titolo + '\'' + ", annoDiUscita='" + annoDiUscita + '\'' + ", descrizione='"
+				+ descrizione + '\'' + ", ps4Url='" + ps4Url + '\'' + ", xboxUrl='" + xboxUrl + ", pcUrl='" + pcUrl
+				+ ", imageUrl='" + imageUrl + '}';
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(titolo, annoDiUscita, descrizione, ps4Url, xboxUrl, pcUrl, imageUrl);
+	}
+
 }

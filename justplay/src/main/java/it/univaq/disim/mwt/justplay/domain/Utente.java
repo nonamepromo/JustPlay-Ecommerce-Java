@@ -51,10 +51,6 @@ public class Utente extends AbstractPersistableEntity {
 	@NotEmpty(groups = { OnCreate.class, Default.class })
 	private String password;
 
-	@NotNull
-	@Column(name = "tipologia_utente", columnDefinition = "integer default 2")
-	private int tipologia;
-
 	@Transient
 	private String matchingPassword;
 
@@ -68,22 +64,17 @@ public class Utente extends AbstractPersistableEntity {
 		return Objects.equals(nome, utente.nome) && Objects.equals(cognome, utente.cognome)
 				&& Objects.equals(email, utente.email) && Objects.equals(username, utente.username)
 				&& Objects.equals(password, utente.password);
-		// Objects.equals(getRole(), user.getRole());
 	}
 
 	@Override
 	public String toString() {
 		return "Utente{" + "nome='" + nome + '\'' + ", cognome='" + cognome + '\'' + ", email='" + email + '\''
 				+ ", username='" + username + '\'' +
-				// ", role='" + getRole() + '\'' +
 				'}';
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nome, cognome, email, username, password/* ,getRole() */);
+		return Objects.hash(nome, cognome, email, username, password);
 	}
-
-	// CAPIRE BENE COSA FARE CON I RUOLI@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-	// private Set<Ruolo> ruoli = new HashSet<>();
 }

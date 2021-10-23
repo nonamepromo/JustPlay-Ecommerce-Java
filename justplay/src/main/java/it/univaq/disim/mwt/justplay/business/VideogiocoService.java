@@ -29,10 +29,8 @@ public interface VideogiocoService {
 	List<Long> getSellinglist(Long idVideogioco) throws BusinessException;
 
 	List<Long> getUtenteSellinglist(Long idUtente) throws BusinessException;
-	
-	//List<Long> getLikedList(Long idUtente) throws BusinessException; //PER VIDEOGIOCHI PIACIUTI 163
-	
-	VideogiocoPiaciuto findLikedGame(Long idUtente, Long idVideogioco) throws BusinessException; //PER TROVARE UN SOLO VIDEOGIOCO
+		
+	VideogiocoPiaciuto findLikedGame(Long idUtente, Long idVideogioco) throws BusinessException;
 
 	Videogioco findVideogiocoByID(Long id) throws BusinessException;
 
@@ -42,7 +40,7 @@ public interface VideogiocoService {
 
 	void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Long idVideogioco, Long idUtente) throws BusinessException;
 	
-	void addGameToLikedlist(Long idVideogioco, Long idUtente, boolean piaciuto) throws BusinessException; //PER VIDEOGIOCHI PIACIUTI 199
+	void addGameToLikedlist(Long idVideogioco, Long idUtente, boolean piaciuto) throws BusinessException;
 
 	void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
@@ -52,7 +50,7 @@ public interface VideogiocoService {
 	
 	void removeGameFromLikedlist(Long idVideogioco, Long idUtente) throws BusinessException;
 	
-	void popolamentazione() throws BusinessException;
+	void aggiuntaVideogiochi() throws BusinessException; //PER POPOLARE DB CON VIDEOGIOCHI
 	
 	
 }

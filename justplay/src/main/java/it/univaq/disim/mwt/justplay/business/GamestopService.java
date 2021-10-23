@@ -6,6 +6,6 @@ public interface GamestopService {
 
 	Gamestop findAllByFkVideogioco(Long idVideogioco) throws BusinessException;
 
-	void popolazione() throws BusinessException;
+	void mongoGamestop() throws BusinessException;
     
 }

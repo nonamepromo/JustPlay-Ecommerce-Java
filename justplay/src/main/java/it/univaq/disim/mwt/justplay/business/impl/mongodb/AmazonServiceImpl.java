@@ -28,7 +28,7 @@ public class AmazonServiceImpl implements AmazonService {
 
 	// MI SERVIVA SOLO PER POPOLARE DB MONGO CHE NON MI ANDAVA DI FARLO A MANO
 	@Override
-	public void popolazione() throws BusinessException {
+	public void mongoAmazon() throws BusinessException {
 		Amazon amazon = new Amazon();
 		amazon.setFkVideogioco((long) 1);
 		amazon.setPrezzoAmazon(22.99);

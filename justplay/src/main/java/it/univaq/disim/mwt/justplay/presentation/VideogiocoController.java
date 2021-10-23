@@ -135,10 +135,10 @@ public class VideogiocoController {
 				model.addAttribute("piaciuto", videogiocoPiaciuto.isPiaciuto());
 			};
 		}
-		//service.popolamentazione(); //Serve per sconfiggere il male
+		//service.aggiuntaVideogiochi(); //Serve per sconfiggere il male
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
-		// amazonService.popolazione();
-		// gamestopService.popolazione();
+		// amazonService.mongoAmazon();
+		// gamestopService.mongoGamestop();
 		// VEDERE DA RIGA 195 DI DETAILS.HTML
 		model.addAttribute("amazon", amazonService.findAllByFkVideogioco(idVideogioco));
 		model.addAttribute("gamestop", gamestopService.findAllByFkVideogioco(idVideogioco));

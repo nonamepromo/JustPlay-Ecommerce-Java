@@ -27,7 +27,7 @@ public class GamestopServiceImpl implements GamestopService {
 	}
 
 	@Override
-	public void popolazione() throws BusinessException {
+	public void mongoGamestop() throws BusinessException {
 		Gamestop gamestop = new Gamestop();
 		gamestop.setFkVideogioco((long) 1);
 		gamestop.setPrezzo(22.99);
