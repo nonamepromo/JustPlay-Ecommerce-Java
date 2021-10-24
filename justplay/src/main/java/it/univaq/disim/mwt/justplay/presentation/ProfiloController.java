@@ -71,7 +71,6 @@ public class ProfiloController {
 	public String modificaProfilo(@ModelAttribute Utente nuovoProfilo, RedirectAttributes redirAttrs)
 			throws BusinessException {
 		Utente utente = Utility.getUtente();
-		// nuovoProfilo.setId(utente.getId());
 		service.save(nuovoProfilo, utente.getId());
 		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/common/profilo?index=1";

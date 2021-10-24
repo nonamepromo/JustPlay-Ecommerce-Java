@@ -31,6 +31,24 @@
 							data-target="#modal-login">[[#{videogioco.vendita}]]<i
 								class="fa fa-shopping-cart"></i></button>
 					</div>
+					<div class="col-0">
+						<form th:action="@{/videogiochi/addGameToWishlist}">
+							<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco" class="form-control">
+							<button class="btn btn-dark btn-shadow btn-rounded" type="submit" name="action"
+								th:attrappend="value=${wishList != null} ? (${wishList.contains(idVideogioco)} ? 'delete': 'save') : 'save'"
+								th:style=" ${wishList != null} ? (${wishList.contains(idVideogioco)} ? 'color: CornflowerBlue' : 'color: light-grey') : 'color: light-grey'"><i
+									class="fa fa-heart"></i></button>
+						</form>
+					</div>
+					<div class="col-2">
+						<form th:action="@{/videogiochi/addGameToPlayedlist}">
+							<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco" class="form-control">
+							<button class="btn btn-dark btn-shadow btn-rounded" type="submit" name="action"
+								th:attrappend="value=${playedList != null} ? (${playedList.contains(idVideogioco)} ? 'delete': 'save') : 'save'"
+								th:style=" ${playedList != null} ? (${playedList.contains(idVideogioco)} ? 'color: CornflowerBlue' : 'color: light-grey') : 'color: light-grey'">
+								<i class="fa fa-gamepad"></i></button>
+						</form>
+					</div>
 					<div class="col-4">
 						<form th:action="@{/videogiochi/addGameToLikedlist}">
 							<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco" class="form-control">
@@ -43,6 +61,8 @@
 
 						</form>
 					</div>
+
+
 				</div>
 
 				<div class="modal fade" id="modal-login">

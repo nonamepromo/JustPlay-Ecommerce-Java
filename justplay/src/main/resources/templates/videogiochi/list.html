@@ -136,12 +136,12 @@
 								</a>
 								<div th:classappend="${wishList != null} ? (${wishList.contains(videogioco.id)} ? 'card-liked' : 'card-likes') : 'card-likes'"
 									style="bottom: -43px; right: 60px">
-									<a th:onclick="${wishList != null} ? (${wishList.contains(videogioco.id)} ? |removeGameFromWishlist('${videogioco.id}')| : |addGameToWishlist(${videogioco.id})|)"
+									<a th:onclick="${wishList != null} ? (${wishList.contains(videogioco.id)} ? |removeGameFromWishlist('${videogioco.id}')| : |addGameToWishlist(${videogioco.id})|) : |href='@{/common/login}'|"
 										th:style="${wishList != null} ? (${wishList.contains(videogioco.id)} ? 'color: red' : 'color: light-grey') : 'color: light-grey'"></a>
 								</div>
 								<div th:classappend="${playedList != null} ? (${playedList.contains(videogioco.id)} ? 'card-played' : 'card-plays') : 'card-plays'"
 									style="bottom: -43px;">
-									<a th:onclick="${playedList != null} ? (${playedList.contains(videogioco.id)} ? |removeGameFromPlayedlist('${videogioco.id}')| : |addGameToPlayedlist('${videogioco.id}')|) : |javascript:location.href='@{/common/login}'|"
+									<a th:onclick="${playedList != null} ? (${playedList.contains(videogioco.id)} ? |removeGameFromPlayedlist('${videogioco.id}')| : |addGameToPlayedlist('${videogioco.id}')|) : |href='@{/common/login}'|"
 										th:style="${playedList != null} ? (${playedList.contains(videogioco.id)} ? 'color: red' : 'color: light-grey') : 'color: light-grey'"></a>
 								</div>
 							</div>

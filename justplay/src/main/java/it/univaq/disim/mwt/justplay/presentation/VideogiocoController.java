@@ -23,6 +23,7 @@ import it.univaq.disim.mwt.justplay.business.GamestopService;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.domain.Conversazione;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
+import it.univaq.disim.mwt.justplay.domain.VideogiocoDesiderato;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
 
@@ -49,8 +50,6 @@ public class VideogiocoController {
 				+ ((service.getVideogiochiCount(platform) % 3 == 0) ? 0 : 1);
 		model.addAttribute("videogiochiCount", numberOfIndexes);
 		model.addAttribute("platform", platform);
-		// model.addAttribute("videogiochi", service.findByPlatform(platform, 3 *
-		// index));
 		model.addAttribute("videogiochi", service.findByPlatform(platform, index));
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication.getPrincipal() != "anonymousUser") {
@@ -113,10 +112,6 @@ public class VideogiocoController {
 		model.addAttribute("sellingList", service.getSellinglist(idVideogioco));
 	}
 
-	public void getLikedGame(Model model, Long idUtente, Long idVideogioco) throws BusinessException {
-		model.addAttribute("likedGame", service.findLikedGame(idUtente, idVideogioco));
-	}
-
 	public void platform(@RequestParam("idVideogioco") Long idVideogioco, Model model, String[] ps4Urls,
 			String[] xboxUrls, String[] pcUrls) throws BusinessException {
 		model.addAttribute("ps4Urls", ps4Urls);
@@ -128,19 +123,21 @@ public class VideogiocoController {
 	public String details(@RequestParam("idVideogioco") Long idVideogioco, Model model) throws BusinessException {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication.getPrincipal() != "anonymousUser") {
-			Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
+			Long idUtente = Utility.getUtente().getId();
 			model.addAttribute("idUtente", idUtente);
+			getWishlist(model, idUtente);
+			getPlayedlist(model, idUtente);
 			VideogiocoPiaciuto videogiocoPiaciuto = service.findLikedGame(idUtente, idVideogioco);
 			if (videogiocoPiaciuto != null) {
 				model.addAttribute("piaciuto", videogiocoPiaciuto.isPiaciuto());
 			}
 			;
 		}
-		// service.aggiuntaVideogiochi(); //Serve per sconfiggere il male
+		// service.aggiuntaVideogiochi(); //Serve per popolare velocemente la tabella
+		// videogiochi
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		// amazonService.mongoAmazon();
 		// gamestopService.mongoGamestop();
-		// VEDERE DA RIGA 195 DI DETAILS.HTML
 		model.addAttribute("amazon", amazonService.findAllByFkVideogioco(idVideogioco));
 		model.addAttribute("gamestop", gamestopService.findAllByFkVideogioco(idVideogioco));
 		model.addAttribute("videogioco", videogioco);
@@ -176,31 +173,67 @@ public class VideogiocoController {
 		return "redirect:/common/conversation?idConversazione=" + conversazione.getIdConversazione();
 	}
 
+	// Questo aggiunge un gioco alla wishlist nella view list utilizzando ajax
 	@PostMapping("/addGameToWishlist")
-	public String addGameToWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco,
-			RedirectAttributes redirAttrs, Model model) throws BusinessException {
-
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String id = authentication.getPrincipal().toString();
-		Long idUtente = Long.parseLong(id);
+	public String addGameToWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
+			throws BusinessException {
+		// Authentication authentication =
+		// SecurityContextHolder.getContext().getAuthentication();
+		// String id = authentication.getPrincipal().toString();
+		// Long idUtente = Long.parseLong(id);
+		Long idUtente = Utility.getUtente().getId();
 		service.addGameToWishlist(idVideogioco, idUtente);
-		List<Long> wishList = service.getWishlist(idUtente);
-		model.addAttribute("wishList", wishList);
-		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
 
+	// Questo aggiunge un gioco alla wishlist da list se il param ricevuto è save
+	@RequestMapping(value = "/addGameToWishlist", method = RequestMethod.GET, params = "action=save")
+	public String addGameToWishlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
+			throws BusinessException {
+		Long idUtente = Utility.getUtente().getId();
+		service.addGameToWishlist(idVideogioco, idUtente);
+		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
+	}
+
+	// Questo aggiunge un gioco alla wishlist da list se il param ricevuto è delete
+	@RequestMapping(value = "/addGameToWishlist", method = RequestMethod.GET, params = "action=delete")
+	public String removeGameFromWishlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
+			throws BusinessException {
+		Long idUtente = Utility.getUtente().getId();
+		service.removeGameFromWishlist(idVideogioco, idUtente);
+		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
+	}
+
+	// Questo aggiunge un gioco alla playedlist nella view list utilizzando ajax
 	@PostMapping("/addGameToPlayedlist")
-	public String addGameToPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco,
-			RedirectAttributes redirAttrs, Model model) throws BusinessException {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String id = authentication.getPrincipal().toString();
-		Long idUtente = Long.parseLong(id);
+	public String addGameToPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
+			throws BusinessException {
+		// Authentication authentication =
+		// SecurityContextHolder.getContext().getAuthentication();
+		// String id = authentication.getPrincipal().toString();
+		// Long idUtente = Long.parseLong(id);
+		Long idUtente = Utility.getUtente().getId();
 		service.addGameToPlayedlist(idVideogioco, idUtente);
-		List<Long> playedList = service.getPlayedlist(idUtente);
-		model.addAttribute("playedList", playedList);
-		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/videogiochi/list?platform=all&index=1";
+	}
+
+	// Questo aggiunge un gioco alla playedlist da list se il param ricevuto è save
+	@RequestMapping(value = "/addGameToPlayedlist", method = RequestMethod.GET, params = "action=save")
+	public String addGameToPlayedlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
+			throws BusinessException {
+		Long idUtente = Utility.getUtente().getId();
+		service.addGameToPlayedlist(idVideogioco, idUtente);
+		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
+	}
+
+	// Questo aggiunge un gioco alla playedlist da list se il param ricevuto è
+	// delete
+	@RequestMapping(value = "/addGameToPlayedlist", method = RequestMethod.GET, params = "action=delete")
+	public String removeGameFromPlayedlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
+			throws BusinessException {
+		Long idUtente = Utility.getUtente().getId();
+		service.removeGameFromPlayedlist(idVideogioco, idUtente);
+		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
 
 	@PostMapping("/addGameToSellinglistProva")
