@@ -11,4 +11,5 @@ public interface VideogiocoPiaciutoRepository extends JpaRepository<VideogiocoPi
 	
 	void deleteByFkVideogiocoAndFkUtente(Long fkVideogioco, Long fkUtente);
 	
+	int countByFkVideogiocoAndPiaciuto(Long fkVideogioco, boolean piaciuto);
 }

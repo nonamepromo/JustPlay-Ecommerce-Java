@@ -31,8 +31,13 @@ public interface VideogiocoService {
 	List<Long> getUtenteSellinglist(Long idUtente) throws BusinessException;
 		
 	VideogiocoPiaciuto findLikedGame(Long idUtente, Long idVideogioco) throws BusinessException;
+	
+	//TENTATIVI PER BRANDOLINI
+	Videogioco findLikedGames(Long idUtente, Long idVideogioco) throws BusinessException;
 
 	Videogioco findVideogiocoByID(Long id) throws BusinessException;
+	
+	int countLikedGameByFkVideogioco(Long fkVideogioco, boolean piaciuto) throws BusinessException;
 
 	void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
 

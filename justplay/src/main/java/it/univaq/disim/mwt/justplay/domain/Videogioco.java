@@ -1,6 +1,7 @@
 package it.univaq.disim.mwt.justplay.domain;
 
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -53,6 +54,9 @@ public class Videogioco extends AbstractPersistableEntity {
 	@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String imageUrl;
+	
+	@ManyToMany(mappedBy = "likedVideogiochi")
+	Set<Utente> likes;
 
 	@Override
 	public boolean equals(Object o) {

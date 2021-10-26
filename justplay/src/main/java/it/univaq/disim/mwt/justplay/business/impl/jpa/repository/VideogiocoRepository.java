@@ -7,9 +7,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
+import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
 
 @Repository
 public interface VideogiocoRepository extends JpaRepository<Videogioco, Long> {
+	
+	
+	Videogioco findByLikesAndId(Long idUtente, Long fkVideogioco);
+
+	
 
 	List<Videogioco> findBy(Pageable pageable);
 

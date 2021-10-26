@@ -1,6 +1,8 @@
 package it.univaq.disim.mwt.justplay.domain;
 
 import java.util.Objects;
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -53,6 +55,13 @@ public class Utente extends AbstractPersistableEntity {
 
 	@Transient
 	private String matchingPassword;
+
+	@ManyToMany
+	@JoinTable(
+	  name = "liked_videogiochi", 
+	  joinColumns = @JoinColumn(name = "fk_utente"), 
+	  inverseJoinColumns = @JoinColumn(name = "fk_videogioco"))
+	Set<Videogioco> likedVideogiochi;
 
 	@Override
 	public boolean equals(Object o) {

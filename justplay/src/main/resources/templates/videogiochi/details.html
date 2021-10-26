@@ -31,12 +31,13 @@
 							data-target="#modal-login">[[#{videogioco.vendita}]]<i
 								class="fa fa-shopping-cart"></i></button>
 					</div>
-					<div class="col-0">
+					<div>
 						<form th:action="@{/videogiochi/addGameToWishlist}">
 							<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco" class="form-control">
 							<button class="btn btn-dark btn-shadow btn-rounded" type="submit" name="action"
 								th:attrappend="value=${wishList != null} ? (${wishList.contains(idVideogioco)} ? 'delete': 'save') : 'save'"
-								th:style=" ${wishList != null} ? (${wishList.contains(idVideogioco)} ? 'color: CornflowerBlue' : 'color: light-grey') : 'color: light-grey'"><i
+								th:style=" ${wishList != null} ? (${wishList.contains(idVideogioco)} ? 'color: CornflowerBlue' : 'color: light-grey') : 'color: light-grey'">
+								[[#{videogioco.addTo}]] Wishlist<i
 									class="fa fa-heart"></i></button>
 						</form>
 					</div>
@@ -46,7 +47,7 @@
 							<button class="btn btn-dark btn-shadow btn-rounded" type="submit" name="action"
 								th:attrappend="value=${playedList != null} ? (${playedList.contains(idVideogioco)} ? 'delete': 'save') : 'save'"
 								th:style=" ${playedList != null} ? (${playedList.contains(idVideogioco)} ? 'color: CornflowerBlue' : 'color: light-grey') : 'color: light-grey'">
-								<i class="fa fa-gamepad"></i></button>
+								[[#{videogioco.addTo}]] Playedlist<i class="fa fa-gamepad"></i></button>
 						</form>
 					</div>
 					<div class="col-4">
@@ -54,10 +55,12 @@
 							<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco" class="form-control">
 							<button class="btn btn-dark btn-shadow btn-rounded" th:value="true" th:name="piaciuto"
 								th:style="${piaciuto} ? 'color: CornflowerBlue' : 'color: light-grey'" type="submit"><i
-									class="fa fa-thumbs-up"></i></button>
+									class="fa fa-thumbs-up"></i>
+								<span th:if="${countPiaciuti>0}" th:text=" ${countPiaciuti}"></span></button>
 							<button class="btn btn-dark btn-shadow btn-rounded" th:value="false" th:name="piaciuto"
 								th:style="${piaciuto != null} ? (!(${piaciuto}) ? 'color: CornflowerBlue' : 'color: light-grey') : 'color: light-grey'"
-								type="submit"><i class="fa fa-thumbs-down"></i></button>
+								type="submit"><i class="fa fa-thumbs-down"></i>
+								<span th:if="${countNonPiaciuti>0}" th:text=" ${countNonPiaciuti}"></button>
 
 						</form>
 					</div>

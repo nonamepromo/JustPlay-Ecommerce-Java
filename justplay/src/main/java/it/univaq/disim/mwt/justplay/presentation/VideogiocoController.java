@@ -108,7 +108,7 @@ public class VideogiocoController {
 		model.addAttribute("playedList", service.getPlayedlist(idUtente));
 	}
 
-	public void getSellinglist(Model model, Long idVideogioco) throws BusinessException {
+	public void getSellinglist(Long idVideogioco, Model model) throws BusinessException {
 		model.addAttribute("sellingList", service.getSellinglist(idVideogioco));
 	}
 
@@ -145,10 +145,15 @@ public class VideogiocoController {
 		VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();
 		model.addAttribute("videogioco_in_vendita", videogiocoInVendita);
 		model.addAttribute("videogiochi_in_vendita", service.findAllVendita(idVideogioco));
-		getSellinglist(model, idVideogioco);
-
+		getSellinglist(idVideogioco, model);
+		countLikedGameByFkVideogioco(idVideogioco, model);
 		platform(idVideogioco, model, null, null, null);
 		return "videogiochi/details";
+	}
+
+	public void countLikedGameByFkVideogioco(Long fkVideogioco, Model model) throws BusinessException{
+		model.addAttribute("countPiaciuti", service.countLikedGameByFkVideogioco(fkVideogioco, true));
+		model.addAttribute("countNonPiaciuti", service.countLikedGameByFkVideogioco(fkVideogioco, false));
 	}
 
 	@RequestMapping(value = "/createConversazione", method = RequestMethod.GET)
@@ -186,7 +191,7 @@ public class VideogiocoController {
 		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
 
-	// Questo aggiunge un gioco alla wishlist da list se il param ricevuto è save
+	// Questo aggiunge un gioco alla wishlist da details se il param ricevuto è save
 	@RequestMapping(value = "/addGameToWishlist", method = RequestMethod.GET, params = "action=save")
 	public String addGameToWishlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
@@ -195,7 +200,7 @@ public class VideogiocoController {
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
 
-	// Questo aggiunge un gioco alla wishlist da list se il param ricevuto è delete
+	// Questo aggiunge un gioco alla wishlist da details se il param ricevuto è delete
 	@RequestMapping(value = "/addGameToWishlist", method = RequestMethod.GET, params = "action=delete")
 	public String removeGameFromWishlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
@@ -217,7 +222,7 @@ public class VideogiocoController {
 		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
 
-	// Questo aggiunge un gioco alla playedlist da list se il param ricevuto è save
+	// Questo aggiunge un gioco alla playedlist da details se il param ricevuto è save
 	@RequestMapping(value = "/addGameToPlayedlist", method = RequestMethod.GET, params = "action=save")
 	public String addGameToPlayedlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
@@ -226,7 +231,7 @@ public class VideogiocoController {
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
 
-	// Questo aggiunge un gioco alla playedlist da list se il param ricevuto è
+	// Questo aggiunge un gioco alla playedlist da details se il param ricevuto è
 	// delete
 	@RequestMapping(value = "/addGameToPlayedlist", method = RequestMethod.GET, params = "action=delete")
 	public String removeGameFromPlayedlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)

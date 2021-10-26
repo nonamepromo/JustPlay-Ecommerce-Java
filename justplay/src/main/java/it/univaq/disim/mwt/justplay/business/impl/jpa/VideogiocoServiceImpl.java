@@ -170,6 +170,20 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		videogiocoPiaciuto = videogiocoPiaciutoRepository.findByFkUtenteAndFkVideogioco(idUtente, fkVideogioco);
 		return videogiocoPiaciuto;
 	}
+	
+	//TENTATIVO PER BRANDOLINI
+	@Override
+	public Videogioco findLikedGames(Long idUtente, Long fkVideogioco) throws BusinessException {
+		Videogioco videogiocoPiaciuto = new Videogioco();
+		videogiocoPiaciuto = videogiocoRepository.findByLikesAndId(idUtente, fkVideogioco);
+		return videogiocoPiaciuto;
+	}
+	
+	@Override
+	public int countLikedGameByFkVideogioco(Long fkVideogioco, boolean piaciuto) throws BusinessException {
+		int contatore = videogiocoPiaciutoRepository.countByFkVideogiocoAndPiaciuto(fkVideogioco, piaciuto); 
+		return contatore;
+	}
 
 	@Override
 	public Videogioco findVideogiocoByID(Long id) throws BusinessException {
