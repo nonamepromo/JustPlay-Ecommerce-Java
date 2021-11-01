@@ -22,6 +22,7 @@ import it.univaq.disim.mwt.justplay.business.ConversazioneService;
 import it.univaq.disim.mwt.justplay.business.GamestopService;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.domain.Conversazione;
+import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoDesiderato;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
@@ -123,11 +124,11 @@ public class VideogiocoController {
 	public String details(@RequestParam("idVideogioco") Long idVideogioco, Model model) throws BusinessException {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication.getPrincipal() != "anonymousUser") {
-			Long idUtente = Utility.getUtente().getId();
-			model.addAttribute("idUtente", idUtente);
-			getWishlist(model, idUtente);
-			getPlayedlist(model, idUtente);
-			VideogiocoPiaciuto videogiocoPiaciuto = service.findLikedGame(idUtente, idVideogioco);
+			Utente utente = Utility.getUtente();
+			model.addAttribute("idUtente", utente.getId());
+			getWishlist(model, utente.getId());
+			getPlayedlist(model, utente.getId());
+			VideogiocoPiaciuto videogiocoPiaciuto = service.findLikedGame(utente, service.findVideogiocoByID(idVideogioco));
 			if (videogiocoPiaciuto != null) {
 				model.addAttribute("piaciuto", videogiocoPiaciuto.isPiaciuto());
 			}
@@ -152,8 +153,8 @@ public class VideogiocoController {
 	}
 
 	public void countLikedGameByFkVideogioco(Long fkVideogioco, Model model) throws BusinessException{
-		model.addAttribute("countPiaciuti", service.countLikedGameByFkVideogioco(fkVideogioco, true));
-		model.addAttribute("countNonPiaciuti", service.countLikedGameByFkVideogioco(fkVideogioco, false));
+		model.addAttribute("countPiaciuti", service.countLikedGameByVideogioco(service.findVideogiocoByID(fkVideogioco), true));
+		model.addAttribute("countNonPiaciuti", service.countLikedGameByVideogioco(service.findVideogiocoByID(fkVideogioco), false));
 	}
 
 	@RequestMapping(value = "/createConversazione", method = RequestMethod.GET)
@@ -196,6 +197,11 @@ public class VideogiocoController {
 	public String addGameToWishlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
 		Long idUtente = Utility.getUtente().getId();
+		
+		//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		Videogioco video = service.findVideogiocoByID(idVideogioco);
+		
+		
 		service.addGameToWishlist(idVideogioco, idUtente);
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
@@ -254,17 +260,18 @@ public class VideogiocoController {
 	@RequestMapping(value = "/addGameToLikedlist", method = RequestMethod.GET)
 	public String addGameToLikedlist(@RequestParam Long idVideogioco, @RequestParam boolean piaciuto)
 			throws BusinessException {
-		Long idUtente = Utility.getUtente().getId();
-		VideogiocoPiaciuto videogiocoPiaciuto = service.findLikedGame(idUtente, idVideogioco);
+		Utente utente = Utility.getUtente();
+		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
+		VideogiocoPiaciuto videogiocoPiaciuto = service.findLikedGame(utente, videogioco);
 		if (videogiocoPiaciuto != null) {
 			if (videogiocoPiaciuto.isPiaciuto() == piaciuto) {
-				service.removeGameFromLikedlist(idVideogioco, idUtente);
+				service.removeGameFromLikedlist(utente, videogioco);
 			} else {
-				service.removeGameFromLikedlist(idVideogioco, idUtente);
-				service.addGameToLikedlist(idVideogioco, idUtente, piaciuto);
+				service.removeGameFromLikedlist(utente, videogioco);
+				service.addGameToLikedlist(videogioco, piaciuto);
 			}
 		} else {
-			service.addGameToLikedlist(idVideogioco, idUtente, piaciuto);
+			service.addGameToLikedlist(videogioco, piaciuto);
 		}
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}

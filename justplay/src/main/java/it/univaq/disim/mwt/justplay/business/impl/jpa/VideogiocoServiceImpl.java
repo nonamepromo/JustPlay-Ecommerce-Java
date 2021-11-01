@@ -16,11 +16,13 @@ import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoDesid
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoGiocatoRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoInVenditaRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoPiaciutoRepository;
+import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoDesiderato;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoGiocato;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
+import it.univaq.disim.mwt.justplay.presentation.Utility;
 
 @Service
 @Transactional
@@ -165,23 +167,15 @@ public class VideogiocoServiceImpl implements VideogiocoService {
     */
 
 	@Override
-	public VideogiocoPiaciuto findLikedGame(Long idUtente, Long fkVideogioco) throws BusinessException {
+	public VideogiocoPiaciuto findLikedGame(Utente utente, Videogioco videogioco) throws BusinessException {
 		VideogiocoPiaciuto videogiocoPiaciuto = new VideogiocoPiaciuto();
-		videogiocoPiaciuto = videogiocoPiaciutoRepository.findByFkUtenteAndFkVideogioco(idUtente, fkVideogioco);
-		return videogiocoPiaciuto;
-	}
-	
-	//TENTATIVO PER BRANDOLINI
-	@Override
-	public Videogioco findLikedGames(Long idUtente, Long fkVideogioco) throws BusinessException {
-		Videogioco videogiocoPiaciuto = new Videogioco();
-		videogiocoPiaciuto = videogiocoRepository.findByLikesAndId(idUtente, fkVideogioco);
+		videogiocoPiaciuto = videogiocoPiaciutoRepository.findByUtenteAndVideogioco(utente, videogioco);
 		return videogiocoPiaciuto;
 	}
 	
 	@Override
-	public int countLikedGameByFkVideogioco(Long fkVideogioco, boolean piaciuto) throws BusinessException {
-		int contatore = videogiocoPiaciutoRepository.countByFkVideogiocoAndPiaciuto(fkVideogioco, piaciuto); 
+	public int countLikedGameByVideogioco(Videogioco videogioco, boolean piaciuto) throws BusinessException {
+		int contatore = videogiocoPiaciutoRepository.countByVideogiocoAndPiaciuto(videogioco, piaciuto); 
 		return contatore;
 	}
 
@@ -216,11 +210,11 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
-	public void addGameToLikedlist(Long idVideogioco, Long idUtente, boolean piaciuto) throws BusinessException {
+	public void addGameToLikedlist(Videogioco videogioco, boolean piaciuto) throws BusinessException {
 		try {
 			VideogiocoPiaciuto videogiocoPiaciuto = new VideogiocoPiaciuto();
-			videogiocoPiaciuto.setFkUtente(idUtente);
-			videogiocoPiaciuto.setFkVideogioco(idVideogioco);
+			videogiocoPiaciuto.setUtente(Utility.getUtente());
+			videogiocoPiaciuto.setVideogioco(videogioco);
 			videogiocoPiaciuto.setPiaciuto(piaciuto);
 			videogiocoPiaciutoRepository.save(videogiocoPiaciuto);
 		} catch (Exception e) {
@@ -261,8 +255,8 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	}
 	
 	@Override
-	public void removeGameFromLikedlist(Long idVideogioco, Long idUtente) throws BusinessException {
-		videogiocoPiaciutoRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
+	public void removeGameFromLikedlist(Utente utente, Videogioco videogioco) throws BusinessException {
+		videogiocoPiaciutoRepository.deleteByUtenteAndVideogioco(utente, videogioco);
 	}
 	
 	@Override

@@ -19,14 +19,15 @@ import lombok.ToString;
 @ToString
 public class VideogiocoPiaciuto extends AbstractPersistableEntity {
 
-	@Column(name = "fk_utente")
-	@NotNull(groups = { OnCreate.class, Default.class })
-	private Long fkUtente;
+	@ManyToOne
+	@JoinColumn(name = "fk_utente")
+	Utente utente;
 
-	@Column(name = "fk_videogioco")
-	@NotNull(groups = { OnCreate.class, Default.class })
-	private Long fkVideogioco;
-	
-	@Column(name="piaciuto")
+	@ManyToOne
+	@JoinColumn(name = "fk_videogioco")
+	Videogioco videogioco;
+
+	@Column(name = "piaciuto")
 	private boolean piaciuto;
+	
 }

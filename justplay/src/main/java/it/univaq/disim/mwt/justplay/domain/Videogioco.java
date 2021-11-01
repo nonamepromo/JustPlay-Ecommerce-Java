@@ -55,8 +55,8 @@ public class Videogioco extends AbstractPersistableEntity {
 	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String imageUrl;
 	
-	@ManyToMany(mappedBy = "likedVideogiochi")
-	Set<Utente> likes;
+    @OneToMany(mappedBy = "videogioco")
+    Set<VideogiocoPiaciuto> videogiochiPiaciuti;
 
 	@Override
 	public boolean equals(Object o) {

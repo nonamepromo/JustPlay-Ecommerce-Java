@@ -2,6 +2,7 @@ package it.univaq.disim.mwt.justplay.business;
 
 import java.util.List;
 
+import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
@@ -30,14 +31,11 @@ public interface VideogiocoService {
 
 	List<Long> getUtenteSellinglist(Long idUtente) throws BusinessException;
 		
-	VideogiocoPiaciuto findLikedGame(Long idUtente, Long idVideogioco) throws BusinessException;
-	
-	//TENTATIVI PER BRANDOLINI
-	Videogioco findLikedGames(Long idUtente, Long idVideogioco) throws BusinessException;
+	VideogiocoPiaciuto findLikedGame(Utente utente, Videogioco videogioco) throws BusinessException;
 
 	Videogioco findVideogiocoByID(Long id) throws BusinessException;
 	
-	int countLikedGameByFkVideogioco(Long fkVideogioco, boolean piaciuto) throws BusinessException;
+	int countLikedGameByVideogioco(Videogioco videogioco, boolean piaciuto) throws BusinessException;
 
 	void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
@@ -45,7 +43,7 @@ public interface VideogiocoService {
 
 	void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Long idVideogioco, Long idUtente) throws BusinessException;
 	
-	void addGameToLikedlist(Long idVideogioco, Long idUtente, boolean piaciuto) throws BusinessException;
+	void addGameToLikedlist(Videogioco videogioco, boolean piaciuto) throws BusinessException;
 
 	void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
@@ -53,7 +51,7 @@ public interface VideogiocoService {
 
 	void removeGameFromSellinglist(Long idVideogioco, Long idUtente) throws BusinessException;
 	
-	void removeGameFromLikedlist(Long idVideogioco, Long idUtente) throws BusinessException;
+	void removeGameFromLikedlist(Utente utente, Videogioco videogioco) throws BusinessException;
 	
 	void aggiuntaVideogiochi() throws BusinessException; //PER POPOLARE DB CON VIDEOGIOCHI
 	

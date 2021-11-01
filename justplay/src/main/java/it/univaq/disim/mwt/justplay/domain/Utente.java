@@ -56,13 +56,9 @@ public class Utente extends AbstractPersistableEntity {
 	@Transient
 	private String matchingPassword;
 
-	@ManyToMany
-	@JoinTable(
-	  name = "liked_videogiochi", 
-	  joinColumns = @JoinColumn(name = "fk_utente"), 
-	  inverseJoinColumns = @JoinColumn(name = "fk_videogioco"))
-	Set<Videogioco> likedVideogiochi;
-
+	@OneToMany(mappedBy = "utente")
+	Set<VideogiocoPiaciuto> videogiochiPiaciuti;
+	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -78,8 +74,7 @@ public class Utente extends AbstractPersistableEntity {
 	@Override
 	public String toString() {
 		return "Utente{" + "nome='" + nome + '\'' + ", cognome='" + cognome + '\'' + ", email='" + email + '\''
-				+ ", username='" + username + '\'' +
-				'}';
+				+ ", username='" + username + '\'' + '}';
 	}
 
 	@Override

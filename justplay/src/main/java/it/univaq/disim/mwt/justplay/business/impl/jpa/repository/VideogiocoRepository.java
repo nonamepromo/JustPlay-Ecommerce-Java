@@ -12,11 +12,6 @@ import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
 @Repository
 public interface VideogiocoRepository extends JpaRepository<Videogioco, Long> {
 	
-	
-	Videogioco findByLikesAndId(Long idUtente, Long fkVideogioco);
-
-	
-
 	List<Videogioco> findBy(Pageable pageable);
 
 	List<Videogioco> findAllByPs4UrlNotNull(Pageable pageable);
