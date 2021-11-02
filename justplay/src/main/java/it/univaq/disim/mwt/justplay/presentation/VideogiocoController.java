@@ -110,7 +110,7 @@ public class VideogiocoController {
 	}
 */
 	public void getPlayedlist(Model model, Long idUtente) throws BusinessException {
-		model.addAttribute("playedList", service.getPlayedlist(Utility.getUtente()));
+		model.addAttribute("playedList", service.getPlayedlist(UtenteRepository.findById(idUtente)));
 	}
 
 	public void getSellinglist(Long idVideogioco, Model model) throws BusinessException {
