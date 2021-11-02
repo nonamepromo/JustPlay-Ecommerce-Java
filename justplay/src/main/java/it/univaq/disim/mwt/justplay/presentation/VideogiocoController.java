@@ -44,6 +44,9 @@ public class VideogiocoController {
 	@Autowired
 	private ConversazioneService conversazioneService;
 
+	/*
+	Prende in argomento l'indice della paginazione e la piattaforma e restituisce la lista di videogiochi che rispettano i parametri
+	*/
 	@GetMapping(value = "/list", params = { "platform", "index" })
 	public String listWithPlatform(@RequestParam(value = "platform", defaultValue = "all") String platform,
 			@RequestParam(value = "index", defaultValue = "1") int index, Model model) throws BusinessException {
@@ -62,13 +65,17 @@ public class VideogiocoController {
 
 	}
 
+	/*
+	Viene richiamato se è stata effettuata una ricerca testuale, prende gli stessi argomenti di listWithPlatform()
+	 più la stringa digitata nel campo di ricerca. Se è una stringa vuota, viene restituita la lista completa di videogiochi
+	*/
 	@GetMapping(value = "/list", params = { "platform", "index", "searchString" })
 	public String listWithPlatformResearched(@RequestParam(value = "platform", defaultValue = "all") String platform,
 			@RequestParam(value = "index", defaultValue = "1") int index,
 			@RequestParam(value = "searchString") String searchString, Model model) throws BusinessException {
 		List<Videogioco> videogiochi = new ArrayList<Videogioco>();
 		int numberOfIndexes = 0;
-		if (searchString == "") {
+		if (searchString.equals("")) {
 			videogiochi = service.findByPlatform(platform, index);
 			model.addAttribute("videogiochi", videogiochi);
 			numberOfIndexes = service.getVideogiochiCount(platform) / 3
@@ -124,6 +131,13 @@ public class VideogiocoController {
 		model.addAttribute("pcUrls", pcUrls);
 	}
 
+	/*
+	Prende in argomento un id e restituisce il videogioco corrispondente che viene aggiunto come attributo al Model.
+	Inoltre, vengono aggiunti al Model anche i seguenti attributi:
+	- Booleano che indica se il videogioco è nella lista dei videogiochi piaciuti o non piaciuti dell'utente connesso
+	- Link appartenenti agli store in cui è presente il videogioco
+	- Lista di vendite di quel gioco da parte di tutti gli utenti
+	*/
 	@GetMapping("/details")
 	public String details(@RequestParam("idVideogioco") Long idVideogioco, Model model) throws BusinessException {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -161,6 +175,10 @@ public class VideogiocoController {
 		model.addAttribute("countNonPiaciuti", service.countLikedGameByVideogioco(service.findVideogiocoByID(fkVideogioco), false));
 	}
 
+	/*
+	Se non esiste già, viene creato un oggetto Conversazione con gli id dell'utente connesso e l'id dell'utente
+	 che ha messo in vendita il videogioco. Se esiste già, viene aggiunto l'oggetto come attributo nel Model
+	*/
 	@RequestMapping(value = "/createConversazione", method = RequestMethod.GET)
 	public String createConversazione(@RequestParam("fkUtente") Long fkUtente, Long idUtente, Model model,
 			RedirectAttributes redirAttrs) throws BusinessException {
