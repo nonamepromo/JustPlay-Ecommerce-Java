@@ -20,7 +20,9 @@ import it.univaq.disim.mwt.justplay.business.AmazonService;
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.ConversazioneService;
 import it.univaq.disim.mwt.justplay.business.GamestopService;
+import it.univaq.disim.mwt.justplay.business.UtenteService;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
+import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.UtenteRepository;
 import it.univaq.disim.mwt.justplay.domain.Conversazione;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
@@ -43,6 +45,9 @@ public class VideogiocoController {
 
 	@Autowired
 	private ConversazioneService conversazioneService;
+	
+	@Autowired
+	private UtenteService utenteService;
 
 	/*
 	Prende in argomento l'indice della paginazione e la piattaforma e restituisce la lista di videogiochi che rispettano i parametri
@@ -117,7 +122,7 @@ public class VideogiocoController {
 	}
 */
 	public void getPlayedlist(Model model, Long idUtente) throws BusinessException {
-		model.addAttribute("playedList", service.getPlayedlist(UtenteRepository.findById(idUtente)));
+		model.addAttribute("playedList", service.getPlayedlist(utenteService.findById(idUtente).get()));
 	}
 
 	public void getSellinglist(Long idVideogioco, Model model) throws BusinessException {
@@ -251,7 +256,10 @@ public class VideogiocoController {
 	public String addGameToPlayedlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
 		Long idUtente = Utility.getUtente().getId();
-		service.addGameToPlayedlist(idVideogioco, idUtente);
+		//service.addGameToPlayedlist(idVideogioco, idUtente);
+		Utente utente = Utility.getUtente();
+		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
+		service.addGameToPlayedlist(videogioco, utente);
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
 
@@ -261,7 +269,10 @@ public class VideogiocoController {
 	public String removeGameFromPlayedlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
 		Long idUtente = Utility.getUtente().getId();
-		service.removeGameFromPlayedlist(idVideogioco, idUtente);
+		//service.removeGameFromPlayedlist(idVideogioco, idUtente);
+		Utente utente = Utility.getUtente();
+		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
+		service.removeGameFromPlayedlist(videogioco, utente);
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
 

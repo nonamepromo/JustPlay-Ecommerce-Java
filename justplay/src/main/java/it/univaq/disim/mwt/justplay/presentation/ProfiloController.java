@@ -14,6 +14,7 @@ import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.UtenteService;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.domain.Utente;
+import it.univaq.disim.mwt.justplay.domain.Videogioco;
 
 @Controller
 @RequestMapping("/common/profilo")
@@ -23,6 +24,8 @@ public class ProfiloController {
 	private UtenteService service;
 	@Autowired
 	private VideogiocoService gameService;
+	@Autowired
+	private UtenteService utenteService;
 
 	@GetMapping
 	public String modificaProfiloStart(Model model) throws BusinessException {
@@ -42,7 +45,7 @@ public class ProfiloController {
 	}
 
 	public void getPlayedlist(Model model, Long idUtente) throws BusinessException {
-		model.addAttribute("playedList", gameService.getPlayedlist(idUtente));
+		model.addAttribute("playedList", gameService.getPlayedlist(utenteService.findById(idUtente).get()));
 	}
 
 	public void getSellinglist(Model model, Long idUtente) throws BusinessException {
@@ -63,7 +66,9 @@ public class ProfiloController {
 			throws BusinessException {
 		Utente utente = Utility.getUtente();
 		Long idUtente = utente.getId();
-		gameService.removeGameFromPlayedlist(idVideogioco, idUtente);
+		//gameService.removeGameFromPlayedlist(idVideogioco, idUtente);
+		Videogioco videogioco = gameService.findVideogiocoByID(idVideogioco);
+		gameService.removeGameFromPlayedlist(videogioco, utente);
 		return "/common/profilo";
 	}
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
+import it.univaq.disim.mwt.justplay.domain.VideogiocoGiocato;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
 
@@ -28,7 +29,7 @@ public interface VideogiocoService {
 
 	//List<Long> getPlayedlist(Long idUtente) throws BusinessException;
 
-	List<VideogiocoGiocato> getPlayedlist(Utente utente) throws BusinessException;
+	List<Videogioco> getPlayedlist(Utente utente) throws BusinessException;
 
 
 	List<Long> getSellinglist(Long idVideogioco) throws BusinessException;

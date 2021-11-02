@@ -148,8 +148,8 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	}
 */
 	@Override
-	public List<VideogiocoGiocato> getPlayedlist(Utente utente) throws BusinessException {
-		List<VideogiocoGiocato>  videogiochiGiocati = videogiocoGiocatoRepository.findVideogiochiGiocatiByUtente(utente);
+	public List<Videogioco> getPlayedlist(Utente utente) throws BusinessException {
+		List<Videogioco> videogiochiGiocati = videogiocoGiocatoRepository.findAllByUtente(utente.getId());
 		return videogiochiGiocati;
 	}
 	
@@ -220,7 +220,7 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	@Override
 	public void addGameToPlayedlist(Videogioco videogioco, Utente utente) throws BusinessException {
 		try{
-			VideogiocoGiocato videogiocoGiocato = new VideogiocoGiocato;
+			VideogiocoGiocato videogiocoGiocato = new VideogiocoGiocato();
 			videogiocoGiocato.setUtente(Utility.getUtente());
 			videogiocoGiocato.setVideogioco(videogioco);
 			videogiocoGiocatoRepository.save(videogiocoGiocato);
@@ -271,7 +271,7 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	}
 */
 	@Override
-	public void removeGameFromPlayedlist(Videogioco videogioco, Utente utente) throw BusinessException {
+	public void removeGameFromPlayedlist(Videogioco videogioco, Utente utente) throws BusinessException {
 		videogiocoGiocatoRepository.deleteByVideogiocoAndUtente(videogioco, utente);
 	}
 

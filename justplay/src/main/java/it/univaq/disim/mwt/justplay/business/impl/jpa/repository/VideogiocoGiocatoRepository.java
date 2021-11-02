@@ -5,6 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import it.univaq.disim.mwt.justplay.domain.Utente;
+import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoGiocato;
 
 @Repository
@@ -15,7 +18,8 @@ public interface VideogiocoGiocatoRepository extends JpaRepository<VideogiocoGio
 
 	//void deleteByFkVideogiocoAndFkUtente(Long fkVideogioco, Long fkUtente);
 
-	List<VideogiocoGiocato> findVideogiochiGiocatiByUtente(Utente utente);
+	@Query("SELECT videogioco FROM VideogiocoGiocato vv where fk_utente = :idUtente")
+	List<Videogioco> findAllByUtente(@Param("idUtente") Long idUtente);
 
 	void deleteByVideogiocoAndUtente(Videogioco videogioco, Utente utente);
 

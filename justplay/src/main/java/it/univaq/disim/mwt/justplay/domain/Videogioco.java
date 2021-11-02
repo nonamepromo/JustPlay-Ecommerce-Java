@@ -59,7 +59,7 @@ public class Videogioco extends AbstractPersistableEntity {
     Set<VideogiocoPiaciuto> videogiochiPiaciuti;
 
 	@OneToMany(mappedBy = "videogioco")
-    Set<VideogiocoPiaciuto> videogiochiGiocati;
+    Set<VideogiocoGiocato> videogiochiGiocati;
 
 	@Override
 	public boolean equals(Object o) {
