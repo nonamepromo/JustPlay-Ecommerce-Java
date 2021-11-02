@@ -104,9 +104,13 @@ public class VideogiocoController {
 		model.addAttribute("wishList", service.getWishlist(idUtente));
 	}
 
+/*
 	public void getPlayedlist(Model model, Long idUtente) throws BusinessException {
-
 		model.addAttribute("playedList", service.getPlayedlist(idUtente));
+	}
+*/
+	public void getPlayedlist(Model model, Long idUtente) throws BusinessException {
+		model.addAttribute("playedList", service.getPlayedlist(Utility.getUtente()));
 	}
 
 	public void getSellinglist(Long idVideogioco, Model model) throws BusinessException {
@@ -167,7 +171,6 @@ public class VideogiocoController {
 			redirAttrs.addFlashAttribute("error", "");
 			return "redirect:/videogiochi/list?platform=all&index=1";
 		}
-
 		if (conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(idUtente, fkUtente) != null) {
 			conversazione = conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(idUtente, fkUtente);
 		} else if (conversazioneService.findIdConversazionByFkUtente1AndFkUtente2(fkUtente, idUtente) != null) {
@@ -183,10 +186,6 @@ public class VideogiocoController {
 	@PostMapping("/addGameToWishlist")
 	public String addGameToWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
-		// Authentication authentication =
-		// SecurityContextHolder.getContext().getAuthentication();
-		// String id = authentication.getPrincipal().toString();
-		// Long idUtente = Long.parseLong(id);
 		Long idUtente = Utility.getUtente().getId();
 		service.addGameToWishlist(idVideogioco, idUtente);
 		return "redirect:/videogiochi/list?platform=all&index=1";
@@ -197,11 +196,6 @@ public class VideogiocoController {
 	public String addGameToWishlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
 		Long idUtente = Utility.getUtente().getId();
-		
-		//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		Videogioco video = service.findVideogiocoByID(idVideogioco);
-		
-		
 		service.addGameToWishlist(idVideogioco, idUtente);
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
@@ -216,17 +210,23 @@ public class VideogiocoController {
 	}
 
 	// Questo aggiunge un gioco alla playedlist nella view list utilizzando ajax
+	/*
 	@PostMapping("/addGameToPlayedlist")
 	public String addGameToPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
-		// Authentication authentication =
-		// SecurityContextHolder.getContext().getAuthentication();
-		// String id = authentication.getPrincipal().toString();
-		// Long idUtente = Long.parseLong(id);
 		Long idUtente = Utility.getUtente().getId();
 		service.addGameToPlayedlist(idVideogioco, idUtente);
 		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
+	*/
+	@PostMapping("/addGameToPlayedlist")
+	public String addGameToPlayedlist(@RequestParam(value="idVideogioco") Long idVideogioco, Model model)
+		throws BusinessException {
+			Utente utente = Utility.getUtente();
+			Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
+			service.addGameToPlayedlist(videogioco, utente);
+			return "redirect:/videogiochi/list?platform=all&index=1";
+		}
 
 	// Questo aggiunge un gioco alla playedlist da details se il param ricevuto è save
 	@RequestMapping(value = "/addGameToPlayedlist", method = RequestMethod.GET, params = "action=save")
@@ -286,6 +286,7 @@ public class VideogiocoController {
 		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
 
+/*
 	@PostMapping("/removeGameFromPlayedlist")
 	public String removeGameFromPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {
@@ -295,6 +296,16 @@ public class VideogiocoController {
 		service.removeGameFromPlayedlist(idVideogioco, idUtente);
 		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
+*/
+	@PostMapping("/removeGameFromPlayedlist")
+	public String removeGameFromPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
+			throws BusinessException {
+		Utente utente = Utility.getUtente();
+		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
+		service.removeGameFromPlayedlist(videogioco, utente);
+		return "redirect:/videogiochi/list?platform=all&index=1";
+	}
+
 
 	@RequestMapping(value = "/removeGameFromSellinglist", method = RequestMethod.GET)
 	public String removeGameFromSellinglist(@RequestParam(value = "idVideogioco") Long idVideogioco)

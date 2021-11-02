@@ -140,11 +140,19 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		return videogiochiDesideratiIds;
 	}
 
+/*
 	@Override
 	public List<Long> getPlayedlist(Long idUtente) throws BusinessException {
 		List<Long> videogiochiGiocatiIds = videogiocoGiocatoRepository.findFksVideogiocoByFkUtente(idUtente);
 		return videogiochiGiocatiIds;
 	}
+*/
+	@Override
+	public List<VideogiocoGiocato> getPlayedlist(Utente utente) throws BusinessException {
+		List<VideogiocoGiocato>  videogiochiGiocati = videogiocoGiocatoRepository.findVideogiochiGiocatiByUtente(utente);
+		return videogiochiGiocati;
+	}
+	
 
 	@Override
 	public List<Long> getSellinglist(Long idVideogioco) throws BusinessException {
@@ -196,7 +204,7 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 			throw new BusinessException(e);
 		}
 	}
-
+/*
 	@Override
 	public void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
 		try {
@@ -208,6 +216,19 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 			throw new BusinessException(e);
 		}
 	}
+*/
+	@Override
+	public void addGameToPlayedlist(Videogioco videogioco, Utente utente) throws BusinessException {
+		try{
+			VideogiocoGiocato videogiocoGiocato = new VideogiocoGiocato;
+			videogiocoGiocato.setUtente(Utility.getUtente());
+			videogiocoGiocato.setVideogioco(videogioco);
+			videogiocoGiocatoRepository.save(videogiocoGiocato);
+		}catch (Exception e) {
+			throw new BusinessException(e);
+		}
+	}
+
 
 	@Override
 	public void addGameToLikedlist(Videogioco videogioco, boolean piaciuto) throws BusinessException {
@@ -243,11 +264,17 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	public void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
 		videogiocoDesideratoRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
 	}
-
+/*
 	@Override
 	public void removeGameFromPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
 		videogiocoGiocatoRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
 	}
+*/
+	@Override
+	public void removeGameFromPlayedlist(Videogioco videogioco, Utente utente) throw BusinessException {
+		videogiocoGiocatoRepository.deleteByVideogiocoAndUtente(videogioco, utente);
+	}
+
 
 	@Override
 	public void removeGameFromSellinglist(Long idVideogioco, Long idUtente) throws BusinessException {

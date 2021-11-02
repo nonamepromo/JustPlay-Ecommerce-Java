@@ -25,7 +25,11 @@ public interface VideogiocoService {
 
 	List<Long> getWishlist(Long idUtente) throws BusinessException;
 
-	List<Long> getPlayedlist(Long idUtente) throws BusinessException;
+
+	//List<Long> getPlayedlist(Long idUtente) throws BusinessException;
+
+	List<VideogiocoGiocato> getPlayedlist(Utente utente) throws BusinessException;
+
 
 	List<Long> getSellinglist(Long idVideogioco) throws BusinessException;
 
@@ -39,15 +43,24 @@ public interface VideogiocoService {
 
 	void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
-	void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException;
+
+	//void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException;
+
+	void addGameToPlayedlist(Videogioco videogioco, Utente utente) throws BusinessException;
+
 
 	void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Long idVideogioco, Long idUtente) throws BusinessException;
 	
 	void addGameToLikedlist(Videogioco videogioco, boolean piaciuto) throws BusinessException;
 
+	
 	void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
+	
 
-	void removeGameFromPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException;
+	//void removeGameFromPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException;
+
+	void removeGameFromPlayedlist(Videogioco videogioco, Utente utente) throws BusinessException;
+
 
 	void removeGameFromSellinglist(Long idVideogioco, Long idUtente) throws BusinessException;
 	

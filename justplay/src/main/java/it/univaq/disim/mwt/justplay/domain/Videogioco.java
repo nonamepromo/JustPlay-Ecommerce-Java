@@ -58,6 +58,9 @@ public class Videogioco extends AbstractPersistableEntity {
     @OneToMany(mappedBy = "videogioco")
     Set<VideogiocoPiaciuto> videogiochiPiaciuti;
 
+	@OneToMany(mappedBy = "videogioco")
+    Set<VideogiocoPiaciuto> videogiochiGiocati;
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
