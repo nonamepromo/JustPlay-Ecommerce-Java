@@ -27,6 +27,10 @@ public class ProfiloController {
 	@Autowired
 	private UtenteService utenteService;
 
+	/*
+	Viene richiamato per l'inizializzazione del profilo. Nel Model vengono aggiunti attributi per l'utente connesso,
+	 la wishlist, la playedlist e la sellinglist
+	 */
 	@GetMapping
 	public String modificaProfiloStart(Model model) throws BusinessException {
 		model.addAttribute("videogiochi", gameService.findAllProfile());
@@ -52,6 +56,9 @@ public class ProfiloController {
 		model.addAttribute("sellingList", gameService.getUtenteSellinglist(idUtente));
 	}
 
+	/*
+	Prende in argomento l'id di un videogioco e rimuove dal db il record di videogiochi-desiderati dell'utente connesso
+	 */
 	@PostMapping("/removeGameFromWishlist")
 	public String removeGameFromWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {
@@ -62,6 +69,9 @@ public class ProfiloController {
 		return "/common/profilo";
 	}
 
+	/*
+	Prende in argomento l'id di un videogioco e rimuove dal db il record di videogiochi-giocati dell'utente connesso
+	 */
 	@PostMapping("/removeGameFromPlayedlist")
 	public String removeGameFromPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {
@@ -73,6 +83,10 @@ public class ProfiloController {
 		return "/common/profilo";
 	}
 
+	/*
+	Prende in argomento l'oggetto nuovoProfilo contenente i dati aggiornati dell'utente e
+	 aggiorna il record nel db
+	 */
 	@PostMapping
 	public String modificaProfilo(@ModelAttribute Utente nuovoProfilo, RedirectAttributes redirAttrs)
 			throws BusinessException {
