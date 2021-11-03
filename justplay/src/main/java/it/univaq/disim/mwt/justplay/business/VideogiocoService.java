@@ -24,8 +24,10 @@ public interface VideogiocoService {
 	
 	List<VideogiocoInVendita> findAllVendita(Long idVideogioco) throws BusinessException; //Serve per i giochi in vendit da mostrare in details
 
-	List<Long> getWishlist(Long idUtente) throws BusinessException;
 
+	//List<Long> getWishlist(Long idUtente) throws BusinessException;
+
+	List<Long> getWishlist(Utente utente) throws BusinessException;
 
 	//List<Long> getPlayedlist(Long idUtente) throws BusinessException;
 
@@ -42,8 +44,10 @@ public interface VideogiocoService {
 	
 	int countLikedGameByVideogioco(Videogioco videogioco, boolean piaciuto) throws BusinessException;
 
-	void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
+	//void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
+
+	void addGameToWishlist(Videogioco videogioco, Utente utente) throws BusinessException;
 
 	//void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException;
 
@@ -55,8 +59,9 @@ public interface VideogiocoService {
 	void addGameToLikedlist(Videogioco videogioco, boolean piaciuto) throws BusinessException;
 
 	
-	void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
+	//void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
 	
+	void removeGameFromWishlist(Videogioco videogioco, Utente utente) throws BusinessException;
 
 	//void removeGameFromPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException;
 

@@ -133,20 +133,25 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		videogiochiInVendita = videogiocoInVenditaRepository.findAllByFkVideogioco(idVideogioco);
 		return videogiochiInVendita;
 	}
-
+/*
 	@Override
 	public List<Long> getWishlist(Long idUtente) throws BusinessException {
 		List<Long> videogiochiDesideratiIds = videogiocoDesideratoRepository.findFksVideogiocoByFkUtente(idUtente);
 		return videogiochiDesideratiIds;
 	}
 
-/*
 	@Override
 	public List<Long> getPlayedlist(Long idUtente) throws BusinessException {
 		List<Long> videogiochiGiocatiIds = videogiocoGiocatoRepository.findFksVideogiocoByFkUtente(idUtente);
 		return videogiochiGiocatiIds;
 	}
 */
+	@Override
+	public List<Videogioco> getWishlist(Utente utente) throws BusinessException {
+		List<Videogioco> videogiochiDesideratiIds = videogiocoDesideratoRepository.findAllByUtente(utente.getId());
+		return videogiochiDesiderati;
+	}
+
 	@Override
 	public List<Videogioco> getPlayedlist(Utente utente) throws BusinessException {
 		List<Videogioco> videogiochiGiocati = videogiocoGiocatoRepository.findAllByUtente(utente.getId());
@@ -192,7 +197,7 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		Videogioco videogioco = videogiocoRepository.findById(id).get();
 		return videogioco;
 	}
-
+/*
 	@Override
 	public void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
 		try {
@@ -204,7 +209,7 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 			throw new BusinessException(e);
 		}
 	}
-/*
+
 	@Override
 	public void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
 		try {
@@ -217,6 +222,19 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		}
 	}
 */
+
+	@Override
+	public void addGameToWishlist(Videogioco videogioco, Utente utente) throws BusinessException {
+		try {
+			VideogiocoDesiderato videogiocoDesiderato = new VideogiocoDesiderato();
+			videogiocoDesiderato.setUtente(Utility.getUtente());
+			videogiocoDesiderato.setVideogioco(videogioco);
+			videogiocoDesideratoRepository.save(videogiocoDesiderato);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
+	}
+
 	@Override
 	public void addGameToPlayedlist(Videogioco videogioco, Utente utente) throws BusinessException {
 		try{
@@ -259,17 +277,23 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 			throw new BusinessException(e);
 		}
 	}
-
+/*
 	@Override
 	public void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
 		videogiocoDesideratoRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
 	}
-/*
+
 	@Override
 	public void removeGameFromPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
 		videogiocoGiocatoRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
 	}
 */
+
+	@Override
+	public void removeGameFromWishlist(Videogioco videogioco, Utente utente) throws BusinessException {
+		videogiocoDesideratoRepository.deleteByVideogiocoAndUtente(videogioco, utente);
+	}
+
 	@Override
 	public void removeGameFromPlayedlist(Videogioco videogioco, Utente utente) throws BusinessException {
 		videogiocoGiocatoRepository.deleteByVideogiocoAndUtente(videogioco, utente);
