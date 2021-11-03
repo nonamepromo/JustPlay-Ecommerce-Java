@@ -45,8 +45,8 @@
 						<form th:action="@{/videogiochi/addGameToPlayedlist}">
 							<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco" class="form-control">
 							<button class="btn btn-dark btn-shadow btn-rounded" type="submit" name="action"
-								th:attrappend="value=${playedList != null} ? (${playedList.contains(idVideogioco)} ? 'delete': 'save') : 'save'"
-								th:style=" ${playedList != null} ? (${playedList.contains(idVideogioco)} ? 'color: CornflowerBlue' : 'color: light-grey') : 'color: light-grey'">
+								th:attrappend="value=${playedList != null} ? (${playedList.contains(videogioco)} ? 'delete': 'save') : 'save'"
+								th:style=" ${playedList != null} ? (${playedList.contains(videogioco)} ? 'color: CornflowerBlue' : 'color: light-grey') : 'color: light-grey'">
 								[[#{videogioco.addTo}]] Playedlist<i class="fa fa-gamepad"></i></button>
 						</form>
 					</div>
@@ -187,6 +187,7 @@
 									</thead>
 									<tbody>
 										<tr th:each=" videogioco_in_vendita : ${videogiochi_in_vendita}">
+											<td th:text="${videogioco_in_vendita.username}"></td>
 											<td th:text="${videogioco_in_vendita.prezzo}+ '€'"></td>
 											<td th:text="${videogioco_in_vendita.prezzoSpedizione}+ '€'"></td>
 											<td th:text="${videogioco_in_vendita.provincia}"></td>

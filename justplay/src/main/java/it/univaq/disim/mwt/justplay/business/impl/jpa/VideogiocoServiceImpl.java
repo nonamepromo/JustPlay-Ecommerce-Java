@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import it.univaq.disim.mwt.justplay.business.BusinessException;
+import it.univaq.disim.mwt.justplay.business.UtenteService;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoDesideratoRepository;
@@ -42,6 +43,9 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 
 	@Autowired
 	private VideogiocoPiaciutoRepository videogiocoPiaciutoRepository;
+	
+	@Autowired
+	private UtenteService utenteService;
 
 	@Override
 	public int getVideogiochiCount(String platform) throws BusinessException {
@@ -248,7 +252,9 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 			throws BusinessException {
 		try {
 			VideogiocoInVendita newVideogiocoInVendita = new VideogiocoInVendita();
+			String username = (utenteService.findById(idUtente).get()).getUsername();
 			newVideogiocoInVendita.setFkUtente(idUtente);
+			newVideogiocoInVendita.setUsername(username);
 			newVideogiocoInVendita.setFkVideogioco(idVideogioco);
 			newVideogiocoInVendita.setPrezzo(videogiocoInVendita.getPrezzo());
 			newVideogiocoInVendita.setPrezzoSpedizione(videogiocoInVendita.getPrezzoSpedizione());
