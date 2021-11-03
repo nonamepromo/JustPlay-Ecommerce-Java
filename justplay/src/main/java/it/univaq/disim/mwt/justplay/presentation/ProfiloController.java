@@ -41,7 +41,7 @@ public class ProfiloController {
 	}
 
 	public void getWishlist(Model model, Long idUtente) throws BusinessException {
-		model.addAttribute("wishList", gameService.getWishlist(idUtente));
+		model.addAttribute("wishList", gameService.getWishlist(utenteService.findById(idUtente).get()));
 	}
 
 	public void getPlayedlist(Model model, Long idUtente) throws BusinessException {
@@ -57,7 +57,8 @@ public class ProfiloController {
 			throws BusinessException {
 		Utente utente = Utility.getUtente();
 		Long idUtente = utente.getId();
-		gameService.removeGameFromWishlist(idVideogioco, idUtente);
+		Videogioco videogioco = gameService.findVideogiocoByID(idVideogioco);
+		gameService.removeGameFromWishlist(videogioco, utente);
 		return "/common/profilo";
 	}
 

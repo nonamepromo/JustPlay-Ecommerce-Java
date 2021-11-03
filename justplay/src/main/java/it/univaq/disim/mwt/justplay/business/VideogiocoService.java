@@ -27,7 +27,7 @@ public interface VideogiocoService {
 
 	//List<Long> getWishlist(Long idUtente) throws BusinessException;
 
-	List<Long> getWishlist(Utente utente) throws BusinessException;
+	List<Videogioco> getWishlist(Utente utente) throws BusinessException;
 
 	//List<Long> getPlayedlist(Long idUtente) throws BusinessException;
 

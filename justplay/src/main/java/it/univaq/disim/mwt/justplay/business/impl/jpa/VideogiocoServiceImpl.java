@@ -152,7 +152,7 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 */
 	@Override
 	public List<Videogioco> getWishlist(Utente utente) throws BusinessException {
-		List<Videogioco> videogiochiDesideratiIds = videogiocoDesideratoRepository.findAllByUtente(utente.getId());
+		List<Videogioco> videogiochiDesiderati = videogiocoDesideratoRepository.findAllByUtente(utente.getId());
 		return videogiochiDesiderati;
 	}
 

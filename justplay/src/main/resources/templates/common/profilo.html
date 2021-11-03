@@ -129,7 +129,7 @@
 											</tr>
 										</thead>
 										<tbody th:each="videogioco : ${videogiochi}">
-											<tr th:if="${wishList.contains(videogioco.id)}">
+											<tr th:if="${wishList.contains(videogioco)}">
 												<td th:text="${videogioco.titolo}"></td>
 												<td th:if="${videogioco.xboxUrl != null}" class="badge badge-xbox-one"
 													style="position: relative; bottom: -8px; margin-right: 5px">Xbox One
@@ -159,7 +159,7 @@
 											</tr>
 										</thead>
 										<tbody th:each="videogioco : ${videogiochi}">
-											<tr th:if="${playedList.contains(videogioco.id)}">
+											<tr th:if="${playedList.contains(videogioco)}">
 												<td th:text="${videogioco.titolo}"></td>
 												<td th:if="${videogioco.xboxUrl != null}" class="badge badge-xbox-one"
 													style="position: relative; bottom: -8px; margin-right: 5px">Xbox One

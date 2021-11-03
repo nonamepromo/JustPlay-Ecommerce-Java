@@ -35,8 +35,8 @@
 						<form th:action="@{/videogiochi/addGameToWishlist}">
 							<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco" class="form-control">
 							<button class="btn btn-dark btn-shadow btn-rounded" type="submit" name="action"
-								th:attrappend="value=${wishList != null} ? (${wishList.contains(idVideogioco)} ? 'delete': 'save') : 'save'"
-								th:style=" ${wishList != null} ? (${wishList.contains(idVideogioco)} ? 'color: CornflowerBlue' : 'color: light-grey') : 'color: light-grey'">
+								th:attrappend="value=${wishList != null} ? (${wishList.contains(videogioco)} ? 'delete': 'save') : 'save'"
+								th:style=" ${wishList != null} ? (${wishList.contains(videogioco)} ? 'color: CornflowerBlue' : 'color: light-grey') : 'color: light-grey'">
 								[[#{videogioco.addTo}]] Wishlist<i
 									class="fa fa-heart"></i></button>
 						</form>

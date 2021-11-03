@@ -113,7 +113,7 @@ public class VideogiocoController {
 
 	public void getWishlist(Model model, Long idUtente) throws BusinessException {
 
-		model.addAttribute("wishList", service.getWishlist(idUtente));
+		model.addAttribute("wishList", service.getWishlist(utenteService.findById(idUtente).get()));
 	}
 
 /*
@@ -209,8 +209,9 @@ public class VideogiocoController {
 	@PostMapping("/addGameToWishlist")
 	public String addGameToWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
-		Long idUtente = Utility.getUtente().getId();
-		service.addGameToWishlist(idVideogioco, idUtente);
+		Utente utente = Utility.getUtente();
+		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
+		service.addGameToWishlist(videogioco, utente);
 		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
 
@@ -219,7 +220,9 @@ public class VideogiocoController {
 	public String addGameToWishlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
 		Long idUtente = Utility.getUtente().getId();
-		service.addGameToWishlist(idVideogioco, idUtente);
+		Utente utente = Utility.getUtente();
+		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
+		service.addGameToWishlist(videogioco, utente);
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
 
@@ -228,7 +231,9 @@ public class VideogiocoController {
 	public String removeGameFromWishlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
 		Long idUtente = Utility.getUtente().getId();
-		service.removeGameFromWishlist(idVideogioco, idUtente);
+		Utente utente = Utility.getUtente();
+		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
+		service.removeGameFromWishlist(videogioco, utente);
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
 
@@ -308,10 +313,9 @@ public class VideogiocoController {
 	@PostMapping("/removeGameFromWishlist")
 	public String removeGameFromWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String id = authentication.getPrincipal().toString();
-		Long idUtente = Long.parseLong(id);
-		service.removeGameFromWishlist(idVideogioco, idUtente);
+		Utente utente = Utility.getUtente();
+		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
+		service.removeGameFromWishlist(videogioco, utente);
 		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
 
