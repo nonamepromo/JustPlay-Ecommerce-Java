@@ -116,11 +116,6 @@ public class VideogiocoController {
 		model.addAttribute("wishList", service.getWishlist(utenteService.findById(idUtente).get()));
 	}
 
-/*
-	public void getPlayedlist(Model model, Long idUtente) throws BusinessException {
-		model.addAttribute("playedList", service.getPlayedlist(idUtente));
-	}
-*/
 	public void getPlayedlist(Model model, Long idUtente) throws BusinessException {
 		model.addAttribute("playedList", service.getPlayedlist(utenteService.findById(idUtente).get()));
 	}
@@ -238,15 +233,6 @@ public class VideogiocoController {
 	}
 
 	// Questo aggiunge un gioco alla playedlist nella view list utilizzando ajax
-	/*
-	@PostMapping("/addGameToPlayedlist")
-	public String addGameToPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
-			throws BusinessException {
-		Long idUtente = Utility.getUtente().getId();
-		service.addGameToPlayedlist(idVideogioco, idUtente);
-		return "redirect:/videogiochi/list?platform=all&index=1";
-	}
-	*/
 	@PostMapping("/addGameToPlayedlist")
 	public String addGameToPlayedlist(@RequestParam(value="idVideogioco") Long idVideogioco, Model model)
 		throws BusinessException {
@@ -319,17 +305,6 @@ public class VideogiocoController {
 		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
 
-/*
-	@PostMapping("/removeGameFromPlayedlist")
-	public String removeGameFromPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
-			throws BusinessException {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String id = authentication.getPrincipal().toString();
-		Long idUtente = Long.parseLong(id);
-		service.removeGameFromPlayedlist(idVideogioco, idUtente);
-		return "redirect:/videogiochi/list?platform=all&index=1";
-	}
-*/
 	@PostMapping("/removeGameFromPlayedlist")
 	public String removeGameFromPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {

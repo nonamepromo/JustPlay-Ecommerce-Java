@@ -24,15 +24,9 @@ public interface VideogiocoService {
 	
 	List<VideogiocoInVendita> findAllVendita(Long idVideogioco) throws BusinessException; //Serve per i giochi in vendit da mostrare in details
 
-
-	//List<Long> getWishlist(Long idUtente) throws BusinessException;
-
 	List<Videogioco> getWishlist(Utente utente) throws BusinessException;
 
-	//List<Long> getPlayedlist(Long idUtente) throws BusinessException;
-
 	List<Videogioco> getPlayedlist(Utente utente) throws BusinessException;
-
 
 	List<Long> getSellinglist(Long idVideogioco) throws BusinessException;
 
@@ -44,35 +38,20 @@ public interface VideogiocoService {
 	
 	int countLikedGameByVideogioco(Videogioco videogioco, boolean piaciuto) throws BusinessException;
 
-
-	//void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
-
 	void addGameToWishlist(Videogioco videogioco, Utente utente) throws BusinessException;
 
-	//void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException;
-
 	void addGameToPlayedlist(Videogioco videogioco, Utente utente) throws BusinessException;
-
 
 	void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Long idVideogioco, Long idUtente) throws BusinessException;
 	
 	void addGameToLikedlist(Videogioco videogioco, boolean piaciuto) throws BusinessException;
-
-	
-	//void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException;
 	
 	void removeGameFromWishlist(Videogioco videogioco, Utente utente) throws BusinessException;
 
-	//void removeGameFromPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException;
-
 	void removeGameFromPlayedlist(Videogioco videogioco, Utente utente) throws BusinessException;
-
 
 	void removeGameFromSellinglist(Long idVideogioco, Long idUtente) throws BusinessException;
 	
 	void removeGameFromLikedlist(Utente utente, Videogioco videogioco) throws BusinessException;
 	
-	void aggiuntaVideogiochi() throws BusinessException; //PER POPOLARE DB CON VIDEOGIOCHI
-	
-	
-}
+	void aggiuntaVideogiochi() throws BusinessException; //PER POPOLARE DB CON VIDEOGIOCHI}

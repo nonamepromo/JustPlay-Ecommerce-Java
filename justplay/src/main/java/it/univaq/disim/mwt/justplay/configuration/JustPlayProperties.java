@@ -12,6 +12,5 @@ import lombok.Data;
 @Valid
 @ConfigurationProperties(prefix = "justplay")
 public class JustPlayProperties {
-
 	private String dateFormat;
 }
