@@ -168,7 +168,6 @@
 						<ul class="pagination">
 							<li th:each="i: ${#numbers.sequence(1, videogiochiCount)}" class=""
 								th:class="${param.index != null} ? (${param.index[0] == i} ? 'page-item active' : 'page-item') : 'page-item active'">
-								<!-- <a th:text="${i}" class="page-link" th:data-parameter1="${param.platform[0]}" th:onclick="|listWithPlatform(this.getAttribute('data-parameter1'), ${i})|"></a> -->
 								<a th:text="${i}" class="page-link" th:data-parameter1="${platform}" th:onclick="|listWithPlatform(this.getAttribute('data-parameter1'), ${i})|"></a>
 							</li>
 						</ul>
@@ -180,8 +179,7 @@
 						<ul class="pagination">
 							<li th:each="i: ${#numbers.sequence(1, videogiochiCount)}" class=""
 								th:class="${param.index != null} ? (${param.index[0] == i} ? 'page-item active' : 'page-item') : 'page-item active'">
-								<!-- <a th:text="${i}" class="page-link" th:data-parameter1="${param.platform[0]}" th:onclick="|listWithPlatform(this.getAttribute('data-parameter1'), ${i})|"></a> -->
-								<a th:text="${i}" class="page-link" th:href="@{'/videogiochi/list?platform=all&index='+ ${i} + '&searchString=' + ${searchString}}"></a>
+								<a th:if="${i} != 0" th:text="${i}" class="page-link" th:href="@{'/videogiochi/list?platform=all&index='+ ${i} + '&searchString=' + ${searchString}}"></a>
 							</li>
 						</ul>
 					</nav>

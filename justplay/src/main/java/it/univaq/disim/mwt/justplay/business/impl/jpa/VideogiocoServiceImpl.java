@@ -88,7 +88,7 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	@Override
 	public List<Videogioco> findByPlatform(String platform, int index) throws BusinessException {
 		List<Videogioco> videogiochi = new ArrayList<>();
-		Pageable pageWithThreeElements = PageRequest.of(index - 1, 3);
+		Pageable pageWithThreeElements = PageRequest.of(index - 1, 6);
 		switch (platform) {
 		case "all":
 			videogiochi = videogiocoRepository.findBy(pageWithThreeElements);
@@ -110,7 +110,7 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	public List<Videogioco> findByPlatformResearched(String platform, int index, String searchString)
 			throws BusinessException {
 		List<Videogioco> videogiochi = new ArrayList<>();
-		Pageable pageWithThreeElements = PageRequest.of(index - 1, 3);
+		Pageable pageWithThreeElements = PageRequest.of(index - 1, 6);
 		Pageable page = PageRequest.of(1, 3);
 		switch (platform) {
 		case "all":
@@ -344,4 +344,29 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		}
 	}
 
+	@Override
+	public VideogiocoInVendita findVideogiocoInVenditaByID(Long id) throws BusinessException {
+		VideogiocoInVendita videogiocoInVendita = videogiocoInVenditaRepository.findById(id).get();
+		return videogiocoInVendita;
+	}
+
+	@Override
+	public List<VideogiocoInVendita> getCompleteSellinglist(Long idVideogioco, Long idUtente) throws BusinessException {
+		List<VideogiocoInVendita> videogiochiInVendita = videogiocoInVenditaRepository.findAllByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
+		return videogiochiInVendita;
+	}
+
+	@Override
+	public void saveSellingGame(VideogiocoInVendita videogiocoInVendita) throws BusinessException {
+		try {
+			VideogiocoInVendita videogiocoInVenditaToUpdate = videogiocoInVenditaRepository.findById(videogiocoInVendita.getId()).get();
+			videogiocoInVenditaToUpdate.setPrezzo(videogiocoInVendita.getPrezzo());
+			videogiocoInVenditaToUpdate.setPrezzoSpedizione(videogiocoInVendita.getPrezzoSpedizione());
+			videogiocoInVenditaToUpdate.setPiattaforma(videogiocoInVendita.getPiattaforma());
+			videogiocoInVenditaToUpdate.setProvincia(videogiocoInVendita.getProvincia());
+			videogiocoInVenditaRepository.save(videogiocoInVenditaToUpdate);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
+	}
 }

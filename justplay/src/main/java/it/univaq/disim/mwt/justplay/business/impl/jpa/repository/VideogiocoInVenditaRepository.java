@@ -20,4 +20,6 @@ public interface VideogiocoInVenditaRepository extends JpaRepository<VideogiocoI
 
 	List<VideogiocoInVendita> findAllByFkVideogioco(Long fkVideogioco);
 
+	List<VideogiocoInVendita> findAllByFkVideogiocoAndFkUtente(Long idVideogioco, Long idUtente);
+
 }
