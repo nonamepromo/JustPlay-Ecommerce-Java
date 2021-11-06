@@ -37,8 +37,7 @@
 							<button class="btn btn-dark btn-shadow btn-rounded" type="submit" name="action"
 								th:attrappend="value=${wishList != null} ? (${wishList.contains(videogioco)} ? 'delete': 'save') : 'save'"
 								th:style=" ${wishList != null} ? (${wishList.contains(videogioco)} ? 'color: CornflowerBlue' : 'color: light-grey') : 'color: light-grey'">
-								[[#{videogioco.addTo}]] Wishlist<i
-									class="fa fa-heart"></i></button>
+								[[#{videogioco.addTo}]] Wishlist<i class="fa fa-heart"></i></button>
 						</form>
 					</div>
 					<div class="col-2">
@@ -86,9 +85,6 @@
 											class="form-control">
 										<input type="hidden" th:value="${idUtente}" th:name="idUtente"
 											class="form-control">
-										<input type="hidden" th:value="${amazon}" th:name="amazon" class="form-control">
-										<input type="hidden" th:value="${gamestop}" th:name="gamestop"
-											class="form-control">
 									</div>
 
 									<h4 th:text="${videogioco.titolo}"></h4>
@@ -113,7 +109,8 @@
 									<div class="dropdown float-left">
 										<select class="form-control" name="piattaforma" required>
 											<div class="dropdown-menu dropdown-menu-right">
-												<option value="" selected disabled hidden>[[#{videogioco.venditaPiattaforma}]]
+												<option value="" selected disabled hidden>
+													[[#{videogioco.venditaPiattaforma}]]
 												</option>
 												<option value="PS4" th:if="${videogioco.ps4Url != null}" th:value="PS4"
 													class="dropdown-item">PS4</option>
@@ -178,6 +175,7 @@
 									<thead>
 										<tr>
 											<!-- <th>Utente</th> -->
+											<th th:text="#{profilo.username}"></th>
 											<th th:text="#{videogioco.prezzo}"></th>
 											<th th:text="#{videogioco.spedizione}"></th>
 											<th th:text="#{videogioco.provincia}"></th>
@@ -196,7 +194,7 @@
 												<form th:action="@{/videogiochi/removeGameFromSellinglist}">
 													<input type="hidden" th:value="${idVideogioco}"
 														th:name="idVideogioco" class="form-control">
-													<button type="submit" class="btn btn-link p-a-5"><i
+													<button th:value="${videogioco_in_vendita.id}" th:name="idVenduto" type="submit" class="btn btn-link p-a-5"><i
 															class="fa fa-trash-o"></i></button>
 												</form>
 											</td>

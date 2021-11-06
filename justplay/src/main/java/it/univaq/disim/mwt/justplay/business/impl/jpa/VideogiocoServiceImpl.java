@@ -13,11 +13,13 @@ import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.UtenteService;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoRepository;
+import it.univaq.disim.mwt.justplay.business.impl.mongodb.repository.VideogiochiMongoRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoDesideratoRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoGiocatoRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoInVenditaRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoPiaciutoRepository;
 import it.univaq.disim.mwt.justplay.domain.Utente;
+import it.univaq.disim.mwt.justplay.domain.VideogiochiMongoDB;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoDesiderato;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoGiocato;
@@ -43,7 +45,10 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 
 	@Autowired
 	private VideogiocoPiaciutoRepository videogiocoPiaciutoRepository;
-	
+
+	@Autowired
+	private VideogiochiMongoRepository videogiochiMongoRepository;
+
 	@Autowired
 	private UtenteService utenteService;
 
@@ -137,19 +142,18 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		videogiochiInVendita = videogiocoInVenditaRepository.findAllByFkVideogioco(idVideogioco);
 		return videogiochiInVendita;
 	}
-/*
-	@Override
-	public List<Long> getWishlist(Long idUtente) throws BusinessException {
-		List<Long> videogiochiDesideratiIds = videogiocoDesideratoRepository.findFksVideogiocoByFkUtente(idUtente);
-		return videogiochiDesideratiIds;
-	}
 
-	@Override
-	public List<Long> getPlayedlist(Long idUtente) throws BusinessException {
-		List<Long> videogiochiGiocatiIds = videogiocoGiocatoRepository.findFksVideogiocoByFkUtente(idUtente);
-		return videogiochiGiocatiIds;
-	}
-*/
+	/*
+	 * @Override public List<Long> getWishlist(Long idUtente) throws
+	 * BusinessException { List<Long> videogiochiDesideratiIds =
+	 * videogiocoDesideratoRepository.findFksVideogiocoByFkUtente(idUtente); return
+	 * videogiochiDesideratiIds; }
+	 * 
+	 * @Override public List<Long> getPlayedlist(Long idUtente) throws
+	 * BusinessException { List<Long> videogiochiGiocatiIds =
+	 * videogiocoGiocatoRepository.findFksVideogiocoByFkUtente(idUtente); return
+	 * videogiochiGiocatiIds; }
+	 */
 	@Override
 	public List<Videogioco> getWishlist(Utente utente) throws BusinessException {
 		List<Videogioco> videogiochiDesiderati = videogiocoDesideratoRepository.findAllByUtente(utente.getId());
@@ -161,7 +165,6 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		List<Videogioco> videogiochiGiocati = videogiocoGiocatoRepository.findAllByUtente(utente.getId());
 		return videogiochiGiocati;
 	}
-	
 
 	@Override
 	public List<Long> getSellinglist(Long idVideogioco) throws BusinessException {
@@ -176,12 +179,11 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	/*
-	@Override
-	public List<Long> getLikedList(Long idUtente) throws BusinessException {
-		List<Long> videogiochiPiaciuti = videogiocoPiaciutoRepository.findFksVideogiocoByFkUtente(idUtente);
-		return videogiochiPiaciuti;
-	}
-    */
+	 * @Override public List<Long> getLikedList(Long idUtente) throws
+	 * BusinessException { List<Long> videogiochiPiaciuti =
+	 * videogiocoPiaciutoRepository.findFksVideogiocoByFkUtente(idUtente); return
+	 * videogiochiPiaciuti; }
+	 */
 
 	@Override
 	public VideogiocoPiaciuto findLikedGame(Utente utente, Videogioco videogioco) throws BusinessException {
@@ -189,10 +191,10 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		videogiocoPiaciuto = videogiocoPiaciutoRepository.findByUtenteAndVideogioco(utente, videogioco);
 		return videogiocoPiaciuto;
 	}
-	
+
 	@Override
 	public int countLikedGameByVideogioco(Videogioco videogioco, boolean piaciuto) throws BusinessException {
-		int contatore = videogiocoPiaciutoRepository.countByVideogiocoAndPiaciuto(videogioco, piaciuto); 
+		int contatore = videogiocoPiaciutoRepository.countByVideogiocoAndPiaciuto(videogioco, piaciuto);
 		return contatore;
 	}
 
@@ -201,31 +203,21 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		Videogioco videogioco = videogiocoRepository.findById(id).get();
 		return videogioco;
 	}
-/*
-	@Override
-	public void addGameToWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
-		try {
-			VideogiocoDesiderato videogiocoDesiderato = new VideogiocoDesiderato();
-			videogiocoDesiderato.setFkUtente(idUtente);
-			videogiocoDesiderato.setFkVideogioco(idVideogioco);
-			videogiocoDesideratoRepository.save(videogiocoDesiderato);
-		} catch (Exception e) {
-			throw new BusinessException(e);
-		}
-	}
-
-	@Override
-	public void addGameToPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
-		try {
-			VideogiocoGiocato videogiocoGiocato = new VideogiocoGiocato();
-			videogiocoGiocato.setFkUtente(idUtente);
-			videogiocoGiocato.setFkVideogioco(idVideogioco);
-			videogiocoGiocatoRepository.save(videogiocoGiocato);
-		} catch (Exception e) {
-			throw new BusinessException(e);
-		}
-	}
-*/
+	/*
+	 * @Override public void addGameToWishlist(Long idVideogioco, Long idUtente)
+	 * throws BusinessException { try { VideogiocoDesiderato videogiocoDesiderato =
+	 * new VideogiocoDesiderato(); videogiocoDesiderato.setFkUtente(idUtente);
+	 * videogiocoDesiderato.setFkVideogioco(idVideogioco);
+	 * videogiocoDesideratoRepository.save(videogiocoDesiderato); } catch (Exception
+	 * e) { throw new BusinessException(e); } }
+	 * 
+	 * @Override public void addGameToPlayedlist(Long idVideogioco, Long idUtente)
+	 * throws BusinessException { try { VideogiocoGiocato videogiocoGiocato = new
+	 * VideogiocoGiocato(); videogiocoGiocato.setFkUtente(idUtente);
+	 * videogiocoGiocato.setFkVideogioco(idVideogioco);
+	 * videogiocoGiocatoRepository.save(videogiocoGiocato); } catch (Exception e) {
+	 * throw new BusinessException(e); } }
+	 */
 
 	@Override
 	public void addGameToWishlist(Videogioco videogioco, Utente utente) throws BusinessException {
@@ -241,16 +233,15 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 
 	@Override
 	public void addGameToPlayedlist(Videogioco videogioco, Utente utente) throws BusinessException {
-		try{
+		try {
 			VideogiocoGiocato videogiocoGiocato = new VideogiocoGiocato();
 			videogiocoGiocato.setUtente(Utility.getUtente());
 			videogiocoGiocato.setVideogioco(videogioco);
 			videogiocoGiocatoRepository.save(videogiocoGiocato);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			throw new BusinessException(e);
 		}
 	}
-
 
 	@Override
 	public void addGameToLikedlist(Videogioco videogioco, boolean piaciuto) throws BusinessException {
@@ -283,17 +274,17 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 			throw new BusinessException(e);
 		}
 	}
-/*
-	@Override
-	public void removeGameFromWishlist(Long idVideogioco, Long idUtente) throws BusinessException {
-		videogiocoDesideratoRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
-	}
-
-	@Override
-	public void removeGameFromPlayedlist(Long idVideogioco, Long idUtente) throws BusinessException {
-		videogiocoGiocatoRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
-	}
-*/
+	/*
+	 * @Override public void removeGameFromWishlist(Long idVideogioco, Long
+	 * idUtente) throws BusinessException {
+	 * videogiocoDesideratoRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco,
+	 * idUtente); }
+	 * 
+	 * @Override public void removeGameFromPlayedlist(Long idVideogioco, Long
+	 * idUtente) throws BusinessException {
+	 * videogiocoGiocatoRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco,
+	 * idUtente); }
+	 */
 
 	@Override
 	public void removeGameFromWishlist(Videogioco videogioco, Utente utente) throws BusinessException {
@@ -305,27 +296,52 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		videogiocoGiocatoRepository.deleteByVideogiocoAndUtente(videogioco, utente);
 	}
 
-
 	@Override
-	public void removeGameFromSellinglist(Long idVideogioco, Long idUtente) throws BusinessException {
-		videogiocoInVenditaRepository.deleteByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
+	public void removeGameFromSellinglist(Long idVideogioco, Long idUtente, Long idVenduto) throws BusinessException {
+		videogiocoInVenditaRepository.deleteByFkVideogiocoAndFkUtenteAndId(idVideogioco, idUtente, idVenduto);
 	}
-	
+
 	@Override
 	public void removeGameFromLikedlist(Utente utente, Videogioco videogioco) throws BusinessException {
 		videogiocoPiaciutoRepository.deleteByUtenteAndVideogioco(utente, videogioco);
 	}
-	
+
 	@Override
-	public void aggiuntaVideogiochi() throws BusinessException {
-		Videogioco videogioco = new Videogioco();
-		videogioco.setAnnoDiUscita(2019);
-		videogioco.setDescrizione("aaaaaaaaaaa");
-		videogioco.setImageUrl("naaaaaaaaaa");
-		videogioco.setPcUrl("saaaaaaaaaaaa");
-		videogioco.setPs4Url("aaaaaaaaa");
-		videogioco.setTitolo("Gears 5");
-		videogioco.setXboxUrl("faaaaaaaaaaa");
-		videogiocoRepository.save(videogioco);
+	public void addGameFromMdb() throws BusinessException {
+		List<VideogiochiMongoDB> gamesFromMdb = videogiochiMongoRepository.findAll();
+		List<Videogioco> localGames = videogiocoRepository.findAll();
+		for (VideogiochiMongoDB videogiocoMongo : gamesFromMdb) {
+			if (localGames != null) {
+				int count = 0;
+				for (Videogioco videogioco : localGames) {
+					if (videogioco.getTitolo().equals(videogiocoMongo.getTitolo())) {
+						count++;
+					}
+				}
+				if (count == 0) {
+					Videogioco nuovoGioco = new Videogioco();
+					nuovoGioco.setTitolo(videogiocoMongo.getTitolo());
+					nuovoGioco.setAnnoDiUscita(videogiocoMongo.getAnno_di_uscita());
+					nuovoGioco.setDescrizione(videogiocoMongo.getDescrizione());
+					nuovoGioco.setImageUrl(videogiocoMongo.getImage_url());
+					nuovoGioco.setPcUrl(videogiocoMongo.getPc_url());
+					nuovoGioco.setPs4Url(videogiocoMongo.getPs4_url());
+					nuovoGioco.setXboxUrl(videogiocoMongo.getXbox_url());
+					videogiocoRepository.save(nuovoGioco);
+				}
+			} else {
+				Videogioco videogioco = new Videogioco();
+					videogioco.setTitolo(videogiocoMongo.getTitolo());
+					videogioco.setAnnoDiUscita(videogiocoMongo.getAnno_di_uscita());
+					videogioco.setDescrizione(videogiocoMongo.getDescrizione());
+					videogioco.setImageUrl(videogiocoMongo.getImage_url());
+					videogioco.setPcUrl(videogiocoMongo.getPc_url());
+					videogioco.setPs4Url(videogiocoMongo.getPs4_url());
+					videogioco.setXboxUrl(videogiocoMongo.getXbox_url());
+					videogiocoRepository.save(videogioco);
+				
+			}
+		}
 	}
+
 }

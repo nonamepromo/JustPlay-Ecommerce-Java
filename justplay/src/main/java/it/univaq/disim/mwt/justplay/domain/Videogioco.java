@@ -24,34 +24,34 @@ import lombok.ToString;
 @ToString
 public class Videogioco extends AbstractPersistableEntity {
 
-	@NotEmpty(groups = { OnCreate.class, Default.class })
+	//@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 25, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String titolo;
 
 	@Column(name = "anno_di_uscita")
 	private int annoDiUscita;
 
-	@NotEmpty(groups = { OnCreate.class, Default.class })
+	//@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String descrizione;
 
 	@Column(name = "ps4_url")
-	@NotEmpty(groups = { OnCreate.class, Default.class })
+	//@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String ps4Url;
 
 	@Column(name = "xbox_url")
-	@NotEmpty(groups = { OnCreate.class, Default.class })
+	//@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String xboxUrl;
 
 	@Column(name = "pc_url")
-	@NotEmpty(groups = { OnCreate.class, Default.class })
+	//@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String pcUrl;
 
 	@Column(name = "image_url")
-	@NotEmpty(groups = { OnCreate.class, Default.class })
+	//@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String imageUrl;
 	
@@ -62,7 +62,7 @@ public class Videogioco extends AbstractPersistableEntity {
     Set<VideogiocoGiocato> videogiochiGiocati;
 
 	@OneToMany(mappedBy = "videogioco")
-    Set<VideogiocoGiocato> videogiochiDesiderati;
+    Set<VideogiocoDesiderato> videogiochiDesiderati;
 
 	@Override
 	public boolean equals(Object o) {
