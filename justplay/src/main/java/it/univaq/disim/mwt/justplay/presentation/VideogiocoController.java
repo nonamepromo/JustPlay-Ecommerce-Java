@@ -45,13 +45,14 @@ public class VideogiocoController {
 
 	@Autowired
 	private ConversazioneService conversazioneService;
-	
+
 	@Autowired
 	private UtenteService utenteService;
 
 	/*
-	Prende in argomento l'indice della paginazione e la piattaforma e restituisce la lista di videogiochi che rispettano i parametri
-	*/
+	 * Prende in argomento l'indice della paginazione e la piattaforma e restituisce
+	 * la lista di videogiochi che rispettano i parametri
+	 */
 	@GetMapping(value = "/list", params = { "platform", "index" })
 	public String listWithPlatform(@RequestParam(value = "platform", defaultValue = "all") String platform,
 			@RequestParam(value = "index", defaultValue = "1") int index, Model model) throws BusinessException {
@@ -71,9 +72,11 @@ public class VideogiocoController {
 	}
 
 	/*
-	Viene richiamato se è stata effettuata una ricerca testuale, prende gli stessi argomenti di listWithPlatform()
-	 più la stringa digitata nel campo di ricerca. Se è una stringa vuota, viene restituita la lista completa di videogiochi
-	*/
+	 * Viene richiamato se è stata effettuata una ricerca testuale, prende gli
+	 * stessi argomenti di listWithPlatform() più la stringa digitata nel campo di
+	 * ricerca. Se è una stringa vuota, viene restituita la lista completa di
+	 * videogiochi
+	 */
 	@GetMapping(value = "/list", params = { "platform", "index", "searchString" })
 	public String listWithPlatformResearched(@RequestParam(value = "platform", defaultValue = "all") String platform,
 			@RequestParam(value = "index", defaultValue = "1") int index,
@@ -132,12 +135,13 @@ public class VideogiocoController {
 	}
 
 	/*
-	Prende in argomento un id e restituisce il videogioco corrispondente che viene aggiunto come attributo al Model.
-	Inoltre, vengono aggiunti al Model anche i seguenti attributi:
-	- Booleano che indica se il videogioco è nella lista dei videogiochi piaciuti o non piaciuti dell'utente connesso
-	- Link appartenenti agli store in cui è presente il videogioco
-	- Lista di vendite di quel gioco da parte di tutti gli utenti
-	*/
+	 * Prende in argomento un id e restituisce il videogioco corrispondente che
+	 * viene aggiunto come attributo al Model. Inoltre, vengono aggiunti al Model
+	 * anche i seguenti attributi: - Booleano che indica se il videogioco è nella
+	 * lista dei videogiochi piaciuti o non piaciuti dell'utente connesso - Link
+	 * appartenenti agli store in cui è presente il videogioco - Lista di vendite di
+	 * quel gioco da parte di tutti gli utenti
+	 */
 	@GetMapping("/details")
 	public String details(@RequestParam("idVideogioco") Long idVideogioco, Model model) throws BusinessException {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -146,11 +150,12 @@ public class VideogiocoController {
 			model.addAttribute("idUtente", utente.getId());
 			getWishlist(model, utente.getId());
 			getPlayedlist(model, utente.getId());
-			VideogiocoPiaciuto videogiocoPiaciuto = service.findLikedGame(utente, service.findVideogiocoByID(idVideogioco));
+			getCompleteSellinglist(model, idVideogioco, utente.getId());
+			VideogiocoPiaciuto videogiocoPiaciuto = service.findLikedGame(utente,
+					service.findVideogiocoByID(idVideogioco));
 			if (videogiocoPiaciuto != null) {
 				model.addAttribute("piaciuto", videogiocoPiaciuto.isPiaciuto());
 			}
-			;
 		}
 		// service.aggiuntaVideogiochi(); //Serve per popolare velocemente la tabella
 		// videogiochi
@@ -170,15 +175,18 @@ public class VideogiocoController {
 		return "videogiochi/details";
 	}
 
-	public void countLikedGameByFkVideogioco(Long fkVideogioco, Model model) throws BusinessException{
-		model.addAttribute("countPiaciuti", service.countLikedGameByVideogioco(service.findVideogiocoByID(fkVideogioco), true));
-		model.addAttribute("countNonPiaciuti", service.countLikedGameByVideogioco(service.findVideogiocoByID(fkVideogioco), false));
+	public void countLikedGameByFkVideogioco(Long fkVideogioco, Model model) throws BusinessException {
+		model.addAttribute("countPiaciuti",
+				service.countLikedGameByVideogioco(service.findVideogiocoByID(fkVideogioco), true));
+		model.addAttribute("countNonPiaciuti",
+				service.countLikedGameByVideogioco(service.findVideogiocoByID(fkVideogioco), false));
 	}
 
 	/*
-	Se non esiste già, viene creato un oggetto Conversazione con gli id dell'utente connesso e l'id dell'utente
-	 che ha messo in vendita il videogioco. Se esiste già, viene aggiunto l'oggetto come attributo nel Model
-	*/
+	 * Se non esiste già, viene creato un oggetto Conversazione con gli id
+	 * dell'utente connesso e l'id dell'utente che ha messo in vendita il
+	 * videogioco. Se esiste già, viene aggiunto l'oggetto come attributo nel Model
+	 */
 	@RequestMapping(value = "/createConversazione", method = RequestMethod.GET)
 	public String createConversazione(@RequestParam("fkUtente") Long fkUtente, Long idUtente, Model model,
 			RedirectAttributes redirAttrs) throws BusinessException {
@@ -221,7 +229,8 @@ public class VideogiocoController {
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
 
-	// Questo aggiunge un gioco alla wishlist da details se il param ricevuto è delete
+	// Questo aggiunge un gioco alla wishlist da details se il param ricevuto è
+	// delete
 	@RequestMapping(value = "/addGameToWishlist", method = RequestMethod.GET, params = "action=delete")
 	public String removeGameFromWishlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
@@ -234,20 +243,21 @@ public class VideogiocoController {
 
 	// Questo aggiunge un gioco alla playedlist nella view list utilizzando ajax
 	@PostMapping("/addGameToPlayedlist")
-	public String addGameToPlayedlist(@RequestParam(value="idVideogioco") Long idVideogioco, Model model)
-		throws BusinessException {
-			Utente utente = Utility.getUtente();
-			Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
-			service.addGameToPlayedlist(videogioco, utente);
-			return "redirect:/videogiochi/list?platform=all&index=1";
-		}
+	public String addGameToPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
+			throws BusinessException {
+		Utente utente = Utility.getUtente();
+		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
+		service.addGameToPlayedlist(videogioco, utente);
+		return "redirect:/videogiochi/list?platform=all&index=1";
+	}
 
-	// Questo aggiunge un gioco alla playedlist da details se il param ricevuto è save
+	// Questo aggiunge un gioco alla playedlist da details se il param ricevuto è
+	// save
 	@RequestMapping(value = "/addGameToPlayedlist", method = RequestMethod.GET, params = "action=save")
 	public String addGameToPlayedlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
 		Long idUtente = Utility.getUtente().getId();
-		//service.addGameToPlayedlist(idVideogioco, idUtente);
+		// service.addGameToPlayedlist(idVideogioco, idUtente);
 		Utente utente = Utility.getUtente();
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		service.addGameToPlayedlist(videogioco, utente);
@@ -260,7 +270,7 @@ public class VideogiocoController {
 	public String removeGameFromPlayedlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
 		Long idUtente = Utility.getUtente().getId();
-		//service.removeGameFromPlayedlist(idVideogioco, idUtente);
+		// service.removeGameFromPlayedlist(idVideogioco, idUtente);
 		Utente utente = Utility.getUtente();
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		service.removeGameFromPlayedlist(videogioco, utente);
@@ -314,13 +324,25 @@ public class VideogiocoController {
 		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
 
-
 	@RequestMapping(value = "/removeGameFromSellinglist", method = RequestMethod.GET)
 	public String removeGameFromSellinglist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {
 		Long idUtente = Utility.getUtente().getId();
 		service.removeGameFromSellinglist(idVideogioco, idUtente);
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
+	}
+
+	public void getCompleteSellinglist(Model model, Long idVideogioco, Long IdUtente) throws BusinessException {
+		List<VideogiocoInVendita> videogiochiInVendita = service.getCompleteSellinglist(idVideogioco, IdUtente);
+		model.addAttribute("videogiochi_utente_in_vendita", videogiochiInVendita);
+	}
+
+	@PostMapping("/editSellingGame")
+	public String editSellingGame(@ModelAttribute VideogiocoInVendita videogiocoInVendita,
+			RedirectAttributes redirAttrs) throws BusinessException {
+		service.saveSellingGame(videogiocoInVendita);
+		redirAttrs.addFlashAttribute("success", "");
+		return "redirect:/videogiochi/details?idVideogioco=" + videogiocoInVendita.getFkVideogioco();
 	}
 
 }

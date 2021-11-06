@@ -29,6 +29,8 @@ public interface VideogiocoService {
 	List<Videogioco> getPlayedlist(Utente utente) throws BusinessException;
 
 	List<Long> getSellinglist(Long idVideogioco) throws BusinessException;
+	
+	List<VideogiocoInVendita> getCompleteSellinglist(Long idVideogioco, Long idUtente) throws BusinessException;
 
 	List<Long> getUtenteSellinglist(Long idUtente) throws BusinessException;
 		
@@ -53,5 +55,10 @@ public interface VideogiocoService {
 	void removeGameFromSellinglist(Long idVideogioco, Long idUtente) throws BusinessException;
 	
 	void removeGameFromLikedlist(Utente utente, Videogioco videogioco) throws BusinessException;
+
+	VideogiocoInVendita findVideogiocoInVenditaByID(Long id) throws BusinessException;
 	
-	void aggiuntaVideogiochi() throws BusinessException; //PER POPOLARE DB CON VIDEOGIOCHI}
+	void saveSellingGame(VideogiocoInVendita videogiocoInVendita) throws BusinessException;
+	
+	void aggiuntaVideogiochi() throws BusinessException; //PER POPOLARE DB CON VIDEOGIOCHI
+}

@@ -328,4 +328,30 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		videogioco.setXboxUrl("faaaaaaaaaaa");
 		videogiocoRepository.save(videogioco);
 	}
+
+	@Override
+	public VideogiocoInVendita findVideogiocoInVenditaByID(Long id) throws BusinessException {
+		VideogiocoInVendita videogiocoInVendita = videogiocoInVenditaRepository.findById(id).get();
+		return videogiocoInVendita;
+	}
+
+	@Override
+	public List<VideogiocoInVendita> getCompleteSellinglist(Long idVideogioco, Long idUtente) throws BusinessException {
+		List<VideogiocoInVendita> videogiochiInVendita = videogiocoInVenditaRepository.findAllByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
+		return videogiochiInVendita;
+	}
+
+	@Override
+	public void saveSellingGame(VideogiocoInVendita videogiocoInVendita) throws BusinessException {
+		try {
+			VideogiocoInVendita videogiocoInVenditaToUpdate = videogiocoInVenditaRepository.findById(videogiocoInVendita.getId()).get();
+			videogiocoInVenditaToUpdate.setPrezzo(videogiocoInVendita.getPrezzo());
+			videogiocoInVenditaToUpdate.setPrezzoSpedizione(videogiocoInVendita.getPrezzoSpedizione());
+			videogiocoInVenditaToUpdate.setPiattaforma(videogiocoInVendita.getPiattaforma());
+			videogiocoInVenditaToUpdate.setProvincia(videogiocoInVendita.getProvincia());
+			videogiocoInVenditaRepository.save(videogiocoInVenditaToUpdate);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
+	}
 }

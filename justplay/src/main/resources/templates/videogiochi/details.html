@@ -37,8 +37,7 @@
 							<button class="btn btn-dark btn-shadow btn-rounded" type="submit" name="action"
 								th:attrappend="value=${wishList != null} ? (${wishList.contains(videogioco)} ? 'delete': 'save') : 'save'"
 								th:style=" ${wishList != null} ? (${wishList.contains(videogioco)} ? 'color: CornflowerBlue' : 'color: light-grey') : 'color: light-grey'">
-								[[#{videogioco.addTo}]] Wishlist<i
-									class="fa fa-heart"></i></button>
+								[[#{videogioco.addTo}]] Wishlist<i class="fa fa-heart"></i></button>
 						</form>
 					</div>
 					<div class="col-2">
@@ -113,7 +112,8 @@
 									<div class="dropdown float-left">
 										<select class="form-control" name="piattaforma" required>
 											<div class="dropdown-menu dropdown-menu-right">
-												<option value="" selected disabled hidden>[[#{videogioco.venditaPiattaforma}]]
+												<option value="" selected disabled hidden>
+													[[#{videogioco.venditaPiattaforma}]]
 												</option>
 												<option value="PS4" th:if="${videogioco.ps4Url != null}" th:value="PS4"
 													class="dropdown-item">PS4</option>
@@ -128,6 +128,70 @@
 									<button type="submit" th:text="#{common.submit}"
 										class="btn btn-primary btn-block m-t-10"> <i class="fa fa-sign-in"></i></button>
 								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div th:each="videogioco_utente_in_vendita : ${videogiochi_utente_in_vendita}">
+					<div class="modal fade" th:id="'modal-videogioco-in-vendita-' + ${videogioco_utente_in_vendita.id}">
+						<div class="modal-dialog modal-sm" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title"><i class="fa fa-shopping-cart"></i>
+										[[#{videogioco.venditaPrivata}]]</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body p-a-20">
+									<form th:action="@{/videogiochi/editSellingGame}" method="post"
+									th:object="${videogioco_utente_in_vendita_modificato}">
+
+										<h4 th:text="${videogioco.titolo}"></h4>
+										<div class="divider"></div>
+										<input type="hidden" th:value="${videogioco_utente_in_vendita.id}" th:name="id" th:id="id"
+											class="form-control">
+											<input type="hidden" th:value="${videogioco_utente_in_vendita.fkVideogioco}" th:name="fkVideogioco" th:id="fkVideogioco"
+												class="form-control">
+										<div class="form-group input-icon-left m-b-10">
+											<i class="fa fa-dollar"></i>
+											<input type="number" class="form-control form-control-secondary"
+											th:value="${videogioco_utente_in_vendita.prezzo}" th:name="prezzo" th:id="prezzo"
+												th:placeholder="#{videogioco.venditaPrezzo}" required>
+										</div>
+										<div class="form-group input-icon-left m-b-10">
+											<i class="fa fa-plane"></i>
+											<input type="number" class="form-control form-control-secondary"
+												th:value="${videogioco_utente_in_vendita.prezzoSpedizione}" th:name="prezzoSpedizione" th:id="prezzoSpedizione"
+												th:placeholder="#{videogioco.venditaSpedizione}">
+										</div>
+										<div class="form-group input-icon-left m-b-15">
+											<i class="fa fa-map-signs"></i>
+											<input type="text" class="form-control form-control-secondary"
+											th:value="${videogioco_utente_in_vendita.provincia}" th:name="provincia" th:id="provincia"
+												th:placeholder="#{videogioco.venditaLuogo}" required>
+										</div>
+										<div class="dropdown float-left">
+											<select class="form-control" name="piattaforma" required>
+												<div class="dropdown-menu dropdown-menu-right">
+													<option value="PS4" th:if="${videogioco.ps4Url != null}"
+														th:selected="${videogioco_utente_in_vendita.piattaforma.equals('PS4')}"
+														th:value="PS4" class="dropdown-item">PS4</option>
+													<option value="Xbox" th:if="${videogioco.xboxUrl != null}"
+													th:selected="${videogioco_utente_in_vendita.piattaforma.equals('Xbox')}"
+														th:value="Xbox" class="dropdown-item">Xbox</option>
+													<option value="Pc" th:if="${videogioco.pcUrl != null}" th:value="Pc"
+													th:selected="${videogioco_utente_in_vendita.piattaforma.equals('Pc')}"
+														class="dropdown-item">Pc</option>
+												</div>
+											</select>
+											<div class="divider"></div>
+										</div>
+										<button type="submit" th:text="#{common.submit}"
+											class="btn btn-primary btn-block m-t-10"> <i
+												class="fa fa-sign-in"></i></button>
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -182,7 +246,7 @@
 											<th th:text="#{videogioco.spedizione}"></th>
 											<th th:text="#{videogioco.provincia}"></th>
 											<th th:text="#{profilo.piattaformagioco}"></th>
-											<th th:text="#{profilo.azioni}"></th>
+											<!-- <th th:text="#{profilo.azioni}"></th> -->
 										</tr>
 									</thead>
 									<tbody>
@@ -192,6 +256,11 @@
 											<td th:text="${videogioco_in_vendita.prezzoSpedizione}+ '€'"></td>
 											<td th:text="${videogioco_in_vendita.provincia}"></td>
 											<td th:text="${videogioco_in_vendita.piattaforma}"></td>
+											<td th:if="${videogioco_in_vendita.fkUtente == idUtente}">
+												<button class="btn btn-link p-a-5" data-toggle="modal"
+													th:data-target="${'#modal-videogioco-in-vendita-'+videogioco_in_vendita.id}"><i
+														class="fa fa-edit"></i></button>
+											</td>
 											<td th:if="${videogioco_in_vendita.fkUtente == idUtente}">
 												<form th:action="@{/videogiochi/removeGameFromSellinglist}">
 													<input type="hidden" th:value="${idVideogioco}"
