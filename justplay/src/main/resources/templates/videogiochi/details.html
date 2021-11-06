@@ -85,9 +85,6 @@
 											class="form-control">
 										<input type="hidden" th:value="${idUtente}" th:name="idUtente"
 											class="form-control">
-										<input type="hidden" th:value="${amazon}" th:name="amazon" class="form-control">
-										<input type="hidden" th:value="${gamestop}" th:name="gamestop"
-											class="form-control">
 									</div>
 
 									<h4 th:text="${videogioco.titolo}"></h4>
@@ -242,6 +239,7 @@
 									<thead>
 										<tr>
 											<!-- <th>Utente</th> -->
+											<th th:text="#{profilo.username}"></th>
 											<th th:text="#{videogioco.prezzo}"></th>
 											<th th:text="#{videogioco.spedizione}"></th>
 											<th th:text="#{videogioco.provincia}"></th>
@@ -265,7 +263,7 @@
 												<form th:action="@{/videogiochi/removeGameFromSellinglist}">
 													<input type="hidden" th:value="${idVideogioco}"
 														th:name="idVideogioco" class="form-control">
-													<button type="submit" class="btn btn-link p-a-5"><i
+													<button th:value="${videogioco_in_vendita.id}" th:name="idVenduto" type="submit" class="btn btn-link p-a-5"><i
 															class="fa fa-trash-o"></i></button>
 												</form>
 											</td>

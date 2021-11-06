@@ -16,7 +16,7 @@ public interface VideogiocoInVenditaRepository extends JpaRepository<VideogiocoI
 	@Query("SELECT fkVideogioco FROM VideogiocoInVendita vv where fk_utente = :idUtente")
 	List<Long> findFksVideogiocoByFkUtente(@Param("idUtente") Long idUtente);
 
-	void deleteByFkVideogiocoAndFkUtente(Long fkVideogioco, Long fkUtente);
+	void deleteByFkVideogiocoAndFkUtenteAndId(Long fkVideogioco, Long fkUtente, Long idVenduto);
 
 	List<VideogiocoInVendita> findAllByFkVideogioco(Long fkVideogioco);
 

@@ -21,6 +21,7 @@ import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.ConversazioneService;
 import it.univaq.disim.mwt.justplay.business.GamestopService;
 import it.univaq.disim.mwt.justplay.business.UtenteService;
+import it.univaq.disim.mwt.justplay.business.VideogiochiMongoDBService;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.UtenteRepository;
 import it.univaq.disim.mwt.justplay.domain.Conversazione;
@@ -56,6 +57,7 @@ public class VideogiocoController {
 	@GetMapping(value = "/list", params = { "platform", "index" })
 	public String listWithPlatform(@RequestParam(value = "platform", defaultValue = "all") String platform,
 			@RequestParam(value = "index", defaultValue = "1") int index, Model model) throws BusinessException {
+		service.addGameFromMdb();
 		int numberOfIndexes = service.getVideogiochiCount(platform) / 3
 				+ ((service.getVideogiochiCount(platform) % 3 == 0) ? 0 : 1);
 		model.addAttribute("videogiochiCount", numberOfIndexes);
@@ -157,8 +159,6 @@ public class VideogiocoController {
 				model.addAttribute("piaciuto", videogiocoPiaciuto.isPiaciuto());
 			}
 		}
-		// service.aggiuntaVideogiochi(); //Serve per popolare velocemente la tabella
-		// videogiochi
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		// amazonService.mongoAmazon();
 		// gamestopService.mongoGamestop();
@@ -323,12 +323,11 @@ public class VideogiocoController {
 		service.removeGameFromPlayedlist(videogioco, utente);
 		return "redirect:/videogiochi/list?platform=all&index=1";
 	}
-
 	@RequestMapping(value = "/removeGameFromSellinglist", method = RequestMethod.GET)
-	public String removeGameFromSellinglist(@RequestParam(value = "idVideogioco") Long idVideogioco)
+	public String removeGameFromSellinglist(@RequestParam Long idVideogioco, @RequestParam Long idVenduto)
 			throws BusinessException {
 		Long idUtente = Utility.getUtente().getId();
-		service.removeGameFromSellinglist(idVideogioco, idUtente);
+		service.removeGameFromSellinglist(idVideogioco, idUtente, idVenduto);
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
 
