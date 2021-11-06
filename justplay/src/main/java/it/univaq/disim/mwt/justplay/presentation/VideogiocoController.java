@@ -58,8 +58,9 @@ public class VideogiocoController {
 	public String listWithPlatform(@RequestParam(value = "platform", defaultValue = "all") String platform,
 			@RequestParam(value = "index", defaultValue = "1") int index, Model model) throws BusinessException {
 		service.addGameFromMdb();
-		int numberOfIndexes = service.getVideogiochiCount(platform) / 3
-				+ ((service.getVideogiochiCount(platform) % 3 == 0) ? 0 : 1);
+		int videogiochiCount = service.getVideogiochiCount(platform);
+		int numberOfIndexes = videogiochiCount / 6
+				+ ((videogiochiCount % 6 == 0) ? 0 : 1);
 		model.addAttribute("videogiochiCount", numberOfIndexes);
 		model.addAttribute("platform", platform);
 		model.addAttribute("videogiochi", service.findByPlatform(platform, index));
@@ -88,15 +89,15 @@ public class VideogiocoController {
 		if (searchString.equals("")) {
 			videogiochi = service.findByPlatform(platform, index);
 			model.addAttribute("videogiochi", videogiochi);
-			numberOfIndexes = service.getVideogiochiCount(platform) / 3
-					+ ((service.getVideogiochiCount(platform) % 3 == 0) ? 0 : 1);
+			numberOfIndexes = service.getVideogiochiCount(platform) / 6
+					+ ((service.getVideogiochiCount(platform) % 6 == 0) ? 0 : 1);
 		} else {
 			model.addAttribute("isResearch", true);
 			model.addAttribute("searchString", searchString);
 			videogiochi = service.findByPlatformResearched(platform, index, searchString);
 			model.addAttribute("videogiochi", videogiochi);
-			numberOfIndexes = service.getVideogiochiSearchedCount(searchString) / 3
-					+ ((service.getVideogiochiSearchedCount(searchString) % 3 == 0) ? 0 : 1);
+			numberOfIndexes = service.getVideogiochiSearchedCount(searchString) / 6
+					+ ((service.getVideogiochiSearchedCount(searchString) % 6 == 0) ? 0 : 1);
 		}
 
 		model.addAttribute("videogiochiCount", numberOfIndexes);
