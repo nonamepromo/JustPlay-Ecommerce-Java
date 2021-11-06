@@ -84,6 +84,7 @@ public class VideogiocoController {
 	public String listWithPlatformResearched(@RequestParam(value = "platform", defaultValue = "all") String platform,
 			@RequestParam(value = "index", defaultValue = "1") int index,
 			@RequestParam(value = "searchString") String searchString, Model model) throws BusinessException {
+		service.addGameFromMdb();
 		List<Videogioco> videogiochi = new ArrayList<Videogioco>();
 		int numberOfIndexes = 0;
 		if (searchString.equals("")) {

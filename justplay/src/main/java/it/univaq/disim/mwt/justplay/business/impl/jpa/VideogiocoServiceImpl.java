@@ -311,14 +311,14 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		List<VideogiochiMongoDB> gamesFromMdb = videogiochiMongoRepository.findAll();
 		List<Videogioco> localGames = videogiocoRepository.findAll();
 		for (VideogiochiMongoDB videogiocoMongo : gamesFromMdb) {
+			boolean exist = false;
 			if (localGames != null) {
-				int count = 0;
 				for (Videogioco videogioco : localGames) {
 					if (videogioco.getTitolo().equals(videogiocoMongo.getTitolo())) {
-						count++;
+						exist = true;
 					}
 				}
-				if (count == 0) {
+				if (!exist) {
 					Videogioco nuovoGioco = new Videogioco();
 					nuovoGioco.setTitolo(videogiocoMongo.getTitolo());
 					nuovoGioco.setAnnoDiUscita(videogiocoMongo.getAnno_di_uscita());
@@ -329,17 +329,6 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 					nuovoGioco.setXboxUrl(videogiocoMongo.getXbox_url());
 					videogiocoRepository.save(nuovoGioco);
 				}
-			} else {
-				Videogioco videogioco = new Videogioco();
-					videogioco.setTitolo(videogiocoMongo.getTitolo());
-					videogioco.setAnnoDiUscita(videogiocoMongo.getAnno_di_uscita());
-					videogioco.setDescrizione(videogiocoMongo.getDescrizione());
-					videogioco.setImageUrl(videogiocoMongo.getImage_url());
-					videogioco.setPcUrl(videogiocoMongo.getPc_url());
-					videogioco.setPs4Url(videogiocoMongo.getPs4_url());
-					videogioco.setXboxUrl(videogiocoMongo.getXbox_url());
-					videogiocoRepository.save(videogioco);
-				
 			}
 		}
 	}
@@ -352,14 +341,16 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 
 	@Override
 	public List<VideogiocoInVendita> getCompleteSellinglist(Long idVideogioco, Long idUtente) throws BusinessException {
-		List<VideogiocoInVendita> videogiochiInVendita = videogiocoInVenditaRepository.findAllByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
+		List<VideogiocoInVendita> videogiochiInVendita = videogiocoInVenditaRepository
+				.findAllByFkVideogiocoAndFkUtente(idVideogioco, idUtente);
 		return videogiochiInVendita;
 	}
 
 	@Override
 	public void saveSellingGame(VideogiocoInVendita videogiocoInVendita) throws BusinessException {
 		try {
-			VideogiocoInVendita videogiocoInVenditaToUpdate = videogiocoInVenditaRepository.findById(videogiocoInVendita.getId()).get();
+			VideogiocoInVendita videogiocoInVenditaToUpdate = videogiocoInVenditaRepository
+					.findById(videogiocoInVendita.getId()).get();
 			videogiocoInVenditaToUpdate.setPrezzo(videogiocoInVendita.getPrezzo());
 			videogiocoInVenditaToUpdate.setPrezzoSpedizione(videogiocoInVendita.getPrezzoSpedizione());
 			videogiocoInVenditaToUpdate.setPiattaforma(videogiocoInVendita.getPiattaforma());

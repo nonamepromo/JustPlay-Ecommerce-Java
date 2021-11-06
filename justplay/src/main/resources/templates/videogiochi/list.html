@@ -7,89 +7,6 @@
 	<!-- main -->
 	<div layout:fragment="content">
 
-		<script>
-			function listWithPlatform(platform, index) {
-				window.location.href = "list?platform=" + platform + "&index=" + index;
-			}
-		</script>
-
-		<script>
-			function openDetails(idVideogioco) {
-				window.location.href = "details?idVideogioco=" + idVideogioco;
-			}
-		</script>
-
-		<script>
-			function addGameToWishlist(idVideogioco) {
-				$.ajax({
-					url: '[(@{/videogiochi/addGameToWishlist})]',
-					type: "POST",
-					data: 'idVideogioco=' + idVideogioco,
-					success: function (response) {
-						console.log("urlParams")
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						console.log(urlParams)
-						// window.open("list?index=" + urlParams.get('index'), "_self")
-						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
-					},
-					error: function (response) {
-						console.log("errore")
-					}
-				});
-			}
-		</script>
-
-		<script>
-			function removeGameFromWishlist(idVideogioco) {
-				$.ajax({
-					url: '[(@{/videogiochi/removeGameFromWishlist})]',
-					type: "POST",
-					data: 'idVideogioco=' + idVideogioco,
-					success: function (response) {
-						console.log("urlParams")
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						// window.open("list?index=" + urlParams.get('index'), "_self")
-						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
-					}
-				});
-			}
-		</script>
-
-		<script>
-			function addGameToPlayedlist(idVideogioco) {
-				$.ajax({
-					url: '[(@{/videogiochi/addGameToPlayedlist})]',
-					type: "POST",
-					data: 'idVideogioco=' + idVideogioco,
-					success: function (response) {
-						console.log("urlParams")
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						// window.open("list?index=" + urlParams.get('index'), "_self")
-						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
-					}
-				});
-			}
-		</script>
-
-		<script>
-			function removeGameFromPlayedlist(idVideogioco) {
-				$.ajax({
-					url: '[(@{/videogiochi/removeGameFromPlayedlist})]',
-					type: "POST",
-					data: 'idVideogioco=' + idVideogioco,
-					success: function (response) {
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
-						//window.open('list?platform=all&index=2', "_self")
-					}
-				});
-			}
-		</script>
-
 		<section class="p-t-30">
 			<div class="container">
 				<div class="alert alert-danger" role="alert" th:text="#{common.errore.title}" th:if="${error}">
@@ -168,7 +85,7 @@
 						<ul class="pagination">
 							<li th:each="i: ${#numbers.sequence(1, videogiochiCount)}" class=""
 								th:class="${param.index != null} ? (${param.index[0] == i} ? 'page-item active' : 'page-item') : 'page-item active'">
-								<a th:text="${i}" class="page-link" th:data-parameter1="${platform}" th:onclick="|listWithPlatform(this.getAttribute('data-parameter1'), ${i})|"></a>
+								<a th:if="${i} != 0" th:text="${i}" class="page-link" th:data-parameter1="${platform}" th:onclick="|listWithPlatform(this.getAttribute('data-parameter1'), ${i})|"></a>
 							</li>
 						</ul>
 					</nav>
@@ -186,9 +103,90 @@
 				</div>
 			</div>
 		</section>
+		
+		<script>
+			function listWithPlatform(platform, index) {
+				window.location.href = "list?platform=" + platform + "&index=" + index;
+			}
+		</script>
+
+		<script>
+			function openDetails(idVideogioco) {
+				window.location.href = "details?idVideogioco=" + idVideogioco;
+			}
+		</script>
+		<script>
+			function addGameToWishlist(idVideogioco) {
+				$.ajax({
+					url: '[(@{/videogiochi/addGameToWishlist})]',
+					type: "POST",
+					data: 'idVideogioco=' + idVideogioco,
+					success: function (response) {
+						console.log("urlParams")
+						const queryString = window.location.search
+						const urlParams = new URLSearchParams(queryString);
+						console.log(urlParams)
+						// window.open("list?index=" + urlParams.get('index'), "_self")
+						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
+					},
+					error: function (response) {
+						console.log("errore")
+					}
+				});
+			}
+		</script>
+
+		<script>
+			function removeGameFromWishlist(idVideogioco) {
+				$.ajax({
+					url: '[(@{/videogiochi/removeGameFromWishlist})]',
+					type: "POST",
+					data: 'idVideogioco=' + idVideogioco,
+					success: function (response) {
+						console.log("urlParams")
+						const queryString = window.location.search
+						const urlParams = new URLSearchParams(queryString);
+						// window.open("list?index=" + urlParams.get('index'), "_self")
+						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
+					}
+				});
+			}
+		</script>
+
+		<script>
+			function addGameToPlayedlist(idVideogioco) {
+				$.ajax({
+					url: '[(@{/videogiochi/addGameToPlayedlist})]',
+					type: "POST",
+					data: 'idVideogioco=' + idVideogioco,
+					success: function (response) {
+						console.log("urlParams")
+						const queryString = window.location.search
+						const urlParams = new URLSearchParams(queryString);
+						// window.open("list?index=" + urlParams.get('index'), "_self")
+						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
+					}
+				});
+			}
+		</script>
+
+		<script>
+			function removeGameFromPlayedlist(idVideogioco) {
+				$.ajax({
+					url: '[(@{/videogiochi/removeGameFromPlayedlist})]',
+					type: "POST",
+					data: 'idVideogioco=' + idVideogioco,
+					success: function (response) {
+						const queryString = window.location.search
+						const urlParams = new URLSearchParams(queryString);
+						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
+						//window.open('list?platform=all&index=2', "_self")
+					}
+				});
+			}
+		</script>
+
 	</div>
-
-
 </body>
 
 </html>
