@@ -290,33 +290,33 @@
 								</table>
 							</div>
 						</div>
-					</div>
-					<div class="col-lg-4">
-						<!-- sidebar -->
-						<div class="sidebar">
-							<!-- widget game -->
-							<div class="widget widget-game">
-								<div class="widget-block"
-									style="background-image: url('https://wallpapercave.com/wp/wp1978954.jpg')">
-									<div class="overlay"></div>
-									<div class="widget-item">
-										<h4 th:text="${videogioco.titolo}"></h4>
-										<span th:text="${videogioco.annoDiUscita}" class="meta"></span>
-										<h5 th:text="#{profilo.piattaformagioco}"></h5>
-										<a th:if="${videogioco.ps4Url != null}" href="#"><span
-												class="badge badge-ps4">Ps4</span></a>
-										<a th:if="${videogioco.xboxUrl != null}" href="#"><span
-												class="badge badge-xbox-one">Xbox
-												One</span></a>
-										<a th:if="${videogioco.pcUrl != null}" href="#"><span
-												class="badge badge-steam">Pc</span></a>
-										<h5></h5>
-										<ul>
-											<li><a></a></li>
-											<li><a></a></li>
-										</ul>
-										<h5>Descrizione</h5>
-										<p th:text="${videogioco.descrizione}"></p>
+						<div class="col-lg-4">
+							<!-- sidebar -->
+							<div class="sidebar">
+								<!-- widget game -->
+								<div class="widget widget-game">
+									<div class="widget-block"
+										style="background-image: url('https://wallpapercave.com/wp/wp1978954.jpg')">
+										<div class="overlay"></div>
+										<div class="widget-item">
+											<h4 th:text="${videogioco.titolo}"></h4>
+											<span th:text="${videogioco.annoDiUscita}" class="meta"></span>
+											<h5 th:text="#{profilo.piattaformagioco}"></h5>
+											<a th:if="${videogioco.ps4Url != null}" href="#"><span
+													class="badge badge-ps4">Ps4</span></a>
+											<a th:if="${videogioco.xboxUrl != null}" href="#"><span
+													class="badge badge-xbox-one">Xbox
+													One</span></a>
+											<a th:if="${videogioco.pcUrl != null}" href="#"><span
+													class="badge badge-steam">Pc</span></a>
+											<h5></h5>
+											<ul>
+												<li><a></a></li>
+												<li><a></a></li>
+											</ul>
+											<h5>[[#{videogioco.descrizione}]]</h5>
+											<p th:text="${videogioco.descrizione}"></p>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -328,32 +328,6 @@
 	</div>
 	<!-- /main -->
 
-	<!-- plugins js -->
-	<script src="plugins/lightbox/lightbox.js" th:src="@{/plugins/lightbox/lightbox.js}"></script>
-	<script src="plugins/sticky/jquery.sticky.js" th:src="@{/plugins/sticky/jquery.sticky.js}"></script>
-	<script src="plugins/easypiechart/jquery.easing.1.3.js"
-		th:src="@{/plugins/easypiechart/jquery.easing.1.3.js}"></script>
-	<script src="plugins/easypiechart/jquery.easypiechart.min.js"
-		th:src="@{/plugins/easypiechart/jquery.easypiechart.min.js}"></script>
-	<script th:inline="javascript">
-		(function ($) {
-			"use strict";
-			// easyPieChart
-			$('.chart').easyPieChart({
-				barColor: '#5eb404',
-				trackColor: '#e3e3e3',
-				easing: 'easeOutBounce',
-				onStep: function (from, to, percent) {
-					$(this.el).find('span').text(Math.round(percent));
-				}
-			});
-
-			// lightbox
-			$('[data-lightbox]').lightbox({
-				disqus: 'gameforestyakuzieu'
-			});
-		})(jQuery);
-	</script>
 </body>
 
 </html>
