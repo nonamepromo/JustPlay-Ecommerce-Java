@@ -323,32 +323,6 @@
 	</div>
 	<!-- /main -->
 
-	<!-- plugins js -->
-	<script src="plugins/lightbox/lightbox.js" th:src="@{/plugins/lightbox/lightbox.js}"></script>
-	<script src="plugins/sticky/jquery.sticky.js" th:src="@{/plugins/sticky/jquery.sticky.js}"></script>
-	<script src="plugins/easypiechart/jquery.easing.1.3.js"
-		th:src="@{/plugins/easypiechart/jquery.easing.1.3.js}"></script>
-	<script src="plugins/easypiechart/jquery.easypiechart.min.js"
-		th:src="@{/plugins/easypiechart/jquery.easypiechart.min.js}"></script>
-	<script th:inline="javascript">
-		(function ($) {
-			"use strict";
-			// easyPieChart
-			$('.chart').easyPieChart({
-				barColor: '#5eb404',
-				trackColor: '#e3e3e3',
-				easing: 'easeOutBounce',
-				onStep: function (from, to, percent) {
-					$(this.el).find('span').text(Math.round(percent));
-				}
-			});
-
-			// lightbox
-			$('[data-lightbox]').lightbox({
-				disqus: 'gameforestyakuzieu'
-			});
-		})(jQuery);
-	</script>
 </body>
 
 </html>
