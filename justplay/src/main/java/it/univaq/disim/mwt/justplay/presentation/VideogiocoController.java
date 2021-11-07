@@ -162,8 +162,6 @@ public class VideogiocoController {
 			}
 		}
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
-		// amazonService.mongoAmazon();
-		// gamestopService.mongoGamestop();
 		model.addAttribute("amazon", amazonService.findAllByTitolo(videogioco.getTitolo()));
 		model.addAttribute("gamestop", gamestopService.findAllByTitolo(videogioco.getTitolo()));
 		model.addAttribute("videogioco", videogioco);

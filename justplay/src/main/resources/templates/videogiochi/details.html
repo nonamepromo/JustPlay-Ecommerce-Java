@@ -200,10 +200,10 @@
 				<div class="row">
 					<div class="col-lg-8">
 						<!-- post -->
-						<div class="mb-5" th:if="${amazon == null && gamestop == null}">
+						<div class="mb-5" th:if="${amazon.isEmpty() && gamestop.isEmpty()}">
 							<h4 th:text="#{videogioco.storeNo}"></h4>
 						</div>
-						<div th:if="${amazon != null || gamestop != null}">
+						<div th:if="${!amazon.isEmpty() || !gamestop.isEmpty()}">
 							<h4 th:text="#{videogioco.storeYes}"></h4>
 						</div>
 						<div class="post">
@@ -222,7 +222,7 @@
 											class="badge badge-steam">Pc</span>
 									</a>
 								</div>
-								<div th:if="${gamestop} != null" class="row">
+								<div class="row">
 									<a th:each="link : ${gamestop}" class="col-md-3" th:href="${link.gamestopUrl}"
 										target="_blank">
 										<img class="mt-4"

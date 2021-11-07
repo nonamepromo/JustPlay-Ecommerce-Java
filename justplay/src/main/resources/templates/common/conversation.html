@@ -6,20 +6,6 @@
 
 	<!-- main -->
 	<div layout:fragment="content">
-
-		<script>
-			function openChat(fkUtente1, fkUtente2) {
-				$.ajax({
-					url: '[(@{/common/conversations-list/conversation})]',
-					type: "GET",
-					data: "fkUtente1=" + fkUtente1 + "&fkUtente2=" + fkUtente2,
-					success: function (response) {
-
-					}
-				});
-			}
-		</script>
-
 		<section class="p-t-30">
 			<div class="container">
 				<div class="card" style="">

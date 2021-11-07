@@ -47,7 +47,7 @@
 					<div th:each="videogioco : ${videogiochi}" class="col-12 col-sm-6 col-md-4">
 						<div class="card card-lg">
 							<div class="card-img">
-								<a th:onclick="|openDetails('${videogioco.id}')|">
+								<a th:href="@{'/videogiochi/details?idVideogioco=' + ${videogioco.id}}">
 									<img style="height: 268px; object-fit: cover;" th:src="${videogioco.imageUrl}"
 										class="card-img-top">
 								</a>
@@ -70,7 +70,7 @@
 								<div th:if="${videogioco.pcUrl != null}" class="badge"
 									style="position: relative; bottom: 13px;" th:classappend="badge-steam">Pc</div>
 								<h4>
-									<a th:onclick="|openDetails('${videogioco.id}')|" th:text="${videogioco.titolo}">
+									<a th:href="@{'/videogiochi/details?idVideogioco=' + ${videogioco.id}}" th:text="${videogioco.titolo}">
 									</a>
 								</h4>
 								<div class="card-meta">
@@ -109,12 +109,6 @@
 				window.location.href = "list?platform=" + platform + "&index=" + index;
 			}
 		</script>
-
-		<script>
-			function openDetails(idVideogioco) {
-				window.location.href = "details?idVideogioco=" + idVideogioco;
-			}
-		</script>
 		<script>
 			function addGameToWishlist(idVideogioco) {
 				$.ajax({
@@ -122,11 +116,8 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						console.log("urlParams")
 						const queryString = window.location.search
 						const urlParams = new URLSearchParams(queryString);
-						console.log(urlParams)
-						// window.open("list?index=" + urlParams.get('index'), "_self")
 						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
 					},
 					error: function (response) {
@@ -143,10 +134,8 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						console.log("urlParams")
 						const queryString = window.location.search
 						const urlParams = new URLSearchParams(queryString);
-						// window.open("list?index=" + urlParams.get('index'), "_self")
 						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
 					}
 				});
@@ -160,10 +149,8 @@
 					type: "POST",
 					data: 'idVideogioco=' + idVideogioco,
 					success: function (response) {
-						console.log("urlParams")
 						const queryString = window.location.search
 						const urlParams = new URLSearchParams(queryString);
-						// window.open("list?index=" + urlParams.get('index'), "_self")
 						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
 					}
 				});
@@ -180,12 +167,10 @@
 						const queryString = window.location.search
 						const urlParams = new URLSearchParams(queryString);
 						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
-						//window.open('list?platform=all&index=2', "_self")
 					}
 				});
 			}
 		</script>
-
 	</div>
 </body>
 
