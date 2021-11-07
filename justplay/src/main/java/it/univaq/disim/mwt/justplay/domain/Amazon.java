@@ -16,7 +16,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Amazon {
 
-	private Long fkVideogioco;
+	private String titolo;
+	
+	private String piattaforma;
 
 	private String amazonUrl;
 
@@ -29,13 +31,14 @@ public class Amazon {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Amazon amazon = (Amazon) o;
-		return Objects.equals(fkVideogioco, amazon.fkVideogioco) && Objects.equals(amazonUrl, amazon.amazonUrl)
+		return Objects.equals(titolo, amazon.titolo) && Objects.equals(piattaforma, amazon.piattaforma) 
+				&& Objects.equals(amazonUrl, amazon.amazonUrl)
 				&& Objects.equals(prezzoAmazon, amazon.prezzoAmazon);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(fkVideogioco, amazonUrl, prezzoAmazon);
+		return Objects.hash(titolo, piattaforma, amazonUrl, prezzoAmazon);
 	}
 
 }

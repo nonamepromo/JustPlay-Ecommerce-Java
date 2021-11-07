@@ -16,11 +16,13 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Gamestop {
 
-	private Long fkVideogioco;
+	private String titolo;
+	
+	private String piattaforma;
 
-	private String url;
+	private String gamestopUrl;
 
-	private double prezzo;
+	private double prezzoGamestop;
 
 	@Override
 	public boolean equals(Object o) {
@@ -29,13 +31,14 @@ public class Gamestop {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Gamestop gamestop = (Gamestop) o;
-		return Objects.equals(fkVideogioco, gamestop.fkVideogioco) && Objects.equals(url, gamestop.url)
-				&& Objects.equals(prezzo, gamestop.prezzo);
+		return Objects.equals(titolo, gamestop.titolo) && Objects.equals(piattaforma, gamestop.piattaforma)
+				&& Objects.equals(gamestopUrl, gamestop.gamestopUrl)
+				&& Objects.equals(prezzoGamestop, gamestop.prezzoGamestop);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(fkVideogioco, url, prezzo);
+		return Objects.hash(titolo, piattaforma, gamestopUrl, prezzoGamestop);
 	}
 
 }

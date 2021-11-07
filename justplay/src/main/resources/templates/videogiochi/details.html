@@ -39,7 +39,7 @@
 								[[#{videogioco.addTo}]] Wishlist<i class="fa fa-heart"></i></button>
 						</form>
 					</div>
-					<div class="col-2">
+					<div class="col-3">
 						<form th:action="@{/videogiochi/addGameToPlayedlist}">
 							<input type="hidden" th:value="${idVideogioco}" th:name="idVideogioco" class="form-control">
 							<button class="btn btn-dark btn-shadow btn-rounded" type="submit" name="action"
@@ -141,31 +141,32 @@
 								</div>
 								<div class="modal-body p-a-20">
 									<form th:action="@{/videogiochi/editSellingGame}" method="post"
-									th:object="${videogioco_utente_in_vendita_modificato}">
+										th:object="${videogioco_utente_in_vendita_modificato}">
 
 										<h4 th:text="${videogioco.titolo}"></h4>
 										<div class="divider"></div>
-										<input type="hidden" th:value="${videogioco_utente_in_vendita.id}" th:name="id" th:id="id"
-											class="form-control">
-											<input type="hidden" th:value="${videogioco_utente_in_vendita.fkVideogioco}" th:name="fkVideogioco" th:id="fkVideogioco"
-												class="form-control">
+										<input type="hidden" th:value="${videogioco_utente_in_vendita.id}" th:name="id"
+											th:id="id" class="form-control">
+										<input type="hidden" th:value="${videogioco_utente_in_vendita.fkVideogioco}"
+											th:name="fkVideogioco" th:id="fkVideogioco" class="form-control">
 										<div class="form-group input-icon-left m-b-10">
 											<i class="fa fa-dollar"></i>
 											<input type="number" class="form-control form-control-secondary"
-											th:value="${videogioco_utente_in_vendita.prezzo}" th:name="prezzo" th:id="prezzo"
-												th:placeholder="#{videogioco.venditaPrezzo}" required>
+												th:value="${videogioco_utente_in_vendita.prezzo}" th:name="prezzo"
+												th:id="prezzo" th:placeholder="#{videogioco.venditaPrezzo}" required>
 										</div>
 										<div class="form-group input-icon-left m-b-10">
 											<i class="fa fa-plane"></i>
 											<input type="number" class="form-control form-control-secondary"
-												th:value="${videogioco_utente_in_vendita.prezzoSpedizione}" th:name="prezzoSpedizione" th:id="prezzoSpedizione"
+												th:value="${videogioco_utente_in_vendita.prezzoSpedizione}"
+												th:name="prezzoSpedizione" th:id="prezzoSpedizione"
 												th:placeholder="#{videogioco.venditaSpedizione}">
 										</div>
 										<div class="form-group input-icon-left m-b-15">
 											<i class="fa fa-map-signs"></i>
 											<input type="text" class="form-control form-control-secondary"
-											th:value="${videogioco_utente_in_vendita.provincia}" th:name="provincia" th:id="provincia"
-												th:placeholder="#{videogioco.venditaLuogo}" required>
+												th:value="${videogioco_utente_in_vendita.provincia}" th:name="provincia"
+												th:id="provincia" th:placeholder="#{videogioco.venditaLuogo}" required>
 										</div>
 										<div class="dropdown float-left">
 											<select class="form-control" name="piattaforma" required>
@@ -174,10 +175,10 @@
 														th:selected="${videogioco_utente_in_vendita.piattaforma.equals('PS4')}"
 														th:value="PS4" class="dropdown-item">PS4</option>
 													<option value="Xbox" th:if="${videogioco.xboxUrl != null}"
-													th:selected="${videogioco_utente_in_vendita.piattaforma.equals('Xbox')}"
+														th:selected="${videogioco_utente_in_vendita.piattaforma.equals('Xbox')}"
 														th:value="Xbox" class="dropdown-item">Xbox</option>
 													<option value="Pc" th:if="${videogioco.pcUrl != null}" th:value="Pc"
-													th:selected="${videogioco_utente_in_vendita.piattaforma.equals('Pc')}"
+														th:selected="${videogioco_utente_in_vendita.piattaforma.equals('Pc')}"
 														class="dropdown-item">Pc</option>
 												</div>
 											</select>
@@ -205,114 +206,119 @@
 						<div th:if="${amazon != null || gamestop != null}">
 							<h4 th:text="#{videogioco.storeYes}"></h4>
 						</div>
-						<div th:if="${amazon} != null" class="mt-4 mb-4">
-							<div class="post">
-								<a class="col-md-4" th:href="${amazon.amazonUrl}" target="_blank">
-									<img class="mt-3"
+						<div class="post">
+							<div  class="col-2">
+								<a th:each="link : ${amazon}" class="col-md-4" th:href="${link.amazonUrl}" target="_blank">
+									<img class="mt-4"
 										src="https://www.kanguru.it/wp-content/uploads/2017/09/amazon-logo.png"
 										style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
-								</a>
-								<a class="col-md-2 mt-3" th:href="${amazon.amazonUrl}" target="_blank">
-									<h4 th:text="${amazon.prezzoAmazon} + €"></h4>
+									<h4 th:text="${link.prezzoAmazon} + €"></h4>
+									<span th:if="${link.piattaforma.equals('PS4')}" class="badge badge-ps4">Ps4</span>
+									<span th:if="${link.piattaforma.equals('Xbox')}"
+										class="badge badge-xbox-one">Xbox</span>
+									<span th:if="${link.piattaforma.equals('PC')}" class="badge badge-steam">Pc</span>
 								</a>
 							</div>
-						</div>
-						<div th:if="${gamestop} != null" class="mt-4 mb-4">
-							<div class="post">
-								<a class="col-md-4" th:href="${gamestop.url}" target="_blank">
-									<img class="mt-3" src="https://www.gamestop.it/Views/Locale/Content/Images/logo.png"
+							<div th:if="${gamestop} != null" class="col-2">
+								<a th:each="link : ${gamestop}" class="col-md-4" th:href="${link.gamestopUrl}" target="_blank">
+									<img class="mt-4" src="https://www.gamestop.it/Views/Locale/Content/Images/logo.png"
 										style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
-								</a>
-								<a class="col-md-2 mt-3" th:href="${gamestop.url}" target="_blank">
-									<h4 th:text="${gamestop.prezzo} + €"></h4>
+									<h4 th:text="${link.prezzoGamestop} + €"></h4>
+									<span th:if="${link.piattaforma.equals('PS4')}" class="badge badge-ps4">Ps4</span>
+									<span th:if="${link.piattaforma.equals('Xbox')}"
+										class="badge badge-xbox-one">Xbox</span>
+									<span th:if="${link.piattaforma.equals('PC')}" class="badge badge-steam">Pc</span>
 								</a>
 							</div>
 						</div>
-						<div th:if="${sellingList.contains(videogioco.id)}">
-							<!-- post -->
-							<div class="post">
-								<h4 th:text="#{videogioco.privata}"></h4>
-							</div>
-							<div class="post">
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<!-- <th>Utente</th> -->
-											<th th:text="#{profilo.username}"></th>
-											<th th:text="#{videogioco.prezzo}"></th>
-											<th th:text="#{videogioco.spedizione}"></th>
-											<th th:text="#{videogioco.provincia}"></th>
-											<th th:text="#{profilo.piattaformagioco}"></th>
-											<!-- <th th:text="#{profilo.azioni}"></th> -->
-										</tr>
-									</thead>
-									<tbody>
-										<tr th:each=" videogioco_in_vendita : ${videogiochi_in_vendita}">
-											<td th:text="${videogioco_in_vendita.username}"></td>
-											<td th:text="${videogioco_in_vendita.prezzo}+ '€'"></td>
-											<td th:text="${videogioco_in_vendita.prezzoSpedizione}+ '€'"></td>
-											<td th:text="${videogioco_in_vendita.provincia}"></td>
-											<td th:text="${videogioco_in_vendita.piattaforma}"></td>
-											<td th:if="${videogioco_in_vendita.fkUtente == idUtente}">
-												<button class="btn btn-link p-a-5" data-toggle="modal"
-													th:data-target="${'#modal-videogioco-in-vendita-'+videogioco_in_vendita.id}"><i
-														class="fa fa-edit"></i></button>
-											</td>
-											<td th:if="${videogioco_in_vendita.fkUtente == idUtente}">
-												<form th:action="@{/videogiochi/removeGameFromSellinglist}">
-													<input type="hidden" th:value="${idVideogioco}"
-														th:name="idVideogioco" class="form-control">
-													<button th:value="${videogioco_in_vendita.id}" th:name="idVenduto" type="submit" class="btn btn-link p-a-5"><i
-															class="fa fa-trash-o"></i></button>
-												</form>
-											</td>
-											<td th:if="${videogioco_in_vendita.fkUtente != idUtente}">
-												<form th:action="@{/videogiochi/createConversazione}">
-													<input type="hidden" th:value="${videogioco_in_vendita.fkUtente}"
-														th:name="fkUtente" class="form-control">
-													<button type="submit" class="btn btn-link p-a-5"><i
-															class="fa fa-wechat"></i></button>
-												</form>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+							<div th:if="${sellingList.contains(videogioco.id)}">
+								<!-- post -->
+								<div class="post">
+									<h4 th:text="#{videogioco.privata}"></h4>
+								</div>
+								<div class="post">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<!-- <th>Utente</th> -->
+												<th th:text="#{profilo.username}"></th>
+												<th th:text="#{videogioco.prezzo}"></th>
+												<th th:text="#{videogioco.spedizione}"></th>
+												<th th:text="#{videogioco.provincia}"></th>
+												<th th:text="#{profilo.piattaformagioco}"></th>
+												<!-- <th th:text="#{profilo.azioni}"></th> -->
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each=" videogioco_in_vendita : ${videogiochi_in_vendita}">
+												<td th:text="${videogioco_in_vendita.username}"></td>
+												<td th:text="${videogioco_in_vendita.prezzo}+ '€'"></td>
+												<td th:text="${videogioco_in_vendita.prezzoSpedizione}+ '€'"></td>
+												<td th:text="${videogioco_in_vendita.provincia}"></td>
+												<td th:text="${videogioco_in_vendita.piattaforma}"></td>
+												<td th:if="${videogioco_in_vendita.fkUtente == idUtente}">
+													<button class="btn btn-link p-a-5" data-toggle="modal"
+														th:data-target="${'#modal-videogioco-in-vendita-'+videogioco_in_vendita.id}"><i
+															class="fa fa-edit"></i></button>
+												</td>
+												<td th:if="${videogioco_in_vendita.fkUtente == idUtente}">
+													<form th:action="@{/videogiochi/removeGameFromSellinglist}">
+														<input type="hidden" th:value="${idVideogioco}"
+															th:name="idVideogioco" class="form-control">
+														<button th:value="${videogioco_in_vendita.id}"
+															th:name="idVenduto" type="submit"
+															class="btn btn-link p-a-5"><i
+																class="fa fa-trash-o"></i></button>
+													</form>
+												</td>
+												<td th:if="${videogioco_in_vendita.fkUtente != idUtente}">
+													<form th:action="@{/videogiochi/createConversazione}">
+														<input type="hidden"
+															th:value="${videogioco_in_vendita.fkUtente}"
+															th:name="fkUtente" class="form-control">
+														<button type="submit" class="btn btn-link p-a-5"><i
+																class="fa fa-wechat"></i></button>
+													</form>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-lg-4">
-						<!-- sidebar -->
-						<div class="sidebar">
-							<!-- widget game -->
-							<div class="widget widget-game">
-								<div class="widget-block"
-									style="background-image: url('https://wallpapercave.com/wp/wp1978954.jpg')">
-									<div class="overlay"></div>
-									<div class="widget-item">
-										<h4 th:text="${videogioco.titolo}"></h4>
-										<span th:text="${videogioco.annoDiUscita}" class="meta"></span>
-										<h5 th:text="#{profilo.piattaformagioco}"></h5>
-										<a th:if="${videogioco.ps4Url != null}" href="#"><span
-												class="badge badge-ps4">Ps4</span></a>
-										<a th:if="${videogioco.xboxUrl != null}" href="#"><span
-												class="badge badge-xbox-one">Xbox
-												One</span></a>
-										<a th:if="${videogioco.pcUrl != null}" href="#"><span
-												class="badge badge-steam">Pc</span></a>
-										<h5></h5>
-										<ul>
-											<li><a></a></li>
-											<li><a></a></li>
-										</ul>
-										<h5>Descrizione</h5>
-										<p th:text="${videogioco.descrizione}"></p>
+						<div class="col-lg-4">
+							<!-- sidebar -->
+							<div class="sidebar">
+								<!-- widget game -->
+								<div class="widget widget-game">
+									<div class="widget-block"
+										style="background-image: url('https://wallpapercave.com/wp/wp1978954.jpg')">
+										<div class="overlay"></div>
+										<div class="widget-item">
+											<h4 th:text="${videogioco.titolo}"></h4>
+											<span th:text="${videogioco.annoDiUscita}" class="meta"></span>
+											<h5 th:text="#{profilo.piattaformagioco}"></h5>
+											<a th:if="${videogioco.ps4Url != null}" href="#"><span
+													class="badge badge-ps4">Ps4</span></a>
+											<a th:if="${videogioco.xboxUrl != null}" href="#"><span
+													class="badge badge-xbox-one">Xbox
+													One</span></a>
+											<a th:if="${videogioco.pcUrl != null}" href="#"><span
+													class="badge badge-steam">Pc</span></a>
+											<h5></h5>
+											<ul>
+												<li><a></a></li>
+												<li><a></a></li>
+											</ul>
+											<h5>Descrizione</h5>
+											<p th:text="${videogioco.descrizione}"></p>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 		</section>
 	</div>
 	<!-- /main -->
