@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.ConversazioneService;
 import it.univaq.disim.mwt.justplay.business.MessaggioService;
-import it.univaq.disim.mwt.justplay.business.UtenteService;
-import it.univaq.disim.mwt.justplay.domain.Conversazione;
 import it.univaq.disim.mwt.justplay.domain.Messaggio;
 
 @Controller
@@ -24,9 +22,6 @@ public class ConversazioneController {
 
 	@Autowired
 	private ConversazioneService conversazioneService;
-
-	@Autowired
-	private UtenteService utenteService;
 
 	@Autowired
 	private MessaggioService messaggioService;
@@ -81,7 +76,6 @@ public class ConversazioneController {
 			@RequestParam(value = "idUtente") Long idUtente,
 			@RequestParam(value = "idConversazione") Long idConversazione) throws BusinessException {
 		conversazioneService.createMessaggio(idUtente, idConversazione, messaggio.getContenuto());
-		String nome = (utenteService.findById(idUtente)).get().getNome();
 		model.addAttribute("nomeUtente",
 				conversazioneService.findNameByIdConversazione(idConversazione, idUtente).getNomeUtente1());
 		return "redirect:/common/conversation?idConversazione=" + idConversazione + "&nomeUtente="

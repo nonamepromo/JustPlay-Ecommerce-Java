@@ -224,7 +224,6 @@ public class VideogiocoController {
 	@RequestMapping(value = "/addGameToWishlist", method = RequestMethod.GET, params = "action=save")
 	public String addGameToWishlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
-		Long idUtente = Utility.getUtente().getId();
 		Utente utente = Utility.getUtente();
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		service.addGameToWishlist(videogioco, utente);
@@ -236,7 +235,6 @@ public class VideogiocoController {
 	@RequestMapping(value = "/addGameToWishlist", method = RequestMethod.GET, params = "action=delete")
 	public String removeGameFromWishlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
-		Long idUtente = Utility.getUtente().getId();
 		Utente utente = Utility.getUtente();
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		service.removeGameFromWishlist(videogioco, utente);
@@ -258,8 +256,6 @@ public class VideogiocoController {
 	@RequestMapping(value = "/addGameToPlayedlist", method = RequestMethod.GET, params = "action=save")
 	public String addGameToPlayedlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
-		Long idUtente = Utility.getUtente().getId();
-		// service.addGameToPlayedlist(idVideogioco, idUtente);
 		Utente utente = Utility.getUtente();
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		service.addGameToPlayedlist(videogioco, utente);
@@ -271,8 +267,6 @@ public class VideogiocoController {
 	@RequestMapping(value = "/addGameToPlayedlist", method = RequestMethod.GET, params = "action=delete")
 	public String removeGameFromPlayedlistDetails(@RequestParam(value = "idVideogioco") Long idVideogioco, Model model)
 			throws BusinessException {
-		Long idUtente = Utility.getUtente().getId();
-		// service.removeGameFromPlayedlist(idVideogioco, idUtente);
 		Utente utente = Utility.getUtente();
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		service.removeGameFromPlayedlist(videogioco, utente);

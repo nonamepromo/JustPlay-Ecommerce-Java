@@ -111,7 +111,6 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 			throws BusinessException {
 		List<Videogioco> videogiochi = new ArrayList<>();
 		Pageable pageWithThreeElements = PageRequest.of(index - 1, 6);
-		Pageable page = PageRequest.of(1, 3);
 		switch (platform) {
 		case "all":
 			videogiochi = videogiocoRepository.findByTitoloContaining(searchString, pageWithThreeElements);

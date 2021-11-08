@@ -4,7 +4,6 @@ import java.util.List;
 
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
-import it.univaq.disim.mwt.justplay.domain.VideogiocoGiocato;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
 

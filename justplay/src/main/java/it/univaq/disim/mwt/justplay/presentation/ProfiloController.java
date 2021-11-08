@@ -63,7 +63,6 @@ public class ProfiloController {
 	public String removeGameFromWishlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {
 		Utente utente = Utility.getUtente();
-		Long idUtente = utente.getId();
 		Videogioco videogioco = gameService.findVideogiocoByID(idVideogioco);
 		gameService.removeGameFromWishlist(videogioco, utente);
 		return "/common/profilo";
@@ -76,8 +75,6 @@ public class ProfiloController {
 	public String removeGameFromPlayedlist(@RequestParam(value = "idVideogioco") Long idVideogioco)
 			throws BusinessException {
 		Utente utente = Utility.getUtente();
-		Long idUtente = utente.getId();
-		//gameService.removeGameFromPlayedlist(idVideogioco, idUtente);
 		Videogioco videogioco = gameService.findVideogiocoByID(idVideogioco);
 		gameService.removeGameFromPlayedlist(videogioco, utente);
 		return "/common/profilo";
