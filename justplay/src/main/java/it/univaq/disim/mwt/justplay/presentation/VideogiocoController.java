@@ -20,14 +20,12 @@ import it.univaq.disim.mwt.justplay.business.AmazonService;
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.ConversazioneService;
 import it.univaq.disim.mwt.justplay.business.GamestopService;
+import it.univaq.disim.mwt.justplay.business.PincodeService;
 import it.univaq.disim.mwt.justplay.business.UtenteService;
-import it.univaq.disim.mwt.justplay.business.VideogiochiMongoDBService;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
-import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.UtenteRepository;
 import it.univaq.disim.mwt.justplay.domain.Conversazione;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
-import it.univaq.disim.mwt.justplay.domain.VideogiocoDesiderato;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
 
@@ -49,6 +47,10 @@ public class VideogiocoController {
 
 	@Autowired
 	private UtenteService utenteService;
+	
+	@Autowired
+	private PincodeService pincodeService;
+	
 
 	/*
 	 * Prende in argomento l'indice della paginazione e la piattaforma e restituisce
@@ -56,7 +58,7 @@ public class VideogiocoController {
 	 */
 	@GetMapping(value = "/list", params = { "platform", "index" })
 	public String listWithPlatform(@RequestParam(value = "platform", defaultValue = "all") String platform,
-			@RequestParam(value = "index", defaultValue = "1") int index, Model model) throws BusinessException {
+			@RequestParam(value = "index", defaultValue = "1") int index, Model model, Authentication authentication) throws BusinessException {
 		service.addGameFromMdb();
 		int videogiochiCount = service.getVideogiochiCount(platform);
 		int numberOfIndexes = videogiochiCount / 6
@@ -64,7 +66,7 @@ public class VideogiocoController {
 		model.addAttribute("videogiochiCount", numberOfIndexes);
 		model.addAttribute("platform", platform);
 		model.addAttribute("videogiochi", service.findByPlatform(platform, index));
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication.getPrincipal() != "anonymousUser") {
 			Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
 			getWishlist(model, idUtente);
@@ -83,7 +85,7 @@ public class VideogiocoController {
 	@GetMapping(value = "/list", params = { "platform", "index", "searchString" })
 	public String listWithPlatformResearched(@RequestParam(value = "platform", defaultValue = "all") String platform,
 			@RequestParam(value = "index", defaultValue = "1") int index,
-			@RequestParam(value = "searchString") String searchString, Model model) throws BusinessException {
+			@RequestParam(value = "searchString") String searchString, Model model, Authentication authentication) throws BusinessException {
 		service.addGameFromMdb();
 		List<Videogioco> videogiochi = new ArrayList<Videogioco>();
 		int numberOfIndexes = 0;
@@ -103,7 +105,7 @@ public class VideogiocoController {
 
 		model.addAttribute("videogiochiCount", numberOfIndexes);
 		model.addAttribute("platform", platform);
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication.getPrincipal() != "anonymousUser") {
 			Long idUtente = Long.parseLong(authentication.getPrincipal().toString());
 			getWishlist(model, idUtente);
@@ -113,9 +115,8 @@ public class VideogiocoController {
 
 	}
 
-	@GetMapping("/wishlist")
-	public String wishlist(Model model) throws BusinessException {
-		return "videogiochi/wishlist";
+	public void getPincodes(Model model) throws BusinessException {
+		model.addAttribute("pincodes", pincodeService.findAll());
 	}
 
 	public void getWishlist(Model model, Long idUtente) throws BusinessException {
@@ -147,8 +148,8 @@ public class VideogiocoController {
 	 * quel gioco da parte di tutti gli utenti
 	 */
 	@GetMapping("/details")
-	public String details(@RequestParam("idVideogioco") Long idVideogioco, Model model) throws BusinessException {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	public String details(@RequestParam("idVideogioco") Long idVideogioco, Model model, Authentication authentication) throws BusinessException {
+		authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication.getPrincipal() != "anonymousUser") {
 			Utente utente = Utility.getUtente();
 			model.addAttribute("idUtente", utente.getId());
@@ -164,6 +165,7 @@ public class VideogiocoController {
 		Videogioco videogioco = service.findVideogiocoByID(idVideogioco);
 		model.addAttribute("amazon", amazonService.findAllByTitolo(videogioco.getTitolo()));
 		model.addAttribute("gamestop", gamestopService.findAllByTitolo(videogioco.getTitolo()));
+		model.addAttribute("pincodes", pincodeService.findAll());
 		model.addAttribute("videogioco", videogioco);
 		model.addAttribute("idVideogioco", idVideogioco);
 		VideogiocoInVendita videogiocoInVendita = new VideogiocoInVendita();

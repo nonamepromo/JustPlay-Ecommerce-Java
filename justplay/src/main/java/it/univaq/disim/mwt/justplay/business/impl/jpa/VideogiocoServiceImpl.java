@@ -323,6 +323,7 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 					nuovoGioco.setTitolo(videogiocoMongo.getTitolo());
 					nuovoGioco.setAnnoDiUscita(videogiocoMongo.getAnno_di_uscita());
 					nuovoGioco.setDescrizione(videogiocoMongo.getDescrizione());
+					nuovoGioco.setDescrizioneEN(videogiocoMongo.getDescrizioneEN());
 					nuovoGioco.setImageUrl(videogiocoMongo.getImage_url());
 					nuovoGioco.setPcUrl(videogiocoMongo.getPc_url());
 					nuovoGioco.setPs4Url(videogiocoMongo.getPs4_url());

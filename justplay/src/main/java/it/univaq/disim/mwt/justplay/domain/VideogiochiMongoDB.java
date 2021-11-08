@@ -24,6 +24,8 @@ public class VideogiochiMongoDB {
 	
 	private String descrizione;
 	
+	private String descrizioneEN;
+	
 	private String image_url;
 	
 	private String pc_url;
@@ -43,6 +45,7 @@ public class VideogiochiMongoDB {
 				&& Objects.equals(titolo, videogiochiMongoDB.titolo)
 				&& Objects.equals(anno_di_uscita, videogiochiMongoDB.anno_di_uscita)
 				&& Objects.equals(descrizione, videogiochiMongoDB.descrizione)
+				&& Objects.equals(descrizioneEN, videogiochiMongoDB.descrizioneEN)
 				&& Objects.equals(image_url, videogiochiMongoDB.image_url)
 				&& Objects.equals(pc_url, videogiochiMongoDB.pc_url)
 				&& Objects.equals(ps4_url, videogiochiMongoDB.ps4_url)
@@ -51,7 +54,7 @@ public class VideogiochiMongoDB {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idVideogioco, titolo, anno_di_uscita, descrizione, image_url, pc_url, ps4_url, xbox_url);
+		return Objects.hash(idVideogioco, titolo, anno_di_uscita, descrizione, descrizioneEN, image_url, pc_url, ps4_url, xbox_url);
 	}
 	
 }

@@ -85,7 +85,6 @@
 										<input type="hidden" th:value="${idUtente}" th:name="idUtente"
 											class="form-control">
 									</div>
-
 									<h4 th:text="${videogioco.titolo}"></h4>
 									<div class="divider"></div>
 									<div class="form-group input-icon-left m-b-10">
@@ -99,11 +98,18 @@
 											th:field="*{prezzoSpedizione}"
 											th:placeholder="#{videogioco.venditaSpedizione}">
 									</div>
-									<div class="form-group input-icon-left m-b-15">
-										<i class="fa fa-map-signs"></i>
-										<input type="text" class="form-control form-control-secondary"
-											th:field="*{provincia}" th:placeholder="#{videogioco.venditaLuogo}"
-											required>
+									<div class="dropdown">
+										<select class="form-control" name="provincia" required>
+											<div class="dropdown-menu dropdown-menu-right">
+												<option value="" selected disabled hidden>
+													[[#{videogioco.venditaLuogo}]]
+												</option>
+												<option value="provincia" th:each="pincode : ${pincodes}"
+													th:if="${pincodes != null}" th:value="${pincode.provincia}"
+													class="dropdown-item">[[${pincode.provincia}]]</option>
+											</div>
+										</select>
+										<div class="divider"></div>
 									</div>
 									<div class="dropdown float-left">
 										<select class="form-control" name="piattaforma" required>
@@ -142,7 +148,6 @@
 								<div class="modal-body p-a-20">
 									<form th:action="@{/videogiochi/editSellingGame}" method="post"
 										th:object="${videogioco_utente_in_vendita_modificato}">
-
 										<h4 th:text="${videogioco.titolo}"></h4>
 										<div class="divider"></div>
 										<input type="hidden" th:value="${videogioco_utente_in_vendita.id}" th:name="id"
@@ -162,11 +167,19 @@
 												th:name="prezzoSpedizione" th:id="prezzoSpedizione"
 												th:placeholder="#{videogioco.venditaSpedizione}">
 										</div>
-										<div class="form-group input-icon-left m-b-15">
-											<i class="fa fa-map-signs"></i>
-											<input type="text" class="form-control form-control-secondary"
-												th:value="${videogioco_utente_in_vendita.provincia}" th:name="provincia"
-												th:id="provincia" th:placeholder="#{videogioco.venditaLuogo}" required>
+										<div class="dropdown">
+											<select class="form-control" name="provincia" required>
+												<div class="dropdown-menu dropdown-menu-right">
+													<option th:value="${videogioco_utente_in_vendita.provincia}"
+														th:name="provincia" selected hidden>
+														[[${videogioco_utente_in_vendita.provincia}]]
+													</option>
+													<option value="provincia" th:each="pincode : ${pincodes}"
+														th:if="${pincodes != null}" th:value="${pincode.provincia}"
+														class="dropdown-item">[[${pincode.provincia}]]</option>
+												</div>
+											</select>
+											<div class="divider"></div>
 										</div>
 										<div class="dropdown float-left">
 											<select class="form-control" name="piattaforma" required>
@@ -207,36 +220,31 @@
 							<h4 th:text="#{videogioco.storeYes}"></h4>
 						</div>
 						<div class="post">
-								<div class="row">
-									<a th:each="link : ${amazon}" class="col-md-3" th:href="${link.amazonUrl}"
-										target="_blank">
-										<img class="mt-4"
-											src="https://www.kanguru.it/wp-content/uploads/2017/09/amazon-logo.png"
-											style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
-										<h4 th:text="${link.prezzoAmazon} + €"></h4>
-										<span th:if="${link.piattaforma.equals('PS4')}"
-											class="badge badge-ps4">Ps4</span>
-										<span th:if="${link.piattaforma.equals('Xbox')}"
-											class="badge badge-xbox-one">Xbox</span>
-										<span th:if="${link.piattaforma.equals('PC')}"
-											class="badge badge-steam">Pc</span>
-									</a>
-								</div>
-								<div class="row">
-									<a th:each="link : ${gamestop}" class="col-md-3" th:href="${link.gamestopUrl}"
-										target="_blank">
-										<img class="mt-4"
-											src="https://www.gamestop.it/Views/Locale/Content/Images/logo.png"
-											style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
-										<h4 th:text="${link.prezzoGamestop} + €"></h4>
-										<span th:if="${link.piattaforma.equals('PS4')}"
-											class="badge badge-ps4">Ps4</span>
-										<span th:if="${link.piattaforma.equals('Xbox')}"
-											class="badge badge-xbox-one">Xbox</span>
-										<span th:if="${link.piattaforma.equals('PC')}"
-											class="badge badge-steam">Pc</span>
-									</a>
-								</div>
+							<div class="row">
+								<a th:each="link : ${amazon}" class="col-md-3" th:href="${link.amazonUrl}"
+									target="_blank">
+									<img class="mt-4"
+										src="https://www.kanguru.it/wp-content/uploads/2017/09/amazon-logo.png"
+										style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
+									<h4 th:text="${link.prezzoAmazon} + €"></h4>
+									<span th:if="${link.piattaforma.equals('PS4')}" class="badge badge-ps4">Ps4</span>
+									<span th:if="${link.piattaforma.equals('Xbox')}"
+										class="badge badge-xbox-one">Xbox</span>
+									<span th:if="${link.piattaforma.equals('PC')}" class="badge badge-steam">Pc</span>
+								</a>
+							</div>
+							<div class="row">
+								<a th:each="link : ${gamestop}" class="col-md-3" th:href="${link.gamestopUrl}"
+									target="_blank">
+									<img class="mt-4" src="https://www.gamestop.it/Views/Locale/Content/Images/logo.png"
+										style="display: block; max-width:160px; max-height:35px; width: auto; height: auto;">
+									<h4 th:text="${link.prezzoGamestop} + €"></h4>
+									<span th:if="${link.piattaforma.equals('PS4')}" class="badge badge-ps4">Ps4</span>
+									<span th:if="${link.piattaforma.equals('Xbox')}"
+										class="badge badge-xbox-one">Xbox</span>
+									<span th:if="${link.piattaforma.equals('PC')}" class="badge badge-steam">Pc</span>
+								</a>
+							</div>
 						</div>
 						<div th:if="${sellingList.contains(videogioco.id)}">
 							<!-- post -->
@@ -316,7 +324,7 @@
 											<li><a></a></li>
 										</ul>
 										<h5>[[#{videogioco.descrizione}]]</h5>
-										<p th:text="${videogioco.descrizione}"></p>
+										<p th:text="${#locale.language == 'it' ? videogioco.descrizione : videogioco.descrizioneEN}"></p>
 									</div>
 								</div>
 							</div>
