@@ -1,7 +1,5 @@
 package it.univaq.disim.mwt.justplay.business;
 
-import java.util.Optional;
-
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 
