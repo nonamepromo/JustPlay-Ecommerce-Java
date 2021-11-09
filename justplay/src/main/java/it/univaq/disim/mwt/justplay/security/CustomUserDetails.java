@@ -8,7 +8,7 @@ import it.univaq.disim.mwt.justplay.domain.Utente;
 
 public class CustomUserDetails implements UserDetails {
 	
-	private Utente utente;
+	private final Utente utente;
 
 	public CustomUserDetails(Utente utente) {
 		super();

@@ -7,13 +7,13 @@ public interface UtenteService {
 
 	Utente findByUsername(String username) throws BusinessException;
 
-	Utente findById(Long id) throws BusinessException; // AGGIUNTO PER MODIFICARE UTENTE
+	Utente findById(Long id) throws BusinessException;
 
 	boolean existsByUsername(String username) throws BusinessException;
 
 	boolean existsByEmail(String email) throws BusinessException;
 
-	void save(Utente nuovoProfilo, Long id) throws BusinessException;
+	void update(Utente utente) throws BusinessException;
 
 	void save(Utente utente) throws BusinessException;
 	

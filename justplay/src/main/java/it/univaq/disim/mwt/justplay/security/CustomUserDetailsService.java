@@ -14,14 +14,14 @@ import it.univaq.disim.mwt.justplay.domain.Utente;
 public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	private UtenteService service;
+	private UtenteService utenteService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Utente utente = new Utente();
 		try {
-			if (service.existsByUsername(username)) {
-				utente = service.findByUsername(username);
+			if (utenteService.existsByUsername(username)) {
+				utente = utenteService.findByUsername(username);
 				return new CustomUserDetails(utente);
 			} else {
 				throw new UsernameNotFoundException(username);

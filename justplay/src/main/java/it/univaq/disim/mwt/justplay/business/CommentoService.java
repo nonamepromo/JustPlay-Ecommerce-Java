@@ -12,6 +12,4 @@ public interface CommentoService{
 
     void updateCommento(Commento commento) throws BusinessException;
 
-    Commento findBtId(Long id) throws BusinessException;
-
 }
