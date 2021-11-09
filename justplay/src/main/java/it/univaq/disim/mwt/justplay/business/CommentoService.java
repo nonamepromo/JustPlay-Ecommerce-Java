@@ -1,3 +1,9 @@
+package it.univaq.disim.mwt.justplay.business;
+
+import it.univaq.disim.mwt.justplay.domain.Commento;
+import it.univaq.disim.mwt.justplay.domain.Utente;
+import it.univaq.disim.mwt.justplay.domain.Videogioco;
+
 public interface CommentoService{
 
     Commento findById(Long id) throws BusinessException;
@@ -6,6 +12,6 @@ public interface CommentoService{
 
     void updateCommento(Commento commento) throws BusinessException;
 
-    Comment findBtId(Long id) throws BusinessException;
+    Commento findBtId(Long id) throws BusinessException;
 
 }
