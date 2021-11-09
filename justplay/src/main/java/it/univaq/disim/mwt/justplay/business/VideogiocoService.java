@@ -6,14 +6,21 @@ import org.springframework.data.domain.Pageable;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
+import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
 
 public interface VideogiocoService{
 	
 	Videogioco findById(Long id) throws BusinessException;
 	
 	Page<Videogioco> findAll(Pageable pageable) throws BusinessException;
-		
+	
+	Page<Videogioco> serachVideogioco(String search, int numeroPagine, int sizePagina) throws BusinessException;
+	
+	VideogiocoPiaciuto findLikedGame(Utente utente, Videogioco videogioco) throws BusinessException;
+	
 	void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Videogioco videogioco, Utente  utente) throws BusinessException;
+
+	void addGameToLikedlist(Videogioco videogioco, boolean piaciuto) throws BusinessException;
 
 	void removeGameFromSellinglist(Videogioco videogioco, Utente utente, VideogiocoInVendita videogiocoInVendita) throws BusinessException;
 
