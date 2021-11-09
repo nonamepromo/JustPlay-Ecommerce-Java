@@ -6,11 +6,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import it.univaq.disim.mwt.justplay.domain.Utente;
 
-public class UserDetailsImpl implements UserDetails {
+public class CustomUserDetails implements UserDetails {
 	
 	private Utente utente;
 
-	public UserDetailsImpl(Utente utente) {
+	public CustomUserDetails(Utente utente) {
 		super();
 		this.utente = utente;
 	}

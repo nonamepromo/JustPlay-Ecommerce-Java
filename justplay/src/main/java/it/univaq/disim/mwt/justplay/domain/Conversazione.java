@@ -1,14 +1,12 @@
 package it.univaq.disim.mwt.justplay.domain;
 
-import java.util.Date;
-import java.util.Objects;
-
+import lombok.*;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import javax.persistence.Id;
+import java.util.Objects;
+import java.util.Set;
 
 @Document(collection = "conversazioni")
 @Getter
@@ -17,17 +15,13 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Conversazione {
 
-	private Long idConversazione;
+	@Id
+	private String id;
 
-	private Long fkUtente1;
+	@DBRef
+	private Set<Messaggio> messaggi;
 
-	private Long fkUtente2;
-
-	private String nomeUtente1;
-
-	private String nomeUtente2;
-
-	private Date data;
+	private Set<String> partecipanti;
 
 	@Override
 	public boolean equals(Object o) {
@@ -36,16 +30,13 @@ public class Conversazione {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Conversazione conversazione = (Conversazione) o;
-		return Objects.equals(idConversazione, conversazione.idConversazione)
-				&& Objects.equals(fkUtente1, conversazione.fkUtente1)
-				&& Objects.equals(fkUtente2, conversazione.fkUtente2)
-				&& Objects.equals(nomeUtente1, conversazione.nomeUtente1)
-				&& Objects.equals(nomeUtente2, conversazione.nomeUtente2) && Objects.equals(data, conversazione.data);
+		return Objects.equals(id, conversazione.id) && Objects.equals(messaggi, conversazione.messaggi)
+				&& Objects.equals(partecipanti, conversazione.partecipanti);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idConversazione, fkUtente1, fkUtente2, nomeUtente1, nomeUtente2, data);
+		return Objects.hash(id, messaggi, partecipanti);
 	}
 
 }

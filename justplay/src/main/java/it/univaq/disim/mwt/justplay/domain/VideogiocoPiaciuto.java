@@ -16,11 +16,11 @@ import lombok.ToString;
 public class VideogiocoPiaciuto extends AbstractPersistableEntity {
 
 	@ManyToOne
-	@JoinColumn(name = "fk_utente")
+	@JoinColumn(name = "utente_id")
 	Utente utente;
 
 	@ManyToOne
-	@JoinColumn(name = "fk_videogioco")
+	@JoinColumn(name = "videogioco_id")
 	Videogioco videogioco;
 
 	@Column(name = "piaciuto")

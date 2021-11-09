@@ -1,6 +1,8 @@
 package it.univaq.disim.mwt.justplay.presentation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,20 +22,23 @@ public class UserRegistrationController {
 
 	@GetMapping
 	public String showRegistrationForm(Model model) throws BusinessException {
-		Utente utente = new Utente();
-		model.addAttribute("utente", utente);
+		model.addAttribute("utente", new Utente());
 		return "/common/register";
 	}
 
 	@PostMapping
-	public String SignUp(@ModelAttribute Utente nuovoUtente) throws BusinessException {
+	public String SignUp(@ModelAttribute Utente utente, Model model) throws BusinessException {
 		try {
-			if (service.existsByUsername(nuovoUtente.getUsername())) {
+			if (service.existsByUsername(utente.getUsername())) {
+				model.addAttribute("error", "username");
 				throw new BusinessException("L'username è già usato");
-			} else if (service.existsByEmail(nuovoUtente.getEmail())) {
+			} else if (service.existsByEmail(utente.getEmail())) {
+				model.addAttribute("error", "email");
 				throw new BusinessException("Email già in uso");
 			} else {
-				service.save(nuovoUtente);
+				PasswordEncoder encoder = new BCryptPasswordEncoder();
+				utente.setPassword(encoder.encode(utente.getPassword()));
+				service.save(utente);
 				return "/common/login";
 			}
 		} catch (Exception e) {

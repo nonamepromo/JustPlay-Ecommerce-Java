@@ -5,7 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import it.univaq.disim.mwt.justplay.domain.Utente;
-import it.univaq.disim.mwt.justplay.security.UserDetailsImpl;
+import it.univaq.disim.mwt.justplay.security.CustomUserDetails;
 
 public class Utility {
 
@@ -13,7 +13,7 @@ public class Utility {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication != null && authentication instanceof UsernamePasswordAuthenticationToken) {
 			UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = (UsernamePasswordAuthenticationToken) authentication;
-			return ((UserDetailsImpl) usernamePasswordAuthenticationToken.getPrincipal()).getUtente();
+			return ((CustomUserDetails) usernamePasswordAuthenticationToken.getPrincipal()).getUtente();
 		} else {
 			throw new RuntimeException();
 		}

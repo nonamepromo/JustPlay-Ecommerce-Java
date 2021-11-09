@@ -22,18 +22,14 @@ import lombok.ToString;
 @ToString
 public class VideogiocoInVendita extends AbstractPersistableEntity {
 
-	@Column(name = "fk_utente")
-	@NotNull(groups = { OnCreate.class, Default.class })
-	private Long fkUtente;
+	@ManyToOne
+	@JoinColumn(name = "utente_id")
+	Utente utente;
+
+	@ManyToOne
+	@JoinColumn(name = "videogioco_id")
+	Videogioco videogioco;
 	
-	@Column(name = "username")
-	@NotNull(groups = { OnCreate.class, Default.class })
-	private String username;
-
-	@Column(name = "fk_videogioco")
-	@NotNull(groups = { OnCreate.class, Default.class })
-	private Long fkVideogioco;
-
 	@NotNull(groups = { OnCreate.class, Default.class })
 	public int prezzo;
 

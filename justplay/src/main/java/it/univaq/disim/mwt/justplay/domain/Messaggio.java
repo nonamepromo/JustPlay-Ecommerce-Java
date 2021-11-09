@@ -1,14 +1,10 @@
 package it.univaq.disim.mwt.justplay.domain;
 
-import java.util.Objects;
-
+import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import javax.persistence.Id;
+import java.util.Objects;
 
 @Document(collection = "messaggi")
 @Getter
@@ -18,27 +14,31 @@ import lombok.ToString;
 @ToString
 public class Messaggio {
 
-	private Long idMittente;
+	@Id
+	private String id;
 
-	private Long idConversazione;
+	private String mittente;
+
+	private String destinatario;
 
 	private String contenuto;
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Messaggio messaggio = (Messaggio) o;
-		return Objects.equals(idMittente, messaggio.idMittente)
-				&& Objects.equals(idConversazione, messaggio.idConversazione)
-				&& Objects.equals(contenuto, messaggio.contenuto);
-	}
+	private Long timestamp;
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(idMittente, idConversazione, contenuto);
-	}
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Messaggio messaggio = (Messaggio) o;
+        return Objects.equals(id, messaggio.id) &&
+                Objects.equals(mittente, messaggio.mittente) &&
+                Objects.equals(destinatario, messaggio.destinatario) &&
+                Objects.equals(contenuto, messaggio.contenuto) &&
+                Objects.equals(timestamp, messaggio.timestamp);
+    }
 
+	@Override
+    public int hashCode() {
+        return Objects.hash(id, mittente, destinatario, contenuto, timestamp);
+    }
 }

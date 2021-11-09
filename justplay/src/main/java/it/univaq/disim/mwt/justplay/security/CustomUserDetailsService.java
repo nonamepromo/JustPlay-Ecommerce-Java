@@ -11,7 +11,7 @@ import it.univaq.disim.mwt.justplay.business.UtenteService;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 
 @Component
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UtenteService service;
@@ -21,8 +21,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		Utente utente = new Utente();
 		try {
 			if (service.existsByUsername(username)) {
-				utente = service.findByUsername(username).get();
-				return new UserDetailsImpl(utente);
+				utente = service.findByUsername(username);
+				return new CustomUserDetails(utente);
 			} else {
 				throw new UsernameNotFoundException(username);
 			}
