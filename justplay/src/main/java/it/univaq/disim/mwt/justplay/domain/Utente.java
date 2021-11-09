@@ -8,15 +8,12 @@ import it.univaq.disim.mwt.justplay.presentation.validator.ValidEmail;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.LazyGroup;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.validation.groups.Default;
-import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 

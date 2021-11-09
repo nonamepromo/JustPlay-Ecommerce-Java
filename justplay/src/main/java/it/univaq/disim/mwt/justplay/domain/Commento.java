@@ -1,7 +1,5 @@
 package it.univaq.disim.mwt.justplay.domain;
 
-import java.util.Objects;
-
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
