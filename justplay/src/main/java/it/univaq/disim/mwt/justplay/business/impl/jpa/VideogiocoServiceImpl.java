@@ -1,11 +1,16 @@
 package it.univaq.disim.mwt.justplay.business.impl.jpa;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -38,11 +43,25 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		return null;
 	}
 
-	@Override
-	public Page<Videogioco> findAll(Pageable pageable) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	   @Override
+	    public Page<Videogioco> findAll(Pageable pageable) throws BusinessException {
+	        int pageSize = pageable.getPageSize();
+	        int currentPage = pageable.getPageNumber();
+	        int startItem = currentPage * pageSize;
+	        List<Videogioco> listaVideogiochi = new ArrayList<Videogioco>();
+	        long videogiochiSize = videogiocoRepository.count();
+
+	        // if (videogiochiSize < startItem) {
+	        //     listaVideogiochi = Collections.emptyList();
+	        // } else {
+	        //     int toIndex = Math.min(startItem + pageSize, listaVideogiochi.size());
+	        //     listaVideogiochi = books.subList(startItem, toIndex);
+	        // }
+
+	        Page<Videogioco> videogiochiPage = new PageImpl<Videogioco>(listaVideogiochi, PageRequest.of(currentPage, pageSize), videogiochiSize);
+
+	        return videogiochiPage;
+	    }
 
 	@Override
 	public Page<Videogioco> searchVideogioco(String search, int numeroPagine, int sizePagina) throws BusinessException {
