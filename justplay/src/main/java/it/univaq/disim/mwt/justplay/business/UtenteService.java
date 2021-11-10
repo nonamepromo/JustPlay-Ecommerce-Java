@@ -1,13 +1,15 @@
 package it.univaq.disim.mwt.justplay.business;
 
+import java.util.Optional;
+
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 
 public interface UtenteService {
 
-	Utente findByUsername(String username) throws BusinessException;
+	Optional<Utente> findByUsername(String username) throws BusinessException;
 
-	Utente findById(Long id) throws BusinessException;
+	Optional<Utente> findById(Long id) throws BusinessException;
 
 	boolean existsByUsername(String username) throws BusinessException;
 

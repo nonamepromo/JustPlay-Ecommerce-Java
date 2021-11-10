@@ -18,16 +18,16 @@ public interface VideogiocoService{
 	
 	Page<Videogioco> serachVideogioco(String search, int numeroPagine, int sizePagina) throws BusinessException;
 	
-	VideogiocoPiaciuto findLikedGame(Utente utente, Videogioco videogioco) throws BusinessException;
+	//VideogiocoPiaciuto findLikedGame(Utente utente, Videogioco videogioco) throws BusinessException;
 	
-	List<VideogiocoInVendita> findAllVendita(Videogioco videogioco) throws BusinessException; // Serve per i giochi in vendit da mostrare in details
+	//List<VideogiocoInVendita> findAllVendita(Videogioco videogioco) throws BusinessException; // Serve per i giochi in vendit da mostrare in details
 	
-	void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Videogioco videogioco, Utente  utente) throws BusinessException;
+	void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Utente utente, Videogioco videogioco) throws BusinessException;
 
-	void addGameToLikedlist(Videogioco videogioco, boolean piaciuto) throws BusinessException;
+	void addGameToLikedlist(Videogioco videogioco, Utente utente, boolean piaciuto) throws BusinessException;
 
 	void removeGameFromSellinglist(Videogioco videogioco, Utente utente, VideogiocoInVendita videogiocoInVendita) throws BusinessException;
 
-	void removeGameFromLikedlist(Utente utente, Videogioco videogioco) throws BusinessException;
+	//void removeGameFromLikedlist(Utente utente, Videogioco videogioco) throws BusinessException;
 	
 }

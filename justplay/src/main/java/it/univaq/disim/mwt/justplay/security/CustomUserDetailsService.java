@@ -21,7 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		Utente utente = new Utente();
 		try {
 			if (utenteService.existsByUsername(username)) {
-				utente = utenteService.findByUsername(username);
+				utente = utenteService.findByUsername(username).get();
 				return new CustomUserDetails(utente);
 			} else {
 				throw new UsernameNotFoundException(username);

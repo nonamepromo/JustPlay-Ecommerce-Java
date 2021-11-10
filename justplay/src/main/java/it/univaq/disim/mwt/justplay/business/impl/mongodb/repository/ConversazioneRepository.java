@@ -1,6 +1,7 @@
 package it.univaq.disim.mwt.justplay.business.impl.mongodb.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -12,6 +13,6 @@ import it.univaq.disim.mwt.justplay.domain.Conversazione;
 public interface ConversazioneRepository extends MongoRepository<Conversazione, String>{
 
 	@Query("{'partecipanti':{$all: ?0}}")
-	Conversazione findByGivenPartecipanti(List<String> partecipanti);
+	Optional<Conversazione> findByPartecipanti(List<String> partecipanti);
 	
 }
