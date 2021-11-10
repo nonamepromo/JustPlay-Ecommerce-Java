@@ -45,7 +45,7 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
-	public Page<Videogioco> serachVideogioco(String search, int numeroPagine, int sizePagina) throws BusinessException {
+	public Page<Videogioco> searchVideogioco(String search, int numeroPagine, int sizePagina) throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
 	}
