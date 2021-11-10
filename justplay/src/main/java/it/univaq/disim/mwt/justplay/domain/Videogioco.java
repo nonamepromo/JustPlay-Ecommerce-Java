@@ -40,23 +40,25 @@ public class Videogioco extends AbstractPersistableEntity {
 	private String descrizioneEN;
 
 	@NotNull
-	private boolean ps4Url;
+	private boolean ps4;
 
 	@NotNull
-	private boolean xboxUrl;
+	private boolean xbox;
 
 	@NotNull
-	private boolean pcUrl;
+	private boolean pc;
 
 	@Column(name = "image_url")
 	@NotEmpty(groups = { OnCreate.class, Default.class })
 	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String imageUrl;
 	
+	//QUESTO NON è DETTO CHE SERVA PER FORZA, BASTA QUELLO IN UTENTE
 	@ManyToMany(mappedBy = "videogiochiGiocati", fetch = FetchType.EAGER)
 	@Basic(fetch = FetchType.LAZY)
 	private Set<Utente> giocati = new HashSet<>();
 	
+	//QUESTO NON è DETTO CHE SERVA PER FORZA, BASTA QUELLO IN UTENTE
 	@ManyToMany(mappedBy = "videogiochiDesiderati", fetch = FetchType.EAGER)
 	@Basic(fetch = FetchType.LAZY)
 	private Set<Utente> desiderati = new HashSet<>();
@@ -76,14 +78,14 @@ public class Videogioco extends AbstractPersistableEntity {
 		Videogioco videogioco = (Videogioco) o;
 		return Objects.equals(titolo, videogioco.titolo) && Objects.equals(annoDiUscita, videogioco.annoDiUscita)
 				&& Objects.equals(descrizione, videogioco.descrizione)
-				&& Objects.equals(descrizioneEN, videogioco.descrizioneEN) && Objects.equals(ps4Url, videogioco.ps4Url)
-				&& Objects.equals(xboxUrl, videogioco.xboxUrl) && Objects.equals(pcUrl, videogioco.pcUrl)
+				&& Objects.equals(descrizioneEN, videogioco.descrizioneEN) && Objects.equals(ps4, videogioco.ps4)
+				&& Objects.equals(xbox, videogioco.xbox) && Objects.equals(pc, videogioco.pc)
 				&& Objects.equals(imageUrl, videogioco.imageUrl);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(titolo, annoDiUscita, descrizione, descrizioneEN, ps4Url, xboxUrl, pcUrl, imageUrl);
+		return Objects.hash(titolo, annoDiUscita, descrizione, descrizioneEN, ps4, xbox, pc, imageUrl);
 	}
 
 }

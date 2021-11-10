@@ -54,18 +54,20 @@ public class Utente extends AbstractPersistableEntity {
 	private String matchingPassword;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-	@JoinTable(name = "videogiochi_giocati", joinColumns = @JoinColumn(name = "utente_id"), inverseJoinColumns = @JoinColumn(name = "videogioco_id"))
+	@JoinTable(name = "videogiochi_giocati", joinColumns = @JoinColumn(name = "utente_id"),
+	inverseJoinColumns = @JoinColumn(name = "videogioco_id"))
 	private Set<Videogioco> videogiochiGiocati;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-	@JoinTable(name = "videogiochi_desiderati", joinColumns = @JoinColumn(name = "utente_id"), inverseJoinColumns = @JoinColumn(name = "videogioco_id"))
+	@JoinTable(name = "videogiochi_desiderati", joinColumns = @JoinColumn(name = "utente_id"),
+	inverseJoinColumns = @JoinColumn(name = "videogioco_id"))
 	private Set<Videogioco> videogiochiDesiderati;
 
 	@OneToMany(mappedBy = "utente")
-	Set<VideogiocoPiaciuto> videogiochiPiaciuti;
+	private Set<VideogiocoPiaciuto> videogiochiPiaciuti;
 
 	@OneToMany(mappedBy = "utente")
-	Set<VideogiocoInVendita> videogiochiInVendita;
+	private Set<VideogiocoInVendita> videogiochiInVendita;
 
 	@Override
 	public boolean equals(Object o) {

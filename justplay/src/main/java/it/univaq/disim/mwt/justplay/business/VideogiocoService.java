@@ -1,5 +1,7 @@
 package it.univaq.disim.mwt.justplay.business;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -17,6 +19,8 @@ public interface VideogiocoService{
 	Page<Videogioco> serachVideogioco(String search, int numeroPagine, int sizePagina) throws BusinessException;
 	
 	VideogiocoPiaciuto findLikedGame(Utente utente, Videogioco videogioco) throws BusinessException;
+	
+	List<VideogiocoInVendita> findAllVendita(Videogioco videogioco) throws BusinessException; // Serve per i giochi in vendit da mostrare in details
 	
 	void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Videogioco videogioco, Utente  utente) throws BusinessException;
 

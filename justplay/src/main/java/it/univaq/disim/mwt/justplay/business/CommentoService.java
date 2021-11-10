@@ -11,5 +11,7 @@ public interface CommentoService{
     void addCommento(Videogioco videogioco, Utente utente, String contenuto) throws BusinessException;
 
     void updateCommento(Commento commento) throws BusinessException;
+    
+    void deleteCommento(Commento commento) throws BusinessException;
 
 }
