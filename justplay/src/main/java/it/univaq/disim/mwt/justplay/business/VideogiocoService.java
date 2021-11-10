@@ -27,7 +27,5 @@ public interface VideogiocoService{
 	void addGameToLikedlist(Videogioco videogioco, Utente utente, boolean piaciuto) throws BusinessException;
 
 	void removeGameFromSellinglist(Videogioco videogioco, Utente utente, VideogiocoInVendita videogiocoInVendita) throws BusinessException;
-
-	//void removeGameFromLikedlist(Utente utente, Videogioco videogioco) throws BusinessException;
 	
 }
