@@ -27,10 +27,10 @@ import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
 @Service
 @Transactional
 public class VideogiocoServiceImpl implements VideogiocoService {
-	
+
 	@Autowired
 	private VideogiocoPiaciutoRepository videogiocoPiaciutoRepository;
-	
+
 	@Autowired
 	private VideogiocoRepository videogiocoRepository;
 
@@ -43,25 +43,26 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 		return null;
 	}
 
-	   @Override
-	    public Page<Videogioco> findAll(Pageable pageable) throws BusinessException {
-	        int pageSize = pageable.getPageSize();
-	        int currentPage = pageable.getPageNumber();
-	        int startItem = currentPage * pageSize;
-	        List<Videogioco> listaVideogiochi = new ArrayList<Videogioco>();
-	        long videogiochiSize = videogiocoRepository.count();
+	@Override
+	public Page<Videogioco> findAll(Pageable pageable) throws BusinessException {
+		int pageSize = pageable.getPageSize();
+		int currentPage = pageable.getPageNumber();
+		int startItem = currentPage * pageSize;
+		List<Videogioco> listaVideogiochi = new ArrayList<Videogioco>();
+		long videogiochiSize = videogiocoRepository.count();
 
-	        // if (videogiochiSize < startItem) {
-	        //     listaVideogiochi = Collections.emptyList();
-	        // } else {
-	        //     int toIndex = Math.min(startItem + pageSize, listaVideogiochi.size());
-	        //     listaVideogiochi = books.subList(startItem, toIndex);
-	        // }
+		// if (videogiochiSize < startItem) {
+		// listaVideogiochi = Collections.emptyList();
+		// } else {
+		// int toIndex = Math.min(startItem + pageSize, listaVideogiochi.size());
+		// listaVideogiochi = books.subList(startItem, toIndex);
+		// }
 
-	        Page<Videogioco> videogiochiPage = new PageImpl<Videogioco>(listaVideogiochi, PageRequest.of(currentPage, pageSize), videogiochiSize);
+		Page<Videogioco> videogiochiPage = new PageImpl<Videogioco>(listaVideogiochi,
+				PageRequest.of(currentPage, pageSize), videogiochiSize);
 
-	        return videogiochiPage;
-	    }
+		return videogiochiPage;
+	}
 
 	@Override
 	public Page<Videogioco> searchVideogioco(String search, int numeroPagine, int sizePagina) throws BusinessException {
@@ -85,29 +86,30 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 			throw new BusinessException(e);
 		}
 	}
-	
+
 	@Override
 	public void removeGameFromSellinglist(Videogioco videogioco, Utente utente, VideogiocoInVendita videogiocoInVendita)
 			throws BusinessException {
 		videogiocoInVenditaRepository.deleteByVideogiocoAndUtenteAndId(videogioco, utente, videogiocoInVendita.getId());
-	}	
+	}
 
 	@Override
 	public void addGameToLikedlist(Videogioco videogioco, Utente utente, boolean piaciuto) throws BusinessException {
 		try {
 			Set<VideogiocoPiaciuto> videogiochiPiaciuti = utente.getVideogiochiPiaciuti();
-			if(videogiochiPiaciuti.contains(videogioco)) {
-				VideogiocoPiaciuto videogiocoPiaciuto = videogiocoPiaciutoRepository.findByUtenteAndVideogioco(utente, videogioco);
-				if(videogiocoPiaciuto.isPiaciuto() == piaciuto) {
+			if (videogiochiPiaciuti.contains(videogioco)) {
+				VideogiocoPiaciuto videogiocoPiaciuto = videogiocoPiaciutoRepository.findByUtenteAndVideogioco(utente,
+						videogioco);
+				if (videogiocoPiaciuto.isPiaciuto() == piaciuto) {
 					videogiochiPiaciuti.remove(videogiocoPiaciuto);
-				}else {
+				} else {
 					videogiochiPiaciuti.remove(videogiocoPiaciuto);
 					videogiocoPiaciuto.setPiaciuto(piaciuto);
 					videogiocoPiaciuto.setUtente(utente);
 					videogiocoPiaciuto.setVideogioco(videogioco);
 					videogiocoPiaciutoRepository.save(videogiocoPiaciuto);
 				}
-			}else {
+			} else {
 				VideogiocoPiaciuto videogiocoPiaciuto = new VideogiocoPiaciuto();
 				videogiocoPiaciuto.setPiaciuto(piaciuto);
 				videogiocoPiaciuto.setUtente(utente);
@@ -118,6 +120,5 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 			throw new BusinessException(e);
 		}
 	}
-	
-}
 
+}

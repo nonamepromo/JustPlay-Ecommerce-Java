@@ -64,15 +64,14 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 
 	@Override
-	public void update(Utente utente) throws BusinessException {
+	public void update(Utente utente, Long id) throws BusinessException {
 		try {
-			Utente updUtente = entityManager.find(Utente.class, utente.getId());
+			Utente updUtente = utenteRepository.findById(id).get();
 			updUtente.setUsername(utente.getUsername());
 			updUtente.setNome(utente.getNome());
 			updUtente.setCognome(utente.getCognome());
 			updUtente.setEmail(utente.getEmail());
-			entityManager.detach(updUtente);
-			entityManager.merge(updUtente);
+			utenteRepository.save(updUtente);
 		} catch (Exception e) {
 			throw new BusinessException(e);
 		}

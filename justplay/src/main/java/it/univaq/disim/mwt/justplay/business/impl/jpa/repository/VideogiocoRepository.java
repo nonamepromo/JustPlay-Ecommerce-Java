@@ -16,7 +16,7 @@ public interface VideogiocoRepository extends JpaRepository<Videogioco, Long>  {
 	List<Videogioco> findAllByPcTrue(Pageable pageable);
 
 	List<Videogioco> findByTitoloContaining(String searchString, Pageable page);
-	
+		
 	long count();
 
 }

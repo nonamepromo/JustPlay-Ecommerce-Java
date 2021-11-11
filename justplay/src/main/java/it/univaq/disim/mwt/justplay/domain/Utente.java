@@ -66,7 +66,7 @@ public class Utente extends AbstractPersistableEntity {
 	@OneToMany(mappedBy = "utente")
 	private Set<VideogiocoPiaciuto> videogiochiPiaciuti;
 
-	@OneToMany(mappedBy = "utente")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "utente")
 	private Set<VideogiocoInVendita> videogiochiInVendita;
 
 	@Override

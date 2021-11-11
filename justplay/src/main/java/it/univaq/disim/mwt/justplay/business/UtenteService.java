@@ -15,7 +15,7 @@ public interface UtenteService {
 
 	boolean existsByEmail(String email) throws BusinessException;
 
-	void update(Utente utente) throws BusinessException;
+	void update(Utente utente, Long id) throws BusinessException;
 
 	void save(Utente utente) throws BusinessException;
 	

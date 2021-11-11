@@ -64,10 +64,10 @@ public class Videogioco extends AbstractPersistableEntity {
 	private Set<Utente> desiderati = new HashSet<>();
 
 	@OneToMany(mappedBy = "videogioco")
-	Set<VideogiocoPiaciuto> videogiochiPiaciuti;
+	private Set<VideogiocoPiaciuto> videogiochiPiaciuti;
 	
 	@OneToMany(mappedBy = "videogioco")
-	Set<VideogiocoInVendita> videogiochiInVendita;
+	private Set<VideogiocoInVendita> videogiochiInVendita;
 
 	@Override
 	public boolean equals(Object o) {
