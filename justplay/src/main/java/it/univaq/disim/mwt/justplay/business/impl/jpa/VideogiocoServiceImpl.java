@@ -3,6 +3,7 @@ package it.univaq.disim.mwt.justplay.business.impl.jpa;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -39,8 +40,7 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 
 	@Override
 	public Videogioco findById(Long id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		return videogiocoRepository.findById(id).get();
 	}
 
 	@Override

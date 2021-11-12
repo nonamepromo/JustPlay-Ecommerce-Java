@@ -26,31 +26,35 @@ public class ProfiloController {
 		
 		@Autowired
 		private VideogiocoService videogiocoService;
+		
+		@ModelAttribute
+		public void getUtente(Model model) throws BusinessException {
+			Utente utente = Utility.getUtente();
+			model.addAttribute("utente", utente);
+		}
+		
+		public Utente utente() throws BusinessException {
+			Utente utente = Utility.getUtente();
+			return utente;
+		}
 	
 		@GetMapping
 		public String modificaProfiloStart(Model model) throws BusinessException {
-			Utente newUtente = utenteService.findById(Utility.getUtente().getId()).get();
-			model.addAttribute("profilo", newUtente);
-			model.addAttribute("wishList", newUtente.getVideogiochiDesiderati());
-			model.addAttribute("playedList", newUtente.getVideogiochiGiocati());
-			model.addAttribute("sellingList", newUtente.getVideogiochiInVendita());
 			return "/common/profilo";
 		}
 		
-		@PostMapping("/removeGameFromWishlist")
-		public String removeGameFromWishlist(@RequestParam("wished")Videogioco videogioco)
+		@GetMapping("/removeGameFromWishlist")
+		public String removeGameFromWishlist(@RequestParam("wished")Long idVideogioco)
 				throws BusinessException {
-			Utente utente = Utility.getUtente();
-			utenteService.desiderato(utente, videogioco);
-			return "/common/profilo";
+			utenteService.desiderato(utente(), videogiocoService.findById(idVideogioco));
+			return "redirect:/common/profilo?index=2";
 		}
 		
-		@PostMapping("/removeGameFromPlayedlist")
-		public String removeGameFromPlayedlist(@RequestParam("played")Videogioco videogioco)
+		@GetMapping("/removeGameFromPlayedlist")
+		public String removeGameFromPlayedlist(@RequestParam("played")Long idVideogioco)
 				throws BusinessException {
-			Utente utente = Utility.getUtente();
-			utenteService.giocato(utente, videogioco);
-			return "/common/profilo";
+			utenteService.giocato(utente(), videogiocoService.findById(idVideogioco));
+			return "redirect:/common/profilo?index=3";
 		}
 		
 		@PostMapping("/removeGameFromSellinglist")

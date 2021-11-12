@@ -10,6 +10,8 @@ public interface ConversazioneService {
 	
 	Conversazione inserisci (Conversazione conversazione) throws BusinessException;
 	
+	List<Conversazione> findAll() throws BusinessException;
+	
 	void save(Conversazione conversazione) throws BusinessException;
 	
 	Optional<Conversazione>  findByPartecipanti(List<String> partecipanti) throws BusinessException;

@@ -18,16 +18,7 @@
 				<h2 class="hero-title mb-5">Chat</h2>
 				<div class="row">
 					<div class="col-12 col-sm-12 col-md-12">
-						<a th:each="conversazione : ${conversazioni}">
-							<div th:data-parameter="${conversazione.fkUtente1} == ${idUtente} ? ${conversazione.nomeUtente2} :  ${conversazione.nomeUtente1}"
-								th:onclick="|openChat(${conversazione.idConversazione}, this.getAttribute('data-parameter'))|"
-								class="card card-lg">
-								<div class="card-block">
-									<div
-										th:text="${conversazione.fkUtente1} == ${idUtente} ? ${conversazione.nomeUtente2} :  ${conversazione.nomeUtente1}">
-									</div>
-								</div>
-							</div>
+						
 						</a>
 					</div>
 				</div>

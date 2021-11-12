@@ -53,7 +53,7 @@
 							<div class="tab-content">
 								<div class="tab-pane" id="account" role="tabpanel"
 									th:class="${param.index != null} ? (${param.index[0] == '1'} ? 'tab-pane active' : 'tab-pane') : 'tab-pane'">
-									<form class="form-horizontal" th:action="@{/common/profilo}" th:object="${profilo}"
+									<form class="form-horizontal" th:action="@{/common/profilo}" th:object="${utente}"
 										method="post">
 										<div class="form-group input-icon-left m-b-10">
 											<i class="fa fa-user"></i>
@@ -93,7 +93,7 @@
 											</tr>
 										</thead>
 										<form th:action="@{/common/profilo/removeGameFromWishlist}">
-											<tbody th:each="wished : ${wishList}">
+											<tbody th:each="wished : ${utente.videogiochiDesiderati}">
 												<tr>
 													<td th:text="${wished.titolo}"></td>
 													<td th:if="${wished.xbox}" class="badge badge-xbox-one"
@@ -107,7 +107,7 @@
 														style="position: relative; bottom: -8px; margin-right: 5px">PC
 													</td>
 													<td>
-														<button th:value="${wished}" th:name="wished" type="submit"
+														<button th:value="${wished.id}" th:name="wished" type="submit"
 															class="btn btn-link p-a-5"><i
 																class="fa fa-trash-o"></i></button>
 													</td>
@@ -127,7 +127,7 @@
 											</tr>
 										</thead>
 										<form th:action="@{/common/profilo/removeGameFromPlayedlist}">
-											<tbody th:each="played : ${playedList}">
+											<tbody th:each="played : ${utente.videogiochiGiocati}">
 												<tr>
 													<td th:text="${played.titolo}"></td>
 													<td th:if="${played.xbox}" class="badge badge-xbox-one"
@@ -141,7 +141,7 @@
 														style="position: relative; bottom: -8px; margin-right: 5px">PC
 													</td>
 													<td>
-														<button th:value="${played}" th:name="played" type="submit"
+														<button th:value="${played.id}" th:name="played" type="submit"
 															class="btn btn-link p-a-5"><i
 																class="fa fa-trash-o"></i></button>
 													</td>
@@ -161,7 +161,7 @@
 											</tr>
 										</thead>
 										<form th:action="@{/common/profilo/removeGameFromSellinglist}">
-											<tbody th:each="selled : ${sellingList}">
+											<tbody th:each="selled : ${utente.videogiochiInVendita}">
 												<tr>
 													<td th:text="${selled.titolo}"></td>
 												<td th:if="${selled.xbox}" class="badge badge-xbox-one"

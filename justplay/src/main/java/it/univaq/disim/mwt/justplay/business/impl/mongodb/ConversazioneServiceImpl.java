@@ -88,4 +88,13 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 		}
 	}
 
+	@Override
+	public List<Conversazione> findAll() throws BusinessException {
+		try {
+			return conversazioneRepository.findAll();
+		} catch (Exception e) {
+			throw new BusinessException();
+		}
+	}
+
 }

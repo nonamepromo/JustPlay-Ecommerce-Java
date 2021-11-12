@@ -19,7 +19,7 @@ public class UserRegistrationController {
 
 	@Autowired
 	private UtenteService service;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -38,10 +38,10 @@ public class UserRegistrationController {
 			} else if (service.existsByEmail(utente.getEmail())) {
 				model.addAttribute("error", "email");
 				throw new BusinessException("Email già in uso");
+			} else if (!passwordEncoder.matches(utente.getPassword(),
+					passwordEncoder.encode(utente.getMatchingPassword()))) {
+				throw new BusinessException("Le password non coincidono");
 			} else {
-				if (!passwordEncoder.matches(utente.getPassword(), passwordEncoder.encode(utente.getMatchingPassword()))) {
-					throw new BusinessException("Le password non coincidono");
-				}
 				utente.setPassword(passwordEncoder.encode(utente.getPassword()));
 				service.save(utente);
 				return "/common/login";
