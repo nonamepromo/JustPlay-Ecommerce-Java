@@ -19,6 +19,9 @@ public class UserRegistrationController {
 
 	@Autowired
 	private UtenteService service;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@GetMapping
 	public String showRegistrationForm(Model model) throws BusinessException {
@@ -36,8 +39,10 @@ public class UserRegistrationController {
 				model.addAttribute("error", "email");
 				throw new BusinessException("Email già in uso");
 			} else {
-				PasswordEncoder encoder = new BCryptPasswordEncoder();
-				utente.setPassword(encoder.encode(utente.getPassword()));
+				if (!passwordEncoder.matches(utente.getPassword(), passwordEncoder.encode(utente.getMatchingPassword()))) {
+					throw new BusinessException("Le password non coincidono");
+				}
+				utente.setPassword(passwordEncoder.encode(utente.getPassword()));
 				service.save(utente);
 				return "/common/login";
 			}

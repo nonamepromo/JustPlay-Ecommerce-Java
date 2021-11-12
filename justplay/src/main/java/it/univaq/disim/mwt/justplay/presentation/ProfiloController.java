@@ -29,12 +29,11 @@ public class ProfiloController {
 	
 		@GetMapping
 		public String modificaProfiloStart(Model model) throws BusinessException {
-			Utente utente = Utility.getUtente();
-			Utente newUtente = utenteService.findById(utente.getId()).get();
+			Utente newUtente = utenteService.findById(Utility.getUtente().getId()).get();
 			model.addAttribute("profilo", newUtente);
-			model.addAttribute("wishList", utente.getVideogiochiDesiderati());
-			model.addAttribute("playedList", utente.getVideogiochiGiocati());
-			model.addAttribute("sellingList", utente.getVideogiochiInVendita());
+			model.addAttribute("wishList", newUtente.getVideogiochiDesiderati());
+			model.addAttribute("playedList", newUtente.getVideogiochiGiocati());
+			model.addAttribute("sellingList", newUtente.getVideogiochiInVendita());
 			return "/common/profilo";
 		}
 		
@@ -64,8 +63,7 @@ public class ProfiloController {
 		@PostMapping
 		public String modificaProfilo(@ModelAttribute Utente nuovoProfilo, RedirectAttributes redirAttrs)
 				throws BusinessException {
-			Utente utente = Utility.getUtente();
-			utenteService.update(nuovoProfilo, utente.getId());
+			utenteService.update(nuovoProfilo, Utility.getUtente().getId());
 			redirAttrs.addFlashAttribute("success", "");
 			return "redirect:/common/profilo?index=1";
 		}
