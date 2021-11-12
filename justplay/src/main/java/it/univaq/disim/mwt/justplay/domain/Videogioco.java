@@ -63,10 +63,10 @@ public class Videogioco extends AbstractPersistableEntity {
 	@Basic(fetch = FetchType.LAZY)
 	private Set<Utente> desiderati = new HashSet<>();
 
-	@OneToMany(mappedBy = "videogioco")
+	@ManyToMany(mappedBy = "videogioco")
 	private Set<VideogiocoPiaciuto> videogiochiPiaciuti;
 	
-	@OneToMany(mappedBy = "videogioco")
+	@ManyToMany(mappedBy = "videogioco")
 	private Set<VideogiocoInVendita> videogiochiInVendita;
 
 	@Override

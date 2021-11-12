@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
+import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.UtenteRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoInVenditaRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoPiaciutoRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoRepository;
@@ -34,6 +35,9 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 
 	@Autowired
 	private VideogiocoRepository videogiocoRepository;
+	
+	@Autowired
+	private UtenteRepository utenteRepository;
 
 	@Autowired
 	private VideogiocoInVenditaRepository videogiocoInVenditaRepository;
@@ -88,10 +92,11 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
-	public void removeGameFromSellinglist(Videogioco videogioco, Utente utente, VideogiocoInVendita videogiocoInVendita)
+	public void removeGameFromSellinglist(Utente utente, Long videogiocoInVendita)
 			throws BusinessException {
-		videogiocoInVenditaRepository.deleteByVideogiocoAndUtenteAndId(videogioco, utente, videogiocoInVendita.getId());
+		videogiocoInVenditaRepository.deleteByUtenteAndId(utente, videogiocoInVendita);
 	}
+	
 
 	@Override
 	public void addGameToLikedlist(Videogioco videogioco, Utente utente, boolean piaciuto) throws BusinessException {

@@ -15,7 +15,7 @@ public interface VideogiocoInVenditaRepository extends JpaRepository<VideogiocoI
 
 	List<VideogiocoInVendita> findByUtente(Utente utente);
 
-	void deleteByVideogiocoAndUtenteAndId(Videogioco videogioco, Utente utente, Long id);
+	void deleteByUtenteAndId(Utente utente, Long id);
 
 	List<VideogiocoInVendita> findAllByVideogioco(Videogioco videogioco);
 

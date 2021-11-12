@@ -63,10 +63,10 @@ public class Utente extends AbstractPersistableEntity {
 	inverseJoinColumns = @JoinColumn(name = "videogioco_id"))
 	private Set<Videogioco> videogiochiDesiderati;
 
-	@OneToMany(mappedBy = "utente")
+	@ManyToMany(mappedBy = "utente")
 	private Set<VideogiocoPiaciuto> videogiochiPiaciuti;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "utente")
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, mappedBy = "utente")
 	private Set<VideogiocoInVendita> videogiochiInVendita;
 
 	@Override

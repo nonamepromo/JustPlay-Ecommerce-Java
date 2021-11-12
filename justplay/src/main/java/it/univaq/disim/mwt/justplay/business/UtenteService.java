@@ -10,12 +10,12 @@ public interface UtenteService {
 	Optional<Utente> findByUsername(String username) throws BusinessException;
 
 	Optional<Utente> findById(Long id) throws BusinessException;
-
+	
 	boolean existsByUsername(String username) throws BusinessException;
 
 	boolean existsByEmail(String email) throws BusinessException;
 
-	void update(Utente utente, Long id) throws BusinessException;
+	void update(Utente utente) throws BusinessException;
 
 	void save(Utente utente) throws BusinessException;
 	
