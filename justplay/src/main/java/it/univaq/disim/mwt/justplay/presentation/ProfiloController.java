@@ -51,23 +51,25 @@ public class ProfiloController {
 	}
 
 	@GetMapping("/removeGameFromWishlist")
-	public String removeGameFromWishlist(@ModelAttribute("videogioco") Videogioco videogioco) throws BusinessException {
-		utenteService.desiderato(utente(), videogioco);
+	public String removeGameFromWishlist(@ModelAttribute("videogioco") Videogioco videogioco,
+	@ModelAttribute("utente") Utente utente) throws BusinessException {
+		utenteService.desiderato(utente, videogioco);
 		return "redirect:/common/profilo?index=2";
 	}
 
 	@GetMapping("/removeGameFromPlayedlist")
-	public String removeGameFromPlayedlist(@ModelAttribute("videogioco") Videogioco videogioco)
+	public String removeGameFromPlayedlist(@ModelAttribute("videogioco") Videogioco videogioco,
+	@ModelAttribute("utente") Utente utente)
 			throws BusinessException {
-		utenteService.giocato(utente(), videogioco);
+		utenteService.giocato(utente, videogioco);
 		return "redirect:/common/profilo?index=3";
 	}
 
 	@GetMapping("/removeGameFromSellinglist")
 	public String removeGameFromSellinglist(
-			@ModelAttribute("videogiocoInVendita") VideogiocoInVendita videogiocoInVendita, Model model)
-			throws BusinessException {
-		videogiocoService.removeGameFromSellinglist(model.getAttribute("utente"), videogiocoInVendita);
+			@ModelAttribute("videogiocoInVendita") VideogiocoInVendita videogiocoInVendita,
+			@ModelAttribute("utente") Utente utente) throws BusinessException {
+		videogiocoService.removeGameFromSellinglist(utente, videogiocoInVendita);
 		return "redirect:/common/profilo?index=4";
 	}
 
