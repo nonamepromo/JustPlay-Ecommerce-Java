@@ -14,7 +14,7 @@
 						<nav class="nav">
 							<ul>
 								<li>
-									<a href="#" th:href="@{/videogiochi/list?platform=all&index=1}">Home</a>
+									<a href="#" th:href="@{/videogiochi/list?size=6&page=1}">Home</a>
 								</li>
 							</ul>
 						</nav>
@@ -28,8 +28,8 @@
 								<a disabled>[[#{common.lingua}]]
 									<i th:classappend="'flag-icon flag-icon-'+ (${#locale.language}=='en' ? 'gb' : ${#locale.language})"></i></a>
 								<ul>
-									<li><a href="#" th:href="@{/videogiochi/list?platform=all&index=1&lang=en}">[[#{common.english}]]</a></li>
-								<li><a href="#" th:href="@{/videogiochi/list?platform=all&index=1&lang=it}">[[#{common.italian}]]</a></li>
+									<li><a href="#" th:href="@{/videogiochi/list?size=6&page=1&lang=en}">[[#{common.english}]]</a></li>
+								<li><a href="#" th:href="@{/videogiochi/list?size=6&page=1&lang=it}">[[#{common.italian}]]</a></li>
 									</ul>
 								</li>
 							<li sec:authorize="!isAuthenticated()" class="hidden-xs-down"><a href="#"

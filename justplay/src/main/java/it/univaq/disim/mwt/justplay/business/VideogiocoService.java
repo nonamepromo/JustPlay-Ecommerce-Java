@@ -17,7 +17,7 @@ public interface VideogiocoService{
 	
 	Page<Videogioco> findAll(Pageable pageable) throws BusinessException;
 	
-	Page<Videogioco> searchVideogioco(String search, int numeroPagine, int sizePagina) throws BusinessException;
+	Page<Videogioco> filterVideogiochi(Pageable pageable, String searchString, String platform) throws BusinessException;
 		
 	void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Utente utente, Videogioco videogioco) throws BusinessException;
 

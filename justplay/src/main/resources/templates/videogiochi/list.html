@@ -12,7 +12,7 @@
 				<div class="alert alert-danger" role="alert" th:text="#{common.errore.title}" th:if="${error}">
 				</div>
 				<div class="toolbar-custom">
-					<form th:action="@{/videogiochi/list?platform=all&index=1}" method="post"
+					<form th:action="@{/videogiochi/list(size=${videogiochiPage.size}, page=${pageNumber}, platform=${param.platform})}" method="get"
 						class="float-left cold-12 col-sm-6 p-l-0 p-r-10">
 						<div class="input-group mb-3">
 							<input th:value="${searchString}" name="searchString" th:placeholder="#{videogioco.ricerca}"
@@ -26,25 +26,28 @@
 						</div>
 					</form>
 					<div class="btn-group float-right m-l-5 hidden-sm-down" role="group">
-						<a class="btn btn-default btn-icon"
-							th:classappend="${param.platform != null} ? (${param.platform[0] == 'all'} ? 'active' : '') : ''"
-							href="#" role="button"
-							th:onclick="|listWithPlatform('all', 1)|">[[#{videogioco.filtroAll}]]</a>
-						<a class="btn btn-default btn-icon"
-							th:classappend="${param.platform != null} ? (${param.platform[0] == 'ps4'} ? 'active' : '') : ''"
-							href="#" role="button" th:onclick="|listWithPlatform('ps4', 1)|">Playstation 4</a>
-						<a class="btn btn-default btn-icon"
-							th:classappend="${param.platform != null} ? (${param.platform[0] == 'xbox'} ? 'active' : '') : ''"
-							href="#" role="button" th:onclick="|listWithPlatform('xbox', 1)|">Xbox One</a>
-						<a class="btn btn-default btn-icon"
-							th:classappend="${param.platform != null} ? (${param.platform[0] == 'pc'} ? 'active' : '') : ''"
-							href="#" role="button" th:onclick="|listWithPlatform('pc', 1)|">Pc</a>
+						<a class="btn btn-default btn-icon" role="button"
+							th:href="@{/videogiochi/list(size=${videogiochiPage.size}, page=${pageNumber}, searchString=${param.searchString})}"
+							th:classappend="${param.platform == null} ? 'active' : ''">
+							[[#{videogioco.filtroAll}]]</a>
+						<a class="btn btn-default btn-icon" role="button"
+							th:href="@{/videogiochi/list(size=${videogiochiPage.size}, page=${pageNumber}, searchString=${param.searchString}, platform=ps4)}"
+							th:classappend="${param.platform != null} ? (${param.platform[0] == 'ps4'} ? 'active' : '') : ''">
+							Playstation 4</a>
+						<a class="btn btn-default btn-icon" role="button"
+							th:href="@{/videogiochi/list(size=${videogiochiPage.size}, page=${pageNumber}, searchString=${param.searchString}, platform=xbox)}"
+							th:classappend="${param.platform != null} ? (${param.platform[0] == 'xbox'} ? 'active' : '') : ''">
+							Xbox One</a>
+						<a class="btn btn-default btn-icon" role="button"
+							th:href="@{/videogiochi/list(size=${videogiochiPage.size}, page=${pageNumber}, searchString=${param.searchString}, platform=pc)}"
+							th:classappend="${param.platform != null} ? (${param.platform[0] == 'pc'} ? 'active' : '') : ''">
+							Pc</a>
 					</div>
 				</div>
-				<div class="row mb-3" th:if="${isResearch}"
-					th:text="${isResearch} ? 'Risultati per: ' +  ${searchString} : ''"></div>
+				<div class="row mb-3" th:if="${param.searchString != '' && param.searchString != null}"
+					th:text="'Risultati per: ' + ${param.searchString}"></div>
 				<div class="row">
-					<div th:each="videogioco : ${videogiochi}" class="col-12 col-sm-6 col-md-4">
+					<div th:each="videogioco : ${videogiochiPage.content}" class="col-12 col-sm-6 col-md-4">
 						<div class="card card-lg">
 							<div class="card-img">
 								<a th:href="@{'/videogiochi/details?idVideogioco=' + ${videogioco.id}}">
@@ -63,14 +66,15 @@
 								</div>
 							</div>
 							<div class="card-block" style="height: 133px;">
-								<div th:if="${videogioco.ps4Url != null}" class="badge badge-ps4"
+								<div th:if="${videogioco.ps4 != false}" class="badge badge-ps4"
 									style="position: relative; bottom: 13px;">Ps4</div>
-								<div th:if="${videogioco.xboxUrl != null}" class="badge badge-xbox-one"
+								<div th:if="${videogioco.xbox != false}" class="badge badge-xbox-one"
 									style="position: relative; bottom: 13px;">Xbox One</div>
-								<div th:if="${videogioco.pcUrl != null}" class="badge"
+								<div th:if="${videogioco.pc != false}" class="badge"
 									style="position: relative; bottom: 13px;" th:classappend="badge-steam">Pc</div>
 								<h4>
-									<a th:href="@{'/videogiochi/details?idVideogioco=' + ${videogioco.id}}" th:text="${videogioco.titolo}">
+									<a th:href="@{'/videogiochi/details?idVideogioco=' + ${videogioco.id}}"
+										th:text="${videogioco.titolo}">
 									</a>
 								</h4>
 								<div class="card-meta">
@@ -80,35 +84,20 @@
 						</div>
 					</div>
 				</div>
-				<div th:if="!${isResearch}" class="pagination-results m-t-0">
+				<div th:if="${videogiochiPage.totalPages > 0}" class="pagination-results m-t-0">
 					<nav aria-label="Page navigation">
 						<ul class="pagination">
-							<li th:each="i: ${#numbers.sequence(1, videogiochiCount)}" class=""
-								th:class="${param.index != null} ? (${param.index[0] == i} ? 'page-item active' : 'page-item') : 'page-item active'">
-								<a th:if="${i} != 0" th:text="${i}" class="page-link" th:data-parameter1="${platform}" th:onclick="|listWithPlatform(this.getAttribute('data-parameter1'), ${i})|"></a>
-							</li>
-						</ul>
-					</nav>
-				</div>
-
-				<div th:if="${isResearch}" class="pagination-results m-t-0">
-					<nav aria-label="Page navigation">
-						<ul class="pagination">
-							<li th:each="i: ${#numbers.sequence(1, videogiochiCount)}" class=""
-								th:class="${param.index != null} ? (${param.index[0] == i} ? 'page-item active' : 'page-item') : 'page-item active'">
-								<a th:if="${i} != 0" th:text="${i}" class="page-link" th:href="@{'/videogiochi/list?platform=all&index='+ ${i} + '&searchString=' + ${searchString}}"></a>
+							<li th:each="pageNumber : ${pageNumbers}" class="page-item">
+								<a th:href="@{/videogiochi/list(size=${videogiochiPage.size}, page=${pageNumber}, searchString=${param.searchString}, platform=${param.platform})}"
+									th:text=${pageNumber} class="page-link"
+									th:style="${pageNumber==videogiochiPage.number + 1} ? 'background-color:#F5F5F5'"></a>
 							</li>
 						</ul>
 					</nav>
 				</div>
 			</div>
 		</section>
-		
-		<script>
-			function listWithPlatform(platform, index) {
-				window.location.href = "list?platform=" + platform + "&index=" + index;
-			}
-		</script>
+
 		<script>
 			function addGameToWishlist(idVideogioco) {
 				$.ajax({

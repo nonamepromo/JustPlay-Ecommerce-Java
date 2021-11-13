@@ -35,7 +35,7 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 
 	@Autowired
 	private VideogiocoRepository videogiocoRepository;
-	
+
 	@Autowired
 	private UtenteRepository utenteRepository;
 
@@ -49,29 +49,38 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 
 	@Override
 	public Page<Videogioco> findAll(Pageable pageable) throws BusinessException {
-		int pageSize = pageable.getPageSize();
-		int currentPage = pageable.getPageNumber();
-		int startItem = currentPage * pageSize;
-		List<Videogioco> listaVideogiochi = new ArrayList<Videogioco>();
-		long videogiochiSize = videogiocoRepository.count();
 
-		// if (videogiochiSize < startItem) {
-		// listaVideogiochi = Collections.emptyList();
-		// } else {
-		// int toIndex = Math.min(startItem + pageSize, listaVideogiochi.size());
-		// listaVideogiochi = books.subList(startItem, toIndex);
-		// }
-
-		Page<Videogioco> videogiochiPage = new PageImpl<Videogioco>(listaVideogiochi,
-				PageRequest.of(currentPage, pageSize), videogiochiSize);
+		Page<Videogioco> videogiochiPage = videogiocoRepository.findAll(pageable);
 
 		return videogiochiPage;
 	}
 
 	@Override
-	public Page<Videogioco> searchVideogioco(String search, int numeroPagine, int sizePagina) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+	public Page<Videogioco> filterVideogiochi(Pageable pageable, String searchString, String platform)
+			throws BusinessException {
+
+		Page<Videogioco> videogiochiPage = null;
+
+		switch (platform) {
+		case "ps4":
+			videogiochiPage = videogiocoRepository.findByTitoloContainingAndPs4(pageable, searchString,
+					true);
+			break;
+
+		case "xbox":
+			videogiochiPage = videogiocoRepository.findByTitoloContainingAndXbox(pageable, searchString,
+					true);
+			break;
+
+		case "pc":
+			videogiochiPage = videogiocoRepository.findByTitoloContainingAndPc(pageable, searchString, true);
+			break;
+			
+		default:
+			videogiochiPage = videogiocoRepository.findByTitoloContaining(pageable, searchString);
+		}
+
+		return videogiochiPage;
 	}
 
 	@Override
@@ -92,11 +101,9 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
-	public void removeGameFromSellinglist(Utente utente, Long videogiocoInVendita)
-			throws BusinessException {
+	public void removeGameFromSellinglist(Utente utente, Long videogiocoInVendita) throws BusinessException {
 		videogiocoInVenditaRepository.deleteByUtenteAndId(utente, videogiocoInVendita);
 	}
-	
 
 	@Override
 	public void addGameToLikedlist(Videogioco videogioco, Utente utente, boolean piaciuto) throws BusinessException {
