@@ -37,16 +37,11 @@ public class ProfiloController {
 		model.addAttribute("utente", nuovoUtente);
 	}
 
-	public Utente utente() throws BusinessException {
-		Utente utente = Utility.getUtente();
-		return utente;
-	}
-
 	@RequestMapping
 	public String modificaProfiloStart() throws BusinessException {
-		System.out.println(utente().getVideogiochiInVendita());
-		System.out.println(utente().getVideogiochiDesiderati());
-		System.out.println(utente().getVideogiochiGiocati());
+		// System.out.println(utente().getVideogiochiInVendita());
+		// System.out.println(utente().getVideogiochiDesiderati());
+		// System.out.println(utente().getVideogiochiGiocati());
 		return "/common/profilo";
 	}
 
