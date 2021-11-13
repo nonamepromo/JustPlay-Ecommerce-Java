@@ -32,8 +32,9 @@ public class ProfiloController {
 		
 		@ModelAttribute
 		public void getUtente(Model model) throws BusinessException {
-			Utente utente =  Utility.getUtente();
-			model.addAttribute("utente", utente);
+			Utente utente = Utility.getUtente();
+			Utente nuovoUtente = utenteService.findById(utente.getId()).get();
+			model.addAttribute("utente", nuovoUtente);
 		}
 		
 		public Utente utente() throws BusinessException {

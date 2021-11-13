@@ -92,8 +92,8 @@
 												<th>[[#{profilo.azioni}]]</th>
 											</tr>
 										</thead>
-										<form th:action="@{/common/profilo/removeGameFromWishlist}">
-											<tbody th:each="wished : ${utente.videogiochiDesiderati}">
+										<tbody th:each="wished : ${utente.videogiochiDesiderati}">
+											<form th:action="@{/common/profilo/removeGameFromWishlist}">
 												<tr>
 													<td th:text="${wished.titolo}"></td>
 													<td th:if="${wished.xbox}" class="badge badge-xbox-one"
@@ -112,7 +112,7 @@
 																class="fa fa-trash-o"></i></button>
 													</td>
 												</tr>
-											</tbody>
+										</tbody>
 										</form>
 									</table>
 								</div>
@@ -166,7 +166,8 @@
 													<td th:text="${selled.videogioco.titolo}"></td>
 													<td th:if="${selled.piattaforma.contains('Xbox')}"
 														class="badge badge-xbox-one"
-														style="position: relative; bottom: -8px; margin-right: 5px">Xbox One
+														style="position: relative; bottom: -8px; margin-right: 5px">Xbox
+														One
 													</td>
 													<td th:if="${selled.piattaforma.contains('PS4')}"
 														class="badge badge-ps4"
@@ -178,7 +179,8 @@
 													</td>
 													<td>
 														<button th:value="${selled.id}" th:name="selled" type="submit"
-															class="btn btn-link p-a-5"><i class="fa fa-trash-o"></i></button>
+															class="btn btn-link p-a-5"><i
+																class="fa fa-trash-o"></i></button>
 													</td>
 												</tr>
 											</tbody>
