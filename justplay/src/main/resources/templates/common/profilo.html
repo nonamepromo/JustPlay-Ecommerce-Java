@@ -92,23 +92,24 @@
 												<th>[[#{profilo.azioni}]]</th>
 											</tr>
 										</thead>
-										<tbody th:each="wished : ${utente.videogiochiDesiderati}">
-											<form th:action="@{/common/profilo/removeGameFromWishlist}">
+										<tbody th:each="videogioco : ${utente.videogiochiDesiderati}">
+											<form th:action="@{/common/profilo/removeGameFromWishlist}"
+												th:object="${videogioco}">
 												<tr>
-													<td th:text="${wished.titolo}"></td>
-													<td th:if="${wished.xbox}" class="badge badge-xbox-one"
+													<td th:text="${videogioco.titolo}"></td>
+													<td th:if="${videogioco.xbox}" class="badge badge-xbox-one"
 														style="position: relative; bottom: -8px; margin-right: 5px">Xbox
 														One
 													</td>
-													<td th:if="${wished.ps4}" class="badge badge-ps4"
+													<td th:if="${videogioco.ps4}" class="badge badge-ps4"
 														style="position: relative; bottom: -8px; margin-right: 5px">PS4
 													</td>
-													<td th:if="${wished.pc}" class="badge badge-steam"
+													<td th:if="${videogioco.pc}" class="badge badge-steam"
 														style="position: relative; bottom: -8px; margin-right: 5px">PC
 													</td>
 													<td>
-														<button th:value="${wished.id}" th:name="wished" type="submit"
-															class="btn btn-link p-a-5"><i
+														<button th:value="${videogioco.id}" th:name="videogioco"
+															type="submit" class="btn btn-link p-a-5"><i
 																class="fa fa-trash-o"></i></button>
 													</td>
 												</tr>
@@ -126,27 +127,28 @@
 												<th>[[#{profilo.azioni}]]</th>
 											</tr>
 										</thead>
-										<form th:action="@{/common/profilo/removeGameFromPlayedlist}">
-											<tbody th:each="played : ${utente.videogiochiGiocati}">
+										<tbody th:each="videogioco : ${utente.videogiochiGiocati}">
+											<form th:action="@{/common/profilo/removeGameFromPlayedlist}"
+												th:object="${videogioco}">
 												<tr>
-													<td th:text="${played.titolo}"></td>
-													<td th:if="${played.xbox}" class="badge badge-xbox-one"
+													<td th:text="${videogioco.titolo}"></td>
+													<td th:if="${videogioco.xbox}" class="badge badge-xbox-one"
 														style="position: relative; bottom: -8px; margin-right: 5px">Xbox
 														One
 													</td>
-													<td th:if="${played.ps4}" class="badge badge-ps4"
+													<td th:if="${videogioco.ps4}" class="badge badge-ps4"
 														style="position: relative; bottom: -8px; margin-right: 5px">PS4
 													</td>
-													<td th:if="${played.pc}" class="badge badge-steam"
+													<td th:if="${videogioco.pc}" class="badge badge-steam"
 														style="position: relative; bottom: -8px; margin-right: 5px">PC
 													</td>
 													<td>
-														<button th:value="${played.id}" th:name="played" type="submit"
-															class="btn btn-link p-a-5"><i
+														<button th:value="${videogioco.id}" th:name="videogioco"
+															type="submit" class="btn btn-link p-a-5"><i
 																class="fa fa-trash-o"></i></button>
 													</td>
 												</tr>
-											</tbody>
+										</tbody>
 										</form>
 									</table>
 								</div>
@@ -160,30 +162,32 @@
 												<th>[[#{profilo.azioni}]]</th>
 											</tr>
 										</thead>
-										<form th:action="@{/common/profilo/removeGameFromSellinglist}">
-											<tbody th:each="selled : ${utente.videogiochiInVendita}">
+										<tbody th:each="videogiocoInVendita : ${utente.videogiochiInVendita}">
+											<form th:action="@{/common/profilo/removeGameFromSellinglist}"
+												th:object="${videogiocoInVendita}">
 												<tr>
-													<td th:text="${selled.videogioco.titolo}"></td>
-													<td th:if="${selled.piattaforma.contains('Xbox')}"
+													<td th:text="${videogiocoInVendita.videogioco.titolo}"></td>
+													<td th:if="${videogiocoInVendita.piattaforma.contains('Xbox')}"
 														class="badge badge-xbox-one"
 														style="position: relative; bottom: -8px; margin-right: 5px">Xbox
 														One
 													</td>
-													<td th:if="${selled.piattaforma.contains('PS4')}"
+													<td th:if="${videogiocoInVendita.piattaforma.contains('PS4')}"
 														class="badge badge-ps4"
 														style="position: relative; bottom: -8px; margin-right: 5px">PS4
 													</td>
-													<td th:if="${selled.piattaforma.contains('PC')}"
+													<td th:if="${videogiocoInVendita.piattaforma.contains('PC')}"
 														class="badge badge-steam"
 														style="position: relative; bottom: -8px; margin-right: 5px">PC
 													</td>
 													<td>
-														<button th:value="${selled.id}" th:name="selled" type="submit"
+														<button th:value="${videogiocoInVendita.id}"
+															th:name="videogiocoInVendita" type="submit"
 															class="btn btn-link p-a-5"><i
 																class="fa fa-trash-o"></i></button>
 													</td>
 												</tr>
-											</tbody>
+										</tbody>
 										</form>
 									</table>
 								</div>

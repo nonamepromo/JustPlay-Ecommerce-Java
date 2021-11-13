@@ -101,8 +101,8 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 	}
 
 	@Override
-	public void removeGameFromSellinglist(Utente utente, Long videogiocoInVendita) throws BusinessException {
-		videogiocoInVenditaRepository.deleteByUtenteAndId(utente, videogiocoInVendita);
+	public void removeGameFromSellinglist(Utente utente, VideogiocoInVendita videogiocoInVendita) throws BusinessException {
+		videogiocoInVenditaRepository.deleteByUtenteAndId(utente, videogiocoInVendita.getId());
 	}
 
 	@Override
