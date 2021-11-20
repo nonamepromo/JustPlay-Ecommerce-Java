@@ -176,10 +176,13 @@ public class VideogiocoController {
 			Set<String> partecipanti = new HashSet<String>();
 			partecipanti.add(usernamePartecipante);
 			partecipanti.add(utente.getUsername());
-
-			conversazione.setPartecipanti(partecipanti);
-			conversazioneService.addOrUpdateConversazione(conversazione);
-			return "redirect:/common/conversation?usernamePartecipante=" + usernamePartecipante;
+			if (conversazioneService.findConversazioneByUsernames(partecipanti) != null) {
+				return "redirect:/common/conversation?usernamePartecipante=" + usernamePartecipante;
+			} else {
+				conversazione.setPartecipanti(partecipanti);
+				conversazioneService.addOrUpdateConversazione(conversazione);
+				return "redirect:/common/conversation?usernamePartecipante=" + usernamePartecipante;
+			}
 		}
 	}
 
