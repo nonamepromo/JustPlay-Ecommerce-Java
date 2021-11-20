@@ -38,7 +38,7 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 
 	@Override
 	public Conversazione findConversazioneByUsernames(Set<String> partecipanti) throws BusinessException {
-		return conversazioneRepository.findByPartecipanti(partecipanti).get();
+		return conversazioneRepository.findByPartecipanti(partecipanti);
 	}
 
 	@Override

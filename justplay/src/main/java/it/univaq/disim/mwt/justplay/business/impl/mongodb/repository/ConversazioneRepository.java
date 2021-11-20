@@ -15,8 +15,7 @@ import it.univaq.disim.mwt.justplay.domain.Utente;
 @Repository
 public interface ConversazioneRepository extends MongoRepository<Conversazione, String> {
 
-	@Query("{'partecipanti':{$all: ?0}}")
-	Optional<Conversazione> findByPartecipanti(Set<String> partecipanti);
+	Conversazione findByPartecipanti(Set<String> partecipanti);
 
 	Optional<Conversazione> findByIdConversazione(long idConversazione);
 

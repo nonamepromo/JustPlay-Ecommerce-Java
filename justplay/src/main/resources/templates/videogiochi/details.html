@@ -288,10 +288,9 @@
 															class="fa fa-trash-o"></i></button>
 												</form>
 											</td>
-											<p th:text="${videogiocoInVendita.utente.username}"></p>
-											<td th:if="${videogiocoInVendita.utente != utente}">
+											<td th:if="!${videogiocoInVendita.utente.equals(utente)}">
 												<form th:action="@{/videogiochi/createConversazione(usernamePartecipante=${videogiocoInVendita.utente.username})}">
-													<input type="hidden" th:name="usernamePartecipante" th:value="${videogiocoInVendita.utente.username}">
+												<input type="hidden" th:name="usernamePartecipante" th:value="${videogiocoInVendita.utente.username}">
 													<button type="submit" class="btn btn-link p-a-5"><i
 															class="fa fa-wechat"></i></button>
 												</form>
