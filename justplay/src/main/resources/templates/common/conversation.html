@@ -8,16 +8,16 @@
 	<div layout:fragment="content">
 		<section class="p-t-30">
 			<div class="container">
-				<div class="card" style="">
-					<h3 th:text="'Chat con ' + ${nomeUtente}" class="card-header"></h3>
+				<div class="card">
+					<h3 th:text="'Chat con ' + ${param.usernamePartecipante}" class="card-header"></h3>
 					<div class="card-body"
 						style="height: 600px; overflow: auto; text-align:justify; transform: rotateX(180deg);">
 						<div class="row" style="transform: rotateX(180deg);">
-							<div th:each="messaggio : ${messaggi}" class="col-8 col-sm-8 col-md-8"
-								th:classappend="${messaggio.idMittente} == ${idUtente} ? 'ml-auto': ''">
+							<div th:each="messaggio : ${conversazione.messaggi}" class="col-8 col-sm-8 col-md-8"
+								th:classappend="${messaggio.mittente} == ${username} ? 'ml-auto': ''">
 								<div>
 									<div class="card card-lg">
-										<div th:style="${messaggio.idMittente} == ${idUtente} ? 'background-color:lightskyblue': ''"
+										<div th:style="${messaggio.mittente} == ${username} ? 'background-color:lightskyblue': ''"
 											class="card-block">
 											<div th:text="${messaggio.contenuto}"></div>
 										</div>
@@ -26,17 +26,18 @@
 							</div>
 						</div>
 					</div>
-					<form class="card-footer" th:action="@{/common/createMessaggio}" th:object="${messaggio}"
-						method="post">
-						<div class="input-group mb-3">
-							<input type="hidden" th:value="${idUtente}" th:name="idUtente" class="form-control">
+					<form class="card-footer"
+						th:action="@{/common/createMessaggio(usernamePartecipante=${param.usernamePartecipante})}"
+						th:object="${conversazione}" method="post">
+						<div class="form-group input-icon-left m-b-10">
+							<i class="fa fa-user"></i>
+							<input type="hidden" th:field="*{idConversazione}"
+								class="form-control form-control-secondary">
+							<input type="hidden" th:field="*{partecipanti}" class="form-control form-control-secondary">
+							<input type="hidden" th:field="*{messaggi}" class="form-control form-control-secondary">
 						</div>
-						<div class="input-group mb-3">
-							<input type="hidden" th:value="${idConversazione}" th:name="idConversazione"
-								class="form-control">
-						</div>
-						<div class="input-group mb-3">
-							<input required th:field="*{contenuto}" placeholder="Scrivi un messaggio..."
+						<div class="input-group mb-3" th:object="${messaggio}">
+							<input required id="contenuto" name="contenuto" placeholder="Scrivi un messaggio..."
 								class="form-control" maxlength="100"
 								style="border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
 							<div class="input-group-append">

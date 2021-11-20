@@ -6,22 +6,23 @@
 
 	<!-- main -->
 	<div layout:fragment="content">
-	
-		<script>
-			function openChat(idConversazione, nomeUtente) {
-				window.location.href = "conversation?idConversazione=" + idConversazione + "&nomeUtente=" + nomeUtente;
-			}
-		</script>
 
 		<section class="p-t-30">
 			<div class="container">
 				<h2 class="hero-title mb-5">Chat</h2>
-				<div class="row">
-					<div class="col-12 col-sm-12 col-md-12">
-						
-						</a>
+				<a th:each="conversazione: ${conversazioni}" th:href="@{/common/conversation(usernamePartecipante=${conversazione.partecipanti[0] == utente.username ? conversazione.partecipanti[1] : conversazione.partecipanti[0]})}">
+					<div class="row">
+						<div class="col-12 col-sm-12 col-md-12">
+							<div class="card card-lg">
+								<div class="card-block">
+									<div
+										th:text="${conversazione.partecipanti[0] == utente.username ? conversazione.partecipanti[1] : conversazione.partecipanti[0]}">
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
+				</a>
 			</div>
 		</section>
 	</div>

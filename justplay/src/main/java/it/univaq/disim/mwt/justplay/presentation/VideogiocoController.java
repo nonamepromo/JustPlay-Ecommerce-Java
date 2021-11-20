@@ -1,7 +1,9 @@
 package it.univaq.disim.mwt.justplay.presentation;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -20,8 +22,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.univaq.disim.mwt.justplay.business.BusinessException;
+
 import it.univaq.disim.mwt.justplay.business.UtenteService;
+
+import it.univaq.disim.mwt.justplay.business.CommentoService;
+import it.univaq.disim.mwt.justplay.business.ConversazioneService;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
+import it.univaq.disim.mwt.justplay.domain.Commento;
+import it.univaq.disim.mwt.justplay.domain.Conversazione;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
@@ -36,6 +44,12 @@ public class VideogiocoController {
 	@Autowired
 	private UtenteService utenteService;
 
+	@Autowired
+	private CommentoService commentoService;
+	
+	@Autowired
+	private ConversazioneService conversazioneService;
+
 	@ModelAttribute
 	public void getUtente(Model model) throws BusinessException {
 		if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
@@ -43,29 +57,6 @@ public class VideogiocoController {
 			model.addAttribute("utente", utente);
 		}
 	}
-
-	// @GetMapping(value = "/list", params = { "size", "page" })
-	// public String list(Model model, @RequestParam("page") Optional<Integer> page,
-	// @RequestParam("size") Optional<Integer> size) throws BusinessException {
-
-	// int currentPage = page.orElse(1);
-	// int pageSize = size.orElse(5);
-
-	// Page<Videogioco> videogiochiPage = service.findAll(PageRequest.of(currentPage
-	// - 1, pageSize));
-
-	// model.addAttribute("videogiochiPage", videogiochiPage);
-
-	// int totalPages = videogiochiPage.getTotalPages();
-	// if (totalPages > 0) {
-	// List<Integer> pageNumbers = IntStream.rangeClosed(1,
-	// totalPages).boxed().collect(Collectors.toList());
-	// model.addAttribute("pageNumbers", pageNumbers);
-	// }
-
-	// return "videogiochi/list";
-
-	// }
 
 	@GetMapping("/gameFromWishlist")
 	public String gameFromWishlist(@RequestParam("uri") String request, @ModelAttribute("videogioco") Videogioco videogioco,
@@ -100,16 +91,6 @@ public class VideogiocoController {
 		utenteService.nonPiaciuto(utente, videogioco);
 		return "redirect:/videogiochi/details?idVideogioco=" + videogioco.getId();
 	}
-	
-	/*
-	@GetMapping("/gameLiked")
-	public String addGameToLikedlist(@RequestParam boolean piaciuto,
-			@ModelAttribute("videogioco") Videogioco videogioco,
-			@ModelAttribute("utente") Utente utente) throws BusinessException {		
-		service.addGameToLikedlist(videogioco, utente, piaciuto);
-		return "redirect:/videogiochi/details?idVideogioco=" + videogioco.getId();
-	}
-	*/
 	
 	@PostMapping("/addGameToSellinglist")
 	public String addGameToSellinglist(@ModelAttribute VideogiocoInVendita videogiocoInVendita,
@@ -166,23 +147,35 @@ public class VideogiocoController {
 		
 		model.addAttribute("videogioco", service.findById(idVideogioco));
 		model.addAttribute("pincodes", service.findAllPincodes());
-
-		/*
-		for(VideogiocoPiaciuto videogiocoPiaciuto : utente.getVideogiochiPiaciuti()) {
-			if(videogiocoPiaciuto.getVideogioco().getId() == idVideogioco) {
-				model.addAttribute("videogiocoPiaciuto", videogiocoPiaciuto.isPiaciuto());
-			}
-		} 
-		
-		
-		for(VideogiocoPiaciuto videogiocoPiaciuto : service.findById(idVideogioco).getVideogiochiPiaciuti()) {
-			if(videogiocoPiaciuto.getUtente().equals(utente)) {
-				model.addAttribute("videogiocoPiaciuto", videogiocoPiaciuto);
-			}
-		}
-		*/
 		
 		return "videogiochi/details";
+	}
+
+	@PostMapping("/addCommento")
+	public String addCommento(@ModelAttribute("utente") Utente utente, @ModelAttribute("commento") Commento commento,
+			Model model) throws BusinessException {
+		commento.setUtente(utente);
+		commentoService.addCommento(commento);
+		return "redirect:/videogiochi/details?idVideogioco=" + commento.getVideogioco().getId();
+	}
+
+	@PostMapping("/deleteCommento")
+	public String delete(@RequestParam("idCommento") Long idCommento, @RequestParam("idVideogioco") Long idVideogioco)
+			throws BusinessException {
+		commentoService.deleteCommento(idCommento);
+		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
+	}
+
+	@PostMapping("/createConversazione")
+	public String createConversazione(@ModelAttribute("utente") Utente utente,
+			@ModelAttribute("conversazione") Conversazione conversazione,
+			@RequestParam("usernamePartecipante") String usernamePartecipante) throws BusinessException {
+		Set<String> partecipanti = new HashSet<String>();
+		partecipanti.add(usernamePartecipante);
+		partecipanti.add(utente.getUsername());
+		conversazione.setPartecipanti(partecipanti);
+		conversazioneService.addOrUpdateConversazione(conversazione);
+		return "redirect:/common/conversation?usernamePartecipante=" + usernamePartecipante;
 	}
 
 }

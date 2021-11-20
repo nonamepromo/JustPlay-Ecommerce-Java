@@ -46,7 +46,7 @@
 							Pc</a>
 					</div>
 				</div>
-				<div class="row mb-3" th:if="${param.searchString != null && param.searchString[0] != ''}"
+				<div class="row mb-3" th:if="${param.searchString != null && !param.searchString[0].equals('')}"
 					th:text="'Risultati per: ' + ${param.searchString}"></div>
 				<div class="row">
 					<div th:each="videogioco : ${videogiochiPage.content}" class="col-12 col-sm-6 col-md-4">

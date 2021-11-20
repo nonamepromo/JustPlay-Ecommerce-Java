@@ -82,6 +82,10 @@ public class Videogioco extends AbstractPersistableEntity {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "videogioco")
 	private Set<GameStop> gamestop;
 
+	@OneToMany(mappedBy = "videogioco", fetch = FetchType.EAGER)
+	@Basic(fetch = FetchType.LAZY)
+	private Set<Commento> commenti;
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
