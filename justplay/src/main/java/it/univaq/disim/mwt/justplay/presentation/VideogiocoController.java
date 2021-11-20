@@ -166,10 +166,11 @@ public class VideogiocoController {
 		return "redirect:/videogiochi/details?idVideogioco=" + idVideogioco;
 	}
 
-	@PostMapping("/createConversazione")
-	public String createConversazione(@ModelAttribute("utente") Utente utente,
-			@ModelAttribute("conversazione") Conversazione conversazione,
-			@RequestParam("usernamePartecipante") String usernamePartecipante) throws BusinessException {
+	@GetMapping("/createConversazione")
+	public String createConversazione(@RequestParam("usernamePartecipante") String usernamePartecipante,
+			@ModelAttribute("utente") Utente utente,
+			@ModelAttribute("conversazione") Conversazione conversazione
+			) throws BusinessException {
 		Set<String> partecipanti = new HashSet<String>();
 		partecipanti.add(usernamePartecipante);
 		partecipanti.add(utente.getUsername());
