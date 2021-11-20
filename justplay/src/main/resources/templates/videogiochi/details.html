@@ -275,12 +275,12 @@
 											<td th:text="${videogiocoInVendita.prezzoSpedizione}+ '€'"></td>
 											<td th:text="${videogiocoInVendita.provincia}"></td>
 											<td th:text="${videogiocoInVendita.piattaforma}"></td>
-											<td th:if="${videogiocoInVendita.utente == utente}">
+											<td th:if="${videogiocoInVendita.utente.equals(utente)}">
 												<button class="btn btn-link p-a-5" data-toggle="modal"
 													th:data-target="${'#modal-videogioco-in-vendita-'+videogiocoInVendita.id}"><i
 														class="fa fa-edit"></i></button>
 											</td>
-											<td th:if="${videogiocoInVendita.utente == utente}">
+											<td th:if="${videogiocoInVendita.utente.equals(utente)}">
 												<form th:action="@{/videogiochi/removeGameFromSellinglist}">
 													<button th:value="${videogiocoInVendita.id}"
 														th:name="videogiocoInVendita" type="submit"
@@ -344,7 +344,7 @@
 				<div class="card-content">
 					<div class="card-header justify-content-between">
 						<h4 th:text="${commento.utente.username}" class="col-6 card-title"></h4>
-						<form th:if="${commento.utente == utente}" class="col-6"
+						<form th:if="${commento.utente.equals(utente)}" class="col-6"
 							th:action="@{/videogiochi/deleteCommento(idCommento=${commento.id}, idVideogioco=${videogioco.id})}"
 							th:object="${commento}" method="post">
 							<button class="close" aria-label="Close" type="submit">

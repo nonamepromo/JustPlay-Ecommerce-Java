@@ -7,7 +7,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -46,7 +45,7 @@ public class VideogiocoController {
 
 	@Autowired
 	private CommentoService commentoService;
-	
+
 	@Autowired
 	private ConversazioneService conversazioneService;
 
@@ -59,49 +58,50 @@ public class VideogiocoController {
 	}
 
 	@GetMapping("/gameFromWishlist")
-	public String gameFromWishlist(@RequestParam("uri") String request, @ModelAttribute("videogioco") Videogioco videogioco,
-			@ModelAttribute("utente") Utente utente) throws BusinessException {
+	public String gameFromWishlist(@RequestParam("uri") String request,
+			@ModelAttribute("videogioco") Videogioco videogioco, @ModelAttribute("utente") Utente utente)
+			throws BusinessException {
 		utenteService.desiderato(utente, videogioco);
-		if(request.contains("details")) {
+		if (request.contains("details")) {
 			return "redirect:/videogiochi/details?idVideogioco=" + videogioco.getId();
 		}
 		return "redirect:/videogiochi/list?size=6&page=1";
 	}
 
 	@GetMapping("/gameFromPlayedlist")
-	public String gameFromPlayedlist(@RequestParam("uri") String request, @ModelAttribute("videogioco") Videogioco videogioco,
-			@ModelAttribute("utente") Utente utente) throws BusinessException {
+	public String gameFromPlayedlist(@RequestParam("uri") String request,
+			@ModelAttribute("videogioco") Videogioco videogioco, @ModelAttribute("utente") Utente utente)
+			throws BusinessException {
 		utenteService.giocato(utente, videogioco);
-		if(request.contains("details")) {
+		if (request.contains("details")) {
 			return "redirect:/videogiochi/details?idVideogioco=" + videogioco.getId();
 		}
 		return "redirect:/videogiochi/list?size=6&page=1";
 	}
-	
+
 	@GetMapping("/gameLiked")
 	public String addGameToLikedlist(@ModelAttribute("videogioco") Videogioco videogioco,
-			@ModelAttribute("utente") Utente utente) throws BusinessException {	
+			@ModelAttribute("utente") Utente utente) throws BusinessException {
 		utenteService.piaciuto(utente, videogioco);
 		return "redirect:/videogiochi/details?idVideogioco=" + videogioco.getId();
 	}
-	
+
 	@GetMapping("/gameUnliked")
 	public String addGameToUnlikedlist(@ModelAttribute("videogioco") Videogioco videogioco,
-			@ModelAttribute("utente") Utente utente) throws BusinessException {	
+			@ModelAttribute("utente") Utente utente) throws BusinessException {
 		utenteService.nonPiaciuto(utente, videogioco);
 		return "redirect:/videogiochi/details?idVideogioco=" + videogioco.getId();
 	}
-	
+
 	@PostMapping("/addGameToSellinglist")
 	public String addGameToSellinglist(@ModelAttribute VideogiocoInVendita videogiocoInVendita,
-			@ModelAttribute("videogioco") Videogioco videogioco,
-			@ModelAttribute("utente") Utente utente,
+			@ModelAttribute("videogioco") Videogioco videogioco, @ModelAttribute("utente") Utente utente,
 			RedirectAttributes redirAttrs) throws BusinessException {
 		service.addGameToSellinglist(videogiocoInVendita, utente, videogioco);
 		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/videogiochi/details?idVideogioco=" + videogioco.getId();
 	}
-	
+
 	@PostMapping("/editSellingGame")
 	public String editSellingGame(@ModelAttribute VideogiocoInVendita nuovoVideogiocoInVendita,
 			RedirectAttributes redirAttrs) throws BusinessException {
@@ -109,7 +109,7 @@ public class VideogiocoController {
 		redirAttrs.addFlashAttribute("success", "");
 		return "redirect:/videogiochi/details?idVideogioco=" + nuovoVideogiocoInVendita.getVideogioco().getId();
 	}
-	
+
 	@GetMapping("/removeGameFromSellinglist")
 	public String removeGameFromSellinglist(
 			@ModelAttribute("videogiocoInVendita") VideogiocoInVendita videogiocoInVendita) throws BusinessException {
@@ -141,13 +141,12 @@ public class VideogiocoController {
 	}
 
 	@GetMapping("/details")
-	public String details(@RequestParam("idVideogioco") Long idVideogioco,
-			@ModelAttribute("utente") Utente utente,
+	public String details(@RequestParam("idVideogioco") Long idVideogioco, @ModelAttribute("utente") Utente utente,
 			Model model) throws BusinessException {
-		
+
 		model.addAttribute("videogioco", service.findById(idVideogioco));
 		model.addAttribute("pincodes", service.findAllPincodes());
-		
+
 		return "videogiochi/details";
 	}
 
@@ -168,15 +167,20 @@ public class VideogiocoController {
 
 	@GetMapping("/createConversazione")
 	public String createConversazione(@RequestParam("usernamePartecipante") String usernamePartecipante,
-			@ModelAttribute("utente") Utente utente,
-			@ModelAttribute("conversazione") Conversazione conversazione
-			) throws BusinessException {
-		Set<String> partecipanti = new HashSet<String>();
-		partecipanti.add(usernamePartecipante);
-		partecipanti.add(utente.getUsername());
-		conversazione.setPartecipanti(partecipanti);
-		conversazioneService.addOrUpdateConversazione(conversazione);
-		return "redirect:/common/conversation?usernamePartecipante=" + usernamePartecipante;
+			@ModelAttribute("utente") Utente utente, @ModelAttribute("conversazione") Conversazione conversazione,
+			RedirectAttributes redirAttrs) throws BusinessException {
+		if (usernamePartecipante.equals(utente.getUsername())) {
+			redirAttrs.addFlashAttribute("error", "");
+			return "redirect:/videogiochi/list?platform=all&index=1";
+		} else {
+			Set<String> partecipanti = new HashSet<String>();
+			partecipanti.add(usernamePartecipante);
+			partecipanti.add(utente.getUsername());
+
+			conversazione.setPartecipanti(partecipanti);
+			conversazioneService.addOrUpdateConversazione(conversazione);
+			return "redirect:/common/conversation?usernamePartecipante=" + usernamePartecipante;
+		}
 	}
 
 }
