@@ -1,43 +1,43 @@
 package it.univaq.disim.mwt.justplay.business.impl.jpa;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.VideogiocoService;
-import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.UtenteRepository;
+import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.AmazonRepository;
+import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.GamestopRepository;
+import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.PincodesRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoInVenditaRepository;
-import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoPiaciutoRepository;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoRepository;
+import it.univaq.disim.mwt.justplay.domain.Amazon;
+import it.univaq.disim.mwt.justplay.domain.GameStop;
+import it.univaq.disim.mwt.justplay.domain.Pincodes;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
 import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
-import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
 
 @Service
 @Transactional
 public class VideogiocoServiceImpl implements VideogiocoService {
 
 	@Autowired
-	private VideogiocoPiaciutoRepository videogiocoPiaciutoRepository;
-
-	@Autowired
 	private VideogiocoRepository videogiocoRepository;
-
+	
 	@Autowired
-	private UtenteRepository utenteRepository;
+	private AmazonRepository amazonRepository;
+	
+	@Autowired
+	private GamestopRepository gamestopRepository;
+	
+	@Autowired
+	private PincodesRepository pincodesRepository;
 
 	@Autowired
 	private VideogiocoInVenditaRepository videogiocoInVenditaRepository;
@@ -99,38 +99,48 @@ public class VideogiocoServiceImpl implements VideogiocoService {
 			throw new BusinessException(e);
 		}
 	}
+	
 
 	@Override
-	public void removeGameFromSellinglist(Utente utente, VideogiocoInVendita videogiocoInVendita) throws BusinessException {
-		videogiocoInVenditaRepository.deleteByUtenteAndId(utente, videogiocoInVendita.getId());
-	}
-
-	@Override
-	public void addGameToLikedlist(Videogioco videogioco, Utente utente, boolean piaciuto) throws BusinessException {
+	public void editSelledGame(VideogiocoInVendita videogiocoInVendita) throws BusinessException {
 		try {
-			Set<VideogiocoPiaciuto> videogiochiPiaciuti = utente.getVideogiochiPiaciuti();
-			if (videogiochiPiaciuti.contains(videogioco)) {
-				VideogiocoPiaciuto videogiocoPiaciuto = videogiocoPiaciutoRepository.findByUtenteAndVideogioco(utente,
-						videogioco);
-				if (videogiocoPiaciuto.isPiaciuto() == piaciuto) {
-					videogiochiPiaciuti.remove(videogiocoPiaciuto);
-				} else {
-					videogiochiPiaciuti.remove(videogiocoPiaciuto);
-					videogiocoPiaciuto.setPiaciuto(piaciuto);
-					videogiocoPiaciuto.setUtente(utente);
-					videogiocoPiaciuto.setVideogioco(videogioco);
-					videogiocoPiaciutoRepository.save(videogiocoPiaciuto);
-				}
-			} else {
-				VideogiocoPiaciuto videogiocoPiaciuto = new VideogiocoPiaciuto();
-				videogiocoPiaciuto.setPiaciuto(piaciuto);
-				videogiocoPiaciuto.setUtente(utente);
-				videogiocoPiaciuto.setVideogioco(videogioco);
-				videogiocoPiaciutoRepository.save(videogiocoPiaciuto);
-			}
+			VideogiocoInVendita updateVideogiocoInVendita = videogiocoInVenditaRepository.findById(videogiocoInVendita.getId()).get();
+			updateVideogiocoInVendita.setPrezzo(videogiocoInVendita.getPrezzo());
+			updateVideogiocoInVendita.setPrezzoSpedizione(videogiocoInVendita.getPrezzoSpedizione());
+			updateVideogiocoInVendita.setPiattaforma(videogiocoInVendita.getPiattaforma());
+			updateVideogiocoInVendita.setProvincia(videogiocoInVendita.getProvincia());
+			videogiocoInVenditaRepository.save(updateVideogiocoInVendita);
 		} catch (Exception e) {
 			throw new BusinessException(e);
 		}
+	}
+
+	@Override
+	public void removeGameFromSellinglist(VideogiocoInVendita videogiocoInVendita) throws BusinessException {
+		videogiocoInVenditaRepository.deleteById(videogiocoInVendita.getId());
+	}
+
+	@Override
+	public List<Amazon> findAllByVideogiocoAmazon(Videogioco videogioco) throws BusinessException {
+		try {
+			return amazonRepository.findAllByVideogioco(videogioco);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
+	}
+
+	@Override
+	public List<GameStop> findAllByVideogiocoGamestop(Videogioco videogioco) throws BusinessException {
+		try {
+			return gamestopRepository.findAllByVideogioco(videogioco);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
+	}
+
+	@Override
+	public List<Pincodes> findAllPincodes() throws BusinessException {
+		return pincodesRepository.findAll();
 	}
 
 }

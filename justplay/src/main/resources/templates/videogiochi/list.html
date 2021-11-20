@@ -12,8 +12,9 @@
 				<div class="alert alert-danger" role="alert" th:text="#{common.errore.title}" th:if="${error}">
 				</div>
 				<div class="toolbar-custom">
-					<form th:action="@{/videogiochi/list(size=${videogiochiPage.size}, page=${pageNumber}, platform=${param.platform})}" method="get"
-						class="float-left cold-12 col-sm-6 p-l-0 p-r-10">
+					<form
+						th:action="@{/videogiochi/list(size=${videogiochiPage.size}, page=${pageNumber}, platform=${param.platform})}"
+						method="get" class="float-left cold-12 col-sm-6 p-l-0 p-r-10">
 						<div class="input-group mb-3">
 							<input th:value="${searchString}" name="searchString" th:placeholder="#{videogioco.ricerca}"
 								class="form-control" maxlength="100"
@@ -25,6 +26,7 @@
 							</div>
 						</div>
 					</form>
+					
 					<div class="btn-group float-right m-l-5 hidden-sm-down" role="group">
 						<a class="btn btn-default btn-icon" role="button"
 							th:href="@{/videogiochi/list(size=${videogiochiPage.size}, page=${pageNumber}, searchString=${param.searchString})}"
@@ -52,18 +54,20 @@
 							<div class="card-img">
 								<a th:href="@{'/videogiochi/details?idVideogioco=' + ${videogioco.id}}">
 									<img style="height: 268px; object-fit: cover;" th:src="${videogioco.imageUrl}"
-										class="card-img-top">
-								</a>
-								<div th:classappend="${wishList != null} ? (${wishList.contains(videogioco)} ? 'card-liked' : 'card-likes') : 'card-likes'"
-									style="bottom: -43px; right: 60px">
-									<a th:onclick="${wishList != null} ? (${wishList.contains(videogioco)} ? |removeGameFromWishlist('${videogioco.id}')| : |addGameToWishlist(${videogioco.id})|) : |href='@{/common/login}'|"
-										th:style="${wishList != null} ? (${wishList.contains(videogioco)} ? 'color: red' : 'color: light-grey') : 'color: light-grey'"></a>
-								</div>
-								<div th:classappend="${playedList != null} ? (${playedList.contains(videogioco)} ? 'card-played' : 'card-plays') : 'card-plays'"
-									style="bottom: -43px;">
-									<a th:onclick="${playedList != null} ? (${playedList.contains(videogioco)} ? |removeGameFromPlayedlist('${videogioco.id}')| : |addGameToPlayedlist('${videogioco.id}')|) : |href='@{/common/login}'|"
-										th:style="${playedList != null} ? (${playedList.contains(videogioco)} ? 'color: red' : 'color: light-grey') : 'color: light-grey'"></a>
-								</div>
+										class="card-img-top"></a>
+										
+								<form th:action="@{/videogiochi/gameFromWishlist}" th:object="${videogioco}">
+								<input type="hidden" th:name="uri" th:value="${#httpServletRequest.requestURI}">
+								<button th:value="${videogioco.id}" th:name="videogioco" class="btn btn-link p-a-5" type="submit"
+								th:style="${#authorization.expression('isAuthenticated()')} ? (${utente.videogiochiDesiderati.contains(videogioco)} ? 'color: red' : 'color: light-grey') : 'color: light-grey'">
+								<i class="fa fa-heart"></i></button></form>
+								
+								<form th:action="@{/videogiochi/gameFromPlayedlist}" th:object="${videogioco}">
+								<input type="hidden" th:name="uri" th:value="${#httpServletRequest.requestURI}">
+								<button th:value="${videogioco.id}" th:name="videogioco" class="btn btn-link p-a-5" type="submit"
+								th:style="${#authorization.expression('isAuthenticated()')} ? (${utente.videogiochiGiocati.contains(videogioco)} ? 'color: red' : 'color: light-grey') : 'color: light-grey'">
+								<i class="fa fa-gamepad"></i></button></form>
+					
 							</div>
 							<div class="card-block" style="height: 133px;">
 								<div th:if="${videogioco.ps4 != false}" class="badge badge-ps4"
@@ -97,69 +101,6 @@
 				</div>
 			</div>
 		</section>
-
-		<script>
-			function addGameToWishlist(idVideogioco) {
-				$.ajax({
-					url: '[(@{/videogiochi/addGameToWishlist})]',
-					type: "POST",
-					data: 'idVideogioco=' + idVideogioco,
-					success: function (response) {
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
-					},
-					error: function (response) {
-						console.log("errore")
-					}
-				});
-			}
-		</script>
-
-		<script>
-			function removeGameFromWishlist(idVideogioco) {
-				$.ajax({
-					url: '[(@{/videogiochi/removeGameFromWishlist})]',
-					type: "POST",
-					data: 'idVideogioco=' + idVideogioco,
-					success: function (response) {
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
-					}
-				});
-			}
-		</script>
-
-		<script>
-			function addGameToPlayedlist(idVideogioco) {
-				$.ajax({
-					url: '[(@{/videogiochi/addGameToPlayedlist})]',
-					type: "POST",
-					data: 'idVideogioco=' + idVideogioco,
-					success: function (response) {
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
-					}
-				});
-			}
-		</script>
-
-		<script>
-			function removeGameFromPlayedlist(idVideogioco) {
-				$.ajax({
-					url: '[(@{/videogiochi/removeGameFromPlayedlist})]',
-					type: "POST",
-					data: 'idVideogioco=' + idVideogioco,
-					success: function (response) {
-						const queryString = window.location.search
-						const urlParams = new URLSearchParams(queryString);
-						window.open("list?platform=" + urlParams.get('platform') + "&index=" + urlParams.get('index'), "_self")
-					}
-				});
-			}
-		</script>
 	</div>
 </body>
 

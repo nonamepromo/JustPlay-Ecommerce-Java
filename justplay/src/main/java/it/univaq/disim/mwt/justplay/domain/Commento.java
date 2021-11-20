@@ -18,6 +18,10 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Commento {
+	
+	private String hobbitNebri;
+	
+	private String di104DiAlessandro;
 
 	@NotNull
 	private String contenuto;

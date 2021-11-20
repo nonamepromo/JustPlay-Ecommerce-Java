@@ -23,4 +23,8 @@ public interface UtenteService {
 	
 	void giocato (Utente utente, Videogioco videogioco) throws BusinessException;
 	
+	void piaciuto(Utente utente, Videogioco videogioco) throws BusinessException;
+	
+	void nonPiaciuto(Utente utente, Videogioco videogioco) throws BusinessException;
+	
 }

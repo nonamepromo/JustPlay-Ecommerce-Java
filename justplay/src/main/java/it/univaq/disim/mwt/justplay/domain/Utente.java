@@ -62,11 +62,18 @@ public class Utente extends AbstractPersistableEntity {
 	@JoinTable(name = "videogiochi_desiderati", joinColumns = @JoinColumn(name = "utente_id"),
 	inverseJoinColumns = @JoinColumn(name = "videogioco_id"))
 	private Set<Videogioco> videogiochiDesiderati;
-
-	@ManyToMany(mappedBy = "utente")
-	private Set<VideogiocoPiaciuto> videogiochiPiaciuti;
-
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, mappedBy = "utente")
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@JoinTable(name = "videogiochi_piaciuti", joinColumns = @JoinColumn(name = "utente_id"),
+	inverseJoinColumns = @JoinColumn(name = "videogioco_id"))
+	private Set<Videogioco> videogiochiPiaciuti;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@JoinTable(name = "videogiochi_non_piaciuti", joinColumns = @JoinColumn(name = "utente_id"),
+	inverseJoinColumns = @JoinColumn(name = "videogioco_id"))
+	private Set<Videogioco> videogiochiNonPiaciuti;
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, mappedBy = "utente")
 	private Set<VideogiocoInVendita> videogiochiInVendita;
 
 	@Override

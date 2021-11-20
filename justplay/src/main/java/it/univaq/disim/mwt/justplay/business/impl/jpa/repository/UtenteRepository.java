@@ -1,6 +1,5 @@
 package it.univaq.disim.mwt.justplay.business.impl.jpa.repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;

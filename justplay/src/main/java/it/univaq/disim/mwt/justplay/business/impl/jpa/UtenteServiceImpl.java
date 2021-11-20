@@ -15,7 +15,6 @@ import it.univaq.disim.mwt.justplay.business.UtenteService;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.UtenteRepository;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
-import it.univaq.disim.mwt.justplay.domain.VideogiocoPiaciuto;
 
 @Service
 @Transactional
@@ -118,6 +117,60 @@ public class UtenteServiceImpl implements UtenteService {
 			} else {
 				giocati.remove(videogioco);
 				utente.setVideogiochiGiocati(giocati);
+				utenteRepository.save(utente);
+			}
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
+	}
+
+	@Override
+	public void piaciuto(Utente utente, Videogioco videogioco) throws BusinessException {
+		try {
+			Set<Videogioco> piaciuti = utente.getVideogiochiPiaciuti();
+			Set<Videogioco> nonPiaciuti = utente.getVideogiochiNonPiaciuti();
+			if (!piaciuti.contains(videogioco)) {
+				if (!nonPiaciuti.contains(videogioco)) {
+					piaciuti.add(videogioco);
+					utente.setVideogiochiPiaciuti(piaciuti);
+					utenteRepository.save(utente);
+				} else {
+					nonPiaciuti.remove(videogioco);
+					utente.setVideogiochiNonPiaciuti(nonPiaciuti);
+					piaciuti.add(videogioco);
+					utente.setVideogiochiPiaciuti(piaciuti);
+					utenteRepository.save(utente);
+				}
+			} else {
+				piaciuti.remove(videogioco);
+				utente.setVideogiochiPiaciuti(piaciuti);
+				utenteRepository.save(utente);
+			}
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
+	}
+
+	@Override
+	public void nonPiaciuto(Utente utente, Videogioco videogioco) throws BusinessException {
+		try {
+			Set<Videogioco> piaciuti = utente.getVideogiochiPiaciuti();
+			Set<Videogioco> nonPiaciuti = utente.getVideogiochiNonPiaciuti();
+			if (!nonPiaciuti.contains(videogioco)) {
+				if (!piaciuti.contains(videogioco)) {
+					nonPiaciuti.add(videogioco);
+					utente.setVideogiochiNonPiaciuti(nonPiaciuti);
+					utenteRepository.save(utente);
+				} else {
+					piaciuti.remove(videogioco);
+					utente.setVideogiochiPiaciuti(piaciuti);
+					nonPiaciuti.add(videogioco);
+					utente.setVideogiochiNonPiaciuti(nonPiaciuti);
+					utenteRepository.save(utente);
+				}
+			} else {
+				nonPiaciuti.remove(videogioco);
+				utente.setVideogiochiPiaciuti(nonPiaciuti);
 				utenteRepository.save(utente);
 			}
 		} catch (Exception e) {

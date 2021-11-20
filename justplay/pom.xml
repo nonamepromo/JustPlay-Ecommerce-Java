@@ -13,7 +13,7 @@
 	<artifactId>justplay</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>justplay</name>
-	<description>Applicazione web della segreteria virtuale di Univaq</description>
+	<description>Applicazione web per videogiochi</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

@@ -159,6 +159,8 @@
 											<tr>
 												<th>[[#{profilo.nomegioco}]]</th>
 												<th>[[#{profilo.piattaformagioco}]]</th>
+												<th>[[#{videogioco.prezzo}]]</th>
+												<th>[[#{videogioco.provincia}]]</th>
 												<th>[[#{profilo.azioni}]]</th>
 											</tr>
 										</thead>
@@ -180,6 +182,8 @@
 														class="badge badge-steam"
 														style="position: relative; bottom: -8px; margin-right: 5px">PC
 													</td>
+													<td th:text="${videogiocoInVendita.prezzo} + €"></td>
+													<td th:text="${videogiocoInVendita.provincia}"></td>
 													<td>
 														<button th:value="${videogiocoInVendita.id}"
 															th:name="videogiocoInVendita" type="submit"
