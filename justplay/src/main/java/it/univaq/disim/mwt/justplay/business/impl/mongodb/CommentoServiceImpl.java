@@ -2,10 +2,13 @@ package it.univaq.disim.mwt.justplay.business.impl.mongodb;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.CommentoService;
+import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoRepository;
+import it.univaq.disim.mwt.justplay.business.impl.mongodb.repository.CommentoRepository;
 import it.univaq.disim.mwt.justplay.domain.Commento;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
@@ -14,6 +17,9 @@ import it.univaq.disim.mwt.justplay.domain.Videogioco;
 @Transactional
 public class CommentoServiceImpl implements CommentoService{
 
+	@Autowired
+	private CommentoRepository commentoRepository;
+	
 	@Override
 	public Commento findById(Long id) throws BusinessException {
 		// TODO Auto-generated method stub
@@ -21,9 +27,8 @@ public class CommentoServiceImpl implements CommentoService{
 	}
 
 	@Override
-	public void addCommento(Videogioco videogioco, Utente utente, String contenuto) throws BusinessException {
-		// TODO Auto-generated method stub
-		
+	public void addCommento(Commento commento) throws BusinessException {
+		commentoRepository.save(commento);
 	}
 
 	@Override
@@ -33,9 +38,8 @@ public class CommentoServiceImpl implements CommentoService{
 	}
 
 	@Override
-	public void deleteCommento(Commento commento) throws BusinessException {
-		// TODO Auto-generated method stub
-		
+	public void deleteCommento(Long idCommento) throws BusinessException {
+		commentoRepository.deleteById(idCommento);;
 	}
 
 }

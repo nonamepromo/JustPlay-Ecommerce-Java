@@ -15,6 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class Conversazione {
 
+	@Id
 	private String idConversazione;
 
 	@DBRef

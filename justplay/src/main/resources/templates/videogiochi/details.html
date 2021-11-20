@@ -45,7 +45,13 @@
 				</div>
 			</div>
 		</section>
-		<section class="p-t-10">
+		<section class="p-t-20 p-b-50 post">
+
+			<form th:action="@{/videogiochi/createConversazione(usernamePartecipante=simone)}" th:object="${conversazione}"
+				method="post">
+				<button type="submit"
+					class="btn btn-primary ml-4">conversazione</button>
+			</form>
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8">
@@ -62,7 +68,8 @@
 										<div class="row mb-2">
 											<h4 th:text="${videogioco.titolo}"></h4>
 										</div>
-										<div class="row mb-2"><span th:text="${videogioco.annoDiUscita}" class="meta"></span>
+										<div class="row mb-2"><span th:text="${videogioco.annoDiUscita}"
+												class="meta"></span>
 										</div>
 										<div class="row">
 											<a th:if="${videogioco.ps4 != false}" href="#"><span
@@ -84,6 +91,38 @@
 					</div>
 				</div>
 			</div>
+		</section>
+		<section class="p-l-50 p-r-50">
+			<h3 th:text="#{videogioco.commenti}" class="mb-5"></h3>
+			<div th:each="commento: ${videogioco.commenti}" class="card" style="width:45%">
+				<div class="card-content">
+					<div class="card-header justify-content-between">
+						<h4 th:text="${commento.utente.username}" class="col-6 card-title"></h4>
+						<form th:if="${commento.utente == utente}" class="col-6"
+							th:action="@{/videogiochi/deleteCommento(idCommento=${commento.id}, idVideogioco=${videogioco.id})}"
+							th:object="${commento}" method="post">
+							<button class="close" aria-label="Close" type="submit">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</form>
+					</div>
+					<div class="card-body">
+						<p th:text="${commento.contenuto}"></p>
+					</div>
+				</div>
+			</div>
+			<form th:if="${utente != null}" th:action="@{/videogiochi/addCommento}" th:object="${commento}"
+				method="post">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="contenuto">Inserisci la tua recensione</label>
+						<input maxlength="255" id="contenuto" name="contenuto" class="form-control"
+							placeholder="Testo recensione...">
+					</div>
+				</div>
+				<button th:value="${videogioco.id}" th:name="videogioco" type="submit"
+					class="btn btn-primary">Invia</button>
+			</form>
 		</section>
 	</div>
 	<!-- /main -->
