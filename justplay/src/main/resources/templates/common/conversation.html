@@ -31,7 +31,7 @@
 						th:object="${conversazione}" method="post">
 						<div class="form-group input-icon-left m-b-10">
 							<i class="fa fa-user"></i>
-							<input type="hidden" th:field="*{idConversazione}"
+							<input type="hidden" th:value="${conversazione.id}" th:name="conversazione" th:id="id"
 								class="form-control form-control-secondary">
 							<input type="hidden" th:field="*{partecipanti}" class="form-control form-control-secondary">
 							<input type="hidden" th:field="*{messaggi}" class="form-control form-control-secondary">

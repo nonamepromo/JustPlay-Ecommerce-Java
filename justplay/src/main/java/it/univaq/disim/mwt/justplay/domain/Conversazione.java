@@ -16,7 +16,7 @@ import java.util.Set;
 public class Conversazione {
 
 	@Id
-	private String idConversazione;
+	private String id;
 
 	@DBRef
 	private Set<Messaggio> messaggi;
@@ -30,13 +30,13 @@ public class Conversazione {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Conversazione conversazione = (Conversazione) o;
-		return Objects.equals(idConversazione, conversazione.idConversazione) && Objects.equals(messaggi, conversazione.messaggi)
+		return Objects.equals(id, conversazione.id) && Objects.equals(messaggi, conversazione.messaggi)
 				&& Objects.equals(partecipanti, conversazione.partecipanti);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idConversazione, messaggi, partecipanti);
+		return Objects.hash(id, messaggi, partecipanti);
 	}
 
 }

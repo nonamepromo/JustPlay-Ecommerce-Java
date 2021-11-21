@@ -17,8 +17,6 @@ public interface ConversazioneRepository extends MongoRepository<Conversazione, 
 
 	Conversazione findByPartecipanti(Set<String> partecipanti);
 
-	Optional<Conversazione> findByIdConversazione(long idConversazione);
-
 	@Query("SELECT c FROM Conversazione c JOIN c.partecipanti p WHERE p = :username")
 	List<Conversazione> findByPartecipanti(@Param("username") String username);
 
