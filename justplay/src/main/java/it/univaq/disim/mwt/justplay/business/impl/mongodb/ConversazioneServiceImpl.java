@@ -2,6 +2,7 @@ package it.univaq.disim.mwt.justplay.business.impl.mongodb;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -65,7 +66,7 @@ public class ConversazioneServiceImpl implements ConversazioneService {
 			conversazione = conversazioneRepository.save(conversazione);
 		} else {
 			Conversazione conversazioneToUpdate = conversazioneRepository.findByIdConversazione(Integer.parseInt(conversazione.getIdConversazione())).get();
-			conversazioneRepository.save(conversazioneToUpdate);
+			//conversazioneRepository.save(conversazioneToUpdate);
 			conversazioneToUpdate.setMessaggi(conversazione.getMessaggi());
 			conversazioneRepository.save(conversazioneToUpdate);
 		}

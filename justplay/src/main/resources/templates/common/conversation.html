@@ -14,10 +14,10 @@
 						style="height: 600px; overflow: auto; text-align:justify; transform: rotateX(180deg);">
 						<div class="row" style="transform: rotateX(180deg);">
 							<div th:each="messaggio : ${conversazione.messaggi}" class="col-8 col-sm-8 col-md-8"
-								th:classappend="${messaggio.mittente} == ${username} ? 'ml-auto': ''">
+								th:classappend="${messaggio.mittente} == ${utente.username} ? 'ml-auto': ''">
 								<div>
 									<div class="card card-lg">
-										<div th:style="${messaggio.mittente} == ${username} ? 'background-color:lightskyblue': ''"
+										<div th:style="${messaggio.mittente} == ${utente.username} ? 'background-color:lightskyblue': ''"
 											class="card-block">
 											<div th:text="${messaggio.contenuto}"></div>
 										</div>

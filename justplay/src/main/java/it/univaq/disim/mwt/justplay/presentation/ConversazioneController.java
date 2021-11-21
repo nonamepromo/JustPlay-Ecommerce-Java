@@ -38,6 +38,9 @@ public class ConversazioneController {
 
 	@Autowired
 	private ConversazioneService conversazioneService;
+	
+	@Autowired
+	private MessaggioService messaggiService;
 
 	@Autowired
 	private UtenteRepository utenteRepository;
@@ -85,9 +88,10 @@ public class ConversazioneController {
 		messaggio.setMittente(utente.getUsername());
 		messaggio.setDestinatario(usernamePartecipante);
 		messaggio.setId(UUID.randomUUID().toString());
+		messaggio.setTimestamp(System.currentTimeMillis());
+		messaggioService.inserisci(messaggio);
 		
 		conversazione.getMessaggi().add(messaggio);
-		
 		conversazioneService.addOrUpdateConversazione(conversazione);
 
 		return "redirect:/common/conversation?usernamePartecipante=" + usernamePartecipante;
