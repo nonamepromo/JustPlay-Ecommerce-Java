@@ -6,6 +6,8 @@
 
 	<!-- main -->
 	<div layout:fragment="content">
+		<div class="alert alert-danger m-3" role="alert" th:text="#{common.erroreCommento.title}" th:if="${error}">
+		</div>
 		<section class="hero hero-game"
 			th:style="'background:url('+ ${videogioco.imageUrl} +'); background-size: 100%;'">
 			<div class="overlay"></div>

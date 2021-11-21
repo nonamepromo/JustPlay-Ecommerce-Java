@@ -152,9 +152,15 @@ public class VideogiocoController {
 
 	@PostMapping("/addCommento")
 	public String addCommento(@ModelAttribute("utente") Utente utente, @ModelAttribute("commento") Commento commento,
-			Model model) throws BusinessException {
-		commento.setUtente(utente);
-		commentoService.addCommento(commento);
+			Model model, RedirectAttributes redirAttrs) throws BusinessException {
+		if (commento.getVideogioco().getCommenti().stream()
+				.filter(o -> o.getUtente().getUsername().equals(utente.getUsername())).findFirst().isPresent()) {
+					redirAttrs.addFlashAttribute("error", "");
+					return "redirect:/videogiochi/details?idVideogioco=" + commento.getVideogioco().getId();
+		} else {
+			commento.setUtente(utente);
+			commentoService.addCommento(commento);
+		}
 		return "redirect:/videogiochi/details?idVideogioco=" + commento.getVideogioco().getId();
 	}
 
