@@ -171,7 +171,7 @@ public class VideogiocoController {
 			RedirectAttributes redirAttrs) throws BusinessException {
 		if (usernamePartecipante.equals(utente.getUsername())) {
 			redirAttrs.addFlashAttribute("error", "");
-			return "redirect:/videogiochi/list?platform=all&index=1";
+			return "redirect:/videogiochi/list";
 		} else {
 			Set<String> partecipanti = new HashSet<String>();
 			partecipanti.add(usernamePartecipante);
