@@ -15,9 +15,7 @@ import it.univaq.disim.mwt.justplay.domain.VideogiocoInVendita;
 public interface VideogiocoService{
 	
 	Videogioco findById(Long id) throws BusinessException;
-			
-	Page<Videogioco> findAll(Pageable pageable) throws BusinessException;
-	
+				
 	Page<Videogioco> filterVideogiochi(Pageable pageable, String searchString, String platform) throws BusinessException;
 		
 	void addGameToSellinglist(VideogiocoInVendita videogiocoInVendita, Utente utente, Videogioco videogioco) throws BusinessException;
@@ -25,10 +23,6 @@ public interface VideogiocoService{
 	void removeGameFromSellinglist(VideogiocoInVendita videogiocoInVendita) throws BusinessException;
 	
 	void editSelledGame(VideogiocoInVendita videogiocoInVendita) throws BusinessException;
-	
-	List<Amazon> findAllByVideogiocoAmazon(Videogioco videogioco) throws BusinessException;
-	
-	List<GameStop> findAllByVideogiocoGamestop(Videogioco videogioco) throws BusinessException;
 	
 	List<Pincodes> findAllPincodes() throws BusinessException;
 

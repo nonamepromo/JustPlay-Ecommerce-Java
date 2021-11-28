@@ -55,28 +55,33 @@
 									th:class="${param.index != null} ? (${param.index[0] == '1'} ? 'tab-pane active' : 'tab-pane') : 'tab-pane'">
 									<form class="form-horizontal" th:action="@{/common/profilo}" th:object="${utente}"
 										method="post">
+										<label for="username">Username:</label>
 										<div class="form-group input-icon-left m-b-10">
 											<i class="fa fa-user"></i>
 											<input type="text" th:field="*{username}"
-												class="form-control form-control-secondary" placeholder="Username">
+												class="form-control form-control-secondary" placeholder="Username" disabled>
+												
 										</div>
+										<label for="username">[[#{profilo.nome}]]:</label>
 										<div class="form-group input-icon-left m-b-10">
 											<i class="fa fa-user"></i>
 											<input type="text" th:field="*{nome}"
 												class="form-control form-control-secondary"
 												th:placeholder="#{profilo.nome}" required maxlength="100">
 										</div>
+										<label for="username">[[#{profilo.cognome}]]:</label>
 										<div class="form-group input-icon-left m-b-10">
 											<i class="fa fa-user"></i>
 											<input type="text" th:field="*{cognome}"
 												class="form-control form-control-secondary"
 												th:placeholder="#{profilo.cognome}" required maxlength="100">
 										</div>
+										<label for="username">Email:</label>
 										<div class="form-group input-icon-left m-b-10">
 											<i class="fa fa-envelope"></i>
 											<input type="email" th:field="*{email}"
 												class="form-control form-control-secondary" placeholder="Email Address"
-												required maxlength="100">
+												required disabled>
 										</div>
 										<button type="submit" th:text="#{common.submit}"
 											class="btn btn-primary m-t-10 btn-block"></button>

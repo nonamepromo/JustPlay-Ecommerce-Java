@@ -76,7 +76,6 @@ public class UtenteServiceImpl implements UtenteService {
 		} catch (Exception e) {
 			throw new BusinessException(e);
 		}
-
 	}
 
 	@Override
@@ -89,7 +88,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 
 	@Override
-	public void desiderato(Utente utente, Videogioco videogioco) throws BusinessException {
+	public void addOrRemoveDesiderato(Utente utente, Videogioco videogioco) throws BusinessException {
 		try {
 			Set<Videogioco> desiderati = utente.getVideogiochiDesiderati();
 			if (!desiderati.contains(videogioco)) {
@@ -107,7 +106,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 
 	@Override
-	public void giocato(Utente utente, Videogioco videogioco) throws BusinessException {
+	public void addOrRemoveGiocato(Utente utente, Videogioco videogioco) throws BusinessException {
 		try {
 			Set<Videogioco> giocati = utente.getVideogiochiGiocati();
 			if (!giocati.contains(videogioco)) {

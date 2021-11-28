@@ -19,9 +19,9 @@ public interface UtenteService {
 
 	void save(Utente utente) throws BusinessException;
 	
-	void desiderato (Utente utente, Videogioco videogioco) throws BusinessException;
+	void addOrRemoveDesiderato (Utente utente, Videogioco videogioco) throws BusinessException;
 	
-	void giocato (Utente utente, Videogioco videogioco) throws BusinessException;
+	void addOrRemoveGiocato (Utente utente, Videogioco videogioco) throws BusinessException;
 	
 	void piaciuto(Utente utente, Videogioco videogioco) throws BusinessException;
 	

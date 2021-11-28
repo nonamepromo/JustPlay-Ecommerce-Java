@@ -329,7 +329,7 @@
 													class="badge badge-steam">Pc</span></a>
 										</div>
 										<h5>[[#{videogioco.descrizione}]]</h5>
-										<p th:text="${#locale.language == 'it' ? videogioco.descrizione : videogioco.descrizioneEN}">
+										<p th:text="${#locale.language.equals('it') ? videogioco.descrizione : videogioco.descrizioneEN}">
 										</p>
 									</div>
 								</div>

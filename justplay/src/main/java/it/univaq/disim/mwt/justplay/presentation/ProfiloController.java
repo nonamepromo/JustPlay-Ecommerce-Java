@@ -41,7 +41,7 @@ public class ProfiloController {
 	@GetMapping("/removeGameFromWishlist")
 	public String removeGameFromWishlist(@ModelAttribute("videogioco") Videogioco videogioco,
 	@ModelAttribute("utente") Utente utente) throws BusinessException {
-		utenteService.desiderato(utente, videogioco);
+		utenteService.addOrRemoveDesiderato(utente, videogioco);
 		return "redirect:/common/profilo?index=2";
 	}
 
@@ -49,7 +49,7 @@ public class ProfiloController {
 	public String removeGameFromPlayedlist(@ModelAttribute("videogioco") Videogioco videogioco,
 	@ModelAttribute("utente") Utente utente)
 			throws BusinessException {
-		utenteService.giocato(utente, videogioco);
+		utenteService.addOrRemoveGiocato(utente, videogioco);
 		return "redirect:/common/profilo?index=3";
 	}
 

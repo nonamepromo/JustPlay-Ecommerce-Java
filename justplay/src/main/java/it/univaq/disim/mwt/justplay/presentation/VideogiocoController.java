@@ -61,7 +61,7 @@ public class VideogiocoController {
 	public String gameFromWishlist(@RequestParam("uri") String request,
 			@ModelAttribute("videogioco") Videogioco videogioco, @ModelAttribute("utente") Utente utente)
 			throws BusinessException {
-		utenteService.desiderato(utente, videogioco);
+		utenteService.addOrRemoveDesiderato(utente, videogioco);
 		if (request.contains("details")) {
 			return "redirect:/videogiochi/details?idVideogioco=" + videogioco.getId();
 		}
@@ -72,7 +72,7 @@ public class VideogiocoController {
 	public String gameFromPlayedlist(@RequestParam("uri") String request,
 			@ModelAttribute("videogioco") Videogioco videogioco, @ModelAttribute("utente") Utente utente)
 			throws BusinessException {
-		utenteService.giocato(utente, videogioco);
+		utenteService.addOrRemoveGiocato(utente, videogioco);
 		if (request.contains("details")) {
 			return "redirect:/videogiochi/details?idVideogioco=" + videogioco.getId();
 		}

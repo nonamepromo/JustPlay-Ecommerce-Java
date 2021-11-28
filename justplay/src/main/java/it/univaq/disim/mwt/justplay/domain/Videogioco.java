@@ -53,22 +53,18 @@ public class Videogioco extends AbstractPersistableEntity {
 	@Size(min = 3, max = 2500, groups = { OnCreate.class, OnUpdate.class, Default.class })
 	private String imageUrl;
 
-	// QUESTO NON è DETTO CHE SERVA PER FORZA, BASTA QUELLO IN UTENTE
 	@ManyToMany(mappedBy = "videogiochiGiocati", fetch = FetchType.EAGER)
 	@Basic(fetch = FetchType.LAZY)
 	private Set<Utente> giocati = new HashSet<>();
 
-	// QUESTO NON è DETTO CHE SERVA PER FORZA, BASTA QUELLO IN UTENTE
 	@ManyToMany(mappedBy = "videogiochiDesiderati", fetch = FetchType.EAGER)
 	@Basic(fetch = FetchType.LAZY)
 	private Set<Utente> desiderati = new HashSet<>();
 
-	// QUESTO NON è DETTO CHE SERVA PER FORZA, BASTA QUELLO IN UTENTE
 	@ManyToMany(mappedBy = "videogiochiPiaciuti", fetch = FetchType.EAGER)
 	@Basic(fetch = FetchType.LAZY)
 	private Set<Utente> piaciuti = new HashSet<>();
 
-	// QUESTO NON è DETTO CHE SERVA PER FORZA, BASTA QUELLO IN UTENTE
 	@ManyToMany(mappedBy = "videogiochiNonPiaciuti", fetch = FetchType.EAGER)
 	@Basic(fetch = FetchType.LAZY)
 	private Set<Utente> nonPiaciuti = new HashSet<>();

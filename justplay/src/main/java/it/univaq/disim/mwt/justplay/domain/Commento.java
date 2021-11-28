@@ -17,7 +17,6 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "commenti")
-//@Document(collection = "commenti")
 @Getter
 @Setter
 @NoArgsConstructor

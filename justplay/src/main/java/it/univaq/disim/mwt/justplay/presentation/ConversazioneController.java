@@ -1,17 +1,12 @@
 package it.univaq.disim.mwt.justplay.presentation;
 
-import java.security.Principal;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import org.hibernate.boot.model.convert.spi.ConverterDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,14 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.ConversazioneService;
 import it.univaq.disim.mwt.justplay.business.MessaggioService;
-import it.univaq.disim.mwt.justplay.business.UtenteService;
-import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.UtenteRepository;
 import it.univaq.disim.mwt.justplay.domain.Conversazione;
 import it.univaq.disim.mwt.justplay.domain.Messaggio;
 import it.univaq.disim.mwt.justplay.domain.Utente;
@@ -38,12 +28,6 @@ public class ConversazioneController {
 
 	@Autowired
 	private ConversazioneService conversazioneService;
-	
-	@Autowired
-	private MessaggioService messaggiService;
-
-	@Autowired
-	private UtenteRepository utenteRepository;
 
 	@Autowired
 	private MessaggioService messaggioService;
@@ -85,9 +69,9 @@ public class ConversazioneController {
 			@ModelAttribute("messaggio") Messaggio messaggio,
 			@RequestParam("usernamePartecipante") String usernamePartecipante) throws BusinessException {
 
+		messaggio.setId(UUID.randomUUID().toString());
 		messaggio.setMittente(utente.getUsername());
 		messaggio.setDestinatario(usernamePartecipante);
-		messaggio.setId(UUID.randomUUID().toString());
 		messaggio.setTimestamp(System.currentTimeMillis());
 		messaggioService.inserisci(messaggio);
 		

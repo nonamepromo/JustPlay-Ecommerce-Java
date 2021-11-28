@@ -1,4 +1,4 @@
-package it.univaq.disim.mwt.justplay.business.impl.mongodb.repository;
+package it.univaq.disim.mwt.justplay.business.impl.jpa.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -9,5 +9,7 @@ import it.univaq.disim.mwt.justplay.domain.Messaggio;
 
 @Repository
 public interface CommentoRepository extends JpaRepository<Commento, String> {
+	
     void deleteById(Long idCommento);
+    
 }

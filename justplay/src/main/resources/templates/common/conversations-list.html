@@ -16,7 +16,7 @@
 							<div class="card card-lg">
 								<div class="card-block">
 									<div
-										th:text="${conversazione.partecipanti[0] == utente.username ? conversazione.partecipanti[1] : conversazione.partecipanti[0]}">
+										th:text="${conversazione.partecipanti[0].equals(utente.username) ? conversazione.partecipanti[1] : conversazione.partecipanti[0]}">
 									</div>
 								</div>
 							</div>
