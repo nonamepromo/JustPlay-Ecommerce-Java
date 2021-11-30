@@ -54,19 +54,15 @@ public class Videogioco extends AbstractPersistableEntity {
 	private String imageUrl;
 
 	@ManyToMany(mappedBy = "videogiochiGiocati", fetch = FetchType.EAGER)
-	@Basic(fetch = FetchType.LAZY)
 	private Set<Utente> giocati = new HashSet<>();
 
 	@ManyToMany(mappedBy = "videogiochiDesiderati", fetch = FetchType.EAGER)
-	@Basic(fetch = FetchType.LAZY)
 	private Set<Utente> desiderati = new HashSet<>();
 
 	@ManyToMany(mappedBy = "videogiochiPiaciuti", fetch = FetchType.EAGER)
-	@Basic(fetch = FetchType.LAZY)
 	private Set<Utente> piaciuti = new HashSet<>();
 
 	@ManyToMany(mappedBy = "videogiochiNonPiaciuti", fetch = FetchType.EAGER)
-	@Basic(fetch = FetchType.LAZY)
 	private Set<Utente> nonPiaciuti = new HashSet<>();
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "videogioco")
@@ -79,7 +75,6 @@ public class Videogioco extends AbstractPersistableEntity {
 	private Set<GameStop> gamestop;
 
 	@OneToMany(mappedBy = "videogioco", fetch = FetchType.EAGER)
-	@Basic(fetch = FetchType.LAZY)
 	private Set<Commento> commenti;
 
 	@Override
