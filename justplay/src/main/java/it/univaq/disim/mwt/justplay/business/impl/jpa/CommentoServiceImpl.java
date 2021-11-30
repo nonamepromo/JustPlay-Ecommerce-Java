@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 import it.univaq.disim.mwt.justplay.business.BusinessException;
 import it.univaq.disim.mwt.justplay.business.CommentoService;
 import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.CommentoRepository;
-import it.univaq.disim.mwt.justplay.business.impl.jpa.repository.VideogiocoRepository;
 import it.univaq.disim.mwt.justplay.domain.Commento;
-import it.univaq.disim.mwt.justplay.domain.Utente;
-import it.univaq.disim.mwt.justplay.domain.Videogioco;
 
 @Service
 @Transactional

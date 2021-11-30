@@ -214,12 +214,9 @@
 				</div>
 		</section>
 		<section class="p-t-20 p-b-50 post">
-
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8">
-
-
 						<div class="mb-5" th:if="${videogioco.amazon.isEmpty() && videogioco.gamestop.isEmpty()}">
 							<h4 th:text="#{videogioco.storeNo}"></h4>
 						</div>
@@ -362,13 +359,13 @@
 				method="post">
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="contenuto">Inserisci la tua recensione</label>
+						<label for="contenuto">[[#{videogioco.commento}]]</label>
 						<input maxlength="255" id="contenuto" name="contenuto" class="form-control"
-							placeholder="Testo recensione..." required>
+							th:placeholder="#{videogioco.commento.testo}" required>
 					</div>
 				</div>
 				<button th:value="${videogioco.id}" th:name="videogioco" type="submit"
-					class="btn btn-primary">Invia</button>
+					class="btn btn-primary">[[#{common.send}]]</button>
 			</form>
 		</section>
 	</div>

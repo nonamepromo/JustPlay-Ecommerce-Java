@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import it.univaq.disim.mwt.justplay.domain.Amazon;
-import it.univaq.disim.mwt.justplay.domain.GameStop;
 import it.univaq.disim.mwt.justplay.domain.Pincodes;
 import it.univaq.disim.mwt.justplay.domain.Utente;
 import it.univaq.disim.mwt.justplay.domain.Videogioco;
