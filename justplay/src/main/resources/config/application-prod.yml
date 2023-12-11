@@ -7,7 +7,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   data:
     mongodb:
-      uri: mongodb+srv://justplay:justplay@cluster0.8w8m4.mongodb.net/justplay
+      uri: ##ADD URI HERE
 
 ###############################################
 ########### JUSTPLAY PROPERTIES ###############
